@@ -530,12 +530,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .source-section .task-flow[open] summary::after { transform: rotate(225deg); }
 .task-flow summary:hover h3, .task-flow[open] summary h3 { color: var(--blue-deep); }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { position: relative; margin: 8px 0 32px; padding: 56px 24px 24px; background: color-mix(in srgb, var(--paper) 25%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
-.flow-viewport { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; scrollbar-color: var(--muted) var(--lavender-deep); padding: 12px; }
-.source-section .task-flow .flow-viewport img { min-width: 900px; max-width: none; }
-.source-section .task-flow .flow-expand { position: absolute; inset-block-start: 12px; inset-inline-end: 16px; display: inline-flex; align-items: center; gap: 12px; min-height: 32px; padding: 4px 8px; border-radius: 6px; color: var(--blue-deep); font-size: 12px; cursor: pointer; outline-offset: 3px; }
-.source-section .task-flow .flow-expand:hover { background: var(--lavender-deep); outline: none; text-decoration: underline; text-underline-offset: 3px; }
-.source-section .task-flow .flow-expand:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 3px; }
+.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 0; background: transparent; border-radius: 0; }
 .task-flow .artifact a { display: block; border-radius: 8px; cursor: zoom-in; outline: 1px solid transparent; outline-offset: 10px; transition: outline-color 160ms ease; }
 .task-flow .artifact a:hover { outline: 1px solid var(--border); outline-offset: 10px; }
 .task-flow .artifact a:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 10px; }
@@ -562,5 +557,4 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .motivation-card { padding-block: 28px; }
   .source-section .task-flow h3 { font-size: 18px; }
   .source-section .task-flow .artifact { margin-block: 4px 24px; }
-  .source-section .task-flow .artifact { padding: 52px 8px 12px; }
 }
