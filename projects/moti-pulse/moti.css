@@ -522,10 +522,15 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .motivation-card .feature-note { display: flex; align-items: center; }
 .motivation-card .feature-note ul { margin: 0; }
 .source-section .chart-legend { margin-block: 24px; }
-.source-section .task-flow { margin-top: 24px; padding: 32px; border: 1px solid var(--border); border-radius: 16px; background: var(--paper); }
+.source-section .task-flow { margin-top: 0; padding: 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; }
 .source-section .task-flow:first-of-type { margin-top: 40px; }
-.source-section .task-flow h3 { margin-bottom: 28px; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { margin: 0; padding: 0; background: transparent; border-radius: 0; }
+.source-section .task-flow summary { padding-block: 24px; list-style: none; }
+.task-flow summary::-webkit-details-marker { display: none; }
+.source-section .task-flow summary::after { content: ''; width: 8px; height: 8px; flex: 0 0 8px; margin-inline: auto 4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
+.source-section .task-flow[open] summary::after { transform: rotate(225deg); }
+.task-flow summary:hover h3, .task-flow[open] summary h3 { color: var(--blue-deep); }
+.source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
+.source-section .task-flow .artifact { margin: 0 0 24px; padding: 32px; background: var(--paper); border-radius: 16px; }
 .task-flow .artifact a { display: block; border-radius: 8px; cursor: zoom-in; outline: 1px solid transparent; outline-offset: 10px; transition: outline-color 160ms ease; }
 .task-flow .artifact a:hover { outline: 1px solid var(--border); outline-offset: 10px; }
 .task-flow .artifact a:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 10px; }
@@ -550,7 +555,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .brief dl { gap: 24px; }
   .brief dd { max-width: 100%; }
   .motivation-card { padding-block: 28px; }
-  .source-section .task-flow { padding: 20px; border-radius: 12px; }
-  .source-section .task-flow h3 { margin-bottom: 24px; font-size: 18px; }
-  .source-section .task-flow .artifact { padding: 0; }
+  .source-section .task-flow h3 { font-size: 18px; }
+  .source-section .task-flow .artifact { padding: 20px; border-radius: 12px; }
 }
