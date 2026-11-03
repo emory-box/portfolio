@@ -134,13 +134,25 @@
     let desiredOpen = roomyViewport.matches;
     let contentsAnimations = [];
     let transitionVersion = 0;
+    let closedShift = 0;
+
+    function measureContents() {
+      const hidden = contents.hidden;
+      contents.hidden = false;
+      contentsDisclosure.style.width = '';
+      contentsDisclosure.style.height = '';
+      contentsDisclosure.style.transform = '';
+      contentsDisclosure.open = true;
+      const bounds = panel.getBoundingClientRect();
+      closedShift = bounds.width + window.innerWidth - contents.getBoundingClientRect().right;
+      // Reserve the same geometry in both states so the handle never jumps vertically.
+      contentsDisclosure.style.width = bounds.width + 'px';
+      contentsDisclosure.style.height = bounds.height + 'px';
+      contents.hidden = hidden;
+    }
 
     function setContentsOpen(open, immediate = false) {
-      const fromButton = summary.getBoundingClientRect();
-      const wasOpen = contentsDisclosure.open;
-      const panelStyle = window.getComputedStyle(panel);
-      const fromOpacity = wasOpen ? panelStyle.opacity : '0';
-      const fromTransform = wasOpen ? panelStyle.transform : 'translateX(24px)';
+      const fromTransform = window.getComputedStyle(contentsDisclosure).transform;
       const fromRotation = window.getComputedStyle(chevron).transform;
       const version = ++transitionVersion;
       desiredOpen = open;
@@ -150,28 +162,25 @@
       panel.inert = !open;
 
       if (immediate || reducedMotion.matches || typeof summary.animate !== 'function') {
+        measureContents();
         contentsDisclosure.open = open;
+        contentsDisclosure.style.transform = `translateX(${open ? 0 : closedShift}px)`;
         return;
       }
 
-      // Measure both native layouts in one frame, then move only with transforms.
-      contentsDisclosure.open = false;
-      const closedButton = summary.getBoundingClientRect();
+      // The panel and handle travel as one drawer on exactly the same timeline.
       contentsDisclosure.open = true;
-      const restingButton = summary.getBoundingClientRect();
-      const targetButton = open ? restingButton : closedButton;
-      const offset = rect => `translate(${rect.left - restingButton.left}px, ${rect.top - restingButton.top}px)`;
+      const targetTransform = `translateX(${open ? 0 : closedShift}px)`;
       const options = { duration: 340, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' };
       contentsAnimations = [
-        summary.animate([{ transform: offset(fromButton) }, { transform: offset(targetButton) }], options),
-        panel.animate([
-          { opacity: fromOpacity, transform: fromTransform },
-          { opacity: open ? 1 : 0, transform: open ? 'translateX(0)' : 'translateX(24px)' },
-        ], options),
+        contentsDisclosure.animate([{ transform: fromTransform }, { transform: targetTransform }], options),
         chevron.animate([{ transform: fromRotation }, { transform: `rotate(${open ? 0 : 180}deg)` }], options),
       ];
+      const startTime = document.timeline.currentTime;
+      if (startTime !== null) contentsAnimations.forEach(animation => { animation.startTime = startTime; });
       Promise.all(contentsAnimations.map(animation => animation.finished)).then(() => {
         if (version !== transitionVersion) return;
+        contentsDisclosure.style.transform = targetTransform;
         contentsDisclosure.open = desiredOpen;
         contentsAnimations.forEach(animation => animation.cancel());
         contentsAnimations = [];
