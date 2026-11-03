@@ -537,8 +537,9 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow .artifact img { width: 100%; height: auto; }
 .source-section .mockup figcaption { font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
 #quantitative .artifact { max-width: 860px; }
-.function-groups { display: grid; gap: 32px; margin-top: 32px; }
-.function-groups .artifact { margin: 0; }
+.function-groups { display: grid; gap: 40px; margin-top: 40px; }
+.chapter--map .function-groups .artifact { margin: 0; padding: 0; background: transparent; border-radius: 0; }
+.function-groups .artifact + .artifact { padding-top: 40px; border-top: 1px solid var(--border); }
 .chapter--map .function-groups .artifact img { max-height: none; }
 /* One rhythm between chapters; research metadata belongs to its heading. */
 .theme-moti .source-section { padding-block: 96px; }
