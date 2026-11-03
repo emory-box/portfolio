@@ -128,15 +128,75 @@
   desktop.addEventListener('change', updateReadingPosition);
   reducedMotion.addEventListener('change', updateMotionPreference);
   if (contents && contentsDisclosure) {
-    contentsDisclosure.open = roomyViewport.matches;
+    const summary = contentsDisclosure.querySelector('summary');
+    const panel = contentsDisclosure.querySelector('nav');
+    const chevron = summary.querySelector('svg');
+    let desiredOpen = roomyViewport.matches;
+    let contentsAnimations = [];
+    let transitionVersion = 0;
+
+    function setContentsOpen(open, immediate = false) {
+      const fromButton = summary.getBoundingClientRect();
+      const wasOpen = contentsDisclosure.open;
+      const panelStyle = window.getComputedStyle(panel);
+      const fromOpacity = wasOpen ? panelStyle.opacity : '0';
+      const fromTransform = wasOpen ? panelStyle.transform : 'translateX(24px)';
+      const fromRotation = window.getComputedStyle(chevron).transform;
+      const version = ++transitionVersion;
+      desiredOpen = open;
+      contentsAnimations.forEach(animation => animation.cancel());
+      contentsAnimations = [];
+      summary.setAttribute('aria-expanded', String(open));
+      panel.inert = !open;
+
+      if (immediate || reducedMotion.matches || typeof summary.animate !== 'function') {
+        contentsDisclosure.open = open;
+        return;
+      }
+
+      // Measure both native layouts in one frame, then move only with transforms.
+      contentsDisclosure.open = false;
+      const closedButton = summary.getBoundingClientRect();
+      contentsDisclosure.open = true;
+      const restingButton = summary.getBoundingClientRect();
+      const targetButton = open ? restingButton : closedButton;
+      const offset = rect => `translate(${rect.left - restingButton.left}px, ${rect.top - restingButton.top}px)`;
+      const options = { duration: 340, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' };
+      contentsAnimations = [
+        summary.animate([{ transform: offset(fromButton) }, { transform: offset(targetButton) }], options),
+        panel.animate([
+          { opacity: fromOpacity, transform: fromTransform },
+          { opacity: open ? 1 : 0, transform: open ? 'translateX(0)' : 'translateX(24px)' },
+        ], options),
+        chevron.animate([{ transform: fromRotation }, { transform: `rotate(${open ? 0 : 180}deg)` }], options),
+      ];
+      Promise.all(contentsAnimations.map(animation => animation.finished)).then(() => {
+        if (version !== transitionVersion) return;
+        contentsDisclosure.open = desiredOpen;
+        contentsAnimations.forEach(animation => animation.cancel());
+        contentsAnimations = [];
+      }).catch(() => {
+        // Reversing or resizing cancels the old transition; the latest state wins.
+      });
+    }
+
+    setContentsOpen(desiredOpen, true);
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+      setContentsOpen(!desiredOpen);
+    });
     roomyViewport.addEventListener('change', () => {
       const restoreFocus = contentsDisclosure.open && contents.contains(document.activeElement);
-      contentsDisclosure.open = roomyViewport.matches;
-      if (restoreFocus && !contentsDisclosure.open) contentsDisclosure.querySelector('summary').focus();
+      setContentsOpen(roomyViewport.matches, true);
+      if (restoreFocus && !desiredOpen) summary.focus();
+    });
+    window.addEventListener('resize', () => setContentsOpen(desiredOpen, true));
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) setContentsOpen(desiredOpen, true);
     });
     contentsLinks.forEach(link => link.addEventListener('click', () => {
       if (roomyViewport.matches) return;
-      contentsDisclosure.open = false;
+      setContentsOpen(false);
       const target = document.querySelector(link.hash);
       if (target) {
         target.tabIndex = -1;
@@ -144,9 +204,9 @@
       }
     }));
     contents.addEventListener('keydown', event => {
-      if (event.key !== 'Escape' || !contentsDisclosure.open) return;
-      contentsDisclosure.open = false;
-      contentsDisclosure.querySelector('summary').focus();
+      if (event.key !== 'Escape' || !desiredOpen) return;
+      setContentsOpen(false);
+      summary.focus();
     });
   }
   updateReadingPosition();
