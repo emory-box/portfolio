@@ -35,7 +35,7 @@ skills and sets the Codex skill budget.
 | --- | --- | --- |
 | `index.html` | `.theme-home` — paper #F2EEE5, ink #191710, vermilion #C9452A | Prototype done: hero, two-project work index, two case cards, approach, closing |
 | `projects/greeny/` | no class — dark #191919, green ramp | Full case study: hero dashboard, personas, IoT system, live UI system, 3 rebuilt app screens, brand, notes |
-| `projects/moti-pulse/` | `.theme-moti` — source-board gradient, white, #536BFF, #5874ED | Rebuilt from the current board: full research, personas, feature maps, IA, six task flows, 25 sketches, four original hi-fi screens, six original mockup stills |
+| `projects/moti-pulse/` | `.theme-moti` — approved A / Editorial, white, #4A5FF7, #EEF1FF | Complete source content, split hero, redrawn charts, six task flows, 25 sketches, four original hi-fi screens, sticky product story and six mockups |
 
 Shared shell: `assets/css/base.css` (tokens, header, footer, buttons, reveal,
 mobile nav). Page styles: `assets/css/home.css`, `projects/*/<slug>.css`.
@@ -65,7 +65,7 @@ If so, replace those two files and keep the CSS sizing.
   deliberately independent of both projects.
 - Real marks, no redrawn logos.
 - No invented metrics or claims: Greeny copy comes from the deck; Moti numbers
-  (5 interviews, 51 responses, 51% aged 18–22, two personas) come from the board.
+  (5 interviews, 51 responses, 51% aged 23–29, two personas) come from the board.
   The `Portfolio` wordmark is an explicit placeholder for the owner's name.
 - Hallmark floor is followed except two documented waivers in the CSS stamps:
   the case studies exceed 80 words per screen, and the palettes live in page
@@ -73,26 +73,29 @@ If so, replace those two files and keep the CSS sizing.
 
 ## Open work (prioritized)
 
-1. **Moti source rebuild completed** — verified 360, 768, 1280 and 1920px with
+1. **Moti editorial A implemented** — the owner chose A from three previews.
+   See `docs/moti-pulse-design.md`; the previews are archived on local branch
+   `prototype/moti-design-review` (`3b7b176`). Verified 320, 360, 768, 1280 and 1920px with
    no horizontal overflow, missing images, broken anchors or script errors.
-   Original charts, sketches and app screens are extracted assets; page text,
-   cards, personas and architecture are HTML/CSS. `moti.js` tracks contents and
-   collapses the sidebar for wide diagrams. Source asset notes are in
-   `projects/moti-pulse/img/README.md`. Current captures: `screenshots/moti-source/`.
+   Original sketches and app screens are extracted assets; page text, charts,
+   personas and architecture are HTML/CSS/SVG. `moti.js` adds staggered hero
+   entrances, one-time reveals and desktop mission/goals/timer screen changes.
+   Reduced motion and no script show content directly; mobile uses normal flow.
+   Current captures: `screenshots/moti-editorial/`.
 2. **Render sweep** — run
    `node .agents/skills/hallmark/scripts/sloplint.mjs <page> --render` on all
-   three pages. Static runs currently report only the documented token-block
-   and word-count waivers.
+   three pages. The current Moti run reports theme-token/parser findings and
+   source punctuation; its render launch times out. Direct Chrome captures and
+   behavior checks passed. DESIGN.md lint: 0 errors, 19 existing warnings.
 3. **Identity** — replace `Portfolio` in the home and both case-study headers;
    add a real contact/about block when the owner supplies it. The Moti-Pulse
    author/team credit is still missing.
 4. **Moti source limitations** — the supplied JPEG has no interactive prototype
    or animation, so the six mockups are stills. Chart descriptions preserve the
-   relative bar heights without inventing response counts. Some source colors
-   have low contrast; fidelity was preserved, so a contrast pass would change
-   the supplied design. The source demographic is 51% aged 23–29.
-5. **Accessibility** — Moti skip link, keyboard order, contents toggle, reduced
-   motion and no-JavaScript visibility were checked. Native screen-reader
+   relative bar heights without inventing response counts; original charts
+   remain linked. The source demographic is 51% aged 23–29.
+5. **Accessibility** — Moti skip link, keyboard order, disclosures, live reduced
+   motion changes and no-JavaScript visibility were checked. Native screen-reader
    testing and a full contrast audit remain outstanding across the portfolio.
 6. **Code-review leftovers** — duplicated hero/footer rules between home and
    Greeny, unused `.mini-card--compact` / `.demo--*` hooks, and the repeat of the

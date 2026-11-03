@@ -12,3 +12,9 @@ research cards, comments, personas, architecture and navigation are HTML/CSS.
 The mockup panels are still images: no animation, working mobile app or
 interactive prototype was supplied. Click an artifact to view its full-size
 image. The original `logo.png` remains unchanged.
+
+The approved editorial website redraws survey charts with source proportions;
+the three original survey JPEGs remain linked for comparison. Only percentages
+printed on the board are quoted as data. Aggregate "other" percentages are the
+remaining share after those printed percentages. Individual bar counts are not
+labelled in the board, so the website describes their relative distributions.

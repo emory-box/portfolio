@@ -154,16 +154,18 @@ several identities without duplicating the chrome:
   phone-first case study.
 - **Portfolio home** (`.theme-home`): paper #F2EEE5, ink #191710, vermilion
   #C9452A. Deliberately independent of every project.
-- **Moti-Pulse** (`.theme-moti`): follows the owner's `Desktop - 2.jpg` board:
-  white, blue headings #536BFF, blue evidence panels #5874ED, pale blue borders
-  #DCEAFF and a lavender/cyan hero gradient. Inter carries all page text. The
-  research column is 55.4% of the desktop canvas, capped at 1058px; diagrams,
-  sketches and mockups expand to 83.8%, capped at 1600px. A right-side contents
-  panel tracks the sections. Mobile reflows cards, personas and mockups into
-  one column; original diagrams remain available as full-size images. The
-  supplied board overrides the general single-accent and mixed-heading rules
-  for this case study. Original product screens and sketches remain source
-  artifacts; surrounding page text and components are live HTML/CSS.
+- **Moti-Pulse** (`.theme-moti`): the owner approved **A / Editorial**. The source
+  board supplies the content; the website uses a split hero, open research rows,
+  alternating reading widths and a blue product chapter. Colors: white #FFFFFF,
+  ink #202342, text #606478, blue #4A5FF7, strong blue #2437B6, lavender #EEF1FF
+  and pale blue #DFE5FF. Inter carries all text; the main container caps at
+  1200px. Original product screens and sketches remain source artifacts.
+  Research charts are rebuilt with original proportions and percentage labels;
+  exact unlabelled response counts are not inferred. Desktop has a sticky
+  product screen changing with its accompanying text; mobile is normal flow.
+  Entrances last 600ms with 120ms hero staggering. Reduced motion and no script
+  keep content directly visible. See `docs/moti-pulse-design.md` for the
+  approved scope and the branch preserving all three design previews.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from
