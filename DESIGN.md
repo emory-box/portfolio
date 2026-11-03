@@ -166,6 +166,9 @@ several identities without duplicating the chrome:
   Entrances last 600ms with 120ms hero staggering. Reduced motion and no script
   keep content directly visible. See `docs/moti-pulse-design.md` for the
   approved scope and the branch preserving all three design previews.
+  The source-style floating contents panel uses the same white/lavender tokens,
+  three research/design groups and an active-section highlight. It occupies
+  the right gutter on wide screens and collapses into a disclosure on mobile.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from

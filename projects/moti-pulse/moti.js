@@ -7,6 +7,12 @@
   const runningAnimations = new Set();
   const links = Array.from(document.querySelectorAll('.chapter-nav a'));
   const chapters = links.map(link => document.querySelector(link.hash)).filter(Boolean);
+  const contents = document.querySelector('.contents');
+  const contentsDisclosure = contents?.querySelector('details');
+  const contentsLinks = Array.from(document.querySelectorAll('.contents a'));
+  const contentsSections = contentsLinks.map(link => document.querySelector(link.hash));
+  const roomyViewport = window.matchMedia('(min-width: 1800px)');
+  const hero = document.querySelector('.hero');
   const steps = Array.from(document.querySelectorAll('[data-screen]'));
   const screens = Array.from(document.querySelectorAll('[data-stage]'));
   let revealObserver;
@@ -36,6 +42,20 @@
   }
 
   function updateReadingPosition() {
+    if (contents && hero) {
+      contents.hidden = hero.getBoundingClientRect().bottom > window.innerHeight * 0.75 && !contents.contains(document.activeElement);
+      let activeContents = contentsSections[0];
+      for (const section of contentsSections) {
+        if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.4) activeContents = section;
+      }
+      contents.querySelectorAll('.contents-group').forEach(group => group.classList.remove('is-active'));
+      contentsLinks.forEach(link => {
+        if (activeContents && link.hash === '#' + activeContents.id) {
+          link.setAttribute('aria-current', 'location');
+          link.closest('.contents-group').classList.add('is-active');
+        } else link.removeAttribute('aria-current');
+      });
+    }
     let currentChapter = chapters[0];
     for (const chapter of chapters) {
       if (chapter.getBoundingClientRect().top <= window.innerHeight * 0.4) currentChapter = chapter;
@@ -107,6 +127,28 @@
   window.addEventListener('resize', schedulePositionUpdate);
   desktop.addEventListener('change', updateReadingPosition);
   reducedMotion.addEventListener('change', updateMotionPreference);
+  if (contents && contentsDisclosure) {
+    contentsDisclosure.open = roomyViewport.matches;
+    roomyViewport.addEventListener('change', () => {
+      const restoreFocus = contentsDisclosure.open && contents.contains(document.activeElement);
+      contentsDisclosure.open = roomyViewport.matches;
+      if (restoreFocus && !contentsDisclosure.open) contentsDisclosure.querySelector('summary').focus();
+    });
+    contentsLinks.forEach(link => link.addEventListener('click', () => {
+      if (roomyViewport.matches) return;
+      contentsDisclosure.open = false;
+      const target = document.querySelector(link.hash);
+      if (target) {
+        target.tabIndex = -1;
+        window.requestAnimationFrame(() => target.focus({ preventScroll: true }));
+      }
+    }));
+    contents.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || !contentsDisclosure.open) return;
+      contentsDisclosure.open = false;
+      contentsDisclosure.querySelector('summary').focus();
+    });
+  }
   updateReadingPosition();
   observeReveals();
 })();

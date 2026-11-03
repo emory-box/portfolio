@@ -21,6 +21,14 @@ be redrawn from source proportions; individual bar counts are not labelled in
 the source and must not be presented as exact data. Percentage labels retain
 the source values. The original charts remain available for comparison.
 
+The owner subsequently requested the original board's floating contents panel.
+Use its User Research / User Experience / User Interface grouping and active
+section highlight. It appears after the hero, opens in the spare right gutter
+at 1800px and up, and starts collapsed on narrower viewports to preserve A's
+layout. The native disclosure can be opened manually and closed with Escape;
+choosing a link on narrow viewports closes the panel and focuses the section.
+Without JavaScript, the contents remain available inline.
+
 ## Approved motion
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
