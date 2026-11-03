@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio, work and case studies</title>
+<meta name="description" content="Product design and front-end case studies, rebuilt as working interfaces rather than screenshots.">
+<meta name="theme-color" content="#f2eee5">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+</head>
+<body class="theme-home">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<svg class="icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="header-inner wrap">
+    <!-- Replace "Portfolio" with your name. -->
+    <a class="brand" href="index.html">Portfolio</a>
+    <nav class="site-nav" aria-label="Portfolio">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+    </nav>
+    <a class="header-cta" href="projects/greeny/">Open Greeny</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Built to be used.</h1>
+        <p class="hero-lede">Case studies in product design and front-end, rebuilt as working interfaces.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">See the work</a>
+          <a class="btn btn-ghost" href="projects/greeny/">Start with Greeny</a>
+        </div>
+      </div>
+
+      <div class="work-index" aria-label="Projects">
+        <a class="work-row" href="projects/greeny/">
+          <span class="work-thumb work-thumb--greeny"><span class="logo-greeny" aria-hidden="true"></span></span>
+          <span class="work-row-copy"><strong>Greeny</strong><small>Smart garden companion</small></span>
+          <span class="work-row-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="work-row" href="projects/moti-pulse/">
+          <span class="work-thumb work-thumb--moti"><img src="projects/moti-pulse/img/logo.png" alt="" width="44" height="44"></span>
+          <span class="work-row-copy"><strong>Moti-Pulse</strong><small>Goal motivation app</small></span>
+          <span class="work-row-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <h2>Selected work</h2>
+        <p>Two projects, rebuilt in the browser. Each case study is the whole story: research, system and interface.</p>
+      </div>
+
+      <ul class="project-list">
+        <li>
+          <a class="project" href="projects/greeny/">
+            <div class="project-media project-media--greeny">
+              <span class="project-mark" aria-hidden="true"></span>
+              <div class="project-media-copy">
+                <span class="project-wordmark">GREENY</span>
+                <div class="project-chips">
+                  <span class="demo-chip"><span class="demo-dot"></span>Soil moisture 40%</span>
+                  <span class="demo-chip">Humidity 90%</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Greeny</h3>
+              <p>An IoT companion that reads soil, waters on schedule and keeps every garden device in one app.</p>
+              <ul class="tags"><li>UX research</li><li>System architecture</li><li>UI system</li></ul>
+              <span class="project-link">View the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="project" href="projects/moti-pulse/">
+            <div class="project-media project-media--moti">
+              <img class="project-logo" src="projects/moti-pulse/img/logo.png" alt="" width="44" height="44">
+              <div class="project-media-copy">
+                <span class="project-wordmark">Moti-Pulse</span>
+                <div class="project-chips">
+                  <span class="demo-chip demo-chip--moti">25:00 focus</span>
+                  <span class="demo-chip demo-chip--moti">Goal 60%</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3>Moti-Pulse</h3>
+              <p>A goal-motivation app built on purpose, curiosity and the Pomodoro technique, from research to four screens.</p>
+              <ul class="tags"><li>UX research</li><li>UI design</li><li>Prototyping</li></ul>
+              <span class="project-link">View the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="approach" id="approach">
+    <div class="wrap">
+      <div class="work-head">
+        <h2>How it is built</h2>
+        <p>Three rules that shape every project on this site.</p>
+      </div>
+      <ol class="approach-list">
+        <li>
+          <h3>The interface is the evidence</h3>
+          <p>Each case study is rebuilt in HTML and CSS. The details are inspectable, not flattened into screenshots.</p>
+        </li>
+        <li>
+          <h3>One system per project</h3>
+          <p>Every project carries its own palette, type and components, recorded in a DESIGN.md that survives the build.</p>
+        </li>
+        <li>
+          <h3>Static by choice</h3>
+          <p>No framework, no build step, no tracking. The whole site runs on GitHub Pages and works without JavaScript.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap closing-inner">
+      <div>
+        <h2>More work is on the way.</h2>
+        <p>Greeny and Moti-Pulse are the first two. The next case study joins this list when it is rebuilt.</p>
+      </div>
+      <div class="closing-actions">
+        <a class="btn btn-primary" href="projects/greeny/">Open Greeny<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="projects/moti-pulse/">Open Moti-Pulse</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">Portfolio</a>
+      <p>Product design and front-end case studies.</p>
+    </div>
+    <div class="footer-col">
+      <h2>Case studies</h2>
+      <ul><li><a href="projects/greeny/">Greeny</a></li><li><a href="projects/moti-pulse/">Moti-Pulse</a></li></ul>
+    </div>
+    <div class="footer-col footer-col--note">
+      <h2>About this site</h2>
+      <p>Static HTML, CSS and SVG. No framework, no build step, hosted on GitHub Pages.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

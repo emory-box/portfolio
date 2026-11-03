@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greeny, a smart garden companion</title>
+<meta name="description" content="Greeny is an IoT smart-garden companion: research, system architecture, a UI system and a mobile interface rebuilt as a live case study.">
+<meta name="theme-color" content="#191919">
+<meta property="og:title" content="Greeny, a smart garden companion">
+<meta property="og:description" content="Research, system architecture and interface design for a connected garden.">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="greeny.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<svg class="icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 9V6a2 2 0 0 1 2-2h3M15 4h3a2 2 0 0 1 2 2v3M20 15v3a2 2 0 0 1-2 2h-3M9 20H6a2 2 0 0 1-2-2v-3"/><path d="M8.5 12s1.4-2.2 3.5-2.2S15.5 12 15.5 12s-1.4 2.2-3.5 2.2S8.5 12 8.5 12Z"/><circle cx="12" cy="12" r=".8" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8.5v7M8.5 12h7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.5 19a1.8 1.8 0 0 0 3 0"/></symbol>
+  <symbol id="i-sprinkler" viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 2.5-6 6-6M12 13c0-4-2.5-6-6-6"/><path d="M6 7h.01M12 5h.01M18 7h.01M8.5 4h.01M15.5 4h.01"/><path d="M9 21h6"/></symbol>
+  <symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 10c0-4 1-6 3.5-6S19 7 16.5 9 12 10 12 10ZM14 12c4 0 6 1 6 3.5S17 19 15 16.5 14 12 14 12ZM12 14c0 4-1 6-3.5 6S5 17 7.5 15 12 14 12 14ZM10 12c-4 0-6-1-6-3.5S7 5 9 7.5 10 12 10 12Z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 14-14 1 9-4 14-12 14H5Z"/><path d="M5 19c2-5 5-8 9-10"/></symbol>
+  <symbol id="i-light" viewBox="0 0 24 24"><path d="M9 17h6M10 20h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5.9 1.1.9 1.8V17h5.2v-1.3c0-.7.3-1.3.9-1.8A6 6 0 0 0 12 3Z"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><path d="M3 17c3-6 6-6 9 0s6 6 9 0"/><path d="M3 11c3-6 6-6 9 0s6 6 9 0"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-5 3 3 5-7"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 7h12M8 12h12M8 17h12"/><path d="M4 7h.01M4 12h.01M4 17h.01"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4"/><path d="M7.5 14h3"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M4.2 7.5l2.2 1.2M17.6 15.3l2.2 1.2M4.2 16.5l2.2-1.2M17.6 8.7l2.2-1.2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14 6l-6 6 6 6"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="7" rx="2"/><path d="M7 14h10v6H7z"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5c3.5 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2.5-6 6-10Z"/></symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1-.4-8 5.5 5.5 0 0 1 10.6 1.4A3.4 3.4 0 0 1 17 16"/><path d="M8 19l-1 2M12 19l-1 2M16 19l-1 2"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.3 1A3.8 3.8 0 0 1 17 18H7Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="header-inner wrap">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>GREENY</span>
+    </a>
+    <nav class="site-nav" aria-label="Case study sections">
+      <a href="../../index.html">All work</a>
+      <a href="#brief">The brief</a>
+      <a href="#system">System</a>
+      <a href="#ui">UI system</a>
+      <a href="#interface">Interface</a>
+      <a href="#brand">Brand</a>
+    </nav>
+    <a class="header-cta" href="#interface">Open the app</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Your garden,<br>always in reach.</h1>
+        <p class="hero-lede">An IoT companion that reads soil, waters on schedule, and answers remotely.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#interface">See the interface</a>
+          <a class="btn btn-ghost" href="#brief">Read the case</a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>Scope</dt><dd>Research, IoT architecture, UI system</dd></div>
+          <div><dt>Platform</dt><dd>Mobile app with a Wi-Fi mesh hub</dd></div>
+          <div><dt>Team</dt><dd>Four designers, one instructor</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-stage" aria-label="The Greeny dashboard, rebuilt in HTML">
+        <div class="phone phone--hero">
+          <div class="phone-bezel">
+            <div class="phone-screen">
+              <div class="statusbar"><span>9:41</span><span class="statusbar-icons"><i class="sig"></i><i class="wifi"></i><i class="battery"></i></span></div>
+              <div class="screen-pad">
+                <div class="screen-title"><p class="screen-h">Dashboard</p><span class="screen-title-end">Notification<svg class="ico ico--18" aria-hidden="true"><use href="#i-bell"/></svg></span></div>
+                <div class="segmented">
+                  <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-scan"/></svg>AI Detect</span>
+                  <span class="segmented-divider" aria-hidden="true"></span>
+                  <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-add"/></svg>Add Device</span>
+                </div>
+                <ul class="device-strip">
+                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span><span class="device-name">Sprinklers</span><span class="device-count">6/6</span></li>
+                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg></span><span class="device-name">Fans</span><span class="device-count">0/1</span></li>
+                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-light"/></svg></span><span class="device-name">Lights</span><span class="device-count">0/2</span></li>
+                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-net"/></svg></span><span class="device-name">Net</span><span class="device-count">0/6</span></li>
+                </ul>
+
+                <div class="mini-grid">
+                  <div class="mini-card">
+                    <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span><span class="mini-link">Details</span></div>
+                    <div class="chart">
+                      <span class="chart-badge">40%</span>
+                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture over the last seven days, 40 percent at the marker">
+                        <g class="chart-grid">
+                          <path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/>
+                          <path d="M0 0v80M55 0v80M110 0v80M165 0v80M220 0v80" class="chart-grid-v"/>
+                        </g>
+                        <path class="chart-line" d="M0 58c14-6 20 3 32 4s18-14 34-12 18 12 34 8 20-20 36-18 18 10 30 4 20-16 30-12 16 8 24 6"/>
+                        <path class="chart-marker" d="M132 0v80"/>
+                        <circle class="chart-dot" cx="132" cy="44" r="4"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="mini-card mini-card--compact">
+                    <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                    <div class="bars" role="img" aria-label="Maximum, average and minimum soil moisture">
+                      <span class="bar" style="--h:82%"></span><span class="bar" style="--h:56%"></span><span class="bar" style="--h:38%"></span>
+                    </div>
+                    <div class="mini-foot"><span class="value">50%</span><span class="value-label">Value</span></div>
+                  </div>
+                </div>
+
+                <div class="env">
+                  <div class="env-head"><div><p class="env-h">Environment data</p><p>Click a garden photo to see the overall data</p></div><span class="mini-link">See all<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                  <div class="garden-grid">
+                    <article class="garden-card">
+                      <img src="img/garden-succulents.jpg" alt="Rows of echeveria succulents in a garden bed" width="295" height="140" fetchpriority="high">
+                      <div class="garden-body">
+                        <p class="garden-name">Echeveria garden</p>
+                        <p><svg class="ico ico--12" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
+                      </div>
+                      <span class="garden-check"><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg></span>
+                    </article>
+                    <article class="garden-card">
+                      <img src="img/garden-beds.jpg" alt="A second succulent garden bed" width="238" height="140" loading="lazy">
+                      <div class="garden-body">
+                        <p class="garden-name">Nhà riêng</p>
+                        <p><svg class="ico ico--12" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+              <nav class="tabbar" aria-label="App tabs">
+                <span class="tabbar-item is-active"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Home</span>
+                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>List</span>
+                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Schedule</span>
+                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-settings"/></svg>Setting</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-card float-card--weather">
+          <p class="float-place"><svg class="ico ico--14" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
+          <div class="weather-sky"><span class="sun"></span><span class="weather-cloud"><svg class="ico ico--28" aria-hidden="true"><use href="#i-cloud"/></svg></span></div>
+          <div class="weather-stats">
+            <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-drop"/></svg><strong>90%</strong><span>Humidity</span></div>
+            <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-rain"/></svg><strong>100%</strong><span>Rain</span></div>
+          </div>
+        </div>
+
+        <div class="float-card float-card--sensor">
+          <span class="float-label">Soil moisture</span>
+          <span class="float-value">40%</span>
+          <div class="spark" role="img" aria-label="Soil moisture trending sideways through the week">
+            <span style="--x:0%;--y:62%"></span><span style="--x:16%;--y:56%"></span><span style="--x:32%;--y:64%"></span><span style="--x:48%;--y:48%"></span><span style="--x:64%;--y:52%"></span><span style="--x:80%;--y:38%"></span><span style="--x:96%;--y:44%"></span>
+          </div>
+          <span class="float-note">Last 7 days</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="brief">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Two people,<br>one hard job.</h2>
+        <p class="section-lede">A garden owner who is rarely home. A manager who wants plants without the guesswork. Both need the same thing: a garden that keeps working when they are not standing in it.</p>
+      </div>
+
+      <div class="persona-grid">
+        <article class="persona">
+          <header class="persona-head">
+            <span class="avatar" aria-hidden="true">P</span>
+            <div><h3>Phu</h3><p>33, business owner</p></div>
+          </header>
+          <blockquote>“I need to manage my garden remotely, without being there every hour.”</blockquote>
+          <dl class="persona-facts">
+            <div><dt>Pain</dt><dd>Constant on-site supervision and physically demanding work.</dd></div>
+            <div><dt>Need</dt><dd>Remote monitoring and control of every garden device.</dd></div>
+            <div><dt>Motivation</dt><dd>Save time and make care more reliable.</dd></div>
+          </dl>
+        </article>
+
+        <article class="persona">
+          <header class="persona-head">
+            <span class="avatar" aria-hidden="true">L</span>
+            <div><h3>Lan</h3><p>30, finance manager</p></div>
+          </header>
+          <blockquote>“I want a beautiful garden at home, but I barely have time or the expertise.”</blockquote>
+          <dl class="persona-facts">
+            <div><dt>Pain</dt><dd>Limited plant knowledge and very little time for care.</dd></div>
+            <div><dt>Need</dt><dd>Plant identification and watering that runs itself.</dd></div>
+            <div><dt>Motivation</dt><dd>A cosy garden her family can enjoy.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="system">
+    <div class="wrap">
+      <div class="section-head section-head--wide">
+        <h2>One hub,<br>five kinds of device.</h2>
+        <p class="section-lede">Greeny is not a single gadget. It is a small ecosystem: sensors report, actuators act, and a hub keeps the mesh talking when the internet does not.</p>
+      </div>
+
+      <ul class="device-grid">
+        <li class="device-card">
+          <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span>
+          <h3>Sprinkler</h3>
+          <p>Automated irrigation, triggered by sensor thresholds or a schedule you set.</p>
+        </li>
+        <li class="device-card">
+          <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+          <h3>Integrated sensors</h3>
+          <p>Soil moisture, temperature, air humidity and light, read continuously in the bed.</p>
+        </li>
+        <li class="device-card">
+          <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg></span>
+          <h3>Fan</h3>
+          <p>Ventilation that keeps air moving and stops a closed garden overheating.</p>
+        </li>
+        <li class="device-card">
+          <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-light"/></svg></span>
+          <h3>Lighting</h3>
+          <p>Grow lights on a remote schedule, for the hours the sun does not cover.</p>
+        </li>
+        <li class="device-card">
+          <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-net"/></svg></span>
+          <h3>Net and shade</h3>
+          <p>Motorised cover that protects plants from harsh sun or heavy rain.</p>
+        </li>
+      </ul>
+
+      <div class="protocol">
+        <div class="protocol-copy">
+          <h3>Why Wi-Fi mesh</h3>
+          <p>A single hub covers a compact home garden. Extra nodes extend the same network across a larger plot, so a business garden can grow without a second system.</p>
+        </div>
+        <table class="protocol-table">
+          <caption>Protocol comparison from the original research</caption>
+          <thead>
+            <tr><th scope="col">Protocol</th><th scope="col">Range</th><th scope="col">Power</th><th scope="col">Fit</th></tr>
+          </thead>
+          <tbody>
+            <tr class="is-chosen"><th scope="row">Wi-Fi Mesh</th><td>30 to 50 m</td><td>Medium</td><td>Best fit for real-time data at scale</td></tr>
+            <tr><th scope="row">Wi-Fi</th><td>20 to 30 m</td><td>Medium</td><td>Dead zones in large gardens</td></tr>
+            <tr><th scope="row">Bluetooth</th><td>About 10 m</td><td>Low</td><td>Too short a range</td></tr>
+            <tr><th scope="row">LoRa</th><td>Up to 1 km</td><td>Very low</td><td>Too little bandwidth</td></tr>
+            <tr><th scope="row">Zigbee</th><td>10 to 20 m</td><td>Very low</td><td>Limited range, extra hardware</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="ui">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A system you<br>can read at a glance.</h2>
+        <p class="section-lede">The app lives at arm’s length in a garden. Numbers had to carry, colour had to mean something, and every control had to survive one thumb.</p>
+      </div>
+
+      <div class="ui-grid">
+        <article class="ui-block">
+          <h3>Colour</h3>
+          <p class="ui-note">One green ramp for brand, one neutral ramp for data, four semantic signals for state.</p>
+          <p class="swatch-label">Brand</p>
+          <ul class="swatches" aria-label="Brand green ramp">
+            <li><span class="swatch swatch--050"></span><span class="swatch-hex">#f8fbf4</span></li>
+            <li><span class="swatch swatch--100"></span><span class="swatch-hex">#cfe3b5</span></li>
+            <li><span class="swatch swatch--200"></span><span class="swatch-hex">#afd182</span></li>
+            <li><span class="swatch swatch--300"></span><span class="swatch-hex">#8ebe50</span></li>
+            <li><span class="swatch swatch--400"></span><span class="swatch-hex">#6c9537</span></li>
+            <li><span class="swatch swatch--500"></span><span class="swatch-hex">#4a6425</span></li>
+          </ul>
+          <p class="swatch-label">Neutral</p>
+          <ul class="swatches swatches--neutral" aria-label="Neutral data ramp">
+            <li><span class="swatch swatch--n050"></span><span class="swatch-hex">#fafafa</span></li>
+            <li><span class="swatch swatch--n100"></span><span class="swatch-hex">#f1f4f9</span></li>
+            <li><span class="swatch swatch--n200"></span><span class="swatch-hex">#cbd4e1</span></li>
+            <li><span class="swatch swatch--n300"></span><span class="swatch-hex">#94a3b8</span></li>
+            <li><span class="swatch swatch--n400"></span><span class="swatch-hex">#64748b</span></li>
+            <li><span class="swatch swatch--n500"></span><span class="swatch-hex">#475569</span></li>
+          </ul>
+          <p class="swatch-label">Semantic</p>
+          <ul class="semantic-row" aria-label="Semantic colours">
+            <li><span class="semantic-swatch"></span>Success</li>
+            <li><span class="semantic-swatch"></span>Warning</li>
+            <li><span class="semantic-swatch"></span>Info</li>
+            <li><span class="semantic-swatch"></span>Error</li>
+          </ul>
+        </article>
+
+        <article class="ui-block">
+          <h3>Type</h3>
+          <p class="ui-note">Inter for reading, Nunito for the product’s voice.</p>
+          <div class="type-specimen">
+            <div class="type-row">
+              <span class="type-meta">Inter Bold, 36/44</span>
+              <p class="type-sample type-sample--inter">The quick brown fox jumps over the lazy dog.</p>
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Inter Regular, 16/26</span>
+              <p class="type-sample type-sample--body">Soil moisture, temperature and light are read every few minutes, then written to a single timeline.</p>
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Nunito ExtraBold, 28/32</span>
+              <p class="type-sample type-sample--nunito">Stay connected to your garden.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="ui-block ui-block--wide">
+          <h3>Components</h3>
+          <p class="ui-note">The four pieces the whole app is built from: device status, a garden card, a sensor readout and a weather panel.</p>
+
+          <div class="component-grid">
+            <div class="demo demo--devices">
+              <span class="demo-label">Device status</span>
+              <ul class="device-strip device-strip--demo">
+                <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span><span class="device-name">Sprinklers</span><span class="device-count">6/6</span></li>
+                <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg></span><span class="device-name">Fans</span><span class="device-count">0/1</span></li>
+                <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-light"/></svg></span><span class="device-name">Lights</span><span class="device-count">0/2</span></li>
+                <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-net"/></svg></span><span class="device-name">Net</span><span class="device-count">0/6</span></li>
+              </ul>
+            </div>
+
+            <div class="demo demo--garden">
+              <span class="demo-label">Garden card</span>
+              <article class="garden-card garden-card--demo">
+                <img src="img/garden-succulents.jpg" alt="Rows of echeveria succulents" width="295" height="140" loading="lazy">
+                <div class="garden-body">
+                  <p class="garden-name">Echeveria garden</p>
+                  <p><svg class="ico ico--12" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
+                </div>
+                <span class="garden-check"><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg></span>
+                <div class="garden-stats">
+                  <span><svg class="ico ico--12" aria-hidden="true"><use href="#i-chart"/></svg>6 sensors</span>
+                  <span><svg class="ico ico--12" aria-hidden="true"><use href="#i-settings"/></svg>15 actuators</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="demo demo--chart">
+              <span class="demo-label">Sensor readout</span>
+              <div class="mini-card mini-card--demo">
+                <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span><span class="mini-link">Last 7 days<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                <div class="chart">
+                  <span class="chart-badge">40%</span>
+                  <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture over seven days with a marker at 40 percent">
+                    <g class="chart-grid">
+                      <path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/>
+                      <path d="M0 0v80M55 0v80M110 0v80M165 0v80M220 0v80" class="chart-grid-v"/>
+                    </g>
+                    <path class="chart-line" d="M0 58c14-6 20 3 32 4s18-14 34-12 18 12 34 8 20-20 36-18 18 10 30 4 20-16 30-12 16 8 24 6"/>
+                    <path class="chart-marker" d="M132 0v80"/>
+                    <circle class="chart-dot" cx="132" cy="44" r="4"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo demo--weather">
+              <span class="demo-label">Weather</span>
+              <div class="weather-panel">
+                <p class="float-place"><svg class="ico ico--14" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
+                <div class="weather-sky weather-sky--panel"><span class="sun"></span><span class="weather-cloud"><svg class="ico ico--28" aria-hidden="true"><use href="#i-cloud"/></svg></span></div>
+                <div class="weather-stats weather-stats--panel">
+                  <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-drop"/></svg><strong>90%</strong><span>Humidity</span></div>
+                  <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-rain"/></svg><strong>100%</strong><span>Rain</span></div>
+                </div>
+                <div class="schedule"><span>Schedule</span><span class="pill">Daily<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="interface">
+    <div class="wrap">
+      <div class="section-head section-head--wide">
+        <h2>Built,<br>not mocked up.</h2>
+        <p class="section-lede">Every screen below is live markup: same palette, same type, same components as the rest of this page.</p>
+      </div>
+
+      <div class="phone-row">
+        <figure class="phone-figure">
+          <div class="phone phone--small">
+            <div class="phone-bezel">
+              <div class="phone-screen">
+                <div class="statusbar"><span>9:41</span><span class="statusbar-icons"><i class="sig"></i><i class="wifi"></i><i class="battery"></i></span></div>
+                <div class="screen-pad">
+                  <div class="screen-title"><p class="screen-h">Environment data</p><span class="screen-title-end"><span class="screen-action">Print</span><svg class="ico ico--16" aria-hidden="true"><use href="#i-print"/></svg></span></div>
+                  <div class="mini-card mini-card--stack">
+                    <div class="mini-head"><span class="chip">Greeny 1</span><span class="mini-link">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                    <div class="chart">
+                      <span class="chart-badge">40%</span>
+                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture for Greeny 1">
+                        <g class="chart-grid"><path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/></g>
+                        <path class="chart-line" d="M0 58c14-6 20 3 32 4s18-14 34-12 18 12 34 8 20-20 36-18 18 10 30 4 20-16 30-12 16 8 24 6"/>
+                        <path class="chart-marker" d="M132 0v80"/><circle class="chart-dot" cx="132" cy="44" r="4"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="mini-card mini-card--stack">
+                    <div class="mini-head"><span class="chip">Greeny 2</span><span class="mini-link">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                    <div class="chart">
+                      <span class="chart-badge">40%</span>
+                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture for Greeny 2">
+                        <g class="chart-grid"><path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/></g>
+                        <path class="chart-line" d="M0 48c18-10 26 6 44 8s22-16 40-14 20 18 38 14 22-22 38-18 22 10 36 6 16-6 24-2"/>
+                        <path class="chart-marker" d="M148 0v80"/><circle class="chart-dot" cx="148" cy="50" r="4"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="mini-card mini-card--stack">
+                    <div class="mini-head"><span class="chip">Greeny 3</span><span class="mini-link">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                    <div class="chart">
+                      <span class="chart-badge">40%</span>
+                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture for Greeny 3">
+                        <g class="chart-grid"><path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/></g>
+                        <path class="chart-line" d="M0 54c16-4 22 6 36 8s20-10 36-8 20 14 36 10 20-22 38-20 22 8 34 2 18-8 28-4"/>
+                        <path class="chart-marker" d="M160 0v80"/><circle class="chart-dot" cx="160" cy="46" r="4"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="screen-note"><span>Updated just now</span><span>3 gardens</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Environment data, per garden</figcaption>
+        </figure>
+
+        <figure class="phone-figure">
+          <div class="phone phone--small">
+            <div class="phone-bezel">
+              <div class="phone-screen">
+                <div class="statusbar"><span>9:41</span><span class="statusbar-icons"><i class="sig"></i><i class="wifi"></i><i class="battery"></i></span></div>
+                <div class="screen-pad">
+                  <div class="screen-title"><p class="screen-h">Dashboard</p><span class="screen-title-end">Notification<svg class="ico ico--18" aria-hidden="true"><use href="#i-bell"/></svg></span></div>
+                  <div class="segmented">
+                    <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-scan"/></svg>AI Detect</span>
+                    <span class="segmented-divider" aria-hidden="true"></span>
+                    <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-add"/></svg>Add Device</span>
+                  </div>
+                  <ul class="device-strip">
+                    <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span><span class="device-name">Sprinklers</span><span class="device-count">6/6</span></li>
+                    <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg></span><span class="device-name">Fans</span><span class="device-count">0/1</span></li>
+                    <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-light"/></svg></span><span class="device-name">Lights</span><span class="device-count">0/2</span></li>
+                    <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-net"/></svg></span><span class="device-name">Net</span><span class="device-count">0/6</span></li>
+                  </ul>
+                  <div class="mini-card mini-card--stack">
+                    <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span><span class="mini-link">Details</span></div>
+                    <div class="chart">
+                      <span class="chart-badge">40%</span>
+                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture readout">
+                        <g class="chart-grid"><path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/></g>
+                        <path class="chart-line" d="M0 58c14-6 20 3 32 4s18-14 34-12 18 12 34 8 20-20 36-18 18 10 30 4 20-16 30-12 16 8 24 6"/>
+                        <path class="chart-marker" d="M132 0v80"/><circle class="chart-dot" cx="132" cy="44" r="4"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="env-block">
+                    <div class="mini-head"><p class="env-h">Environment data</p><span class="mini-link">See all<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                    <div class="garden-grid garden-grid--stack">
+                      <article class="garden-card">
+                        <img src="img/garden-succulents.jpg" alt="Echeveria garden" width="295" height="140" loading="lazy">
+                        <div class="garden-body"><p class="garden-name">Echeveria garden</p><p>Biên Hòa, Đồng Nai</p></div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                <nav class="tabbar" aria-label="App tabs">
+                  <span class="tabbar-item is-active"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Home</span>
+                  <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>List</span>
+                  <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Schedule</span>
+                  <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-settings"/></svg>Setting</span>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <figcaption>Dashboard, one garden at a time</figcaption>
+        </figure>
+
+        <figure class="phone-figure">
+          <div class="phone phone--small">
+            <div class="phone-bezel">
+              <div class="phone-screen">
+                <div class="statusbar"><span>9:41</span><span class="statusbar-icons"><i class="sig"></i><i class="wifi"></i><i class="battery"></i></span></div>
+                <div class="screen-pad">
+                  <div class="screen-title"><p class="screen-h">Automate</p><span class="screen-title-end">Multi-control</span></div>
+                  <ul class="control-list">
+                    <li>
+                      <span class="control-ico"><svg class="ico ico--18" aria-hidden="true"><use href="#i-light"/></svg></span>
+                      <span class="control-copy"><strong>Front light</strong><span>Daily</span></span>
+                      <span class="control-pill">Daily</span>
+                      <span class="control-actions"><svg class="ico ico--16" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ico ico--16" aria-hidden="true"><use href="#i-stop"/></svg></span>
+                    </li>
+                    <li>
+                      <span class="control-ico"><svg class="ico ico--18" aria-hidden="true"><use href="#i-sprinkler"/></svg></span>
+                      <span class="control-copy"><strong>Sprinkle 1</strong><span>07:00, daily</span></span>
+                      <span class="control-pill">Daily</span>
+                      <span class="control-actions"><svg class="ico ico--16" aria-hidden="true"><use href="#i-play"/></svg><svg class="ico ico--16" aria-hidden="true"><use href="#i-stop"/></svg></span>
+                    </li>
+                    <li>
+                      <span class="control-ico"><svg class="ico ico--18" aria-hidden="true"><use href="#i-fan"/></svg></span>
+                      <span class="control-copy"><strong>Garden fan</strong><span>Auto, 28°C</span></span>
+                      <span class="control-pill">Auto</span>
+                      <span class="control-actions"><svg class="ico ico--16" aria-hidden="true"><use href="#i-play"/></svg><svg class="ico ico--16" aria-hidden="true"><use href="#i-stop"/></svg></span>
+                    </li>
+                    <li>
+                      <span class="control-ico"><svg class="ico ico--18" aria-hidden="true"><use href="#i-net"/></svg></span>
+                      <span class="control-copy"><strong>Shade net</strong><span>12:00, daily</span></span>
+                      <span class="control-pill">Daily</span>
+                      <span class="control-actions"><svg class="ico ico--16" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ico ico--16" aria-hidden="true"><use href="#i-stop"/></svg></span>
+                    </li>
+                  </ul>
+                  <div class="control-summary">
+                    <div><span>2 actuators</span><strong>Running</strong></div>
+                    <div><span>Next run</span><strong>00:07:00</strong></div>
+                  </div>
+                  <div class="screen-note"><span>Schedules adapt to the weather</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Automation, grouped by device</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="brand">
+    <div class="wrap brand-grid">
+      <div class="brand-mark-stage">
+        <span class="brand-mark-lg" role="img" aria-label="Greeny logo"></span>
+        <p class="brand-wordmark">GREENY</p>
+      </div>
+      <div class="brand-copy">
+        <h2>A mark that<br>keeps growing.</h2>
+        <p class="section-lede">A fingerprint drawn as a continuous line, closed into a G. The centre is a leaf, so the mark reads as a living thing rather than a device.</p>
+        <div class="lockups">
+          <div class="lockup lockup--dark"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
+          <div class="lockup lockup--light"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
+        </div>
+        <p class="brand-note">The wordmark sets in Nunito ExtraBold, untracked, with the mark’s stroke weight matched to the stem width.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="notes">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What the<br>garden taught.</h2>
+        <p class="section-lede">Three things that changed the work, beyond the screens.</p>
+      </div>
+      <ol class="notes">
+        <li>
+          <h3>Trust is a data problem</h3>
+          <p>A number without a unit, a baseline and a time window is decoration. Every sensor card on this page carries all three.</p>
+        </li>
+        <li>
+          <h3>One control surface</h3>
+          <p>Grouping devices by kind, not by room, kept a five-device garden readable on a 320px screen and made automation understandable.</p>
+        </li>
+        <li>
+          <h3>Green is a promise</h3>
+          <p>The accent only appears where the user can act or where a reading is healthy. If everything is green, nothing is.</p>
+        </li>
+      </ol>
+      <div class="closing">
+        <p>Greeny is a student UX case study. The interface on this page was rebuilt in HTML, CSS and SVG from the original design system.</p>
+        <a class="btn btn-primary" href="#top">Back to the top<svg class="ico ico--16" aria-hidden="true"><use href="#i-up"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></a>
+      <p>A smart garden companion.<br>A student UX case study.</p>
+      <a class="footer-back" href="../../index.html">All projects</a>
+    </div>
+    <div class="footer-col">
+      <h2>Team</h2>
+      <ul><li>Tấn Duy</li><li>Phương Thanh</li><li>Kim Vi</li><li>Minh Hiển</li></ul>
+    </div>
+    <div class="footer-col">
+      <h2>Guidance</h2>
+      <ul><li>Trần Cường Tiến</li><li>Instructor</li></ul>
+    </div>
+    <div class="footer-col footer-col--note">
+      <h2>About this build</h2>
+      <p>Every interface element here is live markup. Garden photography comes from the original case-study materials.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js" defer></script>
+</body>
+</html>

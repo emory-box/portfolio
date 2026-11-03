@@ -1,0 +1,46 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+.next/
+out/
+dist/
+build/
+.turbo/
+.vercel/
+.netlify/
+.wrangler/
+
+# caches
+.cache/
+.eslintcache
+.tsbuildinfo
+*.tsbuildinfo
+
+# tests
+coverage/
+playwright-report/
+test-results/
+
+# env
+.env
+.env.*
+!.env.example
+
+# os / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# logs
+*.log
+npm-debug.log*
+
+# local review captures
+screenshots/
+.hallmark/

@@ -1,0 +1,17 @@
+/* Self-hosted latin cuts. One variable file per family, so the site works offline. */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url("../fonts/nunito-latin.woff2") format("woff2");
+}
