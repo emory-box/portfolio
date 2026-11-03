@@ -6,8 +6,11 @@ previews are preserved on local branch `prototype/moti-design-review`, commit
 
 ## Content and layout
 
-The source is `D:\Web-portfolio\Raw\Moti-pulse\Desktop - 2.jpg`. It defines
-the case study's facts and required sections, rather than the website layout.
+The source is `D:\Web-portfolio\Raw\Moti-pulse\Desktop - 2.jpg`. The owner's
+latest clarification is authoritative: retain its wording, section titles,
+evidence and narrative order. Only layout, animation and presentation may
+change. Do not add editorial headlines, connective copy, derived statistics,
+feature descriptions, or move findings ahead of their source context.
 Preserve Problems, Research for solutions, User Segmentation, Qualitative and
 Quantitative Research, User Personas, Function Ideation, Information
 Architecture, Task Flow, Sketches, Hi-Fi and Mockups. Preserve all 25 sketches,
@@ -15,11 +18,10 @@ six task flows, four hi-fi screens and six mockups. Use the original logo and
 product artwork. Do not invent credits, outcomes, quotes or metrics.
 
 The accepted layout has a split hero, a narrow/wide editorial reading rhythm,
-open research rows and a blue product section. The evidence remains available
-through native disclosure elements and full-size original images. Charts can
-be redrawn from source proportions; individual bar counts are not labelled in
-the source and must not be presented as exact data. Percentage labels retain
-the source values. The original charts remain available for comparison.
+open research rows. The evidence remains available
+through full-size original images. Use the original survey charts, preserving
+their exact evidence rather than approximating unlabelled bar counts. The
+three motivation/solution pairs remain paired and in their source order.
 
 The owner subsequently requested the original board's floating contents panel.
 Use its User Research / User Experience / User Interface grouping and active
@@ -29,22 +31,25 @@ layout. The native disclosure can be opened manually and closed with Escape;
 choosing a link on narrow viewports closes the panel and focuses the section.
 Without JavaScript, the contents remain available inline.
 
-Subsequent owner-approved refinements: center the original header logo using
-the corrected source crop; move UX/UI case study and 4 weeks into the header;
-replace the hero's jump button with static Life mission / Goals & tasks /
-Pomodoro labels; remove the redundant chapter strip and "Intention" line;
-replace the footer's repeated contents list with Next project / Greeny.
-The contents toggle sits inside the panel's right edge at a fixed vertical
-position. The panel slides horizontally beneath it while the arrow reverses;
-the toggle does not move upward or leave its line. The panel never scrolls
-internally; spacing and columns adapt to short viewports.
+The centered original logo, source metadata in the header, removal of redundant
+section navigation and the footer's Next project / Greeny remain approved site
+chrome. The later source-copy clarification removes the extra hero feature
+labels and restores the original English/Vietnamese hero wording. The added
+"Intention" line and editorial closing section remain removed.
+The latest contents refinement keeps the toggle outside the panel background,
+at a fixed vertical position. The background wraps the navigation content only.
+The panel slides horizontally beneath the stationary toggle while its arrow
+reverses; the toggle does not move upward or leave its line. The panel never
+scrolls internally; spacing and columns adapt to short viewports. Section
+headings are large source titles without section numbering.
 
 ## Approved motion
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
-- Insights enter on scroll; source-based chart bars rise once into place.
-- On desktop, a sticky product stage changes between mission, goals and timer
-  as the corresponding text is read. Mobile shows screens in normal flow.
+- Original motivation/solution rows, source headings and source images enter
+  once on scroll. Keep their connections and source order intact.
+- Original Hi-Fi screens precede the six source mockups. The added product
+  walkthrough and its invented descriptions were removed per the clarification.
 - Reduced motion and no JavaScript show the content directly, without pinned
   scrolling or entrance effects. Changing the preference cancels live effects.
 

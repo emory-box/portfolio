@@ -17,8 +17,6 @@ image. The original `logo.png` remains unchanged.
 mark (source rectangle x=41, y=20). It centers the original concentric circles
 inside the rounded square in the website header; the artwork is not redrawn.
 
-The approved editorial website redraws survey charts with source proportions;
-the three original survey JPEGs remain linked for comparison. Only percentages
-printed on the board are quoted as data. Aggregate "other" percentages are the
-remaining share after those printed percentages. Individual bar counts are not
-labelled in the board, so the website describes their relative distributions.
+The owner's latest clarification requires the original content and narrative
+order. The website now displays the three original survey JPEGs directly,
+with source percentages and no calculated "other" values or inferred counts.

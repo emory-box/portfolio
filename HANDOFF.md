@@ -35,7 +35,7 @@ skills and sets the Codex skill budget.
 | --- | --- | --- |
 | `index.html` | `.theme-home` — paper #F2EEE5, ink #191710, vermilion #C9452A | Prototype done: hero, two-project work index, two case cards, approach, closing |
 | `projects/greeny/` | no class — dark #191919, green ramp | Full case study: hero dashboard, personas, IoT system, live UI system, 3 rebuilt app screens, brand, notes |
-| `projects/moti-pulse/` | `.theme-moti` — approved A / Editorial, white, #4A5FF7, #EEF1FF | Complete source content, split hero, redrawn charts, six task flows, 25 sketches, four original hi-fi screens, sticky product story and six mockups |
+| `projects/moti-pulse/` | `.theme-moti` — source-locked copy in A / Editorial layout, white, #4A5FF7, #EEF1FF | Original narrative order, large unnumbered source headings, original charts, six task flows, 25 sketches, four hi-fi screens and six mockups |
 
 Shared shell: `assets/css/base.css` (tokens, header, footer, buttons, reveal,
 mobile nav). Page styles: `assets/css/home.css`, `projects/*/<slug>.css`.
@@ -77,11 +77,13 @@ If so, replace those two files and keep the CSS sizing.
    See `docs/moti-pulse-design.md`; the previews are archived on local branch
    `prototype/moti-design-review` (`3b7b176`). Verified 320, 360, 768, 1280 and 1920px with
    no horizontal overflow, missing images, broken anchors or script errors.
-   Original sketches and app screens are extracted assets; page text, charts,
-   personas and architecture are HTML/CSS/SVG. `moti.js` adds staggered hero
-   entrances, one-time reveals and desktop mission/goals/timer screen changes.
-   Reduced motion and no script show content directly; mobile uses normal flow.
-   Current captures: `screenshots/moti-editorial/`.
+   Latest owner clarification: only layout, animation and presentation may
+   change; source wording, evidence and narrative connections/order are locked.
+   Editorial headlines, added product descriptions and derived charts were
+   removed. Original source chart images are restored. `moti.js` adds hero and
+   one-time source-content reveals, plus a smooth floating contents drawer.
+   The drawer background wraps its links only; the stationary arrow remains
+   outside it. Current captures: `screenshots/moti-source-locked/`.
 2. **Render sweep** — run
    `node .agents/skills/hallmark/scripts/sloplint.mjs <page> --render` on all
    three pages. The current Moti run reports theme-token/parser findings and

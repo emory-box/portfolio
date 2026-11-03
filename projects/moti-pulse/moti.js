@@ -3,7 +3,6 @@
 
   document.documentElement.classList.replace('no-js', 'js');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const desktop = window.matchMedia('(min-width: 761px)');
   const runningAnimations = new Set();
   const contents = document.querySelector('.contents');
   const contentsDisclosure = contents?.querySelector('details');
@@ -11,8 +10,6 @@
   const contentsSections = contentsLinks.map(link => document.querySelector(link.hash));
   const roomyViewport = window.matchMedia('(min-width: 1800px)');
   const hero = document.querySelector('.hero');
-  const steps = Array.from(document.querySelectorAll('[data-screen]'));
-  const screens = Array.from(document.querySelectorAll('[data-stage]'));
   let revealObserver;
   let framePending = false;
 
@@ -31,14 +28,6 @@
     animation.addEventListener('cancel', release, { once: true });
   }
 
-  function showScreen(name) {
-    screens.forEach(screen => {
-      const active = !desktop.matches || reducedMotion.matches || screen.dataset.stage === name;
-      screen.classList.toggle('is-active', active);
-      screen.setAttribute('aria-hidden', String(!active));
-    });
-  }
-
   function updateReadingPosition() {
     if (contents && hero) {
       contents.hidden = hero.getBoundingClientRect().bottom > window.innerHeight * 0.75 && !contents.contains(document.activeElement);
@@ -54,13 +43,6 @@
         } else link.removeAttribute('aria-current');
       });
     }
-    let currentStep = steps[0];
-    if (desktop.matches && !reducedMotion.matches) {
-      for (const step of steps) {
-        if (step.getBoundingClientRect().top <= window.innerHeight * 0.5) currentStep = step;
-      }
-    }
-    if (currentStep) showScreen(currentStep.dataset.screen);
     framePending = false;
   }
 
@@ -76,20 +58,14 @@
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const element = entry.target;
-        if (element.classList.contains('data-chart')) {
-          element.querySelectorAll('.chart-bar').forEach((bar, index) => {
-            animate(bar, [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], index * 80);
-          });
-        } else {
-          animate(element, [
-            { opacity: 0, transform: 'translateY(20px)' },
-            { opacity: 1, transform: 'translateY(0)' },
-          ]);
-        }
+        animate(element, [
+          { opacity: 0, transform: 'translateY(20px)' },
+          { opacity: 1, transform: 'translateY(0)' },
+        ]);
         revealObserver.unobserve(element);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.chapter-heading, .research-insights article, .segments article, .persona, .data-chart, .donut, .mockup').forEach(element => revealObserver.observe(element));
+    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, #quantitative .artifact, .mockup').forEach(element => revealObserver.observe(element));
   }
 
   function updateMotionPreference() {
@@ -103,7 +79,7 @@
     updateReadingPosition();
   }
 
-  document.querySelectorAll('.hero h1, .hero-lede, .hero-tags, .hero-facts, .hero-phone').forEach((element, index) => {
+  document.querySelectorAll('.hero h1, .hero-subtitle, .hero-translation, .hero-phone').forEach((element, index) => {
     const restingTransform = window.getComputedStyle(element).transform;
     const transform = restingTransform === 'none' ? '' : restingTransform;
     animate(element, [
@@ -114,7 +90,6 @@
 
   window.addEventListener('scroll', schedulePositionUpdate, { passive: true });
   window.addEventListener('resize', schedulePositionUpdate);
-  desktop.addEventListener('change', updateReadingPosition);
   reducedMotion.addEventListener('change', updateMotionPreference);
   if (contents && contentsDisclosure) {
     const summary = contentsDisclosure.querySelector('summary');
@@ -133,9 +108,10 @@
       contentsDisclosure.style.transform = '';
       contentsDisclosure.open = true;
       const bounds = panel.getBoundingClientRect();
-      closedShift = bounds.width + window.innerWidth - contents.getBoundingClientRect().right;
+      const drawerWidth = contentsDisclosure.getBoundingClientRect().width;
+      closedShift = drawerWidth + window.innerWidth - contents.getBoundingClientRect().right;
       // Reserve the same geometry in both states so the handle never jumps vertically.
-      contentsDisclosure.style.width = bounds.width + 'px';
+      contentsDisclosure.style.width = drawerWidth + 'px';
       contentsDisclosure.style.height = bounds.height + 'px';
       contents.hidden = hidden;
     }

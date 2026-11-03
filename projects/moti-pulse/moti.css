@@ -422,13 +422,13 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .theme-moti .contents-group.is-active h2 { color: var(--blue-deep); background: var(--lavender); }
 .js .contents { position: fixed; z-index: 20; top: 96px; right: 24px; width: auto; margin: 0; pointer-events: none; }
 .js .contents summary, .js .contents nav { pointer-events: auto; }
-.js .contents details[open] { width: 252px; }
+.js .contents details[open] { width: 268px; }
 .js .contents details > summary { position: absolute; z-index: 1; top: 44%; right: 8px; }
 .no-js .contents nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; box-shadow: none; margin-top: 16px; }
 .no-js .contents-group + .contents-group { margin-top: 0; }
 @media (max-width: 760px) {
   .js .contents { top: auto; bottom: 20px; right: 20px; }
-  .js .contents details[open] { width: min(304px, calc(100dvw - 40px)); }
+  .js .contents details[open] { width: min(320px, calc(100dvw - 40px)); }
   .js .contents details > summary { top: auto; bottom: 8px; }
   .contents-group a { font-size: 12px; }
   .no-js .contents nav { grid-template-columns: minmax(0, 1fr); }
@@ -441,7 +441,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 }
 @media (max-height: 640px) and (min-width: 640px) {
   .js .contents { top: 20px; bottom: auto; }
-  .js .contents details[open] { width: min(724px, calc(100dvw - 48px)); }
+  .js .contents details[open] { width: min(740px, calc(100dvw - 48px)); }
   .js .contents nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .contents-group + .contents-group { margin-top: 0; }
   .js .contents details > summary { top: 44%; bottom: auto; }
@@ -465,4 +465,42 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .theme-moti .contents-group h2 { padding: 4px; gap: 6px; margin-bottom: 4px; font-size: 10px; }
   .contents-group a { padding: 3px; font-size: 10px; }
 }
-.js .contents nav { padding-right: 64px; }
+.js .contents nav { width: calc(100% - 60px); }
+
+/* Source text and narrative order stay intact; only their presentation changes. */
+.theme-moti .source-title { font-size: clamp(38px, 4.5vw, 64px); line-height: 1.1; font-weight: 600; letter-spacing: -.045em; margin: 0 0 48px; max-width: 100%; text-wrap: wrap; }
+.hero h1 { font-size: clamp(44px, 5.4vw, 72px); }
+.hero-subtitle { margin-top: 28px; font-size: clamp(23px, 2.4vw, 34px); line-height: 1.3; color: var(--blue-deep); }
+.hero-translation { color: var(--muted); font-size: 15px; line-height: 1.7; margin-top: 24px; }
+.brief { display: block; }
+.brief dl { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
+.brief dl > div { display: block; }
+.brief dt { font-size: 12px; margin-bottom: 12px; }
+.brief dd { font-size: 15px; max-width: 340px; }
+.source-section > .wrap > p, .source-section > .wrap > ul { max-width: 800px; }
+.source-section > .wrap > ul { color: var(--muted); }
+.source-section .pain-points { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; max-width: 760px; margin-top: 32px; }
+.source-section .pain-points ul { margin: 0; color: var(--muted); }
+.text-blue { color: var(--blue-deep); }
+.motivation-cards { gap: 0; margin-top: 48px; }
+.motivation-card { align-items: stretch; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 32px 0; border-top: 1px solid var(--border); }
+.motivation-card:last-child { border-bottom: 1px solid var(--border); }
+.motivation-card > div { min-width: 0; }
+.motivation-card .feature-note { display: flex; align-items: center; }
+.motivation-card .feature-note ul { margin: 0; }
+.source-section .chart-legend { margin-block: 24px; }
+.source-section .task-flow { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 24px; }
+.source-section .task-flow h3 { font-size: 24px; letter-spacing: -.025em; }
+.source-section .task-flow .artifact { padding: 24px; background: var(--paper); border-radius: 12px; }
+.source-section .mockup figcaption { font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
+#quantitative .artifact { max-width: 860px; }
+@media (max-width: 760px) {
+  .theme-moti .source-title { font-size: clamp(32px, 8.5vw, 44px); margin-bottom: 32px; }
+  .hero h1 { font-size: clamp(40px, 10vw, 60px); }
+  .hero-translation { font-size: 13px; }
+  .brief dl, .source-section .pain-points, .motivation-card { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .brief dl { gap: 24px; }
+  .brief dd { max-width: 100%; }
+  .motivation-card { padding-block: 28px; }
+  .source-section .task-flow .artifact { padding: 12px; }
+}

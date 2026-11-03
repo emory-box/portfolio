@@ -156,19 +156,22 @@ several identities without duplicating the chrome:
   #C9452A. Deliberately independent of every project.
 - **Moti-Pulse** (`.theme-moti`): the owner approved **A / Editorial**. The source
   board supplies the content; the website uses a split hero, open research rows,
-  alternating reading widths and a blue product chapter. Colors: white #FFFFFF,
+  alternating reading widths. Colors: white #FFFFFF,
   ink #202342, text #606478, blue #4A5FF7, strong blue #2437B6, lavender #EEF1FF
   and pale blue #DFE5FF. Inter carries all text; the main container caps at
   1200px. Original product screens and sketches remain source artifacts.
-  Research charts are rebuilt with original proportions and percentage labels;
-  exact unlabelled response counts are not inferred. Desktop has a sticky
-  product screen changing with its accompanying text; mobile is normal flow.
+  The owner's latest clarification locks the source copy, section titles and
+  narrative order; only layout, motion and presentation change. Use original
+  charts and product artifacts without derived values or added narrative.
+  Section headings are large, unnumbered source titles. Motivation/solution
+  pairs share one full-width row divider to align across viewport sizes.
   Entrances last 600ms with 120ms hero staggering. Reduced motion and no script
   keep content directly visible. See `docs/moti-pulse-design.md` for the
   approved scope and the branch preserving all three design previews.
   The source-style floating contents panel uses the same white/lavender tokens,
   three research/design groups and an active-section highlight. It occupies
   the right gutter on wide screens and collapses into a disclosure on mobile.
+  Its background wraps the links, leaving the stationary arrow toggle outside.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from
