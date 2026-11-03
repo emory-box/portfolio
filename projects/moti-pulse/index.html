@@ -1,317 +1,835 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moti-Pulse, from FlowTheory to product design</title>
-<meta name="description" content="A UX research case study for Moti-Pulse, a goal-motivation app built around purpose, curiosity and autotelic motivation.">
-<meta name="theme-color" content="#eef1ff">
+<title>Moti-Pulse — Goal Motivation App</title>
+<meta name="description" content="From FlowTheory to Product Design. A four-week UX/UI research case study for a goal motivation app: research, personas, task flows, sketches and original interface designs.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="stylesheet" href="../../assets/css/fonts.css">
 <link rel="stylesheet" href="../../assets/css/base.css">
 <link rel="stylesheet" href="moti.css">
-<script>document.documentElement.classList.replace('no-js','js');</script>
+<script src="moti.js" defer></script>
 </head>
 <body class="theme-moti">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<svg class="icon-sprite" aria-hidden="true" focusable="false">
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5Z" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
-  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4"/></symbol>
-  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l3 2M9 2h6"/></symbol>
-  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M8 15l4-5 3 3 4-6"/></symbol>
-</svg>
+<header class="moti-header">
+<a class="moti-brand" href="../../index.html" aria-label="Goal Motivation App — back to portfolio"><img src="img/logo.png" alt="" width="54" height="54"><span><strong>Goal Motivation App</strong><small>UX/UI Research Case Study</small></span></a>
+<div class="project-tags">
+<span>4 weeks</span><span>UX/UI Design</span>
+</div>
 
-<header class="site-header">
-  <div class="header-inner wrap">
-    <a class="brand" href="../../index.html">Portfolio</a>
-    <nav class="site-nav" aria-label="Moti-Pulse case study">
-      <a href="../../index.html">All work</a>
-      <a href="#overview">Overview</a>
-      <a href="#research">Research</a>
-      <a href="#interface">Interface</a>
-    </nav>
-    <a class="header-cta" href="../../index.html">All projects</a>
-  </div>
 </header>
 
 <main id="main">
 
-  <section class="m-hero">
-    <div class="wrap m-hero-inner">
-      <img class="m-logo" src="img/logo.png" alt="" width="44" height="44">
-      <h1>From <span>FlowTheory</span><br>to product design</h1>
-      <p class="m-hero-lede">Helping people turn intention into progress.</p>
-      <div class="m-hero-meta">
-        <span>4 weeks</span>
-        <span>UX research and UI design</span>
-        <a class="btn btn-primary" href="#overview">Read the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-  </section>
+<section class="moti-hero" aria-labelledby="hero-title">
 
-  <section class="m-section" id="overview">
-    <div class="wrap m-split">
-      <div class="m-aside">
-        <h2>the brief</h2>
-        <p>Goal motivation app</p>
-      </div>
-      <div class="m-body">
-        <dl class="m-facts">
-          <div><dt>What</dt><dd>An app that helps people manage their goals and keep their motivation.</dd></div>
-          <div><dt>Skills</dt><dd>User research, UX, UI, sketching</dd></div>
-          <div><dt>Duration</dt><dd>4 weeks</dd></div>
-        </dl>
-        <p class="m-lead">I am someone with many goals and plans. As I move through the later stages, my energy and inspiration decline. There are tasks I know I should do, and I end up procrastinating on something trivial instead.</p>
-        <ul class="m-pains">
-          <li>Lack of drive and motivation</li>
-          <li>Lack of direction</li>
-          <li>Lack of focus</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<div>
+<h1 id="hero-title">From <em>FlowTheory</em><br>to <em>Product Design</em></h1><p class="hero-subtitle">Helping users achieve goals</p><p class="hero-translation" lang="vi">Từ lý thuyết Flow đến thiết kế sản phẩm:<br>Giúp người dùng đạt được mục tiêu của mình</p><a class="case-button" href="#overview">View Case Study</a>
+</div>
 
-  <section class="m-section m-section--tint" id="research">
-    <div class="wrap">
-      <div class="m-head">
-        <h2>Research for solutions</h2>
-        <p>Searching for a solution led me to research on Flow: intrinsic motivation is what keeps people working on a goal once the initial energy runs out.</p>
-      </div>
-      <div class="m-cards">
-        <article class="m-card">
-          <h3>Purpose motivation</h3>
-          <p>People working toward something larger than themselves are often the most hardworking, productive and engaged. Without a bigger picture, they disengage.</p>
-          <div class="m-note"><span>Feature</span><p>Write a life mission into one sentence, then check it against criteria for a goal that is great and noble.</p></div>
-        </article>
-        <article class="m-card">
-          <h3>Curiosity motivation</h3>
-          <p>Curiosity drives us to seek knowledge and explore. Without direction it becomes aimless browsing, and too much information leads to indecision.</p>
-          <div class="m-note"><span>Feature</span><p>Set goals with a clear direction, then divide them into smaller tasks that are easy to finish.</p></div>
-        </article>
-        <article class="m-card">
-          <h3>Autotelic motivation</h3>
-          <p>Fulfilment in the activity itself, without an external reward. Giving a task undivided attention makes the process satisfying, not just the outcome.</p>
-          <div class="m-note"><span>Feature</span><p>A Pomodoro timer: focus intensely for a short period, then take a short break.</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
+</section>
 
-  <section class="m-section">
-    <div class="wrap">
-      <div class="m-head">
-        <h2>Who I talked to</h2>
-        <p>I first defined the relevant segment, then ran 5 interviews and a 51-person survey to confirm the pain points and test the solutions.</p>
-      </div>
-      <div class="m-segments">
-        <div><h3>Age</h3><strong>18 to 29</strong><p>May feel self-doubt and directionless while transitioning into adulthood.</p></div>
-        <div><h3>Motivation</h3><strong>Growth</strong><p>Seeking personal and professional development.</p></div>
-        <div><h3>Technology</h3><strong>Digital first</strong><p>Comfortable with apps for productivity and well-being.</p></div>
-      </div>
-      <div class="m-methods">
-        <div><strong>5</strong><span>interviews, recorded</span></div>
-        <div><strong>51</strong><span>survey responses</span></div>
-        <div><strong>51%</strong><span>aged 18 to 22</span></div>
-      </div>
-      <blockquote class="m-quote">
-        <p>Two interviewees described a lack of motivation when pursuing a goal. One struggled with indecision and never started. Two more pain points surfaced: family pressure and task prioritisation.</p>
-      </blockquote>
-    </div>
-  </section>
+<aside class="study-toc" aria-label="Case study navigation">
+<button class="toc-toggle" type="button" aria-controls="toc-links" aria-expanded="true" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><span class="sr-only">Toggle case study navigation</span></button>
+<nav id="toc-links">
 
-  <section class="m-section m-section--tint" id="personas">
-    <div class="wrap">
-      <div class="m-head">
-        <h2>Two people, two reasons to start</h2>
-        <p>The research translated into two personas: one looking for a way in, one looking for a way to keep going.</p>
-      </div>
-      <div class="m-personas">
-        <article class="m-persona">
-          <header>
-            <span class="m-avatar" aria-hidden="true">HH</span>
-            <div><h3>Hoang Huy</h3><p>25, District 9, Ho Chi Minh City</p></div>
-          </header>
-          <blockquote>“Daring to embrace change for greater growth and fulfilment.”</blockquote>
-          <div class="m-persona-grid">
-            <div><h4>Goals</h4><ul><li>Have an outstanding portfolio</li><li>Be more efficient and motivated</li></ul></div>
-            <div><h4>Frustrations</h4><ul><li>Unsure where to begin</li><li>Losing focus</li></ul></div>
-          </div>
-          <div class="m-note"><span>Feature</span><p>Break a portfolio into smaller tasks, then work in intervals separated by short breaks.</p></div>
-        </article>
-        <article class="m-persona">
-          <header>
-            <span class="m-avatar" aria-hidden="true">VA</span>
-            <div><h3>Van Anh</h3><p>20, District 10, Ho Chi Minh City</p></div>
-          </header>
-          <blockquote>“Success is not final, failure is not fatal. It is the courage to continue that counts.”</blockquote>
-          <div class="m-persona-grid">
-            <div><h4>Goals</h4><ul><li>Secure a scholarship</li><li>Expand her knowledge through continuous learning</li></ul></div>
-            <div><h4>Frustrations</h4><ul><li>Struggling to find motivation</li><li>Managing time effectively</li></ul></div>
-          </div>
-          <div class="m-note"><span>Feature</span><p>Find the meaning behind the work, prioritise tasks, and give each one a time slot.</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
+<div class="toc-group">
 
-  <section class="m-section" id="product">
-    <div class="wrap">
-      <div class="m-head">
-        <h2>Three features, one loop</h2>
-        <p>A life mission gives the direction. Goals and tasks break it down. The timer protects the attention.</p>
-      </div>
-      <div class="m-features">
-        <article><span class="m-feature-ico"><svg class="ico" aria-hidden="true"><use href="#i-target"/></svg></span><h3>Goal management</h3><ul><li>Life mission statement</li><li>Goal sheet with colour and type</li><li>Progress bar</li></ul></article>
-        <article><span class="m-feature-ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Task management</h3><ul><li>Tasks inside each goal</li><li>Priority and subtasks</li><li>Scheduling and reminders</li></ul></article>
-        <article><span class="m-feature-ico"><svg class="ico" aria-hidden="true"><use href="#i-timer"/></svg></span><h3>Pomodoro</h3><ul><li>Focus and break lengths</li><li>Count up or count down</li><li>Session report</li></ul></article>
-      </div>
-      <div class="m-ia">
-        <h3>Information architecture</h3>
-        <ul class="m-ia-tree">
-          <li><span class="m-ia-root">App</span>
-            <ul>
-              <li><span>Dashboard</span><small>Calendar, today’s tasks</small></li>
-              <li><span>Life mission</span><small>My mission, tips, importance</small></li>
-              <li><span>Goal</span><small>Goals and tasks, life mission</small></li>
-              <li><span>Timer</span><small>Pomodoro, report</small></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<h3>
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg>User Research
+</h3>
+<a href="#problems">The problems</a><a href="#research">Research for solutions</a><a href="#segmentation">User Segmentation</a><a href="#qualitative">Qualitative Research</a><a href="#quantitative">Quantitative Research</a>
+</div>
 
-  <section class="m-section m-section--tint" id="interface">
-    <div class="wrap">
-      <div class="m-head">
-        <h2>The screens</h2>
-        <p>Four screens carry the loop: what is due, why it matters, what it belongs to, and how long you have to focus.</p>
-      </div>
+<div class="toc-group">
 
-      <div class="m-phones">
-        <figure class="m-phone">
-          <div class="m-screen">
-            <div class="m-status"><span>9:41</span><span>◐ ◑ ▮</span></div>
-            <div class="m-app-head"><span class="m-month">October 2020</span><span class="m-icon-btn"><svg class="ico ico--16" aria-hidden="true"><use href="#i-calendar"/></svg></span></div>
-            <div class="m-cal">
-              <span class="m-cal-head">M T W T F S S</span>
-              <div class="m-cal-grid">
-                <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
-                <span>5</span><span>6</span><span>7</span><span>8</span><span class="is-today">9</span><span>10</span><span>11</span>
-                <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-                <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-                <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span></span>
-              </div>
-            </div>
-            <p class="m-screen-title">Tasks</p>
-            <div class="m-task m-task--green"><span>Task A</span><small>10:30</small></div>
-            <div class="m-task m-task--orange"><span>Task B</span><small>14:00</small></div>
-            <div class="m-task m-task--green"><span>Task C</span><small>19:30</small></div>
-            <nav class="m-tabbar"><span class="is-on">Home</span><span>Mission</span><span>Goal</span><span>Timer</span></nav>
-          </div>
-          <figcaption>Dashboard</figcaption>
-        </figure>
+<h3>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M9 21h6M8 14a7 7 0 1 1 8 0l-1 2H9Z"/></svg>User Experience
+</h3>
+<a href="#personas">User Personas</a><a href="#functions">Function Ideation</a><a href="#architecture">Information Architecture</a><a href="#task-flow">Task Flow</a><a href="#sketches">Sketches</a>
+</div>
 
-        <figure class="m-phone">
-          <div class="m-screen">
-            <div class="m-status"><span>9:41</span><span>◐ ◑ ▮</span></div>
-            <div class="m-mission-band">
-              <p>To ensure that my family and friends lead happy and secure lives.</p>
-              <span>Dec 2023</span>
-            </div>
-            <p class="m-screen-title">My mission</p>
-            <div class="m-goal-card">
-              <span class="m-goal-chip">Goal A</span>
-              <p>Create your life mission here</p>
-              <span class="m-progress"><i style="--p:50%"></i></span>
-              <small>50%</small>
-            </div>
-            <div class="m-info-card">
-              <strong>Importance of Life Mission</strong>
-              <p>A sentence that names what the work is for, and who it protects.</p>
-            </div>
-            <nav class="m-tabbar"><span>Home</span><span class="is-on">Mission</span><span>Goal</span><span>Timer</span></nav>
-          </div>
-          <figcaption>Life mission</figcaption>
-        </figure>
+<div class="toc-group">
 
-        <figure class="m-phone">
-          <div class="m-screen">
-            <div class="m-status"><span>9:41</span><span>◐ ◑ ▮</span></div>
-            <div class="m-goals-head">
-              <p>To ensure that my family and friends lead happy and secure lives.</p>
-            </div>
-            <div class="m-app-head"><p class="m-screen-title">Goals list</p><span class="m-icon-btn"><svg class="ico ico--16" aria-hidden="true"><use href="#i-plus"/></svg></span></div>
-            <div class="m-goal-card m-goal-card--accent">
-              <span class="m-goal-chip">Goal A</span>
-              <p>University scholarship</p>
-              <span class="m-progress"><i style="--p:60%"></i></span>
-              <small>60%</small>
-            </div>
-            <div class="m-checklist">
-              <small>Task list</small>
-              <span><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg>Finish the application essay</span>
-              <span><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg>Ask for a recommendation</span>
-              <span class="is-done"><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg>Book the interview slot</span>
-            </div>
-            <nav class="m-tabbar"><span>Home</span><span>Mission</span><span class="is-on">Goal</span><span>Timer</span></nav>
-          </div>
-          <figcaption>Goals and tasks</figcaption>
-        </figure>
+<h3>
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 1-4c-2-1-1-3 1-3h2a3 3 0 0 0 3-3 9 9 0 0 0-9-8Z"/><circle cx="8" cy="8" r="1"/><circle cx="14" cy="7" r="1"/><circle cx="6" cy="13" r="1"/></svg>User Interface
+</h3>
+<a href="#interface">Hi-Fi</a><a href="#mockups">Mock up</a>
+</div>
 
-        <figure class="m-phone">
-          <div class="m-screen">
-            <div class="m-status"><span>9:41</span><span>◐ ◑ ▮</span></div>
-            <div class="m-app-head"><p class="m-screen-title">Tracking</p></div>
-            <div class="m-segmented"><span class="is-on">Pomodoro</span><span>Report</span></div>
-            <div class="m-timer">
-              <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="m-ring"/><circle cx="60" cy="60" r="52" class="m-ring-fill"/></svg>
-              <strong>25:00</strong>
-              <span>Focus</span>
-            </div>
-            <button class="m-start" type="button"><svg class="ico ico--14" aria-hidden="true"><use href="#i-play"/></svg>Start</button>
-            <p class="m-setting">Pomodoro Setting</p>
-            <nav class="m-tabbar"><span>Home</span><span>Mission</span><span>Goal</span><span class="is-on">Timer</span></nav>
-          </div>
-          <figcaption>Pomodoro timer</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+</nav>
 
-  <section class="m-close">
-    <div class="wrap m-close-inner">
-      <div>
-        <h2>What the research changed</h2>
-        <p>The first screen was going to be a goal list. The interviews said the real problem was starting, so the mission and the timer moved forward: direction first, then a task small enough to begin.</p>
-      </div>
-      <a class="btn btn-primary" href="../../index.html">Back to all work<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div>
-  </section>
+</aside>
+
+<div class="study-content">
+
+<section class="overview" id="overview" aria-label="Project brief">
+
+<dl>
+
+<div>
+<dt>What</dt><dd>An app helps people manage<br class="desktop-break"> their goals and boost motivations</dd>
+</div>
+
+<div>
+<dt>Skills</dt><dd>UR/UX/UI, Sketchs</dd>
+</div>
+
+<div>
+<dt>Duration</dt><dd>4 weeks</dd>
+</div>
+
+</dl>
+
+</section>
+
+<section class="study-section " id="problems" aria-labelledby="problems-title">
+
+<h2 id="problems-title">
+The problems
+</h2>
+<p>I am someone with many goals and plans. However, as I progress to later stages, my energy and inspiration gradually decline. There are tasks that I know I should do but end up procrastinating, getting involved in less important trivial things.</p>
+<div class="pain-points">
+<p>Pain points from my viewpoint:</p><ul><li>Lack of drive and motivations</li><li>Lack of Direction</li><li>Lack of Focus</li></ul>
+</div>
+
+</section>
+
+<section class="study-section " id="research" aria-labelledby="research-title">
+
+<h2 id="research-title">
+Research for solutions
+</h2>
+<ul><li>While searching for a solution, I came across a <span class="text-blue">Research</span> about Flow. The research mentioned intrinsic motivations, which could help trigger users to work more effectively.</li><li>Then, I decide to build an app to <strong>help users focus</strong> and feel more <strong>motivated when carrying out their goals by increasing their intrinsic motivations</strong> (particular: curiosity, purpose and autotelic)</li></ul>
+<div class="motivation-cards">
+
+<article class="motivation-card">
+
+<div>
+
+<h3>
+Purpose motivation
+</h3>
+<p>People who believe that they're working toward something larger and more important than themselves are often the most hardworking, productive and engaged.</p><p>In the other hand, they may become disengaged and demotivated at work if they don't understand, or can't invest in the “bigger picture”.</p><p>So encouraging them to find purpose in their work will help to boost their motivation (Article).</p>
+</div>
+
+<div class="feature-note">
+<ul><li>To materialize this concept into my app, I create a feature that help user to <strong>write his/her life mission into one sentence.</strong></li><li>There will be some criteria to check if the statement is great and noble to follow (criteria is from Article - Finding Life Purpose &amp; Increasing Motivation).</li></ul>
+</div>
+
+</article>
+
+<article class="motivation-card">
+
+<div>
+
+<h3>
+Curiosity motivation
+</h3>
+<p>Curiosity drives us to seek knowledge and explore new subjects. It initiates our journey of discovery.</p><p>However, without clear direction or organization, curiosity alone may lead to aimless exploration, individuals may feel overwhelmed by the vast amount of information available, unsure of where to start or how to progress and easily lead to frustration,</p><p>As a result, they may become demotivated and lose interest in pursuing their goal.</p>
+</div>
+
+<div class="feature-note">
+<ul><li>To ensure users maintain a clear direction, I will implement a feature that enables users to <strong>set goals</strong>, helping them maintain clear objectives.</li><li>Moreover, allowing goals to be <strong>divided into smaller tasks</strong> helps users easily complete them, enabling them to gain a feeling of accomplishment that fuels their motivation to continue.</li></ul>
+</div>
+
+</article>
+
+<article class="motivation-card">
+
+<div>
+
+<h3>
+Autotelic motivation
+</h3>
+<p>Refers to finding fulfillment in the activity itself, without relying on external rewards.</p><p>I came across an article emphasizing the importance of being fully present in our tasks to truly enjoy life. By giving our undivided attention to what we're doing, we can derive satisfaction from the process rather than just the outcome.</p>
+</div>
+
+<div class="feature-note">
+<ul><li>This concept reminds me of The <strong>Pomodoro Technique</strong>, which encourages users to <strong>focus intensely for a short period</strong>, followed by a short break to enhance productivity and prevent burnout.</li></ul>
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+<section class="study-section " id="segmentation" aria-labelledby="segmentation-title">
+
+<h2 id="segmentation-title">
+User Segmentation
+</h2>
+<p>I first <strong>identified</strong> the relevant <strong>user segment to select the right participants</strong> for conducting qualitative and quantitative research.</p>
+<div class="segments">
+
+<article>
+
+<h3>
+Age
+</h3>
+<small>18 to 29</small><p>May encounter self-doubt, feel directionless as they transition into adulthood.</p>
+</article>
+
+<article>
+
+<h3>
+Motivation
+</h3>
+<p>Seeking personal and professional development.</p>
+</article>
+
+<article>
+
+<h3>
+Technology<br>Adoption
+</h3>
+<p>Tech-savvy, prefer digital solutions for enhancement, productivity, and well-being.</p>
+</article>
+
+</div>
+
+</section>
+
+<section class="study-section " id="qualitative" aria-labelledby="qualitative-title">
+
+<h2 id="qualitative-title">
+Qualitative Research
+</h2>
+<p class="method">Method: Interviews and recordings<br>Number of interviewees: 5</p><p class="part"><strong>Part 1: To uncover</strong> any <strong>additional pain points</strong> encountered <strong>by the interviewee</strong> when pursuing their goals &amp; to observe several user journeys as they pursue their goals.</p>
+<div class="interviews">
+<p><strong>User 1:</strong> Learning Korean, has gathered resources, created a learning plan, set alarms but hasn't started yet - Feels the task isn't significant enough to begin.</p><p><strong>User 2:</strong> Looking for jobs during the economic downturn of 2023, facing prolonged unemployment, and lacking family understanding - Feels discouraged.</p><p><strong>User 3:</strong> Learning SQL, got resources and made a plan but hasn't started - Doesn't feel important enough yet.</p><p><strong>User 4:</strong> Learning guitar, despite being busy with occasional overtime, the desire to pursue it is strong. During the research phase, getting lost in information leads to indecision.</p><p><strong>User 5:</strong> Overfocused on immediate tasks, resulting in insufficient time for subsequent tasks or more important tasks later.</p>
+</div>
+
+<aside class="comment">
+<span class="pin" aria-hidden="true"></span>
+<div>
+
+<h3>
+Comment
+</h3>
+<ul><li><strong>2</strong> interviewees experience a <strong>lack of motivation</strong> when pursuing their set goals.</li><li><strong>1</strong> struggles with indecision and <strong>fails to start.</strong></li><li><strong>2 more pain points were uncovered:</strong> pressure from family members and task prioritization.</li></ul>
+</div>
+
+</aside>
+<p class="part"><strong>Part 2: To discover</strong> any <strong>additional solution</strong> suggested <strong>by the interviewee.</strong> Asking people if they have experience these situation and how they think <strong>what could help</strong> them overcome / tackle</p>
+<div class="solution-list">
+<ul><li>Lack of Direction &amp; what could help:<ul><li>Breaking down tasks into smaller, manageable questions to tackle</li><li>Seeking advice from others</li><li>Conduct research</li></ul></li><li>Lack of Motivation &amp; what could help:<ul><li>Think about why you started and what you want to achieve</li><li>Consider how your actions affect your loved ones</li><li>Get support and encouragement from others</li><li>Understand why the task matters to you</li></ul></li><li>Lack of Focus &amp; what could help:<ul><li>See results from the efforts</li><li>Promodoro Technique</li></ul></li></ul>
+</div>
+
+<aside class="comment">
+<span class="pin" aria-hidden="true"></span>
+<div>
+
+<h3>
+Comment
+</h3>
+<ul><li>Recognized that <strong>interviewees shared similar problem-solving approaches</strong></li><li>Moreover, it was found that <strong>getting support</strong> and <strong>seeing the outcomes</strong> of one's effort could also <strong>boost motivation.</strong></li></ul>
+</div>
+
+</aside>
+
+</section>
+
+<section class="study-section " id="quantitative" aria-labelledby="quantitative-title">
+
+<h2 id="quantitative-title">
+Quantitative Research
+</h2>
+<p class="method">Method: Form<br>Number of participants: 51</p>
+<figure class="artifact ">
+<a href="img/survey-demographics.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Survey demographics: 51% are aged 23–29, 19.6% aged 18–22 and 19.6% aged 30–35. 76.5% reside in HCM City and 17.6% in its vicinity."><img class="" src="img/survey-demographics.jpg" alt="Survey demographics: 51% are aged 23–29, 19.6% aged 18–22 and 19.6% aged 30–35. 76.5% reside in HCM City and 17.6% in its vicinity." width="1058" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<aside class="comment">
+<span class="pin" aria-hidden="true"></span>
+<div>
+
+<h3>
+Comment
+</h3>
+<p><strong>Over 50% of participants</strong> are in the target customer demographic (ages 23-29), and the majority of them <strong>reside in urban and suburban areas.</strong></p>
+</div>
+
+</aside>
+<p class="part"><strong>Part 1:</strong> To <strong>confirm</strong> if the <strong>pain points</strong> I've identified from my perspective and those of other interviewees are <strong>common among many people.</strong></p><ul><li>I mentioned some pain points.</li><li>Then, I ask people to choose the frequency at which that pain point occurs while pursuing their personal goals. The frequency levels I have proposed are:</li></ul>
+<div class="chart-legend">
+<span>Never</span><span>Sometimes</span><span>Quite often</span><span>Very frequently</span>
+</div>
+<p class="result-label">Result:</p>
+<figure class="artifact ">
+<a href="img/survey-pain-points.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Five survey charts: not knowing where to start; procrastinating because a goal feels unimportant; distraction; overfocusing on immediate tasks; and discouragement after negative feedback."><img class="" src="img/survey-pain-points.jpg" alt="Five survey charts: not knowing where to start; procrastinating because a goal feels unimportant; distraction; overfocusing on immediate tasks; and discouragement after negative feedback." width="955" height="1345" loading="lazy" decoding="async"></a>
+</figure>
+
+<details class="artifact-description">
+<summary>Read the chart results</summary><p>The original charts do not label individual bar counts. These descriptions follow the relative bar heights shown in the source.</p>
+<dl class="chart-description">
+
+<div>
+<dt>Not knowing where to start</dt><dd>Sometimes is highest, followed by Quite often, Never, then Very frequently.</dd>
+</div>
+
+<div>
+<dt>Procrastinating because a goal feels unimportant</dt><dd>Sometimes is highest, followed by Quite often, Never, then Very frequently.</dd>
+</div>
+
+<div>
+<dt>Distraction and loss of focus</dt><dd>Sometimes and Quite often are equally highest, followed by Very frequently, then Never.</dd>
+</div>
+
+<div>
+<dt>Overfocusing on immediate tasks</dt><dd>Quite often is highest, followed by Sometimes, Never, then Very frequently.</dd>
+</div>
+
+<div>
+<dt>Discouragement after negative feedback</dt><dd>Never and Sometimes are equally highest, followed by Quite often, then Very frequently.</dd>
+</div>
+
+</dl>
+
+</details>
+
+<aside class="comment">
+<span class="pin" aria-hidden="true"></span>
+<div>
+
+<h3>
+Comment
+</h3>
+<ul><li>In the case of the first 2 graphs <strong>Lack of Direction &amp; Motivation</strong>, people chose the “sometimes”, column (red) as the highest.<ul><li>This could partly be explained by the use of imprecise language; “sometimes” equates to 50%, positioned in the middle. People tend to choose this term when they are uncertain or not entirely sure</li><li>However, what's crucial is that the “very often” column ranks second, indicating that a significant portion of <strong>participants still frequently encounter these difficulties.</strong></li></ul></li><li>In the third graph <strong>Lack of focus</strong>, where many people choose <strong>“Very often”</strong> equals the number of people choosing <strong>“Sometimes”</strong> and <strong>both are the highest.</strong></li><li>In the fourth graph (added pain point: <strong>Lack of Priority</strong>), <strong>“Very often”</strong> as the highest choice.</li><li>Lastly, for experiencing <strong>Discouragement due to social pressure</strong> (fifth graph), the <strong>majority</strong> opt for <strong>“Never encountered.”</strong></li></ul>
+</div>
+
+</aside>
+<p class="part"><strong>Part 2:</strong> To <strong>validate</strong> if the <strong>solutions</strong> I propose and discover are widely <strong>recognized</strong> as having a <strong>positive impact</strong> on the goal pursuit process.</p><ul><li>I mentioned some situations along with solutions.</li><li>Then, I ask people to choose to what extent this solution can help them address the situation. The levels I have proposed for evaluation range from 1 to 4 (with <strong>1 being not feasible</strong> and <strong>4 being highly feasible</strong>).</li></ul>
+<div class="chart-legend chart-legend--numbers">
+<span>1</span><span>2</span><span>3</span><span>4</span>
+</div>
+<p class="result-label">Result:</p>
+<figure class="artifact ">
+<a href="img/survey-solutions.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Four feasibility charts for breaking tasks into smaller steps, finding greater motivation, using Pomodoro focus intervals, and prioritizing tasks by importance. Most responses rate solutions 3; prioritization is most often rated 4."><img class="" src="img/survey-solutions.jpg" alt="Four feasibility charts for breaking tasks into smaller steps, finding greater motivation, using Pomodoro focus intervals, and prioritizing tasks by importance. Most responses rate solutions 3; prioritization is most often rated 4." width="1114" height="1022" loading="lazy" decoding="async"></a>
+</figure>
+
+<details class="artifact-description">
+<summary>Read the chart results</summary><p>The original charts do not label individual bar counts. These descriptions follow the relative bar heights shown in the source.</p>
+<dl class="chart-description">
+
+<div>
+<dt>Break tasks into smaller steps</dt><dd>Level 3 is highest, followed by 4, 2, then 1.</dd>
+</div>
+
+<div>
+<dt>Find motivation beyond yourself</dt><dd>Level 3 is highest, followed by 4, 2, then 1.</dd>
+</div>
+
+<div>
+<dt>Focus intervals with short breaks</dt><dd>Level 3 is highest, followed by 4, 2, then 1.</dd>
+</div>
+
+<div>
+<dt>Prioritize tasks by importance</dt><dd>Level 4 is highest, followed by 3, 2, then 1.</dd>
+</div>
+
+</dl>
+
+</details>
+
+<aside class="comment">
+<span class="pin" aria-hidden="true"></span>
+<div>
+
+<h3>
+Comment
+</h3>
+<ul><li>Most survey respondents <strong>rated the proposed solutions</strong> at <strong>level 3</strong> on a scale from 1 to 4. When it comes to prioritizing tasks, most people favored level 4 the most.</li><li>This suggesting they <strong>believe these solutions can help address their issues.</strong></li></ul>
+</div>
+
+</aside>
+
+</section>
+
+<section class="study-section " id="personas" aria-labelledby="personas-title">
+
+<h2 id="personas-title">
+User personas
+</h2>
+<p>The quantitative research revealed common pain points and potential solutions. I then <strong>translated</strong> these <strong>insights into personas</strong>, allowing me to <strong>design solutions tailored to their specific needs.</strong></p>
+<article class="persona">
+
+<div class="persona-main">
+
+<div class="persona-identity">
+<img class="" src="img/persona-huy.jpg" alt="Original illustrated portrait of HOANG HUY" width="271" height="263" loading="lazy" decoding="async">
+<h3>
+HOANG HUY
+</h3>
+
+<dl>
+
+<div>
+<dt>Age:</dt><dd>25</dd>
+</div>
+
+<div>
+<dt>Location:</dt><dd>District 9, HCM City</dd>
+</div>
+
+<div>
+<dt>Family:</dt><dd>Only child</dd>
+</div>
+
+</dl>
+
+</div>
+
+<div class="persona-description">
+<blockquote>“Daring to embrace change for greater growth and fulfillment.”</blockquote><p>Huy embarks on a journey to transition into a new career path. Motivated by a desire for personal growth, he assesses his skills and researches methods to enhance them. However, he struggles with moments of demotivation.</p>
+<div class="persona-needs">
+
+<div>
+
+<h4>
+GOALS
+</h4>
+<ul><li>Have an outstanding portfolio.</li><li>Be more efficient and motivated.</li></ul>
+</div>
+
+<div class="frustrations">
+
+<h4>
+FRUSTRATIONS
+</h4>
+<ul><li>Unsure of where to begin.</li><li>Losing focus.</li></ul>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="persona-bottom ">
+
+<div>
+
+<h4>
+Solutions
+</h4>
+<ul><li>Break down the portfolio tasks into smaller, manageable steps to reduce overwhelm and provide clarity on where to begin.</li><li>Break work into intervals, separated by short breaks.</li></ul>
+</div>
+
+<div class="persona-features">
+
+<h4>
+Features
+</h4>
+<ul><li>Goal Management</li><li>Task Management</li><li>Pomodoro Technique</li></ul>
+</div>
+
+</div>
+
+</article>
+
+<article class="persona">
+
+<div class="persona-main">
+
+<div class="persona-identity">
+<img class="" src="img/persona-van-anh.jpg" alt="Original illustrated portrait of VAN ANH" width="279" height="263" loading="lazy" decoding="async">
+<h3>
+VAN ANH
+</h3>
+
+<dl>
+
+<div>
+<dt>Age:</dt><dd>20</dd>
+</div>
+
+<div>
+<dt>Location:</dt><dd>District 10, HCM City</dd>
+</div>
+
+<div>
+<dt>Family:</dt><dd>Only child</dd>
+</div>
+
+</dl>
+
+</div>
+
+<div class="persona-description">
+<blockquote>“Success is not final, failure is not fatal: It is the courage to continue that counts”</blockquote><p>Van Anh, a student in HCM City, dreams of winning a scholarship to help her family. Despite feeling stressed and having lots to study, she stays focused and seeks help to stay motivated. Her hard work will pay off if she earns the scholarship.</p>
+<div class="persona-needs">
+
+<div>
+
+<h4>
+GOALS
+</h4>
+<ul><li>Secure a scholarship to ease financial burdens on her family.</li><li>Expand her knowledge and skills through continuous learning opportunities.</li></ul>
+</div>
+
+<div class="frustrations">
+
+<h4>
+FRUSTRATIONS
+</h4>
+<ul><li>Struggling to find motivation.</li><li>Experiencing difficulty in managing time effectively.</li></ul>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="persona-bottom persona-bottom--reverse">
+
+<div>
+
+<h4>
+Solutions
+</h4>
+<ul><li>Help her find greater meaning in her work.</li><li>Enable her to prioritize tasks and allocate specific time slots for them.</li></ul>
+</div>
+
+<div class="persona-features">
+
+<h4>
+Features
+</h4>
+<ul><li>Encourage user write down their life mission into a single sentence.</li><li>List positive outcomes of completing tasks, negative when neglect.</li><li>Prioritize tasks</li><li>Scheduling tasks as needed</li></ul>
+</div>
+
+</div>
+
+</article>
+
+</section>
+
+<section class="study-section " id="functions" aria-labelledby="functions-title">
+
+<h2 id="functions-title">
+Function ideation
+</h2>
+<p>The personas helped shape solutions and features for key user needs. Next, I explored the <strong>functions &amp; information required to implement the features.</strong></p>
+<figure class="artifact ">
+<a href="img/function-ideation.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Original function ideation maps: goal and task management; Pomodoro settings; life mission guidance and criteria; positive outcomes; priorities; scheduling; dashboard; time tracking; reminders."><img class="" src="img/function-ideation.jpg" alt="Original function ideation maps: goal and task management; Pomodoro settings; life mission guidance and criteria; positive outcomes; priorities; scheduling; dashboard; time tracking; reminders." width="1082" height="2483" loading="lazy" decoding="async"></a>
+</figure>
+
+<details class="artifact-description">
+<summary>Read the function map</summary><p>Goals have a title, color, type, optional details, and progress. Tasks have a title, details, priority and subtasks, with filters and completion states. Pomodoro supports start, resume and stop, count up or down, and configurable focus and break lengths.</p><p>Life mission guidance includes examples, resources and criteria: long-term, focused outside yourself, does no harm to others, encompasses all domains of your life, motivates and inspires you. Scheduling includes a start date and time, duration, daily/weekly/monthly repeats and an end date. The dashboard shows a calendar and tasks. Time tracking shows time per task and overall; reminders can be on time or custom.</p>
+</details>
+
+</section>
+
+<section class="study-section study-section--wide" id="architecture" aria-labelledby="architecture-title">
+
+<h2 id="architecture-title">
+Information Architecture
+</h2>
+<p><strong>Organize &amp; Prioritize features</strong> within the app structure, <strong>ensuring users can access and utilize the functions</strong> that support their goals.</p>
+<div class="architecture">
+
+<div class="architecture-root">
+App
+</div>
+<ul><li>
+<h3>
+Dashboard
+</h3>
+<ul><li>Calendar</li><li>Today Tasks</li></ul></li><li>
+<h3>
+Life mission
+</h3>
+<ul><li>My Mission</li><li>Tips to create Life Mission</li><li>Importance of Life Mission</li></ul></li><li>
+<h3>
+Goal
+</h3>
+<ul><li>Goal & Tasks</li><li>Life mission</li></ul></li><li>
+<h3>
+Timer
+</h3>
+<ul><li>Pomodoro</li><li>Report</li></ul></li></ul>
+</div>
+
+</section>
+
+<section class="study-section study-section--wide" id="task-flow" aria-labelledby="task-flow-title">
+
+<h2 id="task-flow-title">
+Task flow
+</h2>
+<p>Once the app structure was defined, I <strong>developed task flows</strong> to understand how users could efficiently <strong>navigate between screens to complete their tasks.</strong></p>
+<div class="task-flow">
+
+<h3>
+Create Life mission statement
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-mission.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Create Life mission statement flow diagram from the original design board"><img class="" src="img/flow-mission.jpg" alt="Create Life mission statement flow diagram from the original design board" width="1608" height="557" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="task-flow">
+
+<h3>
+Create Goal
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-goal.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Create Goal flow diagram from the original design board"><img class="" src="img/flow-goal.jpg" alt="Create Goal flow diagram from the original design board" width="1273" height="414" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="task-flow">
+
+<h3>
+Add Tasks
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-tasks.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Add Tasks flow diagram from the original design board"><img class="" src="img/flow-tasks.jpg" alt="Add Tasks flow diagram from the original design board" width="1393" height="548" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="task-flow">
+
+<h3>
+Schedule
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-schedule.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Schedule flow diagram from the original design board"><img class="" src="img/flow-schedule.jpg" alt="Schedule flow diagram from the original design board" width="1568" height="1337" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="task-flow">
+
+<h3>
+Promodoro
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-pomodoro.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Promodoro flow diagram from the original design board"><img class="" src="img/flow-pomodoro.jpg" alt="Promodoro flow diagram from the original design board" width="1727" height="971" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="task-flow">
+
+<h3>
+Report
+</h3>
+
+<figure class="artifact ">
+<a href="img/flow-report.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Report flow diagram from the original design board"><img class="" src="img/flow-report.jpg" alt="Report flow diagram from the original design board" width="1616" height="140" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<details class="artifact-description">
+<summary>Read the task flows</summary><ol><li>Life mission: choose Life Purpose, open My Mission, type a mission or choose a category and example, optionally change the theme, then finish.</li><li>Goal: open Goals, create a goal, fill its title and details, choose a color and type, optionally add motivation, then save.</li><li>Tasks: open a goal's task list, add a task, fill its title and details, optionally set priority and subtasks, then save.</li><li>Schedule: select a task, enable scheduling, choose a date and optional recurrence, set a time point or period and an optional reminder, then save.</li><li>Pomodoro: choose Timer, select a task and category, choose focus and break settings or count-up mode, start, pause, resume or stop, then restart or end.</li><li>Report: choose Timer, open Report, choose a period, set start and end dates, then finish.</li></ol>
+</details>
+
+</section>
+
+<section class="study-section study-section--wide" id="sketches" aria-labelledby="sketches-title">
+
+<h2 id="sketches-title">
+Sketches
+</h2>
+<p>Having identified the required screens through the task flows, I <strong>sketched each screen to define the information</strong> needed and <strong>organize its hierarchy.</strong></p>
+<div class="sketch-grid">
+
+<div class="sketch-row">
+
+<figure class="artifact ">
+<a href="img/sketch-01.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Dashboard — original hand-drawn sketch"><img class="" src="img/sketch-01.jpg" alt="Dashboard — original hand-drawn sketch" width="213" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-02.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Life Mission Screen — original hand-drawn sketch"><img class="" src="img/sketch-02.jpg" alt="Life Mission Screen — original hand-drawn sketch" width="189" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-03.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Full Screen — original hand-drawn sketch"><img class="" src="img/sketch-03.jpg" alt="Full Screen — original hand-drawn sketch" width="193" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-04.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Type in Sheet — original hand-drawn sketch"><img class="" src="img/sketch-04.jpg" alt="Type in Sheet — original hand-drawn sketch" width="193" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-05.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Categories — original hand-drawn sketch"><img class="" src="img/sketch-05.jpg" alt="Categories — original hand-drawn sketch" width="199" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-06.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Themes Screens — original hand-drawn sketch"><img class="" src="img/sketch-06.jpg" alt="Themes Screens — original hand-drawn sketch" width="194" height="454" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="sketch-row">
+
+<figure class="artifact ">
+<a href="img/sketch-07.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Goal Screen — original hand-drawn sketch"><img class="" src="img/sketch-07.jpg" alt="Goal Screen — original hand-drawn sketch" width="213" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-08.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Create Goal Sheet (no motivation) — original hand-drawn sketch"><img class="" src="img/sketch-08.jpg" alt="Create Goal Sheet (no motivation) — original hand-drawn sketch" width="202" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-09.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Create Goal Sheet (with motivation) — original hand-drawn sketch"><img class="" src="img/sketch-09.jpg" alt="Create Goal Sheet (with motivation) — original hand-drawn sketch" width="201" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-10.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Goal Screen — original hand-drawn sketch"><img class="" src="img/sketch-10.jpg" alt="Goal Screen — original hand-drawn sketch" width="212" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-11.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Task List — original hand-drawn sketch"><img class="" src="img/sketch-11.jpg" alt="Task List — original hand-drawn sketch" width="237" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-12.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Task Create Sheet (no Scheduling) — original hand-drawn sketch"><img class="" src="img/sketch-12.jpg" alt="Task Create Sheet (no Scheduling) — original hand-drawn sketch" width="196" height="487" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="sketch-row sketch-row--seven">
+
+<figure class="artifact ">
+<a href="img/sketch-13.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Task Create Sheet (with Scheduling) — original hand-drawn sketch"><img class="" src="img/sketch-13.jpg" alt="Task Create Sheet (with Scheduling) — original hand-drawn sketch" width="193" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-14.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Date select Sheet — original hand-drawn sketch"><img class="" src="img/sketch-14.jpg" alt="Date select Sheet — original hand-drawn sketch" width="197" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-15.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Monthly — original hand-drawn sketch"><img class="" src="img/sketch-15.jpg" alt="Monthly — original hand-drawn sketch" width="199" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-16.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Weekly — original hand-drawn sketch"><img class="" src="img/sketch-16.jpg" alt="Weekly — original hand-drawn sketch" width="199" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-17.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Daily — original hand-drawn sketch"><img class="" src="img/sketch-17.jpg" alt="Daily — original hand-drawn sketch" width="194" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-18.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Time period — original hand-drawn sketch"><img class="" src="img/sketch-18.jpg" alt="Time period — original hand-drawn sketch" width="196" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-19.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Reminder Screen (Toggle on) — original hand-drawn sketch"><img class="" src="img/sketch-19.jpg" alt="Reminder Screen (Toggle on) — original hand-drawn sketch" width="188" height="509" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+<div class="sketch-row">
+
+<figure class="artifact ">
+<a href="img/sketch-20.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Tracking Screen (Pomodoro Tab) — original hand-drawn sketch"><img class="" src="img/sketch-20.jpg" alt="Tracking Screen (Pomodoro Tab) — original hand-drawn sketch" width="189" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-21.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Sheet containing Goals &amp; Tasks — original hand-drawn sketch"><img class="" src="img/sketch-21.jpg" alt="Sheet containing Goals &amp; Tasks — original hand-drawn sketch" width="193" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-22.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Categories (Viewing) — original hand-drawn sketch"><img class="" src="img/sketch-22.jpg" alt="Categories (Viewing) — original hand-drawn sketch" width="199" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-23.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Categories (Tasks) — original hand-drawn sketch"><img class="" src="img/sketch-23.jpg" alt="Categories (Tasks) — original hand-drawn sketch" width="193" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-24.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Pomodoro Setting Sheet — original hand-drawn sketch"><img class="" src="img/sketch-24.jpg" alt="Pomodoro Setting Sheet — original hand-drawn sketch" width="194" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/sketch-25.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Tracking Screen (Report Tab) — original hand-drawn sketch"><img class="" src="img/sketch-25.jpg" alt="Tracking Screen (Report Tab) — original hand-drawn sketch" width="193" height="525" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="study-section study-section--wide" id="interface" aria-labelledby="interface-title">
+
+<h2 id="interface-title">
+Hi-Fi
+</h2>
+<p>Having identified the required screens through the task flows, I <strong>sketched each screen to define the information</strong> needed and <strong>organize its hierarchy.</strong></p>
+<div class="hifi-grid">
+
+<figure class="artifact ">
+<a href="img/screen-dashboard.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Dashboard calendar and tasks — original high-fidelity interface"><img class="" src="img/screen-dashboard.jpg" alt="Dashboard calendar and tasks — original high-fidelity interface" width="299" height="654" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/screen-mission.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Life mission and articles — original high-fidelity interface"><img class="" src="img/screen-mission.jpg" alt="Life mission and articles — original high-fidelity interface" width="306" height="654" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/screen-goals.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Goals list and motivation — original high-fidelity interface"><img class="" src="img/screen-goals.jpg" alt="Goals list and motivation — original high-fidelity interface" width="302" height="654" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="artifact ">
+<a href="img/screen-timer.jpg" target="_blank" rel="noopener" aria-label="Open full-size: Tracking with Pomodoro timer — original high-fidelity interface"><img class="" src="img/screen-timer.jpg" alt="Tracking with Pomodoro timer — original high-fidelity interface" width="302" height="654" loading="lazy" decoding="async"></a>
+</figure>
+
+</div>
+
+</section>
+
+<section class="mockups study-section--wide" id="mockups" aria-label="Original app mockups">
+
+<figure class="mockup ">
+<figcaption>Create-mission</figcaption><a href="img/mockup-mission.jpg" target="_blank" rel="noopener" aria-label="Open full-size Create-mission mockup"><img class="" src="img/mockup-mission.jpg" alt="Create-mission — original Moti-Pulse phone mockup" width="342" height="668" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="mockup mockup--reverse">
+<figcaption>Create Goal</figcaption><a href="img/mockup-goal.jpg" target="_blank" rel="noopener" aria-label="Open full-size Create Goal mockup"><img class="" src="img/mockup-goal.jpg" alt="Create Goal — original Moti-Pulse phone mockup" width="374" height="764" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="mockup ">
+<figcaption>Create Task</figcaption><a href="img/mockup-task.jpg" target="_blank" rel="noopener" aria-label="Open full-size Create Task mockup"><img class="" src="img/mockup-task.jpg" alt="Create Task — original Moti-Pulse phone mockup" width="358" height="708" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="mockup mockup--reverse">
+<figcaption>Schedule</figcaption><a href="img/mockup-schedule.jpg" target="_blank" rel="noopener" aria-label="Open full-size Schedule mockup"><img class="" src="img/mockup-schedule.jpg" alt="Schedule — original Moti-Pulse phone mockup" width="364" height="704" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="mockup ">
+<figcaption>Promodoro</figcaption><a href="img/mockup-pomodoro.jpg" target="_blank" rel="noopener" aria-label="Open full-size Promodoro mockup"><img class="" src="img/mockup-pomodoro.jpg" alt="Promodoro — original Moti-Pulse phone mockup" width="364" height="716" loading="lazy" decoding="async"></a>
+</figure>
+
+<figure class="mockup mockup--reverse">
+<figcaption>Report</figcaption><a href="img/mockup-report.jpg" target="_blank" rel="noopener" aria-label="Open full-size Report mockup"><img class="" src="img/mockup-report.jpg" alt="Report — original Moti-Pulse phone mockup" width="366" height="700" loading="lazy" decoding="async"></a>
+</figure>
+
+</section>
+
+</div>
+
 </main>
 
-<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div class="footer-brand">
-      <a class="brand" href="../../index.html">Portfolio</a>
-      <p>Product design and front-end case studies.</p>
-    </div>
-    <div class="footer-col">
-      <h2>Case studies</h2>
-      <ul><li><a href="../../projects/greeny/">Greeny</a></li><li><a href="../../projects/moti-pulse/">Moti-Pulse</a></li></ul>
-    </div>
-    <div class="footer-col footer-col--note">
-      <h2>About this site</h2>
-      <p>Static HTML, CSS and SVG. No framework, no build step, hosted on GitHub Pages.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="../../assets/js/site.js" defer></script>
 </body>
 </html>

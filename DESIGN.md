@@ -154,8 +154,16 @@ several identities without duplicating the chrome:
   phone-first case study.
 - **Portfolio home** (`.theme-home`): paper #F2EEE5, ink #191710, vermilion
   #C9452A. Deliberately independent of every project.
-- **Moti-Pulse** (`.theme-moti`): white, pale lavender #EEF1FF and blue #4A5FF7,
-  with a soft editorial layout.
+- **Moti-Pulse** (`.theme-moti`): follows the owner's `Desktop - 2.jpg` board:
+  white, blue headings #536BFF, blue evidence panels #5874ED, pale blue borders
+  #DCEAFF and a lavender/cyan hero gradient. Inter carries all page text. The
+  research column is 55.4% of the desktop canvas, capped at 1058px; diagrams,
+  sketches and mockups expand to 83.8%, capped at 1600px. A right-side contents
+  panel tracks the sections. Mobile reflows cards, personas and mockups into
+  one column; original diagrams remain available as full-size images. The
+  supplied board overrides the general single-accent and mixed-heading rules
+  for this case study. Original product screens and sketches remain source
+  artifacts; surrounding page text and components are live HTML/CSS.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from

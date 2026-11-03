@@ -35,7 +35,7 @@ skills and sets the Codex skill budget.
 | --- | --- | --- |
 | `index.html` | `.theme-home` — paper #F2EEE5, ink #191710, vermilion #C9452A | Prototype done: hero, two-project work index, two case cards, approach, closing |
 | `projects/greeny/` | no class — dark #191919, green ramp | Full case study: hero dashboard, personas, IoT system, live UI system, 3 rebuilt app screens, brand, notes |
-| `projects/moti-pulse/` | `.theme-moti` — white, #EEF1FF, #4A5FF7 | Case study: hero, brief, research cards, segments, personas, features/IA, 4 rebuilt screens, close |
+| `projects/moti-pulse/` | `.theme-moti` — source-board gradient, white, #536BFF, #5874ED | Rebuilt from the current board: full research, personas, feature maps, IA, six task flows, 25 sketches, four original hi-fi screens, six original mockup stills |
 
 Shared shell: `assets/css/base.css` (tokens, header, footer, buttons, reveal,
 mobile nav). Page styles: `assets/css/home.css`, `projects/*/<slug>.css`.
@@ -73,9 +73,12 @@ If so, replace those two files and keep the CSS sizing.
 
 ## Open work (prioritized)
 
-1. **Moti mobile pass** — the four phone screens stack at ≤760px; check 360px,
-   the calendar, and the timer ring. `node scripts/screenshots.mjs` captures
-   `moti-mobile` and `home-mobile-360`.
+1. **Moti source rebuild completed** — verified 360, 768, 1280 and 1920px with
+   no horizontal overflow, missing images, broken anchors or script errors.
+   Original charts, sketches and app screens are extracted assets; page text,
+   cards, personas and architecture are HTML/CSS. `moti.js` tracks contents and
+   collapses the sidebar for wide diagrams. Source asset notes are in
+   `projects/moti-pulse/img/README.md`. Current captures: `screenshots/moti-source/`.
 2. **Render sweep** — run
    `node .agents/skills/hallmark/scripts/sloplint.mjs <page> --render` on all
    three pages. Static runs currently report only the documented token-block
@@ -83,12 +86,14 @@ If so, replace those two files and keep the CSS sizing.
 3. **Identity** — replace `Portfolio` in the home and both case-study headers;
    add a real contact/about block when the owner supplies it. The Moti-Pulse
    author/team credit is still missing.
-4. **Moti fidelity** — the board also has quantitative charts (age/residence),
-   task-flow diagrams and wireframes. Only the research cards, personas,
-   features, IA and 4 hi-fi screens were rebuilt.
-5. **Accessibility** — phone-mock text is 7–10px (illustrative, but check
-   contrast/focus); verify keyboard order and the mobile nav (it wraps below the
-   brand at ≤900px, no JS disclosure).
+4. **Moti source limitations** — the supplied JPEG has no interactive prototype
+   or animation, so the six mockups are stills. Chart descriptions preserve the
+   relative bar heights without inventing response counts. Some source colors
+   have low contrast; fidelity was preserved, so a contrast pass would change
+   the supplied design. The source demographic is 51% aged 23–29.
+5. **Accessibility** — Moti skip link, keyboard order, contents toggle, reduced
+   motion and no-JavaScript visibility were checked. Native screen-reader
+   testing and a full contrast audit remain outstanding across the portfolio.
 6. **Code-review leftovers** — duplicated hero/footer rules between home and
    Greeny, unused `.mini-card--compact` / `.demo--*` hooks, and the repeat of the
    device-strip markup inside the phone mocks. None block the prototype.
