@@ -29,6 +29,16 @@ layout. The native disclosure can be opened manually and closed with Escape;
 choosing a link on narrow viewports closes the panel and focuses the section.
 Without JavaScript, the contents remain available inline.
 
+Subsequent owner-approved refinements: center the original header logo using
+the corrected source crop; move UX/UI case study and 4 weeks into the header;
+replace the hero's jump button with static Life mission / Goals & tasks /
+Pomodoro labels; remove the redundant chapter strip and "Intention" line;
+replace the footer's repeated contents list with Next project / Greeny.
+The contents toggle sits inside the panel's right edge at a fixed vertical
+position. The panel slides horizontally beneath it while the arrow reverses;
+the toggle does not move upward or leave its line. The panel never scrolls
+internally; spacing and columns adapt to short viewports.
+
 ## Approved motion
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.

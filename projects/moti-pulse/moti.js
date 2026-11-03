@@ -5,8 +5,6 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const desktop = window.matchMedia('(min-width: 761px)');
   const runningAnimations = new Set();
-  const links = Array.from(document.querySelectorAll('.chapter-nav a'));
-  const chapters = links.map(link => document.querySelector(link.hash)).filter(Boolean);
   const contents = document.querySelector('.contents');
   const contentsDisclosure = contents?.querySelector('details');
   const contentsLinks = Array.from(document.querySelectorAll('.contents a'));
@@ -56,15 +54,6 @@
         } else link.removeAttribute('aria-current');
       });
     }
-    let currentChapter = chapters[0];
-    for (const chapter of chapters) {
-      if (chapter.getBoundingClientRect().top <= window.innerHeight * 0.4) currentChapter = chapter;
-    }
-    links.forEach(link => {
-      if (currentChapter && link.hash === '#' + currentChapter.id) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-
     let currentStep = steps[0];
     if (desktop.matches && !reducedMotion.matches) {
       for (const step of steps) {
@@ -114,7 +103,7 @@
     updateReadingPosition();
   }
 
-  document.querySelectorAll('.hero h1, .hero-lede, .hero .button, .hero-facts, .hero-phone').forEach((element, index) => {
+  document.querySelectorAll('.hero h1, .hero-lede, .hero-tags, .hero-facts, .hero-phone').forEach((element, index) => {
     const restingTransform = window.getComputedStyle(element).transform;
     const transform = restingTransform === 'none' ? '' : restingTransform;
     animate(element, [
@@ -153,6 +142,7 @@
 
     function setContentsOpen(open, immediate = false) {
       const fromTransform = window.getComputedStyle(contentsDisclosure).transform;
+      const fromHandleTransform = window.getComputedStyle(summary).transform;
       const fromRotation = window.getComputedStyle(chevron).transform;
       const version = ++transitionVersion;
       desiredOpen = open;
@@ -165,15 +155,18 @@
         measureContents();
         contentsDisclosure.open = open;
         contentsDisclosure.style.transform = `translateX(${open ? 0 : closedShift}px)`;
+        summary.style.transform = `translateX(${open ? 0 : -closedShift}px)`;
         return;
       }
 
-      // The panel and handle travel as one drawer on exactly the same timeline.
+      // The drawer slides beneath a stationary handle on one shared timeline.
       contentsDisclosure.open = true;
       const targetTransform = `translateX(${open ? 0 : closedShift}px)`;
+      const targetHandleTransform = `translateX(${open ? 0 : -closedShift}px)`;
       const options = { duration: 340, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' };
       contentsAnimations = [
         contentsDisclosure.animate([{ transform: fromTransform }, { transform: targetTransform }], options),
+        summary.animate([{ transform: fromHandleTransform }, { transform: targetHandleTransform }], options),
         chevron.animate([{ transform: fromRotation }, { transform: `rotate(${open ? 0 : 180}deg)` }], options),
       ];
       const startTime = document.timeline.currentTime;
@@ -181,6 +174,7 @@
       Promise.all(contentsAnimations.map(animation => animation.finished)).then(() => {
         if (version !== transitionVersion) return;
         contentsDisclosure.style.transform = targetTransform;
+        summary.style.transform = targetHandleTransform;
         contentsDisclosure.open = desiredOpen;
         contentsAnimations.forEach(animation => animation.cancel());
         contentsAnimations = [];
