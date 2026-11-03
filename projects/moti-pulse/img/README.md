@@ -13,6 +13,10 @@ The mockup panels are still images: no animation, working mobile app or
 interactive prototype was supplied. Click an artifact to view its full-size
 image. The original `logo.png` remains unchanged.
 
+`logo-centered.png` is a corrected 55 × 55 crop of the same original header
+mark (source rectangle x=41, y=20). It centers the original concentric circles
+inside the rounded square in the website header; the artwork is not redrawn.
+
 The approved editorial website redraws survey charts with source proportions;
 the three original survey JPEGs remain linked for comparison. Only percentages
 printed on the board are quoted as data. Aggregate "other" percentages are the
