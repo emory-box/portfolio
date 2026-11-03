@@ -13,9 +13,12 @@ The mockup panels are still images: no animation, working mobile app or
 interactive prototype was supplied. Click an artifact to view its full-size
 image. The original `logo.png` remains unchanged.
 
-The six task-flow diagrams use the supplied `flow-*.svg` vector files, both
-in the page and in their full-size links. Their JPEG crops remain as source
-assets; the displayed SVG dimensions follow each file's original viewBox.
+The six task-flow diagrams use the supplied `flow-*.svg` files, both in the
+page and in their full-size links. Function ideation uses the four supplied
+`Group-Function-1.svg` through `Group-Function-4.svg` in that order.
+Sketches use matching SVG files where supplied (24 of 25); `sketch-23.jpg`
+remains because no corresponding SVG is available. Image dimensions follow
+the supplied SVGs, and the original assets remain unmodified by the page.
 
 `logo-centered.png` is a corrected 55 × 55 crop of the same original header
 mark (source rectangle x=41, y=20). It centers the original concentric circles
