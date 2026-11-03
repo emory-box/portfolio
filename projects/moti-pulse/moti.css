@@ -530,7 +530,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .source-section .task-flow[open] summary::after { transform: rotate(225deg); }
 .task-flow summary:hover h3, .task-flow[open] summary h3 { color: var(--blue-deep); }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 0; background: transparent; border-radius: 0; }
+.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 32px; background: color-mix(in srgb, var(--paper) 45%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
 .task-flow .artifact a { display: block; border-radius: 8px; cursor: zoom-in; outline: 1px solid transparent; outline-offset: 10px; transition: outline-color 160ms ease; }
 .task-flow .artifact a:hover { outline: 1px solid var(--border); outline-offset: 10px; }
 .task-flow .artifact a:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 10px; }
@@ -556,5 +556,5 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .brief dd { max-width: 100%; }
   .motivation-card { padding-block: 28px; }
   .source-section .task-flow h3 { font-size: 18px; }
-  .source-section .task-flow .artifact { margin-block: 4px 24px; }
+  .source-section .task-flow .artifact { margin-block: 4px 24px; padding: 16px; }
 }
