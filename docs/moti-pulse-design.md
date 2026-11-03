@@ -27,8 +27,9 @@ The owner subsequently requested the original board's floating contents panel.
 Use its User Research / User Experience / User Interface grouping and active
 section highlight. It appears after the hero, opens in the spare right gutter
 at 1800px and up, and starts collapsed on narrower viewports to preserve A's
-layout. The native disclosure can be opened manually and closed with Escape;
-choosing a link on narrow viewports closes the panel and focuses the section.
+layout. Only activating the arrow toggles the disclosure. Choosing a section
+focuses its heading area while keeping the panel open; Escape, scrolling back
+to the hero and resizing preserve its state after it has appeared.
 Without JavaScript, the contents remain available inline.
 
 The centered original logo, source metadata in the header, removal of redundant

@@ -1,4 +1,4 @@
-﻿/* Hallmark · Moti-Pulse · owner-approved A: Editorial · static case study */
+/* Hallmark · Moti-Pulse · owner-approved A: Editorial · static case study */
 /* Research builds toward the product through clear typography, original artifacts and restrained motion. */
 /* waive 58: the original research remains complete in this long-form case study. */
 .theme-moti {
@@ -46,14 +46,17 @@ section { scroll-margin-top: 24px; }
 .hero-facts { display: flex; gap: 40px; margin-top: 40px; font-size: 12px; }
 .hero-facts dt { color: var(--muted); margin-bottom: 6px; }
 .hero-visual { position: relative; height: 530px; isolation: isolate; }
-.orb { position: absolute; z-index: -2; width: 92%; aspect-ratio: 1; left: 6%; top: 12%; border-radius: 50%; background: var(--lavender); }
+.hero-target { position: absolute; z-index: -1; width: 112%; max-width: none; height: auto; aspect-ratio: 1; left: -4%; top: 6%; }
+.theme-moti .target-ring { fill: none; stroke: var(--lavender); }
+.theme-moti .target-ring--outer { stroke-width: 36px; }
+.theme-moti .target-ring--middle { stroke: var(--lavender-deep); stroke-width: 28px; }
+.theme-moti .target-ring--inner { stroke-width: 22px; }
+.theme-moti .target-center { fill: var(--lavender-deep); stroke: none; }
+.theme-moti .target-guides { stroke: var(--lavender-deep); stroke-width: 3px; stroke-linecap: round; }
 .hero-phone { position: absolute; width: 36%; border-radius: 20px; box-shadow: 0 24px 40px var(--shadow); }
 .phone-back { top: 20%; left: 2%; transform: rotate(-10deg); }
 .phone-front { top: 3%; left: 31%; z-index: 2; }
 .phone-side { right: -1%; top: 24%; transform: rotate(10deg); z-index: 1; }
-.visual-line { position: absolute; border: 1px solid var(--lavender-deep); border-radius: 50%; z-index: -1; width: 116%; height: 60%; top: 20%; left: -8%; }
-.line-one { transform: rotate(-35deg); }
-.line-two { transform: rotate(35deg); }
 .problem-section { padding: 96px 0 104px; background: var(--lavender); }
 .problem-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 80px; }
 .section-label { display: flex; align-items: center; gap: 16px; font-size: 12px; margin-bottom: 20px; }
@@ -482,6 +485,35 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .source-section .pain-points { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; max-width: 760px; margin-top: 32px; }
 .source-section .pain-points ul { margin: 0; color: var(--muted); }
 .text-blue { color: var(--blue-deep); }
+.theme-moti .source-link { color: var(--blue-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; border-radius: 3px; }
+.theme-moti .source-link:hover { background: var(--lavender); text-decoration-thickness: 2px; }
+.theme-moti .source-link:active { background: var(--lavender-deep); }
+.contents summary { cursor: pointer; transition: background-color 160ms, border-color 160ms; }
+.contents summary:hover, .contents summary[aria-expanded="true"] { border-color: var(--blue-deep); background: var(--lavender); }
+.contents summary:active, .contents-group a:active, .contents-group a[aria-current] { background: var(--lavender-deep); color: var(--blue-deep); }
+.contents-group a[aria-current] { box-shadow: inset 3px 0 var(--blue-deep); }
+.theme-moti .header a:hover, .theme-moti .footer a:hover { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 4px; }
+.theme-moti .header a:active, .theme-moti .footer a:active { background: var(--lavender); }
+.next-project:hover { border-color: var(--blue-deep); }
+.next-project:active { background: var(--lavender-deep); }
+.artifact a:hover, .artifact a:focus-visible { outline: 2px solid var(--blue-deep); outline-offset: 4px; }
+.artifact-description summary { cursor: pointer; }
+.artifact-description summary:hover, .artifact-description[open] summary { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; }
+.segments { row-gap: 12px; }
+.segments article { display: grid; grid-template-rows: minmax(54px, auto) 24px auto; align-content: start; row-gap: 12px; }
+.segments h3 { grid-row: 1; margin: 0; }
+.segments small { grid-row: 2; }
+.segments p { grid-row: 3; margin: 0; }
+@supports (grid-template-rows: subgrid) {
+  .segments article { grid-row: span 3; grid-template-rows: subgrid; }
+}
+@media (max-width: 760px) {
+  .segments { row-gap: 32px; }
+  .segments article { display: block; grid-row: auto; }
+  .segments h3 { margin-bottom: 12px; }
+  .segments small { display: block; }
+  .segments p { margin-top: 16px; }
+}
 .motivation-cards { gap: 0; margin-top: 48px; }
 .motivation-card { align-items: stretch; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding: 32px 0; border-top: 1px solid var(--border); }
 .motivation-card:last-child { border-bottom: 1px solid var(--border); }

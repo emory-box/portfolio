@@ -12,6 +12,7 @@
   const hero = document.querySelector('.hero');
   let revealObserver;
   let framePending = false;
+  let contentsHasAppeared = false;
 
   // Web Animations leave the underlying content visible if scripting is unavailable.
   function animate(element, frames, delay = 0) {
@@ -30,7 +31,8 @@
 
   function updateReadingPosition() {
     if (contents && hero) {
-      contents.hidden = hero.getBoundingClientRect().bottom > window.innerHeight * 0.75 && !contents.contains(document.activeElement);
+      if (hero.getBoundingClientRect().bottom <= window.innerHeight * 0.75) contentsHasAppeared = true;
+      contents.hidden = !contentsHasAppeared && !contents.contains(document.activeElement);
       let activeContents = contentsSections[0];
       for (const section of contentsSections) {
         if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.4) activeContents = section;
@@ -164,29 +166,17 @@
       event.preventDefault();
       setContentsOpen(!desiredOpen);
     });
-    roomyViewport.addEventListener('change', () => {
-      const restoreFocus = contentsDisclosure.open && contents.contains(document.activeElement);
-      setContentsOpen(roomyViewport.matches, true);
-      if (restoreFocus && !desiredOpen) summary.focus();
-    });
     window.addEventListener('resize', () => setContentsOpen(desiredOpen, true));
     reducedMotion.addEventListener('change', () => {
       if (reducedMotion.matches) setContentsOpen(desiredOpen, true);
     });
     contentsLinks.forEach(link => link.addEventListener('click', () => {
-      if (roomyViewport.matches) return;
-      setContentsOpen(false);
       const target = document.querySelector(link.hash);
       if (target) {
         target.tabIndex = -1;
         window.requestAnimationFrame(() => target.focus({ preventScroll: true }));
       }
     }));
-    contents.addEventListener('keydown', event => {
-      if (event.key !== 'Escape' || !desiredOpen) return;
-      setContentsOpen(false);
-      summary.focus();
-    });
   }
   updateReadingPosition();
   observeReveals();
