@@ -122,8 +122,9 @@ node .agents/skills/hallmark/scripts/sloplint.mjs index.html projects/moti-pulse
 - Ran `scripts/setup.ps1`: Node 24 and Chrome are available; installed FFmpeg
   and global `puppeteer-core`; configured the Codex skill budget. Open a new
   terminal for FFmpeg's updated PATH.
-- `emory-box/portfolio` already contains a different live site; confirm the
-  upload destination before changing its branches.
+- Upload destination: `https://github.com/emory-box/portfolio-case-studies`
+  (public), authorized by the owner. `emory-box/portfolio` contains a different
+  live site and is separate from this project.
 - Static sloplint ran on all three pages and reported 55 FAIL, 90 REFLEX and
   11 WARN. The earlier claim that only documented waivers remain is stale.
 - There is no package manifest or configured typecheck, test or build command.
