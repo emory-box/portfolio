@@ -222,22 +222,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .chapter--map .artifact img { max-height: 650px; object-fit: contain; }
 .artifact-description > p, .artifact-description > ol { margin-top: 24px; color: var(--muted); }
 .artifact-description li + li { margin-top: 12px; }
-.architecture { margin-top: 96px; text-align: center; font-size: 14px; }
-.architecture-root { position: relative; width: fit-content; padding: 12px 48px; margin: auto auto 70px; background: var(--tree-blue); }
-.architecture-root::after { content: ''; position: absolute; height: 35px; width: 1px; background: var(--connector); left: 50%; bottom: -35px; }
-.architecture > ul { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: 0; list-style: none; }
-.architecture > ul::before { content: ''; position: absolute; height: 1px; background: var(--connector); left: calc((100% - 84px) / 9.2); right: calc((100% - 84px) / 9.2); top: -35px; }
-.architecture > ul > li { position: relative; }
-.architecture h3 { position: relative; width: fit-content; margin: 0 auto 70px; padding: 12px 24px; background: var(--green); font-weight: 400; font-size: inherit; letter-spacing: normal; }
-.architecture h3::before, .architecture h3::after { content: ''; position: absolute; height: 35px; width: 1px; background: var(--connector); left: 50%; }
-.architecture h3::before { top: -35px; }
-.architecture h3::after { bottom: -35px; }
-.architecture li ul { --child-count: 2; position: relative; display: flex; justify-content: space-around; align-items: stretch; min-height: 64px; background: var(--tree-purple); padding: 0; list-style: none; }
-.architecture > ul > li:nth-child(2) ul { --child-count: 3; }
-.architecture li ul::before { content: ''; position: absolute; height: 1px; width: calc(100% - 100% / var(--child-count)); background: var(--connector); left: calc(50% / var(--child-count)); top: -35px; }
-.architecture li li { position: relative; display: grid; place-items: center; flex: 1; min-width: 0; padding: 12px 6px; }
-.architecture li li::before { content: ''; position: absolute; width: 1px; height: 35px; background: var(--connector); top: -35px; left: 50%; }
-.architecture li li::after { content: ''; position: absolute; top: -5px; left: calc(50% - 2px); width: 5px; height: 5px; border-right: 1px solid var(--connector); border-bottom: 1px solid var(--connector); transform: rotate(45deg); }
 .task-flow { border-top: 1px solid var(--border); }
 .task-flow summary { display: flex; align-items: center; gap: 32px; padding-block: 24px; color: var(--ink); font-size: 22px; letter-spacing: -.035em; }
 .task-flow summary::after { content: '+'; margin-left: auto; color: var(--blue-deep); }
@@ -588,8 +572,27 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow[open] summary h3 { color: var(--blue-deep); }
 @media (hover: hover) { .task-flow summary:hover h3 { color: var(--blue-deep); } }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 32px; background: color-mix(in srgb, var(--paper) 45%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
+.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 24px; background: var(--lavender-deep); border: 0; border-radius: 24px; }
 .task-flow .artifact img { width: 100%; height: auto; }
+.diagram-picture { display: block; }
+.diagram-frame .diagram-picture img { display: block; width: 100%; height: auto; max-height: none; }
+.source-section .architecture-diagram { margin-block: 40px 0; padding: 24px; background: var(--lavender); border-radius: 24px; }
+.architecture-description { margin-block-start: 24px; }
+.architecture-transcript { margin-block-start: 24px; }
+.architecture-transcript-root { margin-block-end: 16px; font-weight: 550; }
+.architecture-transcript > ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 0; list-style: none; }
+.architecture-transcript h3 { margin-block-end: 12px; font-size: 16px; font-weight: 550; letter-spacing: normal; }
+.architecture-transcript ul ul { padding-inline-start: 20px; font-size: 14px; color: var(--muted); }
+.theme-moti .diagram-key { display: flex; flex-wrap: wrap; gap: 16px 24px; max-width: none; margin-block: 32px 0; padding: 0; list-style: none; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.diagram-key li { display: flex; align-items: center; gap: 8px; }
+.diagram-key span { display: inline-block; flex: 0 0 20px; width: 20px; height: 14px; border: 1.5px solid var(--blue); border-radius: 4px; background: var(--paper); }
+.diagram-key .diagram-key-terminal { border-color: var(--blue-deep); border-radius: 100px; background: var(--blue-deep); }
+.diagram-key .diagram-key-screen { background: var(--lavender); }
+.diagram-key .diagram-key-decision { flex-basis: 12px; width: 12px; height: 12px; margin-inline: 4px; border-radius: 0; background: var(--lavender-deep); transform: rotate(45deg); }
+@media (max-width: 1000px) {
+  .diagram-frame .diagram-picture img { width: min(100%, 360px); margin-inline: auto; }
+  .architecture-transcript > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 #quantitative .artifact { max-width: 860px; }
 .survey-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 48px; max-width: 720px; margin: 32px auto; }
 .survey-bars .survey-bar { display: flex; flex-direction: column; margin: 0; min-width: 0; }
@@ -645,5 +648,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .brief dd { max-width: 100%; }
   .motivation-card { padding-block: 28px; }
   .source-section .task-flow h3 { font-size: 18px; }
-  .source-section .task-flow .artifact { margin-block: 4px 24px; padding: 16px; }
+  .source-section .task-flow .artifact { margin-block: 4px 24px; padding: 12px; border-radius: 16px; }
+  .source-section .architecture-diagram { padding: 12px; border-radius: 16px; }
+  .architecture-transcript > ul { grid-template-columns: minmax(0, 1fr); }
 }

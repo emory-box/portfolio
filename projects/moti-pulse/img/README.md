@@ -7,7 +7,7 @@ The JPEG files are crops of the original research charts, illustrated persona
 portraits, function and task-flow diagrams, hand-drawn sketches, interface
 screens and phone mockups. They preserve the original design evidence rather
 than substitute invented UI or photography. The page's headings, body copy,
-research cards, comments, personas, architecture and navigation are HTML/CSS.
+research cards, comments, personas and navigation are HTML/CSS.
 
 The owner removed the Mockups section and the original-interface-screen
 disclosure. Their source images remain in this folder for reference.
@@ -15,12 +15,20 @@ Hi-Fi presents eight owner-supplied screen-recording loops, documented in `../vi
 Still artifacts are displayed inline without links, hover outlines or zoom
 cursors. Research reference links remain available in the case-study text.
 
-The six task-flow diagrams use the supplied `flow-*.svg` files in the page.
+The owner requested redesigned Information Architecture and Task Flow imagery.
+The page now uses `diagrams/information-architecture*.svg` and
+`diagrams/flow-*.svg`: paired desktop and vertical small-screen versions with
+embedded Inter and the Moti palette. Original flow SVGs remain unchanged here
+as source evidence. The exact architecture also has an HTML text alternative.
+The graph model is `../diagrams/flows.json`; regenerate the exports with
+`node scripts/build-moti-diagrams.cjs` from the repository root. See
+`../../../docs/moti-diagram-redesign.md` for the source and verification record.
 Function ideation uses the four supplied
 `Group-Function-1.svg` through `Group-Function-4.svg` in that order.
 All 25 sketches use the supplied SVG files, including `sketch-23.svg`.
-The Add Tasks flow uses the owner's updated `flow-tasks.svg`. Image dimensions follow
-the supplied SVGs, and the original assets remain unmodified by the page.
+The Add Tasks rebuild follows the owner's updated `flow-tasks.svg`, including
+its priority branch and returning subtasks loop. All source assets remain
+unmodified by the page.
 
 `logo-centered.png` is a corrected 55 × 55 crop of the same original header
 mark (source rectangle x=41, y=20). It centers the original concentric circles

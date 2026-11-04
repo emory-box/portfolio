@@ -28,6 +28,13 @@ through full-size original images. Use the original survey charts, preserving
 their exact evidence rather than approximating unlabelled bar counts. The
 three motivation/solution pairs remain paired and in their source order.
 
+The owner requested new Information Architecture and Task Flow imagery in
+the Moti theme. Both sections now use generated, self-contained SVGs with
+desktop and vertical small-screen layouts. The original hierarchy, labels,
+branches and loops remain; source SVGs are retained. The architecture also
+keeps its exact HTML text alternative. See `moti-diagram-redesign.md` for the
+graph model, authoring command and validation.
+
 The owner subsequently requested the original board's floating contents panel.
 Use its User Research / User Experience / User Interface grouping and active
 section highlight. It appears after the hero, opens in the spare right gutter

@@ -175,6 +175,10 @@ several identities without duplicating the chrome:
   Its background wraps the links, leaving the stationary arrow toggle outside.
   The owner removed Mockups and the original-interface-screen disclosure;
   Hi-Fi's eight function demos now lead directly to the footer.
+  Architecture and task-flow diagrams use theme-colored SVGs with embedded
+  Inter, rounded nodes and explicit arrowed branches. Vertical variants keep
+  the same graph readable on smaller screens; original source diagrams remain
+  available. See `docs/moti-diagram-redesign.md`.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from
