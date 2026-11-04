@@ -15,43 +15,45 @@
   let contentsHasAppeared = false;
   const revealedPies = new WeakSet();
   const revealedBars = new WeakSet();
-  const chartTitleAnimations = new WeakMap();
+  const revealedEntrances = new WeakSet();
+  const entranceGroups = new Map();
+  let entrancesInitialized = false;
+  let barsInitialized = false;
+  let piesInitialized = false;
   let pieObserver;
   let barObserver;
 
-  function prepareChartTitle(chart) {
-    const title = chart.closest('figure')?.querySelector('.demographic-title, .survey-bar-title');
-    if (!title || typeof title.animate !== 'function' || chartTitleAnimations.has(chart)) return;
-    const animation = title.animate([
-      { opacity: 0, transform: 'translateY(12px)', filter: 'blur(4px)' },
-      { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' },
-    ], { duration: 300, easing: 'ease-out', fill: 'backwards' });
-    // Hold the entrance until this chart's existing visibility trigger fires.
-    animation.pause();
-    animation.currentTime = 0;
-    chartTitleAnimations.set(chart, animation);
-    runningAnimations.add(animation);
-    const release = () => {
-      runningAnimations.delete(animation);
-      if (chartTitleAnimations.get(chart) === animation) chartTitleAnimations.delete(chart);
-    };
-    animation.addEventListener('finish', release, { once: true });
-    animation.addEventListener('cancel', release, { once: true });
+  function revealEntrance(root, immediate = false) {
+    const animations = entranceGroups.get(root);
+    if (!animations) return;
+    revealedEntrances.add(root);
+    revealObserver?.unobserve(root);
+    const heading = root.closest('.source-section')?.querySelector('.source-title');
+    const headingAnimation = root !== heading && entranceGroups.get(heading)?.[0];
+    const lead = headingAnimation ? Math.max(0, 200 - (headingAnimation.currentTime || 0)) : 0;
+    if (!immediate && lead) animations.forEach(animation => {
+      animation.effect.updateTiming({ delay: animation.effect.getTiming().delay + lead });
+    });
+    animations.forEach(animation => immediate ? animation.finish() : animation.play());
   }
 
   function observeBars() {
     barObserver?.disconnect();
     document.querySelectorAll('.bar-pending').forEach(chart => chart.classList.remove('bar-pending'));
-    if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+    const preserveVisible = barsInitialized;
+    barsInitialized = true;
+    if (!('IntersectionObserver' in window) || typeof Element.prototype.animate !== 'function') return;
     barObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const target = entry.target;
         const requiredHeight = Math.min(entry.boundingClientRect.height * .95, window.innerHeight * .75);
-        if (!entry.isIntersecting || entry.intersectionRect.height < requiredHeight || revealedBars.has(target)) return;
+        if (!entry.isIntersecting || revealedBars.has(target)) return;
+        if (!reducedMotion.matches && entry.intersectionRect.height < requiredHeight) return;
         revealedBars.add(target);
         barObserver.unobserve(target);
         target.classList.remove('bar-pending');
-        chartTitleAnimations.get(target)?.play();
+        if (reducedMotion.matches) return;
+        revealEntrance(target.closest('figure')?.querySelector('.survey-bar-title'), true);
         animate(target.querySelector('.bar-grid'), [
           { opacity: 0 }, { opacity: 1 },
         ], 100, 550);
@@ -67,8 +69,12 @@
     }, { threshold: [0, .25, .5, .75, .95, 1], rootMargin: '0px 0px -24px 0px' });
     document.querySelectorAll('.bar-chart').forEach(img => {
       if (!revealedBars.has(img)) {
-        img.classList.add('bar-pending');
-        prepareChartTitle(img);
+        const bounds = img.getBoundingClientRect();
+        if (preserveVisible && bounds.top < window.innerHeight && bounds.bottom > 0) {
+          revealedBars.add(img);
+          return;
+        }
+        if (!reducedMotion.matches) img.classList.add('bar-pending');
         barObserver.observe(img);
       }
     });
@@ -76,13 +82,21 @@
 
   function observePies() {
     pieObserver?.disconnect();
-    if (reducedMotion.matches || !('IntersectionObserver' in window) || !CSS.registerProperty) return;
+    document.querySelectorAll('.pie-pending').forEach(chart => chart.classList.remove('pie-pending'));
+    const preserveVisible = piesInitialized;
+    piesInitialized = true;
+    if (!('IntersectionObserver' in window) || !CSS.registerProperty || typeof Element.prototype.animate !== 'function') return;
     pieObserver = new IntersectionObserver(entries => {
-      entries.forEach(({ target, isIntersecting }) => {
-        if (!isIntersecting || revealedPies.has(target)) return;
+      entries.forEach(entry => {
+        const target = entry.target;
+        const requiredHeight = Math.min(entry.boundingClientRect.height * .85, window.innerHeight * .65);
+        if (!entry.isIntersecting || revealedPies.has(target)) return;
+        if (!reducedMotion.matches && entry.intersectionRect.height < requiredHeight) return;
         revealedPies.add(target);
         pieObserver.unobserve(target);
-        chartTitleAnimations.get(target)?.play();
+        target.classList.remove('pie-pending');
+        if (reducedMotion.matches) return;
+        revealEntrance(target.closest('figure')?.querySelector('.demographic-title'), true);
         const isAgeChart = target.getAttribute('width') === '312';
         target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
         target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
@@ -123,28 +137,34 @@
         };
         Promise.all([animation, ...legendAnimations].map(item => item.finished)).then(finish, finish);
       });
-    }, { threshold: 0.15 });
+    }, { threshold: [0, .25, .5, .65, .85, 1], rootMargin: '0px 0px -24px 0px' });
     document.querySelectorAll('.demographic-charts img').forEach(img => {
       if (!revealedPies.has(img)) {
-        prepareChartTitle(img);
+        const bounds = img.getBoundingClientRect();
+        if (preserveVisible && bounds.top < window.innerHeight && bounds.bottom > 0) {
+          revealedPies.add(img);
+          return;
+        }
+        if (!reducedMotion.matches) img.classList.add('pie-pending');
         pieObserver.observe(img);
       }
     });
   }
 
   // Web Animations leave the underlying content visible if scripting is unavailable.
-  function animate(element, frames, delay = 0, duration = 600) {
-    if (reducedMotion.matches || typeof element.animate !== 'function') return;
+  function animate(element, frames, delay = 0, duration = 600, easing = 'cubic-bezier(.2,.7,.2,1)') {
+    if (reducedMotion.matches || !element || typeof element.animate !== 'function') return;
     const animation = element.animate(frames, {
       duration,
       delay,
       fill: 'backwards',
-      easing: 'cubic-bezier(.2,.7,.2,1)',
+      easing,
     });
     runningAnimations.add(animation);
     const release = () => runningAnimations.delete(animation);
     animation.addEventListener('finish', release, { once: true });
     animation.addEventListener('cancel', release, { once: true });
+    return animation;
   }
 
   function updateReadingPosition() {
@@ -173,31 +193,75 @@
   }
 
   function observeReveals() {
-    if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+    revealObserver?.disconnect();
+    entranceGroups.forEach(animations => animations.forEach(animation => animation.cancel()));
+    entranceGroups.clear();
+    const preserveVisible = entrancesInitialized;
+    entrancesInitialized = true;
+    if (!('IntersectionObserver' in window)) return;
     revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const element = entry.target;
-        animate(element, [
-          { opacity: 0, transform: 'translateY(20px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ]);
-        revealObserver.unobserve(element);
+        if (reducedMotion.matches) {
+          revealedEntrances.add(entry.target);
+          revealObserver.unobserve(entry.target);
+        } else revealEntrance(entry.target);
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona').forEach(element => revealObserver.observe(element));
+    }, { threshold: 0, rootMargin: '0px 0px -48px 0px' });
+
+    function prepare(root, elements = [root]) {
+      if (revealedEntrances.has(root)) return;
+      const bounds = root.getBoundingClientRect();
+      // Re-enabling motion must not hide text already on screen or above it.
+      if (bounds.bottom <= 0 || (preserveVisible && bounds.top < window.innerHeight)) {
+        revealedEntrances.add(root);
+        return;
+      }
+      if (reducedMotion.matches) { revealObserver.observe(root); return; }
+      const animations = elements.map((element, index) => {
+        const frames = [
+          { opacity: 0, transform: 'translateY(12px)' },
+          { opacity: 1, transform: 'translateY(0)' },
+        ];
+        if (element.getBoundingClientRect().height < 320 && !element.querySelector('img, svg')) {
+          frames[0].filter = 'blur(4px)';
+          frames[1].filter = 'blur(0)';
+        }
+        const animation = animate(element, frames, index * 100, 300, 'ease-out');
+        if (animation) { animation.pause(); animation.currentTime = 0; }
+        return animation;
+      }).filter(Boolean);
+      if (!animations.length) return;
+      entranceGroups.set(root, animations);
+      Promise.allSettled(animations.map(animation => animation.finished)).then(() => {
+        if (entranceGroups.get(root) === animations) entranceGroups.delete(root);
+      });
+      revealObserver.observe(root);
+    }
+
+    document.querySelectorAll('.source-title').forEach(title => {
+      const intro = title.nextElementSibling;
+      const hasIntro = intro?.matches('p, ul, .hifi-intro-copy');
+      prepare(title, hasIntro ? [title, intro] : [title]);
+    });
+    document.querySelectorAll('.motivation-card > div, .segments article, .persona-identity, .persona-description > *, .persona-bottom > div, .part, .demographic-title, .survey-bar-title').forEach(element => prepare(element));
+    document.querySelectorAll('.hifi-copy').forEach(copy => prepare(copy, Array.from(copy.children)));
   }
+
+  document.addEventListener('focusin', event => {
+    entranceGroups.forEach((animations, root) => {
+      if (animations.some(animation => animation.effect.target.contains(event.target))) revealEntrance(root, true);
+    });
+  });
 
   function updateMotionPreference() {
     observePies();
     observeBars();
-    if (revealObserver) revealObserver.disconnect();
     if (reducedMotion.matches) {
       runningAnimations.forEach(animation => animation.cancel());
       runningAnimations.clear();
-    } else {
-      observeReveals();
     }
+    observeReveals();
     updateReadingPosition();
   }
 

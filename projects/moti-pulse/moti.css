@@ -17,6 +17,7 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; overflow-x: clip; }
+html { scroll-padding-block-start: 24px; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 h1,h2,h3,h4,p,figure,dl,dd { margin: 0; }
 h1,h2,h3,h4 { line-height: 1.1; font-weight: 550; }
@@ -33,7 +34,7 @@ section { scroll-margin-top: 24px; }
 .header { display: flex; justify-content: space-between; align-items: center; gap: 32px; min-height: 96px; border-bottom: 1px solid var(--border); font-size: 13px; }
 .brand { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 650; letter-spacing: -.04em; }
 .brand img { border-radius: 10px; }
-.header a:hover, .footer a:hover { color: var(--blue); }
+@media (hover: hover) { .header a:hover, .footer a:hover { color: var(--blue); } }
 .back { color: var(--muted); }
 .back span { margin-left: 16px; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: center; gap: 32px; position: relative; padding-top: 72px; padding-bottom: 76px; min-height: 690px; }
@@ -41,7 +42,7 @@ section { scroll-margin-top: 24px; }
 .hero h1 span, h3 span { color: var(--blue); }
 .hero-lede { margin-top: 28px; max-width: 400px; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .button { display: inline-flex; gap: 32px; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 20px; background: var(--blue); color: var(--white); border-radius: 8px; font-size: 13px; }
-.button:hover { background: var(--blue-deep); }
+@media (hover: hover) { .button:hover { background: var(--blue-deep); } }
 .button svg { width: 20px; height: 20px; }
 .hero-facts { display: flex; gap: 40px; margin-top: 40px; font-size: 12px; }
 .hero-facts dt { color: var(--muted); margin-bottom: 6px; }
@@ -474,7 +475,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .theme-moti .contents-group h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; padding: 8px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
 .contents-group h2 svg { width: 18px; height: 18px; flex-shrink: 0; }
 .contents-group a { display: flex; align-items: center; justify-content: center; min-height: 28px; padding: 4px; border-radius: 10px; color: var(--muted); font-size: 11px; line-height: 1.4; text-align: center; }
-.contents-group a:hover { background: var(--lavender); color: var(--blue-deep); }
+@media (hover: hover) { .contents-group a:hover { background: var(--lavender); color: var(--blue-deep); } }
 .contents-group a[aria-current] { background: var(--lavender); color: var(--blue-deep); }
 .theme-moti .contents-group.is-active h2 { color: var(--muted); background: transparent; }
 .js .contents { position: fixed; z-index: 20; top: 96px; right: 24px; width: auto; margin: 0; pointer-events: none; }
@@ -540,18 +541,22 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .source-section .pain-points ul { margin: 0; color: var(--muted); }
 .text-blue { color: var(--blue-deep); }
 .theme-moti .source-link { color: var(--blue-deep); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; border-radius: 3px; }
-.theme-moti .source-link:hover { background: var(--lavender); text-decoration-thickness: 2px; }
 .theme-moti .source-link:active { background: var(--lavender-deep); }
-.contents summary { cursor: pointer; transition: background-color 160ms, border-color 160ms; }
-.contents summary:hover, .contents summary[aria-expanded="true"] { border-color: var(--blue-deep); background: var(--lavender); }
+.contents summary { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color 150ms ease-out, border-color 150ms ease-out; }
+.contents summary[aria-expanded="true"] { border-color: var(--blue-deep); background: var(--lavender); }
 .contents summary:active, .contents-group a:active { background: var(--lavender-deep); color: var(--blue-deep); }
 .contents-group a[aria-current] { box-shadow: none; }
-.theme-moti .header a:hover, .theme-moti .footer a:hover { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 4px; }
 .theme-moti .header a:active, .theme-moti .footer a:active { background: var(--lavender); }
-.next-project:hover { border-color: var(--blue-deep); }
 .next-project:active { background: var(--lavender-deep); }
 .artifact-description summary { cursor: pointer; }
-.artifact-description summary:hover, .artifact-description[open] summary { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; }
+.artifact-description[open] summary { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) {
+  .theme-moti .source-link:hover { background: var(--lavender); text-decoration-thickness: 2px; }
+  .contents summary:hover { border-color: var(--blue-deep); background: var(--lavender); }
+  .theme-moti .header a:hover, .theme-moti .footer a:hover { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 4px; }
+  .next-project:hover { border-color: var(--blue-deep); }
+  .artifact-description summary:hover { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; }
+}
 .segments { row-gap: 12px; }
 .segments article { display: grid; grid-template-rows: minmax(54px, auto) 24px auto; align-content: start; row-gap: 12px; }
 .segments h3 { grid-row: 1; margin: 0; }
@@ -580,7 +585,8 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow summary::-webkit-details-marker { display: none; }
 .source-section .task-flow summary::after { content: ''; width: 8px; height: 8px; flex: 0 0 8px; margin-inline: auto 4px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
 .source-section .task-flow[open] summary::after { transform: rotate(225deg); }
-.task-flow summary:hover h3, .task-flow[open] summary h3 { color: var(--blue-deep); }
+.task-flow[open] summary h3 { color: var(--blue-deep); }
+@media (hover: hover) { .task-flow summary:hover h3 { color: var(--blue-deep); } }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
 .source-section .task-flow .artifact { margin: 8px 0 32px; padding: 32px; background: color-mix(in srgb, var(--paper) 45%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
 .task-flow .artifact img { width: 100%; height: auto; }
@@ -603,6 +609,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 720px; margin: 32px auto; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
 .demographic-title { margin-bottom: 20px; font-size: 16px; font-weight: 400; line-height: 1.5; text-align: center; color: var(--ink); }
+.pie-pending { opacity: 0; }
 .pie-legend-reveal { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
 @property --pie-sweep {
   syntax: '<angle>';

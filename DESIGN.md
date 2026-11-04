@@ -165,7 +165,8 @@ several identities without duplicating the chrome:
   charts and product artifacts without derived values or added narrative.
   Section headings are large, unnumbered source titles. Motivation/solution
   pairs share one full-width row divider to align across viewport sizes.
-  Entrances last 600ms with 120ms hero staggering. Reduced motion and no script
+  Hero entrances last 600ms with 120ms staggering. Reading groups enter over
+  300ms, with 100ms between headings and their introductions. Reduced motion and no script
   keep content directly visible. See `docs/moti-pulse-design.md` for the
   approved scope and the branch preserving all three design previews.
   The source-style floating contents panel uses the same white/lavender tokens,

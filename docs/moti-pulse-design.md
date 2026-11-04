@@ -52,8 +52,14 @@ headings are large source titles without section numbering.
 ## Approved motion
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
-- Original motivation/solution rows, source headings and source images enter
-  once on scroll. Keep their connections and source order intact.
+- Reading groups enter once over 300ms, with each heading followed by its
+  introduction 100ms later. Long motivation/persona content uses its existing
+  semantic blocks. Already-viewed text stays visible after preference changes;
+  keyboard focus reveals pending content immediately. Original diagrams and
+  image collections remain directly readable. Chart titles enter before the
+  chart sequence; pies wait until 85% visible and bars retain their existing
+  grid-then-columns sequence. See `moti-motion-review.md` for verification.
+  Keep the source connections and order intact.
 - Hi-Fi presents the eight approved original-recording loops.
   The owner explicitly requested feature instructions;
   these describe actions in the supplied recordings and add no product claims.
