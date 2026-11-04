@@ -302,7 +302,9 @@
         const minimum = Math.min(rect.height * .6, window.innerHeight * .6);
         if (!rect.height || visible < minimum || rect.right <= 0 || rect.left >= window.innerWidth) continue;
         const distance = Math.abs((rect.top + rect.bottom) / 2 - window.innerHeight / 2);
-        if (distance < nearest) {
+        // Paired gallery demos share a center. Keep the visitor's active
+        // choice until another row is closer, rather than favoring its sibling.
+        if (distance < nearest - 1 || (Math.abs(distance - nearest) <= 1 && video === active)) {
           nearest = distance;
           candidate = video;
         }
@@ -404,8 +406,7 @@
         const duration = Number.isFinite(video.duration) ? video.duration : Number(video.dataset.duration) || 0;
         const playing = !video.paused;
         play.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${title} demo`);
-        play.querySelector('.play-icon').toggleAttribute('hidden', playing);
-        play.querySelector('.pause-icon').toggleAttribute('hidden', !playing);
+        play.dataset.playing = String(playing);
         sound.setAttribute('aria-pressed', String(!video.muted));
         sound.querySelector('.sound-icon').toggleAttribute('hidden', video.muted);
         sound.querySelector('.muted-icon').toggleAttribute('hidden', !video.muted);
@@ -456,6 +457,7 @@
       video.addEventListener('error', nativeFallback);
       video.querySelectorAll('source').forEach(source => source.addEventListener('error', nativeFallback));
       update();
+      play.querySelector('.pause-icon').removeAttribute('hidden');
       video.controls = false;
       controls.hidden = false;
       player.classList.add('is-enhanced');

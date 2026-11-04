@@ -58,6 +58,12 @@ headings are large source titles without section numbering.
   Videos use a phone-silhouette presentation and a slim external control bar,
   with native-player fallback. Still-artifact images are display-only and have
   no link, hover or zoom affordance. Paper references retain their link styling.
+  Hi-Fi uses a two-column demo gallery with a single-column introduction.
+  Each feature groups its title and description above a compact phone demo
+  on a pale-blue surface, followed by expandable "How it works" instructions.
+  Paired media panels align; mobile stacks into one column. Play/Pause has a primary round
+  control with a 300ms contextual icon cross-fade. Reduced motion keeps only
+  opacity; hover states apply only to hover-capable pointers.
 - Reduced motion and no JavaScript show the content directly, without pinned
   scrolling or entrance effects. Changing the preference cancels live effects.
 

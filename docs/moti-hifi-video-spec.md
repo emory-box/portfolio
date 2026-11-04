@@ -19,6 +19,10 @@ Do not invent product behavior, claims, metrics or copy inside the recordings.
 - At most one demo plays. Pause all demos outside that active position and
   while the document is hidden. Pause rather than reset playback positions.
 - A manual pause persists until the visitor explicitly plays again.
+- Desktop pairs share a vertical position: scrolling initially plays the first
+  demo in that row. Playing its sibling makes that the active choice; small
+  scrolls retain it until another row becomes closer. Mobile scrolls through
+  the eight demos individually.
 - Manual Play pauses other demos, including with reduced motion enabled.
 - Reduced motion disables autoplay; playback controls remain usable. Changing
   the preference pauses playback immediately and updates the help text.
@@ -52,7 +56,40 @@ keyboard seeking, elapsed/duration text, sound and fullscreen. Escape exits
 fullscreen and restores focus. Native controls are retained before enhancement,
 without JavaScript, and when media errors prevent enhanced playback.
 
-## Completed verification
+## Layout polish brief
+
+Use the owner's requested `better-ui` values and the existing Moti tokens.
+Keep the source introduction, eight feature descriptions and step lists,
+recording order, media files and single-player playback behavior. The owner
+rejected the initial split introduction and long text/phone rows. Replace
+those with a two-column demo gallery and a single-column introduction.
+Each feature contains its title and description, a compact phone demo on a
+pale-blue surface, then keyboard-expandable instructions labeled "How it
+works". Align paired media panels using shared grid tracks. Stack into one
+column on narrow screens. Keep the original-screen disclosure after all
+eight demos. Preserve every instruction in its original order.
+
+Give Play/Pause a distinct primary control and optically center its triangle.
+Cross-fade the two icons over 300ms using cubic-bezier(0.2, 0, 0, 1), with
+scale 0.25–1 and blur 4px–0 only when reduced motion is not requested.
+Use opacity alone with reduced motion. Press scales to 0.96 over 150ms
+ease-out; disabled controls never scale. Limit hover styling to hover-capable
+pointers. Preserve keyboard seeking, sound, fullscreen and native fallback.
+
+Acceptance: check 320, 360, 768, 1280 and 1920px, 200% zoom, growing text,
+RTL structure, play/pause icon states and interrupted transitions, reduced
+motion, touch hover, native fallback and the existing scroll-playback checks.
+
+## Previous verification
+
+The revised gallery passed browser checks at 320, 360, 640, 768, 1280 and
+1920px, mirrored layout, paired-panel alignment and keyboard expansion of
+all eight instruction lists. Desktop checks cover row autoplay, manually
+choosing either sibling, retaining that choice during small scrolls, manual
+pause and switching rows. Mobile checks cover all eight sequential demos,
+retained positions, rapid scrolling, hidden tabs, live reduced motion and
+blocked autoplay. Enhanced controls, native fallback and fullscreen checks
+passed. All eight deployed video hashes still match the delivery files.
 
 All eight deployed MP4 hashes match the validated delivery files. Browser
 checks passed single-player scroll selection, rapid switching, retained
