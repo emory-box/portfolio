@@ -539,14 +539,16 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 #quantitative .artifact { max-width: 860px; }
 .demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 860px; margin-block: 32px; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
+.demographic-charts .artifact a { position: relative; }
+.pie-legend-reveal { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
 @property --pie-sweep {
   syntax: '<angle>';
   inherits: false;
   initial-value: 360deg;
 }
 .pie-reveal {
-  mask-image: conic-gradient(from 0deg at var(--pie-center) 50%, #000 calc(var(--pie-sweep) - .7deg), transparent var(--pie-sweep)), linear-gradient(to right, transparent var(--pie-label-start), #000 var(--pie-label-start));
-  mask-composite: add;
+  mask-image: conic-gradient(from 0deg at var(--pie-center) 50%, #000 calc(var(--pie-sweep) - .7deg), transparent var(--pie-sweep)), linear-gradient(to right, #000 var(--pie-label-start), transparent var(--pie-label-start));
+  mask-composite: intersect;
 }
 @media (max-width: 760px) {
   .demographic-charts { grid-template-columns: minmax(0, 1fr); gap: 24px; }

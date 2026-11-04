@@ -28,13 +28,35 @@
         target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
         target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
         target.classList.add('pie-reveal');
+        const legendLayers = Array.from({ length: 6 }, (_, index) => {
+          const layer = document.createElement('span');
+          layer.className = 'pie-legend-reveal';
+          layer.setAttribute('aria-hidden', 'true');
+          layer.style.backgroundImage = `url("${target.currentSrc || target.src}")`;
+          const top = (8 + index * 31.1593) / 203 * 100;
+          const bottom = 100 - (39.1593 + index * 31.1593) / 203 * 100;
+          const left = isAgeChart ? 66 : 57;
+          layer.style.clipPath = `inset(${top}% 0 ${bottom}% ${left}%)`;
+          layer.style.transformOrigin = `${left}% ${top + 8}%`;
+          target.parentElement.append(layer);
+          const pop = layer.animate([
+            { opacity: 0, transform: 'translateY(6px) scale(.94)' },
+            { opacity: 1, transform: 'translateY(0) scale(1)' },
+          ], { duration: 400, delay: 400 + index * 150, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+          runningAnimations.add(pop);
+          const release = () => runningAnimations.delete(pop);
+          pop.addEventListener('finish', release, { once: true });
+          pop.addEventListener('cancel', release, { once: true });
+          return layer;
+        });
         const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
-          duration: 1200, easing: 'cubic-bezier(.22,.61,.36,1)',
+          duration: 1600, easing: 'cubic-bezier(.22,.61,.36,1)',
         });
         runningAnimations.add(animation);
         const finish = () => {
           runningAnimations.delete(animation);
           target.classList.remove('pie-reveal');
+          legendLayers.forEach(layer => layer.remove());
         };
         animation.addEventListener('finish', finish, { once: true });
         animation.addEventListener('cancel', finish, { once: true });
