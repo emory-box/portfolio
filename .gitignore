@@ -44,3 +44,4 @@ npm-debug.log*
 # local review captures
 screenshots/
 .hallmark/
+.hyperframes/

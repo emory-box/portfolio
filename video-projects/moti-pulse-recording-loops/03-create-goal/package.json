@@ -1,0 +1,9 @@
+{
+    "name":  "moti-03-create-goal",
+    "private":  true,
+    "scripts":  {
+                    "preview":  "npx --yes hyperframes@0.9.13 preview",
+                    "check":  "npx --yes hyperframes@0.9.13 check --json",
+                    "render":  "node ../../../scripts/render-moti-recording-loops.cjs --only 03-create-goal"
+                }
+}
