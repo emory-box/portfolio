@@ -459,9 +459,9 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .contents summary::-webkit-details-marker { display: none; }
 .contents-chevron { flex: 0 0 16px; width: 16px; height: 16px; transform: rotate(180deg); }
 .contents details[open] .contents-chevron { transform: none; }
-.contents nav { padding: 16px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--paper); box-shadow: 0 8px 20px var(--shadow); }
+.contents nav { padding: 16px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--paper); box-shadow: 0 8px 20px var(--shadow); text-align: center; }
 .contents-group + .contents-group { margin-top: 16px; }
-.theme-moti .contents-group h2 { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; padding: 8px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: normal; }
+.theme-moti .contents-group h2 { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; padding: 8px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: normal; text-align: center; }
 .contents-group h2 svg { width: 18px; height: 18px; flex-shrink: 0; }
 .contents-group a { display: flex; align-items: center; justify-content: center; min-height: 28px; padding: 4px; border-radius: 10px; color: var(--muted); font-size: 11px; line-height: 1.4; text-align: center; }
 @media (hover: hover) { .contents-group a:hover { background: var(--lavender); color: var(--blue-deep); } }
