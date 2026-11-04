@@ -28,6 +28,7 @@
         target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
         target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
         target.classList.add('pie-reveal');
+        const legendAnimations = [];
         const legendLayers = Array.from({ length: 6 }, (_, index) => {
           const layer = document.createElement('span');
           layer.className = 'pie-legend-reveal';
@@ -40,9 +41,11 @@
           layer.style.transformOrigin = `${left}% ${top + 8}%`;
           target.parentElement.append(layer);
           const pop = layer.animate([
-            { opacity: 0, transform: 'translateY(6px) scale(.94)' },
-            { opacity: 1, transform: 'translateY(0) scale(1)' },
-          ], { duration: 400, delay: 400 + index * 150, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+            { opacity: 0, transform: 'scale(.85)', offset: 0 },
+            { opacity: 1, transform: 'scale(1.1)', offset: .55 },
+            { opacity: 1, transform: 'scale(1)', offset: 1 },
+          ], { duration: 500, delay: 1700 + index * 180, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+          legendAnimations.push(pop);
           runningAnimations.add(pop);
           const release = () => runningAnimations.delete(pop);
           pop.addEventListener('finish', release, { once: true });
@@ -50,16 +53,16 @@
           return layer;
         });
         const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
-          duration: 1600, easing: 'cubic-bezier(.22,.61,.36,1)',
+          duration: 1600, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards',
         });
         runningAnimations.add(animation);
         const finish = () => {
           runningAnimations.delete(animation);
           target.classList.remove('pie-reveal');
           legendLayers.forEach(layer => layer.remove());
+          animation.cancel();
         };
-        animation.addEventListener('finish', finish, { once: true });
-        animation.addEventListener('cancel', finish, { once: true });
+        Promise.all([animation, ...legendAnimations].map(item => item.finished)).then(finish, finish);
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.demographic-charts img').forEach(img => {
