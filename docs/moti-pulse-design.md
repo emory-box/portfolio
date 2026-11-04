@@ -37,9 +37,9 @@ graph model, authoring command and validation.
 
 The owner subsequently requested the original board's floating contents panel.
 Use its User Research / User Experience / User Interface grouping and active
-section highlight. It appears after the hero, opens in the spare right gutter
-at 1800px and up, and starts collapsed on narrower viewports to preserve A's
-layout. Only activating the arrow toggles the disclosure. Choosing a section
+section highlight. It appears after the hero, starts open at 1800px and up,
+and starts collapsed on narrower viewports to preserve A's
+layout. Only activating the toggle changes the disclosure. Choosing a section
 focuses its heading area while keeping the panel open; Escape, scrolling back
 to the hero and resizing preserve its state after it has appeared.
 Without JavaScript, the contents remain available inline.
@@ -50,11 +50,20 @@ chrome. The later source-copy clarification removes the extra hero feature
 labels and restores the original English/Vietnamese hero wording. The added
 "Intention" line and editorial closing section remain removed.
 The latest contents refinement keeps the toggle outside the panel background,
-at a fixed vertical position. The background wraps the navigation content only.
+at the bottom-right of the viewport at every width. The background wraps
+the navigation content only.
 The panel slides horizontally beneath the stationary toggle while its arrow
 reverses; the toggle does not move upward or leave its line. The panel never
 scrolls internally; spacing and columns adapt to short viewports. Section
 headings are large source titles without section numbering.
+The closed toggle visibly reads “Contents”. Opening collapses that label and
+reverses the arrow; the button keeps its neutral fill, border and icon color,
+with no selected appearance. Its right edge and arrow center stay fixed
+through the existing drawer animation. Keyboard focus remains visible, and
+the accessible name changes between “Open Contents” and “Close Contents”.
+Verified the label, neutral open appearance, stationary arrow and viewport
+position at 320–1920px, including 320×240 and 640×240 windows. Keyboard,
+reduced motion, rapid reversals and native no-JavaScript disclosure passed.
 
 ## Approved motion
 

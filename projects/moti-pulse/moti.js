@@ -311,6 +311,7 @@
       contentsAnimations.forEach(animation => animation.cancel());
       contentsAnimations = [];
       summary.setAttribute('aria-expanded', String(open));
+      summary.setAttribute('aria-label', `${open ? 'Close' : 'Open'} Contents`);
       panel.inert = !open;
 
       if (immediate || reducedMotion.matches || typeof summary.animate !== 'function') {

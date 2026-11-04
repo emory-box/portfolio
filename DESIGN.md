@@ -170,9 +170,11 @@ several identities without duplicating the chrome:
   keep content directly visible. See `docs/moti-pulse-design.md` for the
   approved scope and the branch preserving all three design previews.
   The source-style floating contents panel uses the same white/lavender tokens,
-  three research/design groups and an active-section highlight. It occupies
-  the right gutter on wide screens and collapses into a disclosure on mobile.
-  Its background wraps the links, leaving the stationary arrow toggle outside.
+  three research/design groups and an active-section highlight. Its toggle
+  stays at the bottom-right of the viewport at every width. The closed toggle
+  reads “Contents”; opening hides that label and reverses only the arrow,
+  retaining the same neutral surface. The panel background wraps the links,
+  leaving the stationary toggle outside.
   The owner removed Mockups and the original-interface-screen disclosure;
   Hi-Fi's eight function demos now lead directly to the footer.
   Architecture and task-flow diagrams use theme-colored SVGs with embedded
