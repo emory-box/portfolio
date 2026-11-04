@@ -17,7 +17,7 @@ cursors. Research reference links remain available in the case-study text.
 
 The owner requested redesigned Information Architecture and Task Flow imagery.
 The page now uses `diagrams/information-architecture*.svg` and
-`diagrams/flow-*.svg`: paired desktop and vertical small-screen versions with
+`diagrams/flow-*.svg`: compact horizontal diagrams at every screen width, with
 embedded Inter and the Moti palette. Original flow SVGs remain unchanged here
 as source evidence. The exact architecture also has an HTML text alternative.
 The graph model is `../diagrams/flows.json`; regenerate the exports with

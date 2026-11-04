@@ -56,26 +56,26 @@ function edgeShape(points, label, data, canvas, halo = true) {
   return `<g>${halo?`<path class="edge-halo" d="${d}"/>`:''}<path class="edge" marker-end="url(#arrow)" d="${d}"/>${labelSvg}</g>`;
 }
 
-function flowSvg(slug, model, lines, mobile) {
-  const width=mobile?320:1120;
-  const columns=mobile?1:4;
+function flowSvg(slug, model, lines) {
+  const columns=slug==='report'?10:8;
+  const width=columns*240+160;
   const placed=new Map();
   const rowCount=Math.ceil(model.order.length/columns);
-  let rowTop=mobile?24:40;
+  let rowTop=40;
   for(let row=0;row<rowCount;row++) {
     const rowIds=model.order.slice(row*columns,(row+1)*columns);
     const items=rowIds.map(id=>{
       const type=model.types[id],wrapped=lines[id];
-      return{id,type,lines:wrapped,w:type==='terminal'?(mobile?128:144):(mobile?216:192),h:type==='terminal'?48:type==='decision'?Math.max(128,wrapped.length*44+24):Math.max(72,wrapped.length*22+28)};
+      return{id,type,lines:wrapped,w:type==='terminal'?144:192,h:type==='terminal'?48:type==='decision'?Math.max(128,wrapped.length*44+24):Math.max(72,wrapped.length*22+28)};
     });
     const height=Math.max(...items.map(node=>node.h));
     items.forEach((node,index)=>{
-      const column=mobile?0:row%2===0?index:columns-1-index;
-      placed.set(node.id,{...node,row,column,x:mobile?160:200+column*240,y:rowTop+height/2});
+      const column=row%2===0?index:columns-1-index;
+      placed.set(node.id,{...node,row,column,rowTop,rowHeight:height,x:200+column*240,y:rowTop+height/2});
     });
-    rowTop+=height+(mobile?44:88);
+    rowTop+=height+64;
   }
-  const height=rowTop-(mobile?44:88)+(mobile?24:40);
+  const height=rowTop-64+40;
   const lanes={left:[],right:[]};
   const wires=[];
   for(const [from,to,label] of model.edges) {
@@ -89,8 +89,8 @@ function flowSvg(slug, model, lines, mobile) {
     } else if(a.column===b.column&&b.row===a.row+1) {
       points=[[a.x,a.y+a.h/2],[b.x,b.y-b.h/2]];
       position=[a.x+12,(points[0][1]+points[1][1])/2+4,'start'];
-    } else if(!mobile&&a.row===b.row) {
-      const band=Math.min(a.y-a.h/2,b.y-b.h/2)-24;
+    } else if(a.row===b.row) {
+      const band=a.rowTop-24;
       points=[[a.x,a.y-a.h/2],[a.x,band],[b.x,band],[b.x,b.y-b.h/2]];
       position=[a.x+12,a.y-a.h/2-10,'start'];
     } else {
@@ -98,19 +98,13 @@ function flowSvg(slug, model, lines, mobile) {
       const side=b.row<a.row?'right':label==='No'?'left':(from+to)%2?'right':'left';
       let lane=lanes[side].findIndex(intervals=>intervals.every(([l,h])=>high<l||low>h));
       if(lane<0){lane=lanes[side].length;lanes[side].push([]);}lanes[side][lane].push([low,high]);
-      if(mobile&&lane>3)throw Error(`${slug}: mobile routing requires more than four ${side} lanes`);
-      const outer=side==='left'?(mobile?12+lane*9:16+lane*10):(mobile?308-lane*9:1104-lane*10);
-      if(mobile) {
-        const sign=side==='left'?-1:1;
-        points=[[a.x+sign*a.w/2,a.y],[outer,a.y],[outer,b.y],[b.x+sign*b.w/2,b.y]];
-        position=[a.x+sign*(a.w/2+12),a.y-12,side==='left'?'end':'start'];
-      } else {
-        const direction=b.row>=a.row?1:-1;
-        const sy=a.y+direction*a.h/2,ty=b.y-direction*b.h/2;
-        const sourceBand=sy+direction*24,targetBand=ty-direction*24;
-        points=[[a.x,sy],[a.x,sourceBand],[outer,sourceBand],[outer,targetBand],[b.x,targetBand],[b.x,ty]];
-        position=[a.x+12,sy+direction*16,'start'];
-      }
+      const outer=side==='left'?16+lane*10:width-16-lane*10;
+      const direction=b.row>=a.row?1:-1;
+      const sy=a.y+direction*a.h/2,ty=b.y-direction*b.h/2;
+      const sourceBand=direction>0?a.rowTop+a.rowHeight+24:a.rowTop-24;
+      const targetBand=direction>0?b.rowTop-24:b.rowTop+b.rowHeight+24;
+      points=[[a.x,sy],[a.x,sourceBand],[outer,sourceBand],[outer,targetBand],[b.x,targetBand],[b.x,ty]];
+      position=[a.x+12,sy+direction*16,'start'];
     }
     wires.push(`<g data-from="${from}" data-to="${to}"${label?` data-branch="${xml(label)}"`:''}>${edgeShape(points,label,position,palette.canvas)}</g>`);
   }
@@ -119,28 +113,26 @@ function flowSvg(slug, model, lines, mobile) {
 }
 
 const architecture=[['Dashboard',['Calendar','Today Tasks']],['Life mission',['My Mission','Tips to create Life Mission','Importance of Life Mission']],['Goal',['Goal & Tasks','Life mission']],['Timer',['Pomodoro','Report']]];
-function architectureSvg(lines,mobile) {
-  const canvas=palette.lavender,width=mobile?320:1120;
+function architectureSvg(lines) {
+  const canvas=palette.lavender,width=1120;
   const nodes=[],wires=[];
-  const app={id:'app',type:'terminal',x:mobile?160:560,y:48,w:mobile?128:180,h:56,lines:['App']};
+  const app={id:'app',type:'terminal',x:560,y:48,w:180,h:56,lines:['App']};
   nodes.push(nodeShape(app));
-  let y=136;
   architecture.forEach(([label,children],index)=>{
-    const x=mobile?172:164+index*264;
-    const top=mobile?y:152;
-    const header={id:`module-${index}`,type:'screen',x,y:top+28,w:mobile?240:232,h:56,lines:[label]};
+    const x=164+index*264;
+    const top=152;
+    const header={id:`module-${index}`,type:'screen',x,y:top+28,w:232,h:56,lines:[label]};
     nodes.push(nodeShape(header));
-    wires.push(edgeShape(mobile?[[160,76],[160,100],[24,100],[24,header.y],[52,header.y]]:[[560,76],[560,112],[x,112],[x,top]],null,null,canvas,false));
+    wires.push(edgeShape([[560,76],[560,112],[x,112],[x,top]],null,null,canvas,false));
     children.forEach((child,childIndex)=>{
-      const cx=mobile?184:x,cy=top+112+childIndex*80;
-      const leaf={id:`leaf-${index}-${childIndex}`,type:'action',x:cx,y:cy,w:mobile?216:232,h:64,lines:lines[index][childIndex]};
+      const cx=x,cy=top+112+childIndex*80;
+      const leaf={id:`leaf-${index}-${childIndex}`,type:'action',x:cx,y:cy,w:232,h:64,lines:lines[index][childIndex]};
       nodes.push(nodeShape(leaf));
-      const spine=mobile?60:x-132;
+      const spine=x-132;
       wires.push(edgeShape([[x,top+56],[x,top+72],[spine,top+72],[spine,cy],[cx-leaf.w/2,cy]],null,null,canvas,false));
     });
-    if(mobile)y=top+112+(children.length-1)*80+32+56;
   });
-  const height=mobile?y:496;
+  const height=496;
   return head('Information Architecture',width,height,'App. '+architecture.map(([name,children])=>`${name}: ${children.join(', ')}`).join('. '),canvas)+wires.join('')+nodes.join('')+'</svg>\n';
 }
 
@@ -172,9 +164,9 @@ function architectureSvg(lines,mobile) {
     fs.mkdirSync(output,{recursive:true});
     for(const [slug,model] of Object.entries(models)){
       if(model.labels.length!==model.types.length||new Set(model.order).size!==model.labels.length)throw Error(`Invalid node inventory: ${slug}`);
-      for(const mobile of [false,true])fs.writeFileSync(path.join(output,`flow-${slug}${mobile?'-mobile':''}.svg`),flowSvg(slug,model,wrapped.flows[slug],mobile));
+      fs.writeFileSync(path.join(output,`flow-${slug}.svg`),flowSvg(slug,model,wrapped.flows[slug]));
     }
-    for(const mobile of [false,true])fs.writeFileSync(path.join(output,`information-architecture${mobile?'-mobile':''}.svg`),architectureSvg(wrapped.architecture,mobile));
+    fs.writeFileSync(path.join(output,'information-architecture.svg'),architectureSvg(wrapped.architecture));
     const pageFile=path.join(root,'projects/moti-pulse/index.html');
     const html=fs.readFileSync(pageFile,'utf8');
     const updated=html.replace(/<(?:source|img)\b[^>]*(?:srcset|src)="img\/diagrams\/([\w-]+)\.svg"[^>]*>/g,(tag,name)=>{
@@ -183,6 +175,6 @@ function architectureSvg(lines,mobile) {
       return tag.replace(/\bwidth="\d+"/,`width="${width}"`).replace(/\bheight="\d+"/,`height="${height}"`);
     });
     if(updated!==html)fs.writeFileSync(pageFile,updated);
-    console.log('Generated 14 standalone, self-contained SVG diagrams with embedded Inter.');
+    console.log('Generated 7 horizontal, self-contained SVG diagrams with embedded Inter.');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exit(1);});

@@ -30,7 +30,7 @@ three motivation/solution pairs remain paired and in their source order.
 
 The owner requested new Information Architecture and Task Flow imagery in
 the Moti theme. Both sections now use generated, self-contained SVGs with
-desktop and vertical small-screen layouts. The original hierarchy, labels,
+compact horizontal layouts at every width. The original hierarchy, labels,
 branches and loops remain; source SVGs are retained. The architecture also
 keeps its exact HTML text alternative. See `moti-diagram-redesign.md` for the
 graph model, authoring command and validation.

@@ -579,11 +579,12 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow[open] summary h3 { color: var(--blue-deep); }
 @media (hover: hover) { .task-flow summary:hover h3 { color: var(--blue-deep); } }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { margin: 8px 0 32px; padding: 24px; background: var(--lavender-deep); border: 0; border-radius: 24px; }
+.source-section .task-flow .artifact { max-width: 1040px; margin: 8px auto 32px; padding: 16px; background: var(--lavender-deep); border: 0; border-radius: 16px; }
 .task-flow .artifact img { width: 100%; height: auto; }
 .diagram-picture { display: block; }
-.diagram-frame .diagram-picture img { display: block; width: 100%; height: auto; max-height: none; }
-.source-section .architecture-diagram { margin-block: 40px 0; padding: 24px; background: var(--lavender); border-radius: 24px; }
+.diagram-frame .diagram-picture img { display: block; width: auto; max-width: 100%; height: auto; max-height: 420px; margin-inline: auto; }
+.source-section .architecture-diagram { max-width: 960px; margin: 32px auto 0; padding: 16px; background: var(--lavender); border-radius: 16px; }
+.architecture-diagram .diagram-picture img { max-height: 340px; }
 .architecture-description { margin-block-start: 24px; }
 .architecture-transcript { margin-block-start: 24px; }
 .architecture-transcript-root { margin-block-end: 16px; font-weight: 550; }
@@ -597,7 +598,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .diagram-key .diagram-key-screen { background: var(--lavender); }
 .diagram-key .diagram-key-decision { flex-basis: 12px; width: 12px; height: 12px; margin-inline: 4px; border-radius: 0; background: var(--lavender-deep); transform: rotate(45deg); }
 @media (max-width: 1000px) {
-  .diagram-frame .diagram-picture img { width: min(100%, 360px); margin-inline: auto; }
   .architecture-transcript > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 #quantitative .artifact { max-width: 860px; }
