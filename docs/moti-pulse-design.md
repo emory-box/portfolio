@@ -49,8 +49,12 @@ headings are large source titles without section numbering.
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
 - Original motivation/solution rows, source headings and source images enter
   once on scroll. Keep their connections and source order intact.
-- Original Hi-Fi screens precede the six source mockups. The added product
-  walkthrough and its invented descriptions were removed per the clarification.
+- Hi-Fi now presents the eight approved original-recording loops, followed by
+  a disclosure containing the four original interface screens and then the
+  six source mockups. The owner explicitly requested feature instructions;
+  these describe actions in the supplied recordings and add no product claims.
+  Only the visible demo nearest the viewport center autoplays. Other demos
+  pause; native manual pause, reduced motion and document visibility are honored.
 - Reduced motion and no JavaScript show the content directly, without pinned
   scrolling or entrance effects. Changing the preference cancels live effects.
 

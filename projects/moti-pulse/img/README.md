@@ -9,9 +9,9 @@ screens and phone mockups. They preserve the original design evidence rather
 than substitute invented UI or photography. The page's headings, body copy,
 research cards, comments, personas, architecture and navigation are HTML/CSS.
 
-The mockup panels are still images: no animation, working mobile app or
-interactive prototype was supplied. Click an artifact to view its full-size
-image. The original `logo.png` remains unchanged.
+The mockup panels use original still images. Hi-Fi also presents eight
+owner-supplied screen-recording loops, documented in `../video/README.md`.
+Click a still artifact to view its full-size image.
 
 The six task-flow diagrams use the supplied `flow-*.svg` files, both in the
 page and in their full-size links. Function ideation uses the four supplied

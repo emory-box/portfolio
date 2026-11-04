@@ -271,6 +271,106 @@
       }
     }));
   }
+  function initializeHiFiVideos() {
+    const videos = Array.from(document.querySelectorAll('.hifi-video'));
+    if (!videos.length) return;
+    const help = document.querySelector('.hifi-help');
+    const visitorPaused = new WeakSet();
+    const controllerPaused = new WeakSet();
+    const pendingPlay = new WeakMap();
+    let active = null;
+    let frame = null;
+    let request = 0;
+
+    function pause(video) {
+      if (video.paused) return;
+      controllerPaused.add(video);
+      video.pause();
+    }
+
+    function visibleCandidate() {
+      let candidate = null;
+      let nearest = Infinity;
+      for (const video of videos) {
+        const rect = video.getBoundingClientRect();
+        const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const minimum = Math.min(rect.height * .6, window.innerHeight * .6);
+        if (!rect.height || visible < minimum || rect.right <= 0 || rect.left >= window.innerWidth) continue;
+        const distance = Math.abs((rect.top + rect.bottom) / 2 - window.innerHeight / 2);
+        if (distance < nearest) {
+          nearest = distance;
+          candidate = video;
+        }
+      }
+      return candidate;
+    }
+
+    function update() {
+      frame = null;
+      if (document.hidden) {
+        videos.forEach(video => { pendingPlay.delete(video); pause(video); });
+        active = null;
+        return;
+      }
+      const candidate = visibleCandidate();
+      if (candidate !== active) {
+        videos.forEach(video => { if (video !== candidate) pause(video); });
+        active = candidate;
+      }
+      if (!candidate || reducedMotion.matches || visitorPaused.has(candidate) || !candidate.paused || pendingPlay.has(candidate)) return;
+      candidate.muted = true;
+      const token = ++request;
+      pendingPlay.set(candidate, token);
+      try {
+        const result = candidate.play();
+        if (result?.then) {
+          result.then(() => {
+            if (pendingPlay.get(candidate) === token && (active !== candidate || document.hidden || reducedMotion.matches)) pause(candidate);
+          }).catch(() => {
+            // Native controls remain available when autoplay is unavailable.
+          }).finally(() => {
+            if (pendingPlay.get(candidate) === token) pendingPlay.delete(candidate);
+          });
+        } else pendingPlay.delete(candidate);
+      } catch {
+        pendingPlay.delete(candidate);
+      }
+    }
+
+    function schedule() {
+      if (frame === null) frame = window.requestAnimationFrame(update);
+    }
+
+    function motionChanged() {
+      videos.forEach(video => { pendingPlay.delete(video); pause(video); });
+      active = null;
+      if (help) help.textContent = reducedMotion.matches
+        ? 'Use the video controls to play a demo. Other demos pause automatically.'
+        : 'Scroll to a feature to play its demo. Other demos pause automatically. You can pause or replay with the video controls.';
+      schedule();
+    }
+
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        if (document.hidden || (pendingPlay.has(video) && active !== video)) { pause(video); return; }
+        if (pendingPlay.has(video)) return;
+        visitorPaused.delete(video);
+        active = video;
+        videos.forEach(other => { if (other !== video) pause(other); });
+      });
+      video.addEventListener('pause', () => {
+        if (controllerPaused.delete(video)) return;
+        visitorPaused.add(video);
+      });
+    });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    document.addEventListener('visibilitychange', update);
+    reducedMotion.addEventListener('change', motionChanged);
+    motionChanged();
+  }
+
+  initializeHiFiVideos();
   updateReadingPosition();
   observePies();
   observeBars();
