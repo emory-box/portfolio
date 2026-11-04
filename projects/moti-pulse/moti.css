@@ -537,10 +537,11 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow .artifact img { width: 100%; height: auto; }
 .source-section .mockup figcaption { font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
 #quantitative .artifact { max-width: 860px; }
-.survey-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 48px; max-width: 860px; margin-block: 32px; }
+.survey-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 48px; max-width: 720px; margin: 32px auto; }
 .survey-bars .survey-bar { display: flex; flex-direction: column; margin: 0; min-width: 0; }
 .survey-bar-title { margin-bottom: 20px; min-height: 88px; color: var(--ink); font-size: 16px; line-height: 1.5; text-align: center; }
 .survey-bar img { width: 100%; }
+.survey-bar > a { width: min(100%, 260px); margin-inline: auto; }
 .survey-bar-solution { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 .survey-bars--pain .survey-bar:last-child { grid-column: 1 / -1; width: calc((100% - 48px) / 2); justify-self: center; }
 @media (max-width: 760px) {
@@ -548,7 +549,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .survey-bar-title { min-height: 0; }
   .survey-bars--pain .survey-bar:last-child { width: 100%; }
 }
-.demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 860px; margin-block: 32px; align-items: start; }
+.demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 720px; margin: 32px auto; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
 .demographic-title { margin-bottom: 24px; font-size: 20px; font-weight: 550; color: var(--ink); }
 .demographic-charts .artifact a { position: relative; }
@@ -563,7 +564,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   mask-composite: intersect;
 }
 @media (max-width: 760px) {
-  .demographic-charts { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .demographic-charts { grid-template-columns: minmax(0, 1fr); gap: 24px; max-width: 320px; }
 }
 .function-groups { display: grid; gap: 24px; margin-top: 40px; }
 .chapter--map .function-groups .artifact { margin: 0; padding: 0; background: transparent; border-radius: 0; }
