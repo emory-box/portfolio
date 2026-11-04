@@ -15,8 +15,29 @@
   let contentsHasAppeared = false;
   const revealedPies = new WeakSet();
   const revealedBars = new WeakSet();
+  const chartTitleAnimations = new WeakMap();
   let pieObserver;
   let barObserver;
+
+  function prepareChartTitle(chart) {
+    const title = chart.closest('figure')?.querySelector('.demographic-title, .survey-bar-title');
+    if (!title || typeof title.animate !== 'function' || chartTitleAnimations.has(chart)) return;
+    const animation = title.animate([
+      { opacity: 0, transform: 'translateY(12px)', filter: 'blur(4px)' },
+      { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' },
+    ], { duration: 300, easing: 'ease-out', fill: 'backwards' });
+    // Hold the entrance until this chart's existing visibility trigger fires.
+    animation.pause();
+    animation.currentTime = 0;
+    chartTitleAnimations.set(chart, animation);
+    runningAnimations.add(animation);
+    const release = () => {
+      runningAnimations.delete(animation);
+      if (chartTitleAnimations.get(chart) === animation) chartTitleAnimations.delete(chart);
+    };
+    animation.addEventListener('finish', release, { once: true });
+    animation.addEventListener('cancel', release, { once: true });
+  }
 
   function observeBars() {
     barObserver?.disconnect();
@@ -30,6 +51,7 @@
         revealedBars.add(target);
         barObserver.unobserve(target);
         target.classList.remove('bar-pending');
+        chartTitleAnimations.get(target)?.play();
         animate(target.querySelector('.bar-grid'), [
           { opacity: 0 }, { opacity: 1 },
         ], 100, 550);
@@ -46,6 +68,7 @@
     document.querySelectorAll('.bar-chart').forEach(img => {
       if (!revealedBars.has(img)) {
         img.classList.add('bar-pending');
+        prepareChartTitle(img);
         barObserver.observe(img);
       }
     });
@@ -59,6 +82,7 @@
         if (!isIntersecting || revealedPies.has(target)) return;
         revealedPies.add(target);
         pieObserver.unobserve(target);
+        chartTitleAnimations.get(target)?.play();
         const isAgeChart = target.getAttribute('width') === '312';
         target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
         target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
@@ -101,7 +125,10 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.demographic-charts img').forEach(img => {
-      if (!revealedPies.has(img)) pieObserver.observe(img);
+      if (!revealedPies.has(img)) {
+        prepareChartTitle(img);
+        pieObserver.observe(img);
+      }
     });
   }
 
