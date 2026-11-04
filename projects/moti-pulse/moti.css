@@ -539,6 +539,15 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 #quantitative .artifact { max-width: 860px; }
 .demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 860px; margin-block: 32px; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
+@property --pie-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 360deg;
+}
+.pie-reveal {
+  mask-image: conic-gradient(from 0deg at var(--pie-center) 50%, #000 var(--pie-sweep), transparent 0), radial-gradient(circle closest-side at var(--pie-center) 50%, transparent 99%, #000 100%);
+  mask-composite: add;
+}
 @media (max-width: 760px) {
   .demographic-charts { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }

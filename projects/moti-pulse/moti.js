@@ -13,6 +13,35 @@
   let revealObserver;
   let framePending = false;
   let contentsHasAppeared = false;
+  const revealedPies = new WeakSet();
+  let pieObserver;
+
+  function observePies() {
+    pieObserver?.disconnect();
+    if (reducedMotion.matches || !('IntersectionObserver' in window) || !CSS.registerProperty) return;
+    pieObserver = new IntersectionObserver(entries => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting || revealedPies.has(target)) return;
+        revealedPies.add(target);
+        pieObserver.unobserve(target);
+        target.style.setProperty('--pie-center', target.getAttribute('width') === '312' ? '32.33%' : '28.19%');
+        target.classList.add('pie-reveal');
+        const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
+          duration: 1000, easing: 'cubic-bezier(.2,.7,.2,1)',
+        });
+        runningAnimations.add(animation);
+        const finish = () => {
+          runningAnimations.delete(animation);
+          target.classList.remove('pie-reveal');
+        };
+        animation.addEventListener('finish', finish, { once: true });
+        animation.addEventListener('cancel', finish, { once: true });
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.demographic-charts img').forEach(img => {
+      if (!revealedPies.has(img)) pieObserver.observe(img);
+    });
+  }
 
   // Web Animations leave the underlying content visible if scripting is unavailable.
   function animate(element, frames, delay = 0) {
@@ -71,6 +100,7 @@
   }
 
   function updateMotionPreference() {
+    observePies();
     if (revealObserver) revealObserver.disconnect();
     if (reducedMotion.matches) {
       runningAnimations.forEach(animation => animation.cancel());
@@ -179,5 +209,6 @@
     }));
   }
   updateReadingPosition();
+  observePies();
   observeReveals();
 })();
