@@ -7,7 +7,9 @@ another pauses the previous video. The recordings themselves remain unchanged.
 Use the eight validated MP4s from `moti-pulse-recording-loops/renders`, copied
 to deployed assets under `projects/moti-pulse/video/`. Keep source dimensions,
 posters, muted inline playback and looping. Use relative URLs.
-Preserve the four original Hi-Fi screens in a disclosure after the demos.
+The owner subsequently removed the original-screen disclosure and the
+Mockups section. Hi-Fi's eight demos now lead directly to the footer. Remove
+the Mockups contents link, unused styles and reveal hooks; retain source assets.
 
 Instructions may describe only actions visible in each supplied recording.
 Do not invent product behavior, claims, metrics or copy inside the recordings.
@@ -34,7 +36,7 @@ Do not invent product behavior, claims, metrics or copy inside the recordings.
 
 1. Publish and verify all eight video/poster pairs, with matching hashes.
 2. Add accessible feature rows and source-backed instructions; preserve the
-   existing Hi-Fi heading, introduction and original screen artifacts.
+   existing Hi-Fi heading and introduction.
 3. Add a native-video playback coordinator with a single active selection,
    native pause handling, visibility handling and reduced-motion behavior.
 4. Check real scroll playback and rapid switching, manual controls, looping,
@@ -66,8 +68,7 @@ those with a two-column demo gallery and a single-column introduction.
 Each feature contains its title and description, a compact phone demo on a
 pale-blue surface, then keyboard-expandable instructions labeled "How it
 works". Align paired media panels using shared grid tracks. Stack into one
-column on narrow screens. Keep the original-screen disclosure after all
-eight demos. Preserve every instruction in its original order.
+column on narrow screens. Preserve every instruction in its original order.
 
 Give Play/Pause a distinct primary control and optically center its triangle.
 Cross-fade the two icons over 300ms using cubic-bezier(0.2, 0, 0, 1), with
@@ -96,8 +97,7 @@ checks passed single-player scroll selection, rapid switching, retained
 positions, manual pause/play, hidden-document pause, live reduced-motion
 changes, blocked-autoplay fallback, and no-JavaScript native controls.
 Space-key play/pause passed with reduced motion and with JavaScript disabled.
-Layouts fit 320, 360, 768, 1280 and 1920 px; the original four screens remain
-in their disclosure. Both standards and source-spec reviews found no remaining
+Layouts fit 320, 360, 768, 1280 and 1920 px. Both standards and source-spec reviews found no remaining
 issues. JavaScript syntax and whitespace checks passed. DESIGN.md lint reported
 zero errors and the 19 existing warnings. No root typecheck/test/build pipeline
 is configured.
@@ -105,8 +105,7 @@ is configured.
 Presentation checks also passed the enhanced toolbar's keyboard Play/Pause,
 seeking, sound toggle, fullscreen/Escape and focus restoration. Fullscreen
 keeps its player active even when the page behind it scrolls. Source-level
-load errors restore native controls. All six static mockups retain their
-centering and media heights after image links are removed; pie and bar chart
-animations still pass. Unplayed seek tracks use the existing muted token,
+load errors restore native controls. Pie and bar chart animations still pass.
+Unplayed seek tracks use the existing muted token,
 with 5.85:1 contrast on white and 5.20:1 on lavender. Encoded MP4 hashes are
 unchanged by this presentation refinement.

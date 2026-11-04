@@ -13,8 +13,13 @@ change. Do not add editorial headlines, connective copy, derived statistics,
 feature descriptions, or move findings ahead of their source context.
 Preserve Problems, Research for solutions, User Segmentation, Qualitative and
 Quantitative Research, User Personas, Function Ideation, Information
-Architecture, Task Flow, Sketches, Hi-Fi and Mockups. Preserve all 25 sketches,
-six task flows, four hi-fi screens and six mockups. Use the original logo and
+Architecture, Task Flow, Sketches and Hi-Fi. Preserve all 25 sketches and
+six task flows. The owner's later decision removes the Mockups section and
+the "View original interface screens" disclosure, including its navigation
+entry and unused styles/reveal hooks. Hi-Fi now ends the case study, followed
+directly by the footer. Keep the removed source files available as assets.
+Use `img/logo-centered.png` consistently for the Moti-Pulse mark on the home
+page, in the case-study header/footer and as its favicon. Use the original logo and
 product artwork. Do not invent credits, outcomes, quotes or metrics.
 
 The accepted layout has a split hero, a narrow/wide editorial reading rhythm,
@@ -49,9 +54,8 @@ headings are large source titles without section numbering.
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
 - Original motivation/solution rows, source headings and source images enter
   once on scroll. Keep their connections and source order intact.
-- Hi-Fi now presents the eight approved original-recording loops, followed by
-  a disclosure containing the four original interface screens and then the
-  six source mockups. The owner explicitly requested feature instructions;
+- Hi-Fi presents the eight approved original-recording loops.
+  The owner explicitly requested feature instructions;
   these describe actions in the supplied recordings and add no product claims.
   Only the visible demo nearest the viewport center autoplays. Other demos
   pause; manual pause, reduced motion and document visibility are honored.

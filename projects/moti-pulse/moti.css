@@ -246,9 +246,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .sketch-grid { display: grid; gap: 16px; margin: 32px 32px 0; }
 .sketch-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; align-items: end; }
 .sketch-row--seven { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px; }
-.sketch-grid .artifact, .hifi-grid .artifact { margin: 0; }
-.hifi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 56px; margin-top: 56px; }
-.hifi-grid .artifact { border-radius: 20px; box-shadow: 0 20px 32px var(--shadow); }
+.sketch-grid .artifact { margin: 0; }
 .hifi-intro { max-width: 760px; padding-block-end: 48px; }
 .theme-moti .hifi-intro .source-title { margin: 0; }
 .hifi-intro-copy { margin-block-start: 24px; }
@@ -307,8 +305,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 @media (hover: hover) {
   .hifi-instructions summary:hover { text-decoration: underline; text-underline-offset: 4px; }
 }
-.hifi-originals { margin-block-start: 48px; }
-.hifi-originals .hifi-grid { margin-top: 32px; }
 @media (max-width: 760px) {
   .hifi-intro { padding-block-end: 40px; }
   .hifi-intro-copy > p { font-size: 15px; }
@@ -334,13 +330,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .stage-screen.is-active { opacity: 1; visibility: visible; transform: none; }
 .stage-screen img { width: 245px; max-height: min(540px, calc(100svh - 224px)); object-fit: contain; border-radius: 20px; box-shadow: 0 24px 40px var(--shadow); }
 .stage-screen > span { font-size: 12px; color: var(--blue-deep); background: var(--paper); border-radius: 100px; padding: 6px 16px; }
-.mockup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
-.mockup { display: flex; flex-direction: column-reverse; background: var(--lavender); border-radius: 16px; padding: 32px; gap: 32px; }
-.mockup > .artifact-visual { display: flex; align-items: center; justify-content: center; min-height: 330px; }
-.mockup img { width: auto; height: 320px; object-fit: contain; }
-.mockup figcaption > span { font-size: 11px; color: var(--blue-deep); }
-.mockup figcaption h3 { font-size: 23px; margin-top: 12px; }
-.mockup figcaption p { color: var(--muted); font-size: 13px; margin-top: 16px; }
 .closing { padding-block: 96px; background: var(--lavender); }
 .closing p { color: var(--blue-deep); font-size: 13px; margin-bottom: 24px; }
 .closing h2 { font-size: clamp(40px, 5vw, 68px); }
@@ -367,11 +356,9 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .demographics > figure { grid-template-columns: minmax(0, 1fr); }
   .donut { grid-row: auto; max-width: 200px; padding: 13%; }
   .segments { gap: 24px; }
-  .hifi-grid { gap: 28px; }
   .product-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
   .product-stage { height: min(580px, calc(100svh - 144px)); }
   .stage-screen img { width: 70%; }
-  .mockup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .brief { gap: 40px; }
 }
 @media (max-width: 760px) {
@@ -439,7 +426,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .task-flow .artifact, .chapter--map .artifact { padding: 12px; }
   .sketch-grid { gap: 16px; margin-inline: 12px; }
   .sketch-row, .sketch-row--seven { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 12px; }
-  .hifi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
   .product-section .section-label { margin-bottom: 40px; }
   .product-copy > p { font-size: 14px; }
   .product-stage { display: none; }
@@ -448,10 +434,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .step-screen { display: block !important; width: min(220px, 100%); border-radius: 16px; margin: 32px auto 8px; }
   .product-features h4 { font-size: 21px; }
   .product-features p { font-size: 14px; }
-  .mockup-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .mockup { padding: 28px; }
-  .mockup > .artifact-visual { min-height: 300px; }
-  .mockup img { height: 300px; }
   .footer nav { gap: 12px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -602,7 +584,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
 .source-section .task-flow .artifact { margin: 8px 0 32px; padding: 32px; background: color-mix(in srgb, var(--paper) 45%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
 .task-flow .artifact img { width: 100%; height: auto; }
-.source-section .mockup figcaption { font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
 #quantitative .artifact { max-width: 860px; }
 .survey-bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 48px; max-width: 720px; margin: 32px auto; }
 .survey-bars .survey-bar { display: flex; flex-direction: column; margin: 0; min-width: 0; }

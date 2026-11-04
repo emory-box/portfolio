@@ -64,8 +64,9 @@ name in the home page and both case-study headers when the name is set.
 
 Logos are the originals: Greeny uses a mask cut from its deck
 (`projects/greeny/img/logo-mask.png`), Moti-Pulse uses a crop from its board
-(`projects/moti-pulse/img/logo.png`). Do not redraw them; the owner may supply
-final logo files later.
+(`projects/moti-pulse/img/logo-centered.png`). Use the centered crop for the
+home page, case-study header/footer and favicon. Do not redraw them; the owner
+may supply final logo files later.
 
 ## Adding a project
 

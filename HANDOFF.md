@@ -35,7 +35,7 @@ skills and sets the Codex skill budget.
 | --- | --- | --- |
 | `index.html` | `.theme-home` — paper #F2EEE5, ink #191710, vermilion #C9452A | Prototype done: hero, two-project work index, two case cards, approach, closing |
 | `projects/greeny/` | no class — dark #191919, green ramp | Full case study: hero dashboard, personas, IoT system, live UI system, 3 rebuilt app screens, brand, notes |
-| `projects/moti-pulse/` | `.theme-moti` — source-locked copy in A / Editorial layout, white, #4A5FF7, #EEF1FF | Original narrative order, large unnumbered source headings, original charts, six task flows, 25 sketches, four hi-fi screens and six mockups |
+| `projects/moti-pulse/` | `.theme-moti` — source-locked copy in A / Editorial layout, white, #4A5FF7, #EEF1FF | Original narrative order, large unnumbered source headings, original charts, six task flows, 25 sketches and eight Hi-Fi function videos; Mockups and the original-screen disclosure removed by the owner |
 
 Shared shell: `assets/css/base.css` (tokens, header, footer, buttons, reveal,
 mobile nav). Page styles: `assets/css/home.css`, `projects/*/<slug>.css`.
@@ -53,8 +53,8 @@ Already extracted into the repo:
 - Greeny favicon: generated from the same mask.
 - Garden photos: `projects/greeny/img/garden-*.jpg` — small crops from the deck,
   only used at their native size (phone cards, ≤295px wide).
-- Moti-Pulse logo: `projects/moti-pulse/img/logo.png` — 44×44 crop from the board
-  header, displayed at 44px or less.
+- Moti-Pulse logo: `projects/moti-pulse/img/logo-centered.png` — centered 55×55
+  crop from the board, used on the home page, case-study header/footer and favicon.
 
 The user relaxed the "exact logo" rule: final logo files may be supplied later.
 If so, replace those two files and keep the CSS sizing.
@@ -92,10 +92,11 @@ If so, replace those two files and keep the CSS sizing.
 3. **Identity** — replace `Portfolio` in the home and both case-study headers;
    add a real contact/about block when the owner supplies it. The Moti-Pulse
    author/team credit is still missing.
-4. **Moti source limitations** — the supplied JPEG has no interactive prototype
-   or animation, so the six mockups are stills. Chart descriptions preserve the
-   relative bar heights without inventing response counts; original charts
-   remain linked. The source demographic is 51% aged 23–29.
+4. **Moti media** — Hi-Fi uses eight original-recording loops with source-backed
+   instructions. The owner removed the Mockups section and original-screen
+   disclosure; their source assets remain available. Charts preserve the
+   supplied SVG evidence. Still images are display-only. The source demographic
+   is 51% aged 23–29.
 5. **Accessibility** — Moti skip link, keyboard order, disclosures, live reduced
    motion changes and no-JavaScript visibility were checked. Native screen-reader
    testing and a full contrast audit remain outstanding across the portfolio.

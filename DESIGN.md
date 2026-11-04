@@ -172,10 +172,13 @@ several identities without duplicating the chrome:
   three research/design groups and an active-section highlight. It occupies
   the right gutter on wide screens and collapses into a disclosure on mobile.
   Its background wraps the links, leaving the stationary arrow toggle outside.
+  The owner removed Mockups and the original-interface-screen disclosure;
+  Hi-Fi's eight function demos now lead directly to the footer.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from
-its board (`projects/moti-pulse/img/logo.png`). Do not replace them with an
+its board (`projects/moti-pulse/img/logo-centered.png`), shared by the home
+page, case-study header/footer and favicon. Do not replace them with an
 invented mark; the owner may supply final logo files later.
 
 ## Layout

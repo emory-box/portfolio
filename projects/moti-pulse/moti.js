@@ -158,7 +158,7 @@
         revealObserver.unobserve(element);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, .mockup').forEach(element => revealObserver.observe(element));
+    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona').forEach(element => revealObserver.observe(element));
   }
 
   function updateMotionPreference() {

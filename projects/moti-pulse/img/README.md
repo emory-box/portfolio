@@ -9,8 +9,9 @@ screens and phone mockups. They preserve the original design evidence rather
 than substitute invented UI or photography. The page's headings, body copy,
 research cards, comments, personas, architecture and navigation are HTML/CSS.
 
-The mockup panels use original still images. Hi-Fi also presents eight
-owner-supplied screen-recording loops, documented in `../video/README.md`.
+The owner removed the Mockups section and the original-interface-screen
+disclosure. Their source images remain in this folder for reference.
+Hi-Fi presents eight owner-supplied screen-recording loops, documented in `../video/README.md`.
 Still artifacts are displayed inline without links, hover outlines or zoom
 cursors. Research reference links remain available in the case-study text.
 
@@ -23,7 +24,8 @@ the supplied SVGs, and the original assets remain unmodified by the page.
 
 `logo-centered.png` is a corrected 55 × 55 crop of the same original header
 mark (source rectangle x=41, y=20). It centers the original concentric circles
-inside the rounded square in the website header; the artwork is not redrawn.
+inside the rounded square; the artwork is not redrawn. The home page,
+case-study header/footer and favicon all use this centered original crop.
 
 The owner's latest clarification requires the original content and narrative
 order. Demographics use the supplied `Age-pie-graph.svg` and
@@ -42,5 +44,6 @@ the supplied SVGs remain unchanged in this folder.
 The Location display copy also aligns the inner vertices to one shared center
 at (101.5, 101.5), matching the animation's sweep origin.
 
-Hi-Fi uses the supplied `screen-dashboard.svg`, `screen-mission.svg`,
-`Goal.svg` and `Timer.svg`, in that order.
+The hero still uses `screen-dashboard.svg`, `screen-mission.svg` and
+`Goal.svg`. The removed Hi-Fi still-image disclosure formerly used these
+and `Timer.svg`; the eight function videos now provide the Hi-Fi presentation.
