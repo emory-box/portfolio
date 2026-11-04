@@ -521,7 +521,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .motivation-card > div { min-width: 0; }
 .motivation-card .feature-note { display: flex; align-items: center; }
 .motivation-card .feature-note ul { margin: 0; }
-.source-section .chart-legend { margin-block: 24px; }
+.source-section .chart-legend { margin: 24px auto; max-width: 720px; justify-content: center; }
 .source-section .task-flow { margin-top: 0; padding: 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; }
 .source-section .task-flow:first-of-type { margin-top: 40px; }
 .source-section .task-flow summary { padding-block: 24px; list-style: none; }
@@ -545,7 +545,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .bar-column { transform-box: view-box; }
 .bar-pending .bar-grid, .bar-pending .bar-column { opacity: 0; }
 .survey-bar > a { width: min(100%, 260px); margin-inline: auto; }
-.survey-bar-solution { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.survey-bar-solution { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 1.6; text-align: center; }
 .survey-bars--pain .survey-bar:last-child { grid-column: 1 / -1; width: calc((100% - 48px) / 2); justify-self: center; }
 @media (max-width: 760px) {
   .survey-bars { grid-template-columns: minmax(0, 1fr); gap: 32px; }
