@@ -38,3 +38,8 @@ preserved. Full-size links still open the supplied SVG files.
 The pie charts use `*-pie-graph-display.svg` for their on-page animation.
 These copies extend each colored edge slightly to cover rendering seams;
 the supplied SVGs remain unchanged and are used by the full-size links.
+The Location display copy also aligns the inner vertices to one shared center
+at (101.5, 101.5), matching the animation's sweep origin.
+
+Hi-Fi uses the supplied `screen-dashboard.svg` and `screen-mission.svg`.
+Goals and Timer retain JPEGs until matching SVGs are supplied.

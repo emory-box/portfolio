@@ -554,7 +554,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 }
 .demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 720px; margin: 32px auto; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
-.demographic-title { margin-bottom: 24px; font-size: 20px; font-weight: 550; color: var(--ink); }
+.demographic-title { margin-bottom: 20px; font-size: 16px; font-weight: 400; line-height: 1.5; text-align: center; color: var(--ink); }
 .demographic-charts .artifact a { position: relative; }
 .pie-legend-reveal { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
 @property --pie-sweep {
