@@ -54,7 +54,10 @@ headings are large source titles without section numbering.
   six source mockups. The owner explicitly requested feature instructions;
   these describe actions in the supplied recordings and add no product claims.
   Only the visible demo nearest the viewport center autoplays. Other demos
-  pause; native manual pause, reduced motion and document visibility are honored.
+  pause; manual pause, reduced motion and document visibility are honored.
+  Videos use a phone-silhouette presentation and a slim external control bar,
+  with native-player fallback. Still-artifact images are display-only and have
+  no link, hover or zoom affordance. Paper references retain their link styling.
 - Reduced motion and no JavaScript show the content directly, without pinned
   scrolling or entrance effects. Changing the preference cancels live effects.
 

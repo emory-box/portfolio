@@ -215,7 +215,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .persona-bottom ul { font-size: 13px; color: var(--muted); margin: 0; }
 .persona-features { border-left: 2px solid var(--blue); padding-left: 32px; }
 .artifact { margin-block: 32px; }
-.artifact a { display: block; border-radius: 8px; }
+.artifact-visual { display: block; position: relative; }
 .artifact img { width: 100%; }
 .chapter--map .artifact { padding: 24px; background: var(--lavender); border-radius: 16px; }
 .chapter--map .artifact img { max-height: 650px; object-fit: contain; }
@@ -261,14 +261,34 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .hifi-steps li + li { margin-top: 12px; }
 .hifi-steps li::marker { color: var(--blue-deep); }
 .hifi-media { display: flex; align-items: center; justify-content: center; min-width: 0; }
-.hifi-video { display: block; width: auto; height: auto; max-width: min(100%, 330px); max-height: min(640px, calc(100svh - 120px)); border-radius: 20px; background: var(--paper); }
+.hifi-player { width: 100%; max-width: 330px; }
+.hifi-stage { display: flex; align-items: center; justify-content: center; }
+.hifi-video { display: block; width: auto; height: auto; max-width: 100%; max-height: min(620px, calc(100svh - 160px)); background: transparent; }
+.hifi-player.is-enhanced .hifi-video { clip-path: inset(var(--phone-inset, 0) round 14% / 7%); }
+.hifi-controls { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 2px auto 0; width: min(100%, 300px); }
+.hifi-controls[hidden], .hifi-controls [hidden] { display: none; }
+.hifi-action { display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 36px; padding: 7px; border: 0; border-radius: 8px; color: var(--blue-deep); background: transparent; }
+.hifi-action:hover { background: var(--lavender-deep); }
+.hifi-action svg { width: 18px; height: 18px; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hifi-time { flex-shrink: 0; font-size: 11px; line-height: 1.4; font-variant-numeric: tabular-nums; color: var(--muted); }
+.hifi-seek { flex: 1; width: 0; min-width: 24px; height: 24px; margin: 0; padding: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: pointer; }
+.hifi-seek::-webkit-slider-runnable-track { height: 3px; border-radius: 4px; background: linear-gradient(to right, var(--blue-deep) var(--played, 0%), var(--muted) var(--played, 0%)); }
+.hifi-seek::-moz-range-track { height: 3px; border-radius: 4px; background: var(--muted); }
+.hifi-seek::-moz-range-progress { height: 3px; background: var(--blue-deep); }
+.hifi-seek::-webkit-slider-thumb { width: 11px; height: 11px; margin-top: -4px; border: 0; border-radius: 50%; background: var(--blue-deep); appearance: none; -webkit-appearance: none; }
+.hifi-seek::-moz-range-thumb { width: 11px; height: 11px; border: 0; border-radius: 50%; background: var(--blue-deep); }
+.hifi-seek:disabled { cursor: default; opacity: .5; }
+.hifi-player:fullscreen { display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: none; width: 100%; height: 100%; padding: 24px; background: var(--lavender); }
+.hifi-player:fullscreen .hifi-video { max-width: calc(100vw - 48px); max-height: calc(100dvh - 120px); }
+.hifi-player:fullscreen .hifi-controls { width: min(100%, 400px); }
 .hifi-originals .hifi-grid { margin-top: 32px; }
 @media (max-width: 760px) {
   .hifi-features { margin-top: 32px; }
   .hifi-feature { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 40px; }
   .hifi-copy { max-width: none; }
   .hifi-copy p { font-size: 15px; }
-  .hifi-video { max-width: min(100%, 300px); max-height: min(560px, calc(100svh - 96px)); }
+  .hifi-player { max-width: 300px; }
+  .hifi-video { max-height: min(540px, calc(100svh - 140px)); }
 }
 .product-section .section-label h2 { color: var(--white); }
 .product-section .section-label > span { color: var(--lavender); }
@@ -286,7 +306,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .stage-screen > span { font-size: 12px; color: var(--blue-deep); background: var(--paper); border-radius: 100px; padding: 6px 16px; }
 .mockup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
 .mockup { display: flex; flex-direction: column-reverse; background: var(--lavender); border-radius: 16px; padding: 32px; gap: 32px; }
-.mockup > a { display: flex; align-items: center; justify-content: center; min-height: 330px; }
+.mockup > .artifact-visual { display: flex; align-items: center; justify-content: center; min-height: 330px; }
 .mockup img { width: auto; height: 320px; object-fit: contain; }
 .mockup figcaption > span { font-size: 11px; color: var(--blue-deep); }
 .mockup figcaption h3 { font-size: 23px; margin-top: 12px; }
@@ -400,7 +420,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .product-features p { font-size: 14px; }
   .mockup-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .mockup { padding: 28px; }
-  .mockup > a { min-height: 300px; }
+  .mockup > .artifact-visual { min-height: 300px; }
   .mockup img { height: 300px; }
   .footer nav { gap: 12px 20px; }
 }
@@ -518,7 +538,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .theme-moti .header a:active, .theme-moti .footer a:active { background: var(--lavender); }
 .next-project:hover { border-color: var(--blue-deep); }
 .next-project:active { background: var(--lavender-deep); }
-.artifact a:hover, .artifact a:focus-visible { outline: 2px solid var(--blue-deep); outline-offset: 4px; }
 .artifact-description summary { cursor: pointer; }
 .artifact-description summary:hover, .artifact-description[open] summary { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 3px; }
 .segments { row-gap: 12px; }
@@ -552,9 +571,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow summary:hover h3, .task-flow[open] summary h3 { color: var(--blue-deep); }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
 .source-section .task-flow .artifact { margin: 8px 0 32px; padding: 32px; background: color-mix(in srgb, var(--paper) 45%, var(--lavender)); border: 1px solid var(--border); border-radius: 12px; }
-.task-flow .artifact a { display: block; border-radius: 8px; cursor: zoom-in; outline: 1px solid transparent; outline-offset: 10px; transition: outline-color 160ms ease; }
-.task-flow .artifact a:hover { outline: 1px solid var(--border); outline-offset: 10px; }
-.task-flow .artifact a:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 10px; }
 .task-flow .artifact img { width: 100%; height: auto; }
 .source-section .mockup figcaption { font-size: 22px; font-weight: 500; letter-spacing: -.025em; }
 #quantitative .artifact { max-width: 860px; }
@@ -565,7 +581,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .bar-chart { display: block; width: 100%; height: auto; stroke: none; }
 .bar-column { transform-box: view-box; }
 .bar-pending .bar-grid, .bar-pending .bar-column { opacity: 0; }
-.survey-bar > a { width: min(100%, 260px); margin-inline: auto; }
+.survey-bar > .artifact-visual { width: min(100%, 260px); margin-inline: auto; }
 .survey-bar-solution { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 1.6; text-align: center; }
 .survey-bars--pain .survey-bar:last-child { grid-column: 1 / -1; width: calc((100% - 48px) / 2); justify-self: center; }
 @media (max-width: 760px) {
@@ -576,7 +592,6 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .demographic-charts { display: grid; grid-template-columns: minmax(0, 312fr) minmax(0, 360fr); gap: 32px; max-width: 720px; margin: 32px auto; align-items: start; }
 .demographic-charts .artifact { margin: 0; }
 .demographic-title { margin-bottom: 20px; font-size: 16px; font-weight: 400; line-height: 1.5; text-align: center; color: var(--ink); }
-.demographic-charts .artifact a { position: relative; }
 .pie-legend-reveal { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
 @property --pie-sweep {
   syntax: '<angle>';

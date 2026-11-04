@@ -21,11 +21,17 @@ Posters are the original first frames, kept in `posters/` with matching names.
 Video content and timing remain unchanged. The delivered clips include only
 the previously approved appended return to the first frame.
 
-Playback is muted, inline and looped with native controls. JavaScript selects
+Playback is muted, inline and looped. JavaScript selects
 one sufficiently visible demo nearest the viewport center; it pauses previous
 or offscreen demos, preserves positions and respects manual pause. Document
 visibility pauses playback. Reduced motion disables autoplay and leaves
-manual playback available. No JavaScript uses native controls only.
+manual playback available. Enhanced players have an external Play/Pause, seek,
+sound and fullscreen toolbar. No JavaScript uses native controls only.
+
+Per-video `--phone-inset` values in the page mask only the outer white canvas
+to the device silhouette; the app screens and MP4 bytes remain untouched.
+The bounds were measured from each supplied first-frame poster. Recheck these
+values when replacing a recording or changing its framing.
 
 These files are intentionally tracked so GitHub Pages publishes them.
 Temporary render/editor output remains ignored in the authoring project.

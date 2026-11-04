@@ -11,10 +11,11 @@ research cards, comments, personas, architecture and navigation are HTML/CSS.
 
 The mockup panels use original still images. Hi-Fi also presents eight
 owner-supplied screen-recording loops, documented in `../video/README.md`.
-Click a still artifact to view its full-size image.
+Still artifacts are displayed inline without links, hover outlines or zoom
+cursors. Research reference links remain available in the case-study text.
 
-The six task-flow diagrams use the supplied `flow-*.svg` files, both in the
-page and in their full-size links. Function ideation uses the four supplied
+The six task-flow diagrams use the supplied `flow-*.svg` files in the page.
+Function ideation uses the four supplied
 `Group-Function-1.svg` through `Group-Function-4.svg` in that order.
 All 25 sketches use the supplied SVG files, including `sketch-23.svg`.
 The Add Tasks flow uses the owner's updated `flow-tasks.svg`. Image dimensions follow
@@ -33,11 +34,11 @@ show solutions. Headings and solution text from the JPEGs are rendered in HTML.
 Source percentages remain unchanged, with no inferred counts or values.
 The nine bar SVGs are embedded in the HTML with separate grid and column
 groups for scroll animation; their original paths and bar dimensions are
-preserved. Full-size links still open the supplied SVG files.
+preserved. They remain display-only diagrams in the case study.
 
 The pie charts use `*-pie-graph-display.svg` for their on-page animation.
 These copies extend each colored edge slightly to cover rendering seams;
-the supplied SVGs remain unchanged and are used by the full-size links.
+the supplied SVGs remain unchanged in this folder.
 The Location display copy also aligns the inner vertices to one shared center
 at (101.5, 101.5), matching the animation's sweep origin.
 
