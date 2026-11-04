@@ -545,7 +545,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   initial-value: 360deg;
 }
 .pie-reveal {
-  mask-image: conic-gradient(from 0deg at var(--pie-center) 50%, #000 var(--pie-sweep), transparent 0), radial-gradient(circle closest-side at var(--pie-center) 50%, transparent 99%, #000 100%);
+  mask-image: conic-gradient(from 0deg at var(--pie-center) 50%, #000 calc(var(--pie-sweep) - .7deg), transparent var(--pie-sweep)), linear-gradient(to right, transparent var(--pie-label-start), #000 var(--pie-label-start));
   mask-composite: add;
 }
 @media (max-width: 760px) {

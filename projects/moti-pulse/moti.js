@@ -24,10 +24,12 @@
         if (!isIntersecting || revealedPies.has(target)) return;
         revealedPies.add(target);
         pieObserver.unobserve(target);
-        target.style.setProperty('--pie-center', target.getAttribute('width') === '312' ? '32.33%' : '28.19%');
+        const isAgeChart = target.getAttribute('width') === '312';
+        target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
+        target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
         target.classList.add('pie-reveal');
         const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
-          duration: 1000, easing: 'cubic-bezier(.2,.7,.2,1)',
+          duration: 1200, easing: 'cubic-bezier(.22,.61,.36,1)',
         });
         runningAnimations.add(animation);
         const finish = () => {
