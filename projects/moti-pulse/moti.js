@@ -14,6 +14,7 @@
   let framePending = false;
   let contentsHasAppeared = false;
   const revealedPies = new WeakSet();
+  const revealedBars = new WeakSet();
   let pieObserver;
 
   function observePies() {
@@ -44,7 +45,7 @@
             { opacity: 0, transform: 'scale(.92)', offset: 0 },
             { opacity: 1, transform: 'scale(1.06)', offset: .6 },
             { opacity: 1, transform: 'scale(1)', offset: 1 },
-          ], { duration: 380, delay: 1450 + index * 120, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+          ], { duration: 400, delay: 1550 + index * 120, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
           legendAnimations.push(pop);
           runningAnimations.add(pop);
           const release = () => runningAnimations.delete(pop);
@@ -53,7 +54,7 @@
           return layer;
         });
         const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
-          duration: 1400, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards',
+          duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
         });
         runningAnimations.add(animation);
         const finish = () => {
@@ -116,6 +117,17 @@
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const element = entry.target;
+        if (element.matches('.survey-bar img')) {
+          if (!revealedBars.has(element)) {
+            revealedBars.add(element);
+            animate(element, [
+              { clipPath: 'inset(100% 0 0 0)', opacity: .4 },
+              { clipPath: 'inset(0% 0 0 0)', opacity: 1 },
+            ]);
+          }
+          revealObserver.unobserve(element);
+          return;
+        }
         animate(element, [
           { opacity: 0, transform: 'translateY(20px)' },
           { opacity: 1, transform: 'translateY(0)' },
@@ -123,7 +135,7 @@
         revealObserver.unobserve(element);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, #quantitative .artifact, .mockup').forEach(element => revealObserver.observe(element));
+    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, .survey-bar img, .mockup').forEach(element => revealObserver.observe(element));
   }
 
   function updateMotionPreference() {
