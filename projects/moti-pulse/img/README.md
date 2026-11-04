@@ -16,8 +16,8 @@ image. The original `logo.png` remains unchanged.
 The six task-flow diagrams use the supplied `flow-*.svg` files, both in the
 page and in their full-size links. Function ideation uses the four supplied
 `Group-Function-1.svg` through `Group-Function-4.svg` in that order.
-Sketches use matching SVG files where supplied (24 of 25); `sketch-23.jpg`
-remains because no corresponding SVG is available. Image dimensions follow
+All 25 sketches use the supplied SVG files, including `sketch-23.svg`.
+The Add Tasks flow uses the owner's updated `flow-tasks.svg`. Image dimensions follow
 the supplied SVGs, and the original assets remain unmodified by the page.
 
 `logo-centered.png` is a corrected 55 × 55 crop of the same original header
@@ -41,5 +41,5 @@ the supplied SVGs remain unchanged and are used by the full-size links.
 The Location display copy also aligns the inner vertices to one shared center
 at (101.5, 101.5), matching the animation's sweep origin.
 
-Hi-Fi uses the supplied `screen-dashboard.svg` and `screen-mission.svg`.
-Goals and Timer retain JPEGs until matching SVGs are supplied.
+Hi-Fi uses the supplied `screen-dashboard.svg`, `screen-mission.svg`,
+`Goal.svg` and `Timer.svg`, in that order.
