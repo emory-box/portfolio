@@ -31,3 +31,7 @@ order. Demographics use the supplied `Age-pie-graph.svg` and
 4 (its original filename). The first five show pain points; the last four
 show solutions. Headings and solution text from the JPEGs are rendered in HTML.
 Source percentages remain unchanged, with no inferred counts or values.
+
+The pie charts use `*-pie-graph-display.svg` for their on-page animation.
+These copies extend each colored edge slightly to cover rendering seams;
+the supplied SVGs remain unchanged and are used by the full-size links.

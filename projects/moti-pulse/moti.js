@@ -16,6 +16,28 @@
   const revealedPies = new WeakSet();
   const revealedBars = new WeakSet();
   let pieObserver;
+  let barObserver;
+
+  function observeBars() {
+    barObserver?.disconnect();
+    if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+    barObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const target = entry.target;
+        const requiredHeight = Math.min(entry.boundingClientRect.height * .95, window.innerHeight * .75);
+        if (!entry.isIntersecting || entry.intersectionRect.height < requiredHeight || revealedBars.has(target)) return;
+        revealedBars.add(target);
+        barObserver.unobserve(target);
+        animate(target, [
+          { clipPath: 'inset(100% 0 0 0)', opacity: .4 },
+          { clipPath: 'inset(0% 0 0 0)', opacity: 1 },
+        ], 120, 1100);
+      });
+    }, { threshold: [0, .25, .5, .75, .95, 1], rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.survey-bar img').forEach(img => {
+      if (!revealedBars.has(img)) barObserver.observe(img);
+    });
+  }
 
   function observePies() {
     pieObserver?.disconnect();
@@ -53,7 +75,7 @@
           pop.addEventListener('cancel', release, { once: true });
           return layer;
         });
-        const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
+        const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '361deg' }], {
           duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
         });
         runningAnimations.add(animation);
@@ -72,10 +94,10 @@
   }
 
   // Web Animations leave the underlying content visible if scripting is unavailable.
-  function animate(element, frames, delay = 0) {
+  function animate(element, frames, delay = 0, duration = 600) {
     if (reducedMotion.matches || typeof element.animate !== 'function') return;
     const animation = element.animate(frames, {
-      duration: 600,
+      duration,
       delay,
       fill: 'backwards',
       easing: 'cubic-bezier(.2,.7,.2,1)',
@@ -117,17 +139,6 @@
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const element = entry.target;
-        if (element.matches('.survey-bar img')) {
-          if (!revealedBars.has(element)) {
-            revealedBars.add(element);
-            animate(element, [
-              { clipPath: 'inset(100% 0 0 0)', opacity: .4 },
-              { clipPath: 'inset(0% 0 0 0)', opacity: 1 },
-            ]);
-          }
-          revealObserver.unobserve(element);
-          return;
-        }
         animate(element, [
           { opacity: 0, transform: 'translateY(20px)' },
           { opacity: 1, transform: 'translateY(0)' },
@@ -135,11 +146,12 @@
         revealObserver.unobserve(element);
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, .survey-bar img, .mockup').forEach(element => revealObserver.observe(element));
+    document.querySelectorAll('.source-title, .motivation-card, .segments article, .persona, .mockup').forEach(element => revealObserver.observe(element));
   }
 
   function updateMotionPreference() {
     observePies();
+    observeBars();
     if (revealObserver) revealObserver.disconnect();
     if (reducedMotion.matches) {
       runningAnimations.forEach(animation => animation.cancel());
@@ -249,5 +261,6 @@
   }
   updateReadingPosition();
   observePies();
+  observeBars();
   observeReveals();
 })();
