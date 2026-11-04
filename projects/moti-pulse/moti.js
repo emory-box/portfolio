@@ -41,10 +41,10 @@
           layer.style.transformOrigin = `${left}% ${top + 8}%`;
           target.parentElement.append(layer);
           const pop = layer.animate([
-            { opacity: 0, transform: 'scale(.85)', offset: 0 },
-            { opacity: 1, transform: 'scale(1.1)', offset: .55 },
+            { opacity: 0, transform: 'scale(.92)', offset: 0 },
+            { opacity: 1, transform: 'scale(1.06)', offset: .6 },
             { opacity: 1, transform: 'scale(1)', offset: 1 },
-          ], { duration: 500, delay: 1700 + index * 180, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+          ], { duration: 380, delay: 1450 + index * 120, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
           legendAnimations.push(pop);
           runningAnimations.add(pop);
           const release = () => runningAnimations.delete(pop);
@@ -53,7 +53,7 @@
           return layer;
         });
         const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '360deg' }], {
-          duration: 1600, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards',
+          duration: 1400, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards',
         });
         runningAnimations.add(animation);
         const finish = () => {

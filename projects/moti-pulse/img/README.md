@@ -26,5 +26,8 @@ inside the rounded square in the website header; the artwork is not redrawn.
 
 The owner's latest clarification requires the original content and narrative
 order. Demographics use the supplied `Age-pie-graph.svg` and
-`location-pie-graph.svg`; the remaining survey charts use the original JPEGs.
+`location-pie-graph.svg`. Survey bar charts use `bar-1.svg` through
+`bar-9.svg` in source reading order, with the supplied `bai-4.svg` at position
+4 (its original filename). The first five show pain points; the last four
+show solutions. Headings and solution text from the JPEGs are rendered in HTML.
 Source percentages remain unchanged, with no inferred counts or values.
