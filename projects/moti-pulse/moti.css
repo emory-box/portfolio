@@ -541,6 +541,9 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .survey-bars .survey-bar { display: flex; flex-direction: column; margin: 0; min-width: 0; }
 .survey-bar-title { margin-bottom: 20px; min-height: 88px; color: var(--ink); font-size: 16px; line-height: 1.5; text-align: center; }
 .survey-bar img { width: 100%; }
+.bar-chart { display: block; width: 100%; height: auto; stroke: none; }
+.bar-column { transform-box: view-box; }
+.bar-pending .bar-grid, .bar-pending .bar-column { opacity: 0; }
 .survey-bar > a { width: min(100%, 260px); margin-inline: auto; }
 .survey-bar-solution { margin-top: 20px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 .survey-bars--pain .survey-bar:last-child { grid-column: 1 / -1; width: calc((100% - 48px) / 2); justify-self: center; }

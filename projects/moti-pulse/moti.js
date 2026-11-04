@@ -20,6 +20,7 @@
 
   function observeBars() {
     barObserver?.disconnect();
+    document.querySelectorAll('.bar-pending').forEach(chart => chart.classList.remove('bar-pending'));
     if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
     barObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -28,14 +29,25 @@
         if (!entry.isIntersecting || entry.intersectionRect.height < requiredHeight || revealedBars.has(target)) return;
         revealedBars.add(target);
         barObserver.unobserve(target);
-        animate(target, [
-          { clipPath: 'inset(100% 0 0 0)', opacity: .4 },
-          { clipPath: 'inset(0% 0 0 0)', opacity: 1 },
-        ], 120, 1100);
+        target.classList.remove('bar-pending');
+        animate(target.querySelector('.bar-grid'), [
+          { opacity: 0 }, { opacity: 1 },
+        ], 100, 550);
+        const offsets = [160, 0, 300, 80];
+        const chartIndex = Array.from(document.querySelectorAll('.bar-chart')).indexOf(target);
+        target.querySelectorAll('.bar-column').forEach((column, index) => {
+          animate(column, [
+            { transform: 'scaleY(0)' },
+            { transform: 'scaleY(1)' },
+          ], 700 + offsets[(index + chartIndex) % offsets.length], 900 + index * 50);
+        });
       });
     }, { threshold: [0, .25, .5, .75, .95, 1], rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.survey-bar img').forEach(img => {
-      if (!revealedBars.has(img)) barObserver.observe(img);
+    document.querySelectorAll('.bar-chart').forEach(img => {
+      if (!revealedBars.has(img)) {
+        img.classList.add('bar-pending');
+        barObserver.observe(img);
+      }
     });
   }
 
