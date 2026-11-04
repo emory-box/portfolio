@@ -25,5 +25,6 @@ mark (source rectangle x=41, y=20). It centers the original concentric circles
 inside the rounded square in the website header; the artwork is not redrawn.
 
 The owner's latest clarification requires the original content and narrative
-order. The website now displays the three original survey JPEGs directly,
-with source percentages and no calculated "other" values or inferred counts.
+order. Demographics use the supplied `Age-pie-graph.svg` and
+`location-pie-graph.svg`; the remaining survey charts use the original JPEGs.
+Source percentages remain unchanged, with no inferred counts or values.
