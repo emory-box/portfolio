@@ -165,8 +165,10 @@ several identities without duplicating the chrome:
   charts and product artifacts without derived values or added narrative.
   Section headings are large, unnumbered source titles. Motivation/solution
   pairs share one full-width row divider to align across viewport sizes.
-  Hero entrances last 600ms with 120ms staggering. Reading groups enter over
-  300ms, with 100ms between headings and their introductions. Reduced motion and no script
+  Hero entrances last 600ms with 120ms staggering. Each reading section's
+  complete content fades in together over 300ms, without separate delayed
+  headings, prose or image entrances. Charts and Hi-Fi autoplay wait until
+  that entrance finishes and their media is visible. Reduced motion and no script
   keep content directly visible. See `docs/moti-pulse-design.md` for the
   approved scope and the branch preserving all three design previews.
   The source-style floating contents panel uses the same white/lavender tokens,
@@ -174,12 +176,17 @@ several identities without duplicating the chrome:
   stays at the bottom-right of the viewport at every width. The closed toggle
   reads “Contents”; opening hides that label and reverses only the arrow,
   retaining the same neutral surface. The panel background wraps the links,
-  leaving the stationary toggle outside.
+  leaving the stationary toggle outside, with comfortable 12px padding.
   The owner removed Mockups and the original-interface-screen disclosure;
   Hi-Fi's eight function demos now lead directly to the footer.
-  Architecture and task-flow diagrams use theme-colored SVGs with embedded
-  Inter, rounded nodes and explicit arrowed branches. Diagrams stay horizontal
-  at every width and fit compact frames; HTML text alternatives and original
+  Architecture keeps the original three-level graph with sibling features
+  beneath each module; its source layout is frozen in
+  `diagrams/information-architecture-source.svg`, exported from the original
+  HTML graph. Only its colors and outlines change. Task-flow SVGs
+  preserve every original shape, glyph outline, position and wire path from
+  `img/flow-*.svg`; only paint and outline styling change. Do not reflow or
+  reroute them. Diagrams fit compact frames without horizontal scrolling;
+  flow imagery can grow to 520px high. HTML text alternatives and original
   source diagrams remain available. See `docs/moti-diagram-redesign.md`.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the

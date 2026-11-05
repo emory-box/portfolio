@@ -1,16 +1,21 @@
-# Moti-Pulse diagram rebuild
+# Moti-Pulse diagram presentation
 
-The owner requested new Information Architecture and Task Flow imagery that
-matches the existing theme and looks more professional. Replace presentation
-only: retain every original label, decision, branch, loop and hierarchy.
+The owner requested themed Information Architecture and Task Flow imagery.
+The latest clarification makes the original graph layouts authoritative:
+retain the order, wiring and position of every element in both sections.
+Change visual styling only.
 
-## Source and model
+## Source contract
 
-The original `projects/moti-pulse/img/flow-*.svg` files remain unchanged.
-The architecture comes from the original App → Dashboard / Life mission /
-Goal / Timer hierarchy in the case-study HTML. `diagrams/flows.json` records
-the six source graphs; node IDs follow the original SVG shape inventory.
-Their order field controls visual placement, not graph connectivity.
+The original `projects/moti-pulse/img/flow-*.svg` files stay unchanged.
+The display variants in `img/diagrams/` preserve their canvas dimensions,
+ordered graphics, shape geometry, transforms and outlined text exactly.
+Do not reroute wires, rearrange nodes, rewrap labels or replace source shapes.
+Source branch labels and return paths remain in their original positions.
+
+`diagrams/flows.json` records the source labels, node roles and graph inventory.
+Node IDs follow the original SVG shape order; the source SVG determines layout.
+Keep source wording, including “Promodoro” and “Reimider”.
 
 | Source | Nodes | Connections |
 | --- | ---: | ---: |
@@ -22,66 +27,69 @@ Their order field controls visual placement, not graph connectivity.
 | Report | 10 | 9 |
 | Information Architecture | 14 | 13 |
 
-Keep source capitalization and wording, including the original flow heading
-“Promodoro”. Preserve the subtasks return loop and the Pomodoro restart,
-same-task and same-setting return paths. No inferred screens or outcomes.
+Architecture has no owner-supplied SVG. Its source is the original HTML/CSS
+graph in commit `f575045`, before the diagram redesign. The fixed export
+`diagrams/information-architecture-source.svg` captures that graph at its
+1200px desktop width with the existing Inter font: App above four modules,
+with sibling features in a row beneath each module. It preserves node boxes,
+label lines and shared branch positions. It is the geometry source for the
+styled display variant; do not replace it with a newly arranged hierarchy.
+The exact HTML text alternative remains available.
 
-## Presentation and delivery
+## Styling and delivery
 
-- Produce seven standalone horizontal SVGs for the architecture and each of
-  the six task flows. The owner found the earlier large/vertical presentation
-  too big and requested smaller horizontal images at every screen size.
-- Reuse white, ink #202342, muted #606478, blue #4A5FF7, strong blue #2437B6,
-  lavender #EEF1FF and pale blue #DFE5FF. Embed the existing Inter font so
-  exported images retain their typography without external requests.
-- Use pill-shaped start/end nodes, rounded action/screen nodes and diamond
-  decisions. Distinguish roles by shape/label and fill; include a diagram key.
-  Give connectors arrowheads, consistent weight and space around text.
-- Task flows use wide eight-column rows; Report fits one horizontal row.
-  Keep the architecture's horizontal hierarchy. Preserve native task-flow disclosures,
-  separate the diagram surface from the title and allow vertical page scrolling
-  without horizontal scrolling or internal scroll panels.
-- Use relative image sources with intrinsic dimensions to avoid layout
-  shifts. Keep images display-only. Preserve existing reading animations and
-  other sections. Keep the exact architecture as an HTML text alternative.
-- Center compact frames, cap architecture imagery at 340px high and task-flow
-  imagery at 420px, and fit proportionally on narrow screens. The horizontal
-  layout remains consistent; no internal or horizontal page scrolling.
+- Reuse white, ink #202342, blue #4A5FF7, strong blue #2437B6,
+  lavender #EEF1FF and pale blue #DFE5FF.
+- Keep original action circles, screen rectangles and decision diamonds.
+  Use white actions, lavender screens, pale-blue decisions and dark-blue
+  start/end nodes with white lettering. Strengthen existing wire contrast
+  with dark blue and a subtle outline, preserving the exact filled paths.
+- Task-flow typography remains the source's outlined glyphs. Architecture
+  retains its original rectangular nodes, label positions and embedded Inter.
+  It uses a dark-blue App node, lavender modules, white feature boxes and blue
+  connectors. Neither requires external requests.
+- Keep native task-flow disclosures and the separate pale-blue diagram
+  surface beneath each title. Images are display-only.
+- Center frames up to 1160px wide; cap task-flow imagery at 520px high and
+  architecture at 340px. Scale proportionally to fit narrow screens with
+  no horizontal scrolling or internal scroll panels.
+- Use relative image URLs and intrinsic dimensions matching each source.
+  Preserve other sections, reading animations and eight Hi-Fi videos.
 
 The optional authoring helper is `node scripts/build-moti-diagrams.cjs`.
-It uses the Chrome/puppeteer-core already installed by the setup script;
-`CHROME_PATH` may override the local browser path. The deployed site serves
-the committed SVG files directly and has no runtime build requirement.
-The helper also updates the picture elements' intrinsic dimensions when an
-export's height changes, keeping the reserved layout aligned with the images.
-
-## Acceptance slices
-
-1. Record source nodes/connections and rebuild the horizontal exports with identical data.
-2. Integrate the images, diagram key, text alternative and theme surfaces.
-3. Compare source diagrams, check every label/branch, text fit and edge routes;
-   check 320/360/768/1280/1920px, keyboard disclosures, reduced motion,
-   no JavaScript and no missing assets. Review standards and source-spec axes.
+It reads the six original flow SVGs and fixed architecture export, adding
+paint classes, styles and accessible metadata;
+it does not reconstruct their geometry. It uses the Chrome/puppeteer-core
+already installed by project setup. `CHROME_PATH` may override the browser.
+The site serves the resulting static SVGs without a runtime build step.
 
 ## Verification
 
-- Compared the six original source diagrams against the model: all 123 flow
-  nodes and 132 connections retained, including Yes/No branches and returning
-  loops. Kept the original Schedule spelling “Reimider” after the source review.
-- The architecture retains 14 nodes and 13 connections. The original
-  HTML hierarchy and wording remain in the accessible text disclosure.
-- All seven SVGs render with embedded Inter. Browser geometry checks pass
-  node text fit, canvas clipping and connectors crossing unrelated nodes;
-  the subtasks return is routed separately from its outgoing Yes branch.
-- Checked 320, 360, 768, 1000, 1280 and 1920px: horizontal images, capped heights
-  and no horizontal page scrolling.
-  Keyboard disclosures, reduced motion and no-JavaScript use passed, with
-  no missing media or script errors. Eight Hi-Fi demos remain operational.
-- Original six SVG hashes are unchanged. The model, generated images and
-  optional authoring helper are committed together for reproducibility.
-- Standards and source-spec reviews: no remaining findings. JavaScript syntax
-  and whitespace checks passed. DESIGN.md lint: zero errors and 19 existing
-  warnings. No root typecheck/test/build pipeline is configured.
+Compare every original and display SVG's ordered graphics and geometry
+attributes, including glyph paths, plus root dimensions and viewBox. Confirm
+the originals' Git hashes are unchanged. Check all six source role inventories.
+Inspect styling at source size and the page at 320, 360, 768, 1280 and 1920px.
+Verify native keyboard disclosures, reduced motion, no-JavaScript visibility,
+media loading and the contents panel's tighter spacing.
 
-Validation used local Chrome and the existing puppeteer-core. Native
-screen-reader speech and other browser engines were not verified.
+The current variants passed exact ordered-element and geometry comparisons
+against all six originals, including their outlined labels. All original
+files match Git HEAD. Paint-role checks passed for 123 nodes and every source
+wire path. Browser checks passed at 320, 360, 768, 1280 and 1920px, including
+image fit, keyboard disclosures, reduced motion and no-JavaScript use, with
+no missing requests or script errors. The contents panel also passed short
+viewport and rapid-toggle checks. JavaScript syntax and whitespace checks passed.
+Separate Standards and Spec reviews reported no actionable findings.
+
+The architecture variant also passed an exact ordered-element and attribute
+comparison with its fixed source export: 14 nodes, 23 shared branch bars and
+nine feature arrowheads. Embedded Inter and label fit passed. Browser checks
+at 320, 360, 768, 1280 and 1920px found no horizontal overflow, missing requests
+or script errors. The keyboard text disclosure works with reduced motion
+and JavaScript disabled.
+
+The repo has no root typecheck, lint, test or build pipeline. Use JavaScript
+syntax checks, `git diff --check`, local Chrome and the existing puppeteer-core.
+DESIGN.md validation could not run in this session because automatic approval
+review hit the account usage limit. Native screen-reader speech and other
+browser engines have not been verified.

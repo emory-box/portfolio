@@ -1,0 +1,59 @@
+{
+  "title": "Greeny — one garden, one connected story",
+  "status": "Concept for review",
+  "source": "Greeny source deck, slides 6–7; existing Greeny case-study interface",
+  "shots": [
+    {
+      "id": "garden",
+      "step": "01",
+      "label": "Meet the garden",
+      "title": "Your garden, always in reach.",
+      "copy": "Introduce one miniature garden. Plants and devices belong to the same place from the first frame.",
+      "frame": 1,
+      "progress": 0,
+      "yaw": 0,
+      "image": "renders/01-garden.png",
+      "alt": "Greeny garden tile with three planting beds, a fruit tree, a path and connected garden devices.",
+      "direction": "Wide three-quarter view. Hold the composition while the opening title becomes readable."
+    },
+    {
+      "id": "sense",
+      "step": "02",
+      "label": "Sense",
+      "title": "Understand the garden.",
+      "copy": "Bring the integrated sensor into focus. It reads soil moisture, temperature, air humidity and light.",
+      "frame": 49,
+      "progress": 0.33,
+      "yaw": -12,
+      "image": "renders/02-sense.png",
+      "alt": "The same garden turned slightly, with a highlighted fork-shaped sensor and a connection to its hub.",
+      "direction": "Turn the land 12 degrees. Add one sensor cue and a restrained connection to the hub; keep the rest of the scene quiet."
+    },
+    {
+      "id": "respond",
+      "step": "03",
+      "label": "Respond",
+      "title": "Care that follows a signal.",
+      "copy": "Show the sprinkler watering the bed. Irrigation can be triggered by a sensor threshold or a schedule.",
+      "frame": 97,
+      "progress": 0.67,
+      "yaw": -24,
+      "image": "renders/03-respond.png",
+      "alt": "The garden turned further, with short arcs of water flowing from the sprinkler into the planting beds.",
+      "direction": "Continue the same turn to 24 degrees. Sensor cues settle, then the sprinkler activates. Keep plant size unchanged."
+    },
+    {
+      "id": "control",
+      "step": "04",
+      "label": "Control",
+      "title": "Keep the garden in reach.",
+      "copy": "The garden settles beside the existing Greeny app interface, linking the physical devices to monitoring and remote control.",
+      "frame": 145,
+      "progress": 1,
+      "yaw": -28,
+      "image": "renders/04-control.png",
+      "alt": "The same connected garden settled in its final three-quarter view.",
+      "direction": "Finish at 28 degrees. Move the garden aside in the website layout and reveal the real app interface. Continue into the case study."
+    }
+  ]
+}

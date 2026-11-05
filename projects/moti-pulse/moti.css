@@ -459,23 +459,23 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .contents summary::-webkit-details-marker { display: none; }
 .contents-chevron { flex: 0 0 16px; width: 16px; height: 16px; transform: rotate(180deg); }
 .contents details[open] .contents-chevron { transform: none; }
-.contents nav { padding: 16px 14px; border: 1px solid var(--border); border-radius: 20px; background: var(--paper); box-shadow: 0 8px 20px var(--shadow); text-align: center; }
-.contents-group + .contents-group { margin-top: 16px; }
-.theme-moti .contents-group h2 { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; padding: 8px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: normal; text-align: center; }
+.contents nav { padding: 12px; border: 1px solid var(--border); border-radius: 16px; background: var(--paper); box-shadow: 0 8px 20px var(--shadow); text-align: center; }
+.contents-group + .contents-group { margin-top: 12px; }
+.theme-moti .contents-group h2 { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; padding: 6px; border-radius: 10px; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: normal; text-align: center; }
 .contents-group h2 svg { width: 18px; height: 18px; flex-shrink: 0; }
-.contents-group a { display: flex; align-items: center; justify-content: center; min-height: 28px; padding: 4px; border-radius: 10px; color: var(--muted); font-size: 11px; line-height: 1.4; text-align: center; }
+.contents-group a { display: flex; align-items: center; justify-content: center; min-height: 26px; padding: 4px; border-radius: 10px; color: var(--muted); font-size: 11px; line-height: 1.4; text-align: center; }
 @media (hover: hover) { .contents-group a:hover { background: var(--lavender); color: var(--blue-deep); } }
 .contents-group a[aria-current] { background: var(--lavender); color: var(--blue-deep); }
 .theme-moti .contents-group.is-active h2 { color: var(--muted); background: transparent; }
 .js .contents { position: fixed; z-index: 20; top: auto; right: 24px; bottom: 24px; width: auto; margin: 0; pointer-events: none; }
 .js .contents summary, .js .contents nav { pointer-events: auto; }
-.js .contents details[open] { width: 268px; }
+.js .contents details[open] { width: 252px; }
 .js .contents details > summary { position: absolute; z-index: 1; right: 0; bottom: 0; }
 .no-js .contents nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; box-shadow: none; margin-top: 16px; }
 .no-js .contents-group + .contents-group { margin-top: 0; }
 @media (max-width: 760px) {
   .js .contents { top: auto; bottom: 20px; right: 20px; }
-  .js .contents details[open] { width: min(320px, calc(100dvw - 40px)); }
+  .js .contents details[open] { width: min(272px, calc(100dvw - 40px)); }
   .contents-group a { font-size: 12px; }
   .no-js .contents nav { grid-template-columns: minmax(0, 1fr); }
 }
@@ -486,7 +486,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .contents-group a { min-height: 24px; font-size: 11px; }
 }
 @media (max-height: 640px) and (min-width: 640px) {
-  .js .contents details[open] { width: min(740px, calc(100dvw - 48px)); }
+  .js .contents details[open] { width: min(620px, calc(100dvw - 48px)); }
   .js .contents nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .contents-group + .contents-group { margin-top: 0; }
 }
@@ -504,6 +504,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
   .header-meta span + span { border: 0; padding: 0; }
 }
 @media (max-height: 480px) and (max-width: 639px) {
+  .js .contents details[open] { width: min(320px, calc(100dvw - 40px)); }
   .js .contents nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 10px; }
   .contents-group + .contents-group { margin-top: 0; }
   .theme-moti .contents-group h2 { padding: 4px; gap: 6px; margin-bottom: 4px; font-size: 10px; }
@@ -579,10 +580,11 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .task-flow[open] summary h3 { color: var(--blue-deep); }
 @media (hover: hover) { .task-flow summary:hover h3 { color: var(--blue-deep); } }
 .source-section .task-flow h3 { margin: 0; font-size: 20px; line-height: 1.35; letter-spacing: -.025em; font-weight: 550; }
-.source-section .task-flow .artifact { max-width: 1040px; margin: 8px auto 32px; padding: 16px; background: var(--lavender-deep); border: 0; border-radius: 16px; }
+.source-section .task-flow .artifact { max-width: 1160px; margin: 8px auto 32px; padding: 16px; background: var(--lavender-deep); border: 0; border-radius: 16px; }
 .task-flow .artifact img { width: 100%; height: auto; }
 .diagram-picture { display: block; }
 .diagram-frame .diagram-picture img { display: block; width: auto; max-width: 100%; height: auto; max-height: 420px; margin-inline: auto; }
+.task-flow .diagram-picture img { max-height: 520px; }
 .source-section .architecture-diagram { max-width: 960px; margin: 32px auto 0; padding: 16px; background: var(--lavender); border-radius: 16px; }
 .architecture-diagram .diagram-picture img { max-height: 340px; }
 .architecture-description { margin-block-start: 24px; }
@@ -594,7 +596,8 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .theme-moti .diagram-key { display: flex; flex-wrap: wrap; gap: 16px 24px; max-width: none; margin-block: 32px 0; padding: 0; list-style: none; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .diagram-key li { display: flex; align-items: center; gap: 8px; }
 .diagram-key span { display: inline-block; flex: 0 0 20px; width: 20px; height: 14px; border: 1.5px solid var(--blue); border-radius: 4px; background: var(--paper); }
-.diagram-key .diagram-key-terminal { border-color: var(--blue-deep); border-radius: 100px; background: var(--blue-deep); }
+.diagram-key .diagram-key-terminal, .diagram-key .diagram-key-action { flex-basis: 14px; width: 14px; border-radius: 50%; }
+.diagram-key .diagram-key-terminal { border-color: var(--blue-deep); background: var(--blue-deep); }
 .diagram-key .diagram-key-screen { background: var(--lavender); }
 .diagram-key .diagram-key-decision { flex-basis: 12px; width: 12px; height: 12px; margin-inline: 4px; border-radius: 0; background: var(--lavender-deep); transform: rotate(45deg); }
 @media (max-width: 1000px) {

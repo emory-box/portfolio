@@ -16,10 +16,12 @@ Still artifacts are displayed inline without links, hover outlines or zoom
 cursors. Research reference links remain available in the case-study text.
 
 The owner requested redesigned Information Architecture and Task Flow imagery.
-The page now uses `diagrams/information-architecture*.svg` and
-`diagrams/flow-*.svg`: compact horizontal diagrams at every screen width, with
-embedded Inter and the Moti palette. Original flow SVGs remain unchanged here
-as source evidence. The exact architecture also has an HTML text alternative.
+The page uses `diagrams/information-architecture.svg` and `diagrams/flow-*.svg`
+with the Moti palette. They preserve the original positions and wiring;
+only paint styling changes. Original flow SVGs remain unchanged here as source
+evidence. Architecture uses the fixed `../diagrams/information-architecture-source.svg`
+export of the original HTML/CSS graph from commit `f575045`, including its
+side-by-side feature rows and embedded Inter. It also has an HTML text alternative.
 The graph model is `../diagrams/flows.json`; regenerate the exports with
 `node scripts/build-moti-diagrams.cjs` from the repository root. See
 `../../../docs/moti-diagram-redesign.md` for the source and verification record.

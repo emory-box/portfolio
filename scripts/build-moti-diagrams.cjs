@@ -5,135 +5,54 @@ const os = require('node:os');
 const root = path.resolve(__dirname, '..');
 const models = require('../projects/moti-pulse/diagrams/flows.json');
 const output = path.join(root, 'projects/moti-pulse/img/diagrams');
-const font = fs.readFileSync(path.join(root, 'assets/fonts/inter-latin.woff2')).toString('base64');
 const palette = { canvas:'#dfe5ff', paper:'#ffffff', ink:'#202342', muted:'#606478', blue:'#4a5ff7', strong:'#2437b6', lavender:'#eef1ff' };
-const xml = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[char]));
 
-function head(title, width, height, description, canvas = palette.canvas) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title description"><title id="title">${xml(title)}</title><desc id="description">${xml(description)}</desc><defs><style>@font-face{font-family:Inter;src:url(data:font/woff2;base64,${font}) format('woff2');font-weight:100 900}text{font-family:Inter,sans-serif;fill:${palette.ink};font-size:16px;font-weight:450}.edge{fill:none;stroke:${palette.muted};stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.edge-halo{fill:none;stroke:${canvas};stroke-width:6;stroke-linecap:round;stroke-linejoin:round}.branch{font-size:13px;font-weight:550}.node{stroke:${palette.blue};stroke-width:1.5}.terminal{fill:${palette.strong};stroke:${palette.strong}}.terminal-text{fill:${palette.paper};font-weight:600}.module-text{font-weight:600}</style><marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="m1 1 6 3-6 3" fill="none" stroke="${palette.muted}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>`;
-}
-
-function textBlock(lines, x, cy, className = '') {
-  const y = cy - (lines.length - 1) * 11;
-  return `<text class="${className}" text-anchor="middle">${lines.map((line, index) => `<tspan x="${x}" y="${y + index * 22}" dominant-baseline="central">${xml(line)}</tspan>`).join('')}</text>`;
-}
-
-function nodeShape(node) {
-  const {x,y,w,h,type,lines,id} = node;
-  const left = x-w/2, top = y-h/2;
-  const fill = type==='screen' ? palette.lavender : type==='decision' ? palette.canvas : palette.paper;
-  const shape = type==='decision'
-    ? `<path class="node" fill="${fill}" d="M${x} ${top} ${left+w} ${y} ${x} ${top+h} ${left} ${y}Z"/>`
-    : `<rect class="node ${type==='terminal'?'terminal':''}" x="${left}" y="${top}" width="${w}" height="${h}" rx="${type==='terminal'?h/2:12}" fill="${fill}"/>`;
-  return `<g data-node="${id}" data-kind="${type}">${shape}${textBlock(lines,x,y,type==='terminal'?'terminal-text':'')}</g>`;
-}
-
-function roundedPath(input) {
-  const points = input.filter((point, index) => !index || point[0]!==input[index-1][0] || point[1]!==input[index-1][1]);
-  let d = `M${points[0].join(' ')}`;
-  for (let i=1;i<points.length;i++) {
-    if (i===points.length-1) { d+=` L${points[i].join(' ')}`; continue; }
-    const before=points[i-1],current=points[i],after=points[i+1];
-    const incoming=Math.hypot(current[0]-before[0],current[1]-before[1]);
-    const outgoing=Math.hypot(after[0]-current[0],after[1]-current[1]);
-    const radius=Math.min(8,incoming/2,outgoing/2);
-    const a=current.map((value,k)=>value+(before[k]-value)*radius/incoming);
-    const b=current.map((value,k)=>value+(after[k]-value)*radius/outgoing);
-    d+=` L${a.join(' ')} Q${current.join(' ')} ${b.join(' ')}`;
-  }
-  return d;
-}
-
-function edgeShape(points, label, data, canvas, halo = true) {
-  const d=roundedPath(points);
-  let labelSvg='';
-  if(label) {
-    const [x,y,anchor='middle']=data;
-    const width=label==='Yes'?30:24;
-    const left=anchor==='end'?x-width:anchor==='start'?x:x-width/2;
-    labelSvg=`<rect x="${left-3}" y="${y-13}" width="${width+6}" height="20" rx="4" fill="${canvas}"/><text class="branch" x="${x}" y="${y}" text-anchor="${anchor}">${xml(label)}</text>`;
-  }
-  return `<g>${halo?`<path class="edge-halo" d="${d}"/>`:''}<path class="edge" marker-end="url(#arrow)" d="${d}"/>${labelSvg}</g>`;
-}
-
-function flowSvg(slug, model, lines) {
-  const columns=slug==='report'?10:8;
-  const width=columns*240+160;
-  const placed=new Map();
-  const rowCount=Math.ceil(model.order.length/columns);
-  let rowTop=40;
-  for(let row=0;row<rowCount;row++) {
-    const rowIds=model.order.slice(row*columns,(row+1)*columns);
-    const items=rowIds.map(id=>{
-      const type=model.types[id],wrapped=lines[id];
-      return{id,type,lines:wrapped,w:type==='terminal'?144:192,h:type==='terminal'?48:type==='decision'?Math.max(128,wrapped.length*44+24):Math.max(72,wrapped.length*22+28)};
+async function restyleFlow(page, slug, model) {
+  // Source geometry and paint order are authoritative. Add paint classes only;
+  // never rebuild nodes, glyph outlines, connectors or their transforms.
+  const original=fs.readFileSync(path.join(root,'projects/moti-pulse',model.source),'utf8');
+  await page.setContent(original);
+  return page.evaluate(({slug,model,palette})=>{
+    const svg=document.querySelector('svg');
+    const nodes=[...svg.querySelectorAll('[fill="#AFF4C6"], [fill="#FFE8A3"], [fill="#BDE3FF"]')];
+    if(nodes.length!==model.types.length)throw Error('Source node inventory changed: '+slug);
+    const terminals=[];
+    nodes.forEach((node,index)=>{
+      const kind=model.types[index];
+      if(kind==='terminal')terminals.push(node.getBoundingClientRect());
+      node.classList.add('flow-node','flow-'+kind);
+      node.setAttribute('data-node',index);node.setAttribute('data-kind',kind);
     });
-    const height=Math.max(...items.map(node=>node.h));
-    items.forEach((node,index)=>{
-      const column=row%2===0?index:columns-1-index;
-      placed.set(node.id,{...node,row,column,rowTop,rowHeight:height,x:200+column*240,y:rowTop+height/2});
+    svg.querySelectorAll('[fill="#B3B3B3"]').forEach(wire=>wire.classList.add('flow-wire'));
+    svg.querySelectorAll('[fill="black"]').forEach(label=>{
+      label.classList.add('flow-label');
+      const r=label.getBoundingClientRect(),cx=r.x+r.width/2,cy=r.y+r.height/2;
+      if(terminals.some(t=>cx>=t.x&&cx<=t.right&&cy>=t.y&&cy<=t.bottom))label.classList.add('flow-terminal-label');
     });
-    rowTop+=height+64;
-  }
-  const height=rowTop-64+40;
-  const lanes={left:[],right:[]};
-  const wires=[];
-  for(const [from,to,label] of model.edges) {
-    const a=placed.get(from),b=placed.get(to);
-    const reverseLink=model.edges.some(([f,t])=>f===to&&t===from)&&model.order.indexOf(from)>model.order.indexOf(to);
-    let points,position;
-    if(a.row===b.row&&Math.abs(a.column-b.column)===1&&!reverseLink) {
-      const direction=Math.sign(b.x-a.x);
-      points=[[a.x+direction*a.w/2,a.y],[b.x-direction*b.w/2,b.y]];
-      position=[(points[0][0]+points[1][0])/2,a.y-10];
-    } else if(a.column===b.column&&b.row===a.row+1) {
-      points=[[a.x,a.y+a.h/2],[b.x,b.y-b.h/2]];
-      position=[a.x+12,(points[0][1]+points[1][1])/2+4,'start'];
-    } else if(a.row===b.row) {
-      const band=a.rowTop-24;
-      points=[[a.x,a.y-a.h/2],[a.x,band],[b.x,band],[b.x,b.y-b.h/2]];
-      position=[a.x+12,a.y-a.h/2-10,'start'];
-    } else {
-      const low=Math.min(a.row,b.row),high=Math.max(a.row,b.row);
-      const side=b.row<a.row?'right':label==='No'?'left':(from+to)%2?'right':'left';
-      let lane=lanes[side].findIndex(intervals=>intervals.every(([l,h])=>high<l||low>h));
-      if(lane<0){lane=lanes[side].length;lanes[side].push([]);}lanes[side][lane].push([low,high]);
-      const outer=side==='left'?16+lane*10:width-16-lane*10;
-      const direction=b.row>=a.row?1:-1;
-      const sy=a.y+direction*a.h/2,ty=b.y-direction*b.h/2;
-      const sourceBand=direction>0?a.rowTop+a.rowHeight+24:a.rowTop-24;
-      const targetBand=direction>0?b.rowTop-24:b.rowTop+b.rowHeight+24;
-      points=[[a.x,sy],[a.x,sourceBand],[outer,sourceBand],[outer,targetBand],[b.x,targetBand],[b.x,ty]];
-      position=[a.x+12,sy+direction*16,'start'];
-    }
-    wires.push(`<g data-from="${from}" data-to="${to}"${label?` data-branch="${xml(label)}"`:''}>${edgeShape(points,label,position,palette.canvas)}</g>`);
-  }
-  const description=`${model.title}. ${model.labels.map(label=>label.replaceAll('\n',', ')).join('; ')}. Connections: ${model.edges.map(([from,to,label])=>`${model.labels[from].replaceAll('\n',', ')} to ${model.labels[to].replaceAll('\n',', ')}${label?' ('+label+')':''}`).join('; ')}.`;
-  return head(model.title,width,height,description)+wires.join('')+[...placed.values()].map(nodeShape).join('')+'</svg>\n';
+    const create=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
+    const title=create('title');title.id='flow-title-'+slug;title.textContent=model.title;
+    const desc=create('desc');desc.id='flow-description-'+slug;
+    desc.textContent='Original task-flow layout and wiring, styled for Moti-Pulse. '+model.labels.map(label=>label.replaceAll('\n',', ')).join('; ')+'.';
+    const style=create('style');
+    style.textContent='.flow-node{fill:'+palette.paper+';stroke:'+palette.blue+';stroke-width:.75;fill-opacity:1}.flow-screen{fill:'+palette.lavender+'}.flow-decision{fill:'+palette.canvas+';stroke:'+palette.strong+'}.flow-terminal{fill:'+palette.strong+';stroke:'+palette.strong+'}.flow-wire{fill:'+palette.strong+';stroke:'+palette.strong+';stroke-width:.35;stroke-linecap:round;stroke-linejoin:round}.flow-label{fill:'+palette.ink+';fill-opacity:1}.flow-terminal-label{fill:'+palette.paper+'}';
+    svg.setAttribute('role','img');svg.setAttribute('aria-labelledby',title.id+' '+desc.id);
+    svg.prepend(title,desc,style);
+    return svg.outerHTML+'\n';
+  },{slug,model,palette});
 }
 
-const architecture=[['Dashboard',['Calendar','Today Tasks']],['Life mission',['My Mission','Tips to create Life Mission','Importance of Life Mission']],['Goal',['Goal & Tasks','Life mission']],['Timer',['Pomodoro','Report']]];
-function architectureSvg(lines) {
-  const canvas=palette.lavender,width=1120;
-  const nodes=[],wires=[];
-  const app={id:'app',type:'terminal',x:560,y:48,w:180,h:56,lines:['App']};
-  nodes.push(nodeShape(app));
-  architecture.forEach(([label,children],index)=>{
-    const x=164+index*264;
-    const top=152;
-    const header={id:`module-${index}`,type:'screen',x,y:top+28,w:232,h:56,lines:[label]};
-    nodes.push(nodeShape(header));
-    wires.push(edgeShape([[560,76],[560,112],[x,112],[x,top]],null,null,canvas,false));
-    children.forEach((child,childIndex)=>{
-      const cx=x,cy=top+112+childIndex*80;
-      const leaf={id:`leaf-${index}-${childIndex}`,type:'action',x:cx,y:cy,w:232,h:64,lines:lines[index][childIndex]};
-      nodes.push(nodeShape(leaf));
-      const spine=x-132;
-      wires.push(edgeShape([[x,top+56],[x,top+72],[spine,top+72],[spine,cy],[cx-leaf.w/2,cy]],null,null,canvas,false));
-    });
-  });
-  const height=496;
-  return head('Information Architecture',width,height,'App. '+architecture.map(([name,children])=>`${name}: ${children.join(', ')}`).join('. '),canvas)+wires.join('')+nodes.join('')+'</svg>\n';
+async function restyleArchitecture(page) {
+  // This source export freezes the original HTML graph before its redesign.
+  const original=fs.readFileSync(path.join(root,'projects/moti-pulse/diagrams/information-architecture-source.svg'),'utf8');
+  await page.setContent(original);
+  return page.evaluate(palette=>{
+    const svg=document.querySelector('svg');
+    if(svg.querySelectorAll('[data-node]').length!==14)throw Error('Architecture source inventory changed.');
+    const style=document.createElementNS('http://www.w3.org/2000/svg','style');
+    style.textContent='.architecture-node{fill:'+palette.paper+';stroke:'+palette.blue+';stroke-width:.75}.architecture-module{fill:'+palette.lavender+'}.architecture-root{fill:'+palette.strong+';stroke:'+palette.strong+'}.architecture-label{fill:'+palette.ink+'}.architecture-root-label{fill:'+palette.paper+'}.architecture-wire{fill:'+palette.strong+';stroke:'+palette.strong+';stroke-width:.35}.architecture-arrow{stroke:'+palette.strong+';stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}';
+    svg.append(style);
+    return svg.outerHTML+'\n';
+  },palette);
 }
 
 (async()=>{
@@ -148,33 +67,21 @@ function architectureSvg(lines) {
   const browser=await puppeteer.launch({executablePath:chrome,headless:true,pipe:true,args:['--no-sandbox']});
   try {
     const page=await browser.newPage();
-    await page.setContent(`<style>@font-face{font-family:Inter;src:url(data:font/woff2;base64,${font}) format('woff2');font-weight:100 900}</style>`);
-    await page.evaluate(()=>document.fonts.load('450 16px Inter'));
-    const wrapped=await page.evaluate(({models,architecture})=>{
-      const context=document.createElement('canvas').getContext('2d');context.font='450 16px Inter';
-      function wrap(text,width){
-        return text.split('\n').flatMap(paragraph=>{
-          const lines=[];let current='';
-          for(const word of paragraph.split(' ')){const next=current?current+' '+word:word;if(current&&context.measureText(next).width>width){lines.push(current);current=word;}else current=next;}
-          if(current)lines.push(current);return lines;
-        });
-      }
-      return{flows:Object.fromEntries(Object.entries(models).map(([slug,model])=>[slug,model.labels.map((label,id)=>wrap(label,model.types[id]==='decision'?124:model.types[id]==='terminal'?116:168))])),architecture:architecture.map(([,children])=>children.map(label=>wrap(label,192)))};
-    },{models,architecture});
     fs.mkdirSync(output,{recursive:true});
     for(const [slug,model] of Object.entries(models)){
-      if(model.labels.length!==model.types.length||new Set(model.order).size!==model.labels.length)throw Error(`Invalid node inventory: ${slug}`);
-      fs.writeFileSync(path.join(output,`flow-${slug}.svg`),flowSvg(slug,model,wrapped.flows[slug]));
+      if(model.labels.length!==model.types.length)throw Error(`Invalid node inventory: ${slug}`);
+      fs.writeFileSync(path.join(output,`flow-${slug}.svg`),await restyleFlow(page,slug,model));
     }
-    fs.writeFileSync(path.join(output,'information-architecture.svg'),architectureSvg(wrapped.architecture));
+    fs.writeFileSync(path.join(output,'information-architecture.svg'),await restyleArchitecture(page));
     const pageFile=path.join(root,'projects/moti-pulse/index.html');
     const html=fs.readFileSync(pageFile,'utf8');
     const updated=html.replace(/<(?:source|img)\b[^>]*(?:srcset|src)="img\/diagrams\/([\w-]+)\.svg"[^>]*>/g,(tag,name)=>{
       const svg=fs.readFileSync(path.join(output,name+'.svg'),'utf8');
-      const [,width,height]=svg.match(/^<svg[^>]*width="(\d+)" height="(\d+)"/);
-      return tag.replace(/\bwidth="\d+"/,`width="${width}"`).replace(/\bheight="\d+"/,`height="${height}"`);
+      const width=Math.round(Number(svg.match(/\bwidth="([\d.]+)"/)[1]));
+      const height=Math.round(Number(svg.match(/\bheight="([\d.]+)"/)[1]));
+      return tag.replace(/\bwidth="[\d.]+"/,`width="${width}"`).replace(/\bheight="[\d.]+"/,`height="${height}"`);
     });
     if(updated!==html)fs.writeFileSync(pageFile,updated);
-    console.log('Generated 7 horizontal, self-contained SVG diagrams with embedded Inter.');
+    console.log('Generated seven diagram style variants with source positions preserved.');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exit(1);});

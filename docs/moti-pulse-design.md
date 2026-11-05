@@ -29,9 +29,13 @@ their exact evidence rather than approximating unlabelled bar counts. The
 three motivation/solution pairs remain paired and in their source order.
 
 The owner requested new Information Architecture and Task Flow imagery in
-the Moti theme. Both sections now use generated, self-contained SVGs with
-compact horizontal layouts at every width. The original hierarchy, labels,
-branches and loops remain; source SVGs are retained. The architecture also
+the Moti theme. Both sections use self-contained SVGs that fit the available
+width. Task flows preserve the exact source canvas, element positions,
+glyph outlines and wiring; only colors and outlines change. Never reflow or
+reroute them. Source SVGs are retained. Architecture likewise keeps its
+original node positions, sibling feature rows and shared branch wiring,
+with paint changes only. Its source is a fixed SVG export of the original
+HTML graph. The architecture also
 keeps its exact HTML text alternative. See `moti-diagram-redesign.md` for the
 graph model, authoring command and validation.
 
@@ -61,6 +65,10 @@ reverses the arrow; the button keeps its neutral fill, border and icon color,
 with no selected appearance. Its right edge and arrow center stay fixed
 through the existing drawer animation. Keyboard focus remains visible, and
 the accessible name changes between “Open Contents” and “Close Contents”.
+The panel uses 12px outer padding and group spacing, with more compact widths
+that still leave room around its centered labels. Short screens retain the
+wider multi-column treatment so every section remains visible without an
+internal scrollbar.
 Verified the label, neutral open appearance, stationary arrow and viewport
 position at 320–1920px, including 320×240 and 640×240 windows. Keyboard,
 reduced motion, rapid reversals and native no-JavaScript disclosure passed.
@@ -68,13 +76,14 @@ reduced motion, rapid reversals and native no-JavaScript disclosure passed.
 ## Approved motion
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
-- Reading groups enter once over 300ms, with each heading followed by its
-  introduction 100ms later. Long motivation/persona content uses its existing
-  semantic blocks. Already-viewed text stays visible after preference changes;
-  keyboard focus reveals pending content immediately. Original diagrams and
-  image collections remain directly readable. Chart titles enter before the
-  chart sequence; pies wait until 85% visible and bars retain their existing
-  grid-then-columns sequence. See `moti-motion-review.md` for verification.
+- Each reading section enters once with a single 300ms opacity fade on its
+  complete content wrapper. Headings, introductions, prose, static artwork
+  and controls share the same entrance; no independently delayed child fades.
+  Charts and Hi-Fi autoplay wait for that section to finish appearing and for
+  their own media to be visible. Pies still sweep before sequential legends;
+  bars fade their grid before staggered columns. Already-viewed sections stay
+  visible after preference changes, and keyboard focus immediately reveals
+  the complete section. See `moti-motion-review.md` for verification.
   Keep the source connections and order intact.
 - Hi-Fi presents the eight approved original-recording loops.
   The owner explicitly requested feature instructions;

@@ -15,26 +15,49 @@
   let contentsHasAppeared = false;
   const revealedPies = new WeakSet();
   const revealedBars = new WeakSet();
-  const revealedEntrances = new WeakSet();
-  const entranceGroups = new Map();
+  const revealedSections = new WeakSet();
+  const sectionEntrances = new Map();
   let entrancesInitialized = false;
   let barsInitialized = false;
   let piesInitialized = false;
   let pieObserver;
   let barObserver;
 
-  function revealEntrance(root, immediate = false) {
-    const animations = entranceGroups.get(root);
-    if (!animations) return;
-    revealedEntrances.add(root);
-    revealObserver?.unobserve(root);
-    const heading = root.closest('.source-section')?.querySelector('.source-title');
-    const headingAnimation = root !== heading && entranceGroups.get(heading)?.[0];
-    const lead = headingAnimation ? Math.max(0, 200 - (headingAnimation.currentTime || 0)) : 0;
-    if (!immediate && lead) animations.forEach(animation => {
-      animation.effect.updateTiming({ delay: animation.effect.getTiming().delay + lead });
-    });
-    animations.forEach(animation => immediate ? animation.finish() : animation.play());
+  function sectionIsReady(element) {
+    const record = sectionEntrances.get(element.closest('.source-section, .brief'));
+    return !record || record.state === 'ready';
+  }
+
+  function finishSection(record) {
+    if (record.state === 'ready') return;
+    record.state = 'ready';
+    record.animation = null;
+    revealObserver?.unobserve(record.root);
+    // A chart may have qualified while its section was fading. Recheck its
+    // current position now rather than waiting for another observer threshold.
+    record.section.querySelectorAll('.bar-pending').forEach(revealBar);
+    record.section.querySelectorAll('.pie-pending').forEach(revealPie);
+    document.dispatchEvent(new CustomEvent('moti:section-ready'));
+  }
+
+  function revealSection(record, immediate = false) {
+    revealedSections.add(record.section);
+    revealObserver?.unobserve(record.root);
+    if (record.state === 'ready') return;
+    if (!record.animation || immediate) {
+      record.animation?.finish();
+      finishSection(record);
+    } else if (record.state === 'pending') {
+      record.state = 'revealing';
+      record.animation.play();
+    }
+  }
+
+  function chartIsVisible(target, fraction, viewportFraction) {
+    const bounds = target.getBoundingClientRect();
+    const visible = Math.min(bounds.bottom, window.innerHeight - 24) - Math.max(bounds.top, 0);
+    return bounds.width > 0 && bounds.height > 0 && bounds.right > 0 && bounds.left < window.innerWidth
+      && visible >= Math.min(bounds.height * fraction, window.innerHeight * viewportFraction);
   }
 
   function observeBars() {
@@ -44,28 +67,7 @@
     barsInitialized = true;
     if (!('IntersectionObserver' in window) || typeof Element.prototype.animate !== 'function') return;
     barObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const target = entry.target;
-        const requiredHeight = Math.min(entry.boundingClientRect.height * .95, window.innerHeight * .75);
-        if (!entry.isIntersecting || revealedBars.has(target)) return;
-        if (!reducedMotion.matches && entry.intersectionRect.height < requiredHeight) return;
-        revealedBars.add(target);
-        barObserver.unobserve(target);
-        target.classList.remove('bar-pending');
-        if (reducedMotion.matches) return;
-        revealEntrance(target.closest('figure')?.querySelector('.survey-bar-title'), true);
-        animate(target.querySelector('.bar-grid'), [
-          { opacity: 0 }, { opacity: 1 },
-        ], 100, 550);
-        const offsets = [160, 0, 300, 80];
-        const chartIndex = Array.from(document.querySelectorAll('.bar-chart')).indexOf(target);
-        target.querySelectorAll('.bar-column').forEach((column, index) => {
-          animate(column, [
-            { transform: 'scaleY(0)' },
-            { transform: 'scaleY(1)' },
-          ], 700 + offsets[(index + chartIndex) % offsets.length], 900 + index * 50);
-        });
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) revealBar(entry.target); });
     }, { threshold: [0, .25, .5, .75, .95, 1], rootMargin: '0px 0px -24px 0px' });
     document.querySelectorAll('.bar-chart').forEach(img => {
       if (!revealedBars.has(img)) {
@@ -80,6 +82,26 @@
     });
   }
 
+  function revealBar(target) {
+    if (revealedBars.has(target) || !sectionIsReady(target)) return;
+    if (!reducedMotion.matches && !chartIsVisible(target, .95, .75)) return;
+    revealedBars.add(target);
+    barObserver.unobserve(target);
+    target.classList.remove('bar-pending');
+    if (reducedMotion.matches) return;
+    animate(target.querySelector('.bar-grid'), [
+      { opacity: 0 }, { opacity: 1 },
+    ], 100, 550);
+    const offsets = [160, 0, 300, 80];
+    const chartIndex = Array.from(document.querySelectorAll('.bar-chart')).indexOf(target);
+    target.querySelectorAll('.bar-column').forEach((column, index) => {
+      animate(column, [
+        { transform: 'scaleY(0)' },
+        { transform: 'scaleY(1)' },
+      ], 700 + offsets[(index + chartIndex) % offsets.length], 900 + index * 50);
+    });
+  }
+
   function observePies() {
     pieObserver?.disconnect();
     document.querySelectorAll('.pie-pending').forEach(chart => chart.classList.remove('pie-pending'));
@@ -87,56 +109,7 @@
     piesInitialized = true;
     if (!('IntersectionObserver' in window) || !CSS.registerProperty || typeof Element.prototype.animate !== 'function') return;
     pieObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const target = entry.target;
-        const requiredHeight = Math.min(entry.boundingClientRect.height * .85, window.innerHeight * .65);
-        if (!entry.isIntersecting || revealedPies.has(target)) return;
-        if (!reducedMotion.matches && entry.intersectionRect.height < requiredHeight) return;
-        revealedPies.add(target);
-        pieObserver.unobserve(target);
-        target.classList.remove('pie-pending');
-        if (reducedMotion.matches) return;
-        revealEntrance(target.closest('figure')?.querySelector('.demographic-title'), true);
-        const isAgeChart = target.getAttribute('width') === '312';
-        target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
-        target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
-        target.classList.add('pie-reveal');
-        const legendAnimations = [];
-        const legendLayers = Array.from({ length: 6 }, (_, index) => {
-          const layer = document.createElement('span');
-          layer.className = 'pie-legend-reveal';
-          layer.setAttribute('aria-hidden', 'true');
-          layer.style.backgroundImage = `url("${target.currentSrc || target.src}")`;
-          const top = (8 + index * 31.1593) / 203 * 100;
-          const bottom = 100 - (39.1593 + index * 31.1593) / 203 * 100;
-          const left = isAgeChart ? 66 : 57;
-          layer.style.clipPath = `inset(${top}% 0 ${bottom}% ${left}%)`;
-          layer.style.transformOrigin = `${left}% ${top + 8}%`;
-          target.parentElement.append(layer);
-          const pop = layer.animate([
-            { opacity: 0, transform: 'scale(.92)', offset: 0 },
-            { opacity: 1, transform: 'scale(1.06)', offset: .6 },
-            { opacity: 1, transform: 'scale(1)', offset: 1 },
-          ], { duration: 400, delay: 1550 + index * 120, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
-          legendAnimations.push(pop);
-          runningAnimations.add(pop);
-          const release = () => runningAnimations.delete(pop);
-          pop.addEventListener('finish', release, { once: true });
-          pop.addEventListener('cancel', release, { once: true });
-          return layer;
-        });
-        const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '361deg' }], {
-          duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
-        });
-        runningAnimations.add(animation);
-        const finish = () => {
-          runningAnimations.delete(animation);
-          target.classList.remove('pie-reveal');
-          legendLayers.forEach(layer => layer.remove());
-          animation.cancel();
-        };
-        Promise.all([animation, ...legendAnimations].map(item => item.finished)).then(finish, finish);
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) revealPie(entry.target); });
     }, { threshold: [0, .25, .5, .65, .85, 1], rootMargin: '0px 0px -24px 0px' });
     document.querySelectorAll('.demographic-charts img').forEach(img => {
       if (!revealedPies.has(img)) {
@@ -149,6 +122,54 @@
         pieObserver.observe(img);
       }
     });
+  }
+
+  function revealPie(target) {
+    if (revealedPies.has(target) || !sectionIsReady(target)) return;
+    if (!reducedMotion.matches && !chartIsVisible(target, .85, .65)) return;
+    revealedPies.add(target);
+    pieObserver.unobserve(target);
+    target.classList.remove('pie-pending');
+    if (reducedMotion.matches) return;
+    const isAgeChart = target.getAttribute('width') === '312';
+    target.style.setProperty('--pie-center', isAgeChart ? '32.69%' : '28.19%');
+    target.style.setProperty('--pie-label-start', isAgeChart ? '66%' : '57%');
+    target.classList.add('pie-reveal');
+    const legendAnimations = [];
+    const legendLayers = Array.from({ length: 6 }, (_, index) => {
+      const layer = document.createElement('span');
+      layer.className = 'pie-legend-reveal';
+      layer.setAttribute('aria-hidden', 'true');
+      layer.style.backgroundImage = `url("${target.currentSrc || target.src}")`;
+      const top = (8 + index * 31.1593) / 203 * 100;
+      const bottom = 100 - (39.1593 + index * 31.1593) / 203 * 100;
+      const left = isAgeChart ? 66 : 57;
+      layer.style.clipPath = `inset(${top}% 0 ${bottom}% ${left}%)`;
+      layer.style.transformOrigin = `${left}% ${top + 8}%`;
+      target.parentElement.append(layer);
+      const pop = layer.animate([
+        { opacity: 0, transform: 'scale(.92)', offset: 0 },
+        { opacity: 1, transform: 'scale(1.06)', offset: .6 },
+        { opacity: 1, transform: 'scale(1)', offset: 1 },
+      ], { duration: 400, delay: 1550 + index * 120, fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' });
+      legendAnimations.push(pop);
+      runningAnimations.add(pop);
+      const release = () => runningAnimations.delete(pop);
+      pop.addEventListener('finish', release, { once: true });
+      pop.addEventListener('cancel', release, { once: true });
+      return layer;
+    });
+    const animation = target.animate([{ '--pie-sweep': '0deg' }, { '--pie-sweep': '361deg' }], {
+      duration: 1500, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
+    });
+    runningAnimations.add(animation);
+    const finish = () => {
+      runningAnimations.delete(animation);
+      target.classList.remove('pie-reveal');
+      legendLayers.forEach(layer => layer.remove());
+      animation.cancel();
+    };
+    Promise.all([animation, ...legendAnimations].map(item => item.finished)).then(finish, finish);
   }
 
   // Web Animations leave the underlying content visible if scripting is unavailable.
@@ -194,74 +215,63 @@
 
   function observeReveals() {
     revealObserver?.disconnect();
-    entranceGroups.forEach(animations => animations.forEach(animation => animation.cancel()));
-    entranceGroups.clear();
     const preserveVisible = entrancesInitialized;
     entrancesInitialized = true;
-    if (!('IntersectionObserver' in window)) return;
-    revealObserver = new IntersectionObserver(entries => {
+    document.querySelectorAll('.source-section, .brief').forEach(section => {
+      if (!sectionEntrances.has(section)) sectionEntrances.set(section, {
+        section, root: section.querySelector(':scope > .wrap') || section, state: 'ready', animation: null,
+      });
+    });
+    const canAnimate = 'IntersectionObserver' in window && typeof Element.prototype.animate === 'function';
+    if (canAnimate) revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        if (reducedMotion.matches) {
-          revealedEntrances.add(entry.target);
-          revealObserver.unobserve(entry.target);
-        } else revealEntrance(entry.target);
+        const section = entry.target.closest('.source-section, .brief');
+        revealSection(sectionEntrances.get(section));
       });
     }, { threshold: 0, rootMargin: '0px 0px -48px 0px' });
 
-    function prepare(root, elements = [root]) {
-      if (revealedEntrances.has(root)) return;
-      const bounds = root.getBoundingClientRect();
-      // Re-enabling motion must not hide text already on screen or above it.
-      if (bounds.bottom <= 0 || (preserveVisible && bounds.top < window.innerHeight)) {
-        revealedEntrances.add(root);
+    sectionEntrances.forEach(record => {
+      const previous = record.animation;
+      record.animation = null;
+      previous?.cancel();
+      const bounds = record.root.getBoundingClientRect();
+      // A preference change never re-hides content already read or on screen.
+      if (revealedSections.has(record.section) || bounds.bottom <= 0
+          || (preserveVisible && bounds.top < window.innerHeight)) {
+        revealedSections.add(record.section);
+        record.state = 'ready';
         return;
       }
-      if (reducedMotion.matches) { revealObserver.observe(root); return; }
-      const animations = elements.map((element, index) => {
-        const frames = [
-          { opacity: 0, transform: 'translateY(12px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ];
-        if (element.getBoundingClientRect().height < 320 && !element.querySelector('img, svg')) {
-          frames[0].filter = 'blur(4px)';
-          frames[1].filter = 'blur(0)';
-        }
-        const animation = animate(element, frames, index * 100, 300, 'ease-out');
-        if (animation) { animation.pause(); animation.currentTime = 0; }
-        return animation;
-      }).filter(Boolean);
-      if (!animations.length) return;
-      entranceGroups.set(root, animations);
-      Promise.allSettled(animations.map(animation => animation.finished)).then(() => {
-        if (entranceGroups.get(root) === animations) entranceGroups.delete(root);
-      });
-      revealObserver.observe(root);
-    }
-
-    document.querySelectorAll('.source-title').forEach(title => {
-      const intro = title.nextElementSibling;
-      const hasIntro = intro?.matches('p, ul, .hifi-intro-copy');
-      prepare(title, hasIntro ? [title, intro] : [title]);
+      record.state = 'ready';
+      if (!canAnimate) return;
+      if (!reducedMotion.matches) {
+        const animation = animate(record.root, [{ opacity: 0 }, { opacity: 1 }], 0, 300, 'ease-out');
+        animation.pause();
+        animation.currentTime = 0;
+        record.animation = animation;
+        record.state = 'pending';
+        animation.finished.then(() => {
+          if (record.animation === animation) finishSection(record);
+        }).catch(() => {});
+      }
+      revealObserver.observe(record.root);
     });
-    document.querySelectorAll('.motivation-card > div, .segments article, .persona-identity, .persona-description > *, .persona-bottom > div, .part, .demographic-title, .survey-bar-title').forEach(element => prepare(element));
-    document.querySelectorAll('.hifi-copy').forEach(copy => prepare(copy, Array.from(copy.children)));
   }
 
   document.addEventListener('focusin', event => {
-    entranceGroups.forEach((animations, root) => {
-      if (animations.some(animation => animation.effect.target.contains(event.target))) revealEntrance(root, true);
-    });
+    const record = sectionEntrances.get(event.target.closest('.source-section, .brief'));
+    if (record) revealSection(record, true);
   });
 
   function updateMotionPreference() {
-    observePies();
-    observeBars();
     if (reducedMotion.matches) {
       runningAnimations.forEach(animation => animation.cancel());
       runningAnimations.clear();
     }
     observeReveals();
+    observePies();
+    observeBars();
     updateReadingPosition();
   }
 
@@ -389,6 +399,7 @@
       let candidate = null;
       let nearest = Infinity;
       for (const video of videos) {
+        if (!sectionIsReady(video)) continue;
         const rect = video.getBoundingClientRect();
         const visible = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
         const minimum = Math.min(rect.height * .6, window.innerHeight * .6);
@@ -468,6 +479,7 @@
     window.addEventListener('resize', schedule);
     document.addEventListener('visibilitychange', update);
     document.addEventListener('fullscreenchange', schedule);
+    document.addEventListener('moti:section-ready', schedule);
     reducedMotion.addEventListener('change', motionChanged);
     motionChanged();
   }
@@ -557,9 +569,9 @@
   }
 
   initializeHiFiControls();
+  observeReveals();
   initializeHiFiVideos();
   updateReadingPosition();
   observePies();
   observeBars();
-  observeReveals();
 })();

@@ -1,104 +1,82 @@
-# Moti-Pulse scroll motion review
+# Moti-Pulse section motion
 
-Scope: the reading sequence from the hero to the footer, chart entrances,
-contents disclosure and Hi-Fi playback. Static HTML/CSS/Web Animations;
-AGENTS.md, DESIGN.md and the approved Moti design notes govern the work.
-Source wording, narrative order, assets and recorded video content stay intact.
+Scope: scroll entrances for the project brief and eleven case-study sections,
+plus their chart playback and Hi-Fi autoplay. Preserve source content, section
+order, artwork geometry, video recordings, layout, hero and Contents behavior.
 
-## Observed problems
+## Problem and contract
 
-- Chart titles wait at opacity zero for their chart's visibility threshold.
-  At 360×740, a visible bar-title area remains blank while only the chart's
-  first 120px are in view (`moti.js`, prepareChartTitle/observeBars).
-- Generic entrances start after an element becomes visible. A 12% threshold
-  delays the start on tall motivation/persona blocks; whole blocks then move
-  20px. Introductions are already static while their section title fades in.
-- Generic entrances have no completed-element registry. After a completed
-  heading entrance, switching reduced motion on then off triggers it again
-  (browser probe recorded two starts for the same Problems heading).
-- Pie sweeps start with only 15% of the image visible, spending much of the
-  sequence before the visitor sees the chart.
-- The shared shell reserves sticky-header scroll padding even though this
-  page's header is static. Native centering in a 640×240 window leaves an
-  otherwise small pie below its required visible area. Use this page's 24px
-  reading offset instead of the shell's header allowance.
+Independent entrance triggers made lower content appear before earlier text.
+The browser regression reproduced Problems with heading opacity 0,
+introduction opacity 0 and pain-point content opacity 1 in the same frame.
+Separately triggered charts and videos could begin while their surrounding
+section was still entering.
 
-## Fix and acceptance slices
+The owner's latest instruction replaces the former heading/introduction
+stagger with two stages:
 
-1. Reading entrances: prepare semantic groups before they enter; heading then
-   its existing introduction 100ms later. Use 300ms ease-out, 12px movement
-   and 4px blur for short text. Split long columns/personas into their existing
-   semantic blocks. Keep controls, diagrams and image collections directly
-   usable. Remember viewed groups; finish immediately on keyboard focus.
-2. Charts: show titles as they enter the reading area, before chart playback.
-   Keep the bar sequence (axes/grid fade, then staggered columns). Wait for
-   85% of each pie (with an allowance for short windows), then sweep followed
-   by the existing sequential legend pops. Keep pending pies from briefly
-   showing the completed image first. Remember chart visits in reduced motion
-   as well as normal motion. Each sequence runs once.
-3. Verification: walk down at 360 and 1280px, including a short window, rapid
-   jumps, reverse scrolling and preference changes. Check 320/360/768/1280/1920
-   reflow, keyboard focus, no JavaScript, missing animation APIs and Hi-Fi
-   playback. Reduced motion shows content immediately and stops autoplay.
-   Restore visible content if effects are canceled; never re-hide a group
-   already visible when motion is enabled again.
+1. Fade the section's complete content in together over 300ms, ease-out.
+   Headings, introduction, prose, static artwork, card surfaces and controls
+   share one opacity timeline. No separate delayed child entrances, blur or
+   movement. Leave layout geometry unchanged.
+2. Once the section is fully visible, allow its existing chart animations and
+   Hi-Fi autoplay when the media also meets its own visibility requirement.
+   Recheck current visibility at section completion; a stale earlier scroll
+   position must not trigger media that the visitor has already passed.
 
-Preserve the established hero entrance, contents movement, original chart
-values and original video playback contract. This review does not rewrite
-the case study or redesign its layout.
+Long sections do not wait for their entire height to fit the viewport. Their
+content wrapper starts as its top enters the reading area. Later charts and
+videos still wait until their own position qualifies. Diagrams and sketches
+share their section's entrance and retain their exact layout.
 
-## Scope and coverage
+## Implementation
 
-This covers animation and the reading flow, not a new layout or copy review.
+`moti.js` owns one record per section: pending, revealing or ready. The brief
+uses its own element; case-study sections use their existing `.wrap`.
+Charts consult that record before starting. Section completion rechecks any
+pending charts without requiring another scroll. The video controller also
+rechecks on section completion and retains its nearest-visible-demo policy.
 
-| Domain | Evidence inspected | Result |
-| --- | --- | --- |
-| Accessibility | Keyboard focus during waiting/running effects; accessibility-tree control names; initial/live reduced motion; no-JS and missing-API fallbacks | Fixed focus visibility; checks pass |
-| Layout | Top-to-bottom/reverse scroll at 360/1280px; reflow at 320/360/768/1280/1920px; 640×240 short-window centering | Fixed inherited header offset; checks pass |
-| Writing | Original HTML unchanged; existing source links, control labels and feature instructions retained | Clear within this flow |
-| Typography | Self-hosted Inter; settled chart titles and introductions; no persistent blur, movement or hidden text after effects | Clear within this flow |
-| Colors | Computed settled foreground/background pairs for prose, titles and video time controls | 4.67:1–15.21:1; tokens unchanged |
-| UI | Prepared entrances, 100ms hierarchy, one-time registry, chart thresholds, fast jumps, hover and 10% playback-speed inspection | Fixed sequencing findings; checks pass |
+- Pie: 85% visible, with the existing short-viewport allowance; sweep first,
+  then the existing six legend pops from top to bottom.
+- Bar: 95% visible, with the short-viewport allowance; axes/grid fade, then
+  columns rise in the established staggered order.
+- Hi-Fi: only the visible demo nearest the viewport center autoplays; other
+  demos pause. Manual pause, seeking, fullscreen and native fallback remain.
+- Each section and chart plays once. Returning upward does not re-hide it.
+- Keyboard focus immediately completes its section, including a running
+  entrance, so focused controls and links remain visible.
+- Reduced motion cancels active effects, shows content and stops autoplay.
+  Restoring motion does not re-hide visited or currently visible sections.
+- No JavaScript or missing animation/observer APIs leaves content readable.
 
-## Findings and fixes
-
-All findings below are resolved in the implementation.
-
-| Severity | Domain | Location | Before | After | Why |
-| --- | --- | --- | --- | --- | --- |
-| MEDIUM | UI | `projects/moti-pulse/moti.js:195` | Headings fade after surrounding static text is visible; tall blocks begin late | Prepare semantic entrances before entry; heading/intro/content start at 0/100/200ms when arriving together | Reading order stays clear without a visible-to-hidden flash |
-| MEDIUM | UI | `projects/moti-pulse/moti.js:26` | Visible chart-title area stays blank until the chart qualifies | Title enters independently; a rapid chart jump finishes the title before drawing | Labels are legible before the chart needs them |
-| MEDIUM | UI | `projects/moti-pulse/moti.js:205` | Preference changes replay old headings; reduced-motion visits are not remembered | Remember groups and charts during both preference states; preserve already-visible content | Previously read text and charts stay readable |
-| MEDIUM | UI | `projects/moti-pulse/moti.js:83` | Pie sweep starts at 15% visibility; complete image can appear before its sweep | Prepare the pending state and wait for 85%, with a short-window allowance | The visitor sees one coherent sweep and subsequent legend sequence |
-| MEDIUM | Accessibility | `projects/moti-pulse/moti.js:251` | A link can receive focus during its transparent/delayed entrance | Finish both waiting and active groups on focus | Keyboard focus remains visible and the link immediately readable |
-| MEDIUM | Layout | `projects/moti-pulse/moti.css:20` | Static page inherits a sticky-header scroll allowance | Use the page's 24px reading offset | Short-window centering can reach the chart trigger |
-| MEDIUM | UI | `projects/moti-pulse/moti.css:544` | Hover styling can latch after touch input | Gate hover-only rules on hover-capable pointers; preserve open/selected styles | Touch feedback does not resemble a stuck selection |
+The state is local to the existing static page script. No runtime dependency,
+framework, markup wrapper or external service was added.
 
 ## Verification
 
-Local browser probes (Chrome, using the existing global puppeteer-core):
+The targeted browser regression is `.cache/check-section-order.cjs`: it
+failed before the fix with `{heading:0,intro:0,body:1}` and passed after the fix
+with equal opacity for all three elements.
 
-- `node .cache/check-moti-scroll-sequence.cjs`: passed heading/introduction
-  timings, title-before-chart, one-time playback, focus during both pending
-  and active animation, reduced-motion visits, missing APIs, no-JS and full
-  downward/upward scroll at 360/1280px. All supported widths reflowed.
-- `node .cache/check-moti-motion-access.cjs`: passed 10% animation speed
-  inspection, named controls in the accessibility tree, computed contrast,
-  640×240 chart triggers and touch-hover gating.
-- Existing `check-bar-columns.cjs` and `check-pie-motion.cjs`: original nine
-  bar SVG values and 36 columns unchanged; grid precedes column staggering;
-  pie masks/legends clean up and motion cancellation leaves content visible.
-- Existing Hi-Fi gallery/presentation checks: single active demo, manual
-  pause, sibling selection, seeking, sound, fullscreen/focus return and native
-  fallback passed. Hero and contents movement retain their existing timelines.
-- JavaScript syntax and `git diff --check` passed. DESIGN.md validation:
-  zero errors and 19 existing warnings. No root typecheck/test/build pipeline
-  exists. The probe scripts and screenshots are local review artifacts.
-- Final code reviews: Standards — zero remaining findings; Spec — zero
-  remaining findings. Focus lifetime, reduced-motion visit history and rapid
-  jumps were corrected and rechecked before the final review.
+The staged browser probe `.cache/check-section-motion-stages.cjs` checks
+whole-section opacity across nine different content layouts, holds parent
+entrances halfway to test chart/video gating, rechecks stale visibility,
+and exercises keyboard focus, preference changes, missing APIs, no JavaScript,
+downward/reverse scrolling and responsive widths. The probe and captures are
+local review artifacts, using the existing Chrome/puppeteer-core installation.
 
-Not verified: native screen-reader speech, Firefox and Safari. Original
-artwork colors and unrelated page flows were not audited for contrast.
+Both targeted probes passed after the fix. The staged probe verified matching
+opacity in nine section layouts, charts/video waiting for a paused parent,
+immediate playback eligibility after completion, stale-position rejection,
+focus and preference handling, missing APIs, no JavaScript, full down/up
+scrolling at 360/1280px and reflow at 320/360/768/1280/1920px. It recorded no
+script errors. Existing bar-column, pie-motion and Hi-Fi gallery playback
+checks also passed, retaining all nine source charts, 36 columns and manual
+video pause/sibling behavior.
+Separate Standards and Spec reviews reported no actionable findings.
 
-Approve for the inspected motion and reading flow; no unresolved findings.
+JavaScript syntax and `git diff --check` are the repository's available code
+checks; no root typecheck/test/build pipeline is configured. DESIGN.md lint
+remains unavailable because automatic approval review hit the account usage
+limit. Native screen-reader speech and Firefox/Safari are not verified.

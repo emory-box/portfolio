@@ -1,0 +1,43 @@
+{
+  "blender": "5.2.3 LTS",
+  "seed": 23,
+  "objects": 435,
+  "mesh_triangles_before_modifiers": 7144,
+  "resolution": [
+    1440,
+    1123
+  ],
+  "samples": 64,
+  "device": "GPU",
+  "seconds": 41.84,
+  "units": "Illustrative proportions, not manufacturing dimensions",
+  "groups": [
+    "Garden_Root",
+    "Terrain",
+    "Planting_Beds",
+    "Plants",
+    "Path",
+    "Devices",
+    "Fruit_Tree",
+    "Sensor",
+    "Hub_Concept",
+    "Sprinkler",
+    "Sensor_Indicator",
+    "Connection_FX",
+    "Water_FX"
+  ],
+  "animated_frames": [
+    1,
+    49,
+    97,
+    145
+  ],
+  "concept_geometry": [
+    "Terrain and planting arrangement",
+    "Hub housing",
+    "Simplified sensor and sprinkler"
+  ],
+  "source_reference": "Original Greeny deck slides 6\u20137; sensor reference there is credited to Parrot Flower Power.",
+  "source_sha256": "193bf09195c42dd016422057c8fd8f6367ca6be2aaa99165a9b07055cafaecfd",
+  "storyboard_sha256": "be0aca093d56df8880ecacbea7c235b168b718d8388b4625f0ae0f8a6b440664"
+}
