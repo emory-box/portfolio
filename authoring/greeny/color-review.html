@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Greeny — Duyệt màu</title>
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<script type="importmap">{"imports":{"three":"../../assets/vendor/three-r180/three.module.min.js","three/addons/":"../../assets/vendor/three-r180/addons/"}}</script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#191919;color:#F8FBF4;font:16px/1.6 Inter,sans-serif}main{max-width:1600px;margin:auto;padding:32px}h1,h2{font-family:Nunito,sans-serif;line-height:1.15}h1{margin:16px 0;font-size:32px}h2{font-size:20px;margin:0}p{margin:12px 0;color:#A8B0A6}a{color:#AFD182;text-underline-offset:4px}a:focus-visible{outline:2px solid #AFD182;outline-offset:4px}.views{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}.view{min-width:0}canvas{display:block;width:100%;height:650px}code{font-size:13px;color:#CFE3B5}.poster main{padding:0}.poster header,.poster #before,.poster h2,.poster footer{display:none}.poster .views{display:block;margin:0}.poster canvas{width:1600px;height:1248px}@media(max-width:700px){main{padding:20px}.views{grid-template-columns:1fr}canvas{height:420px}}
+</style></head>
+<body><main>
+<noscript><p>Bật JavaScript để xem bản duyệt màu 3D.</p></noscript>
+<header><a href="../../projects/greeny/">Website đang dùng</a><h1>Duyệt màu khu vườn.</h1><p id="status" role="status">Đang tải bản duyệt…</p><p id="changes"></p></header>
+<div class="views"><section class="view" id="before"><h2>Hiện tại</h2><canvas aria-label="Model với màu đang được duyệt dùng trên website"></canvas></section><section class="view" id="after"><h2>Bản nháp — chưa áp dụng</h2><canvas aria-label="Model với màu nháp để duyệt trước"></canvas></section></div>
+<footer><p>Ảnh dùng cùng model, ánh sáng và renderer với website. Chỉ thay màu; chưa đổi bản chính.</p><code id="review-id"></code></footer>
+</main>
+<script type="module">
+import {createGardenScene} from '../../projects/greeny/garden-scene.js';
+const status=document.querySelector('#status');
+try {
+  const read=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error('Chưa có bản nháp. Hãy chạy công cụ preview màu từ repo.');return r.json();};
+  const [draft,approved]=await Promise.all([read('../../.cache/greeny-color-review/draft.json'),read('../../projects/greeny/models/colors.json')]);
+  const before=await createGardenScene(document.querySelector('#before canvas'),{colorProfile:approved});
+  const after=await createGardenScene(document.querySelector('#after canvas'),{colorProfile:draft.profile});
+  const draw=(scene,index)=>scene.draw({position:index,index,time:0,delta:0,reduced:false,paused:true});
+  draw(before,draft.view);draw(after,draft.view);
+  status.textContent=draft.status==='approved'?'Bản màu này đã được duyệt và áp dụng.':'Bản nháp đã sẵn sàng. Website chính vẫn giữ màu hiện tại.';
+  if(draft.status==='approved'){
+    document.querySelector('#after h2').textContent='Đã duyệt — đang dùng';
+    document.querySelector('footer p').textContent='Bản màu này đã được áp dụng vào website.';
+  }
+  document.querySelector('#changes').textContent=draft.changes.length?draft.changes.join(' · '):'Chưa có thay đổi màu mới — quy trình đã sẵn sàng.';
+  document.querySelector('#review-id').textContent='Bản duyệt: '+draft.id;
+  window.__greenyReview={ready:true,id:draft.id,poster(){document.body.classList.add('poster');draw(after,0);},draw(){draw(before,draft.view);draw(after,draft.view);}};
+  addEventListener('resize',()=>{if(document.body.classList.contains('poster'))draw(after,0);else window.__greenyReview.draw();});
+  addEventListener('pagehide',()=>{before.dispose();after.dispose();});
+} catch(error){status.textContent=error.message;window.__greenyReview={error:error.message};}
+</script></body></html>

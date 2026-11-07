@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../../assets/css/fonts.css">
 <link rel="stylesheet" href="../../assets/css/base.css">
 <link rel="stylesheet" href="greeny.css">
+<link rel="stylesheet" href="garden-story.css">
 <script>document.documentElement.classList.replace('no-js','js');</script>
 </head>
 <body>
@@ -55,177 +56,220 @@
       <span class="brand-mark" aria-hidden="true"></span>
       <span>GREENY</span>
     </a>
-    <nav class="site-nav" aria-label="Case study sections">
-      <a href="../../index.html">All work</a>
-      <a href="#brief">The brief</a>
-      <a href="#system">System</a>
-      <a href="#ui">UI system</a>
-      <a href="#interface">Interface</a>
-      <a href="#brand">Brand</a>
-    </nav>
-    <a class="header-cta" href="#interface">Open the app</a>
   </div>
 </header>
 
 <main id="main">
 
-  <section class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>Your garden,<br>always in reach.</h1>
-        <p class="hero-lede">An IoT companion that reads soil, waters on schedule, and answers remotely.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#interface">See the interface</a>
-          <a class="btn btn-ghost" href="#brief">Read the case</a>
-        </div>
-        <dl class="hero-facts">
-          <div><dt>Scope</dt><dd>Research, IoT architecture, UI system</dd></div>
-          <div><dt>Platform</dt><dd>Mobile app with a Wi-Fi mesh hub</dd></div>
-          <div><dt>Team</dt><dd>Four designers, one instructor</dd></div>
-        </dl>
-      </div>
-
-      <div class="hero-stage" aria-label="The Greeny dashboard, rebuilt in HTML">
-        <div class="phone phone--hero">
-          <div class="phone-bezel">
-            <div class="phone-screen">
-              <div class="statusbar"><span>9:41</span><span class="statusbar-icons"><i class="sig"></i><i class="wifi"></i><i class="battery"></i></span></div>
-              <div class="screen-pad">
-                <div class="screen-title"><p class="screen-h">Dashboard</p><span class="screen-title-end">Notification<svg class="ico ico--18" aria-hidden="true"><use href="#i-bell"/></svg></span></div>
-                <div class="segmented">
-                  <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-scan"/></svg>AI Detect</span>
-                  <span class="segmented-divider" aria-hidden="true"></span>
-                  <span class="segmented-item"><svg class="ico ico--18" aria-hidden="true"><use href="#i-add"/></svg>Add Device</span>
-                </div>
-                <ul class="device-strip">
-                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span><span class="device-name">Sprinklers</span><span class="device-count">6/6</span></li>
-                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg></span><span class="device-name">Fans</span><span class="device-count">0/1</span></li>
-                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-light"/></svg></span><span class="device-name">Lights</span><span class="device-count">0/2</span></li>
-                  <li><span class="device-ico"><svg class="ico" aria-hidden="true"><use href="#i-net"/></svg></span><span class="device-name">Net</span><span class="device-count">0/6</span></li>
-                </ul>
-
-                <div class="mini-grid">
-                  <div class="mini-card">
-                    <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span><span class="mini-link">Details</span></div>
-                    <div class="chart">
-                      <span class="chart-badge">40%</span>
-                      <svg viewBox="0 0 220 86" role="img" aria-label="Soil moisture over the last seven days, 40 percent at the marker">
-                        <g class="chart-grid">
-                          <path d="M0 8h220M0 26h220M0 44h220M0 62h220M0 80h220"/>
-                          <path d="M0 0v80M55 0v80M110 0v80M165 0v80M220 0v80" class="chart-grid-v"/>
-                        </g>
-                        <path class="chart-line" d="M0 58c14-6 20 3 32 4s18-14 34-12 18 12 34 8 20-20 36-18 18 10 30 4 20-16 30-12 16 8 24 6"/>
-                        <path class="chart-marker" d="M132 0v80"/>
-                        <circle class="chart-dot" cx="132" cy="44" r="4"/>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="mini-card mini-card--compact">
-                    <div class="mini-head"><span class="chip">Soil moisture<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
-                    <div class="bars" role="img" aria-label="Maximum, average and minimum soil moisture">
-                      <span class="bar" style="--h:82%"></span><span class="bar" style="--h:56%"></span><span class="bar" style="--h:38%"></span>
-                    </div>
-                    <div class="mini-foot"><span class="value">50%</span><span class="value-label">Value</span></div>
-                  </div>
-                </div>
-
-                <div class="env">
-                  <div class="env-head"><div><p class="env-h">Environment data</p><p>Click a garden photo to see the overall data</p></div><span class="mini-link">See all<svg class="ico ico--12" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
-                  <div class="garden-grid">
-                    <article class="garden-card">
-                      <img src="img/garden-succulents.jpg" alt="Rows of echeveria succulents in a garden bed" width="295" height="140" fetchpriority="high">
-                      <div class="garden-body">
-                        <p class="garden-name">Echeveria garden</p>
-                        <p><svg class="ico ico--12" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
-                      </div>
-                      <span class="garden-check"><svg class="ico ico--12" aria-hidden="true"><use href="#i-check"/></svg></span>
-                    </article>
-                    <article class="garden-card">
-                      <img src="img/garden-beds.jpg" alt="A second succulent garden bed" width="238" height="140" loading="lazy">
-                      <div class="garden-body">
-                        <p class="garden-name">Nhà riêng</p>
-                        <p><svg class="ico ico--12" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
-                      </div>
-                    </article>
-                  </div>
-                </div>
-              </div>
-              <nav class="tabbar" aria-label="App tabs">
-                <span class="tabbar-item is-active"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>Home</span>
-                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>List</span>
-                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Schedule</span>
-                <span class="tabbar-item"><svg class="ico" aria-hidden="true"><use href="#i-settings"/></svg>Setting</span>
-              </nav>
-            </div>
-          </div>
-        </div>
-
-        <div class="float-card float-card--weather">
-          <p class="float-place"><svg class="ico ico--14" aria-hidden="true"><use href="#i-pin"/></svg>Biên Hòa, Đồng Nai</p>
-          <div class="weather-sky"><span class="sun"></span><span class="weather-cloud"><svg class="ico ico--28" aria-hidden="true"><use href="#i-cloud"/></svg></span></div>
-          <div class="weather-stats">
-            <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-drop"/></svg><strong>90%</strong><span>Humidity</span></div>
-            <div><svg class="ico ico--14" aria-hidden="true"><use href="#i-rain"/></svg><strong>100%</strong><span>Rain</span></div>
-          </div>
-        </div>
-
-        <div class="float-card float-card--sensor">
-          <span class="float-label">Soil moisture</span>
-          <span class="float-value">40%</span>
-          <div class="spark" role="img" aria-label="Soil moisture trending sideways through the week">
-            <span style="--x:0%;--y:62%"></span><span style="--x:16%;--y:56%"></span><span style="--x:32%;--y:64%"></span><span style="--x:48%;--y:48%"></span><span style="--x:64%;--y:52%"></span><span style="--x:80%;--y:38%"></span><span style="--x:96%;--y:44%"></span>
-          </div>
-          <span class="float-note">Last 7 days</span>
-        </div>
+  <section class="garden-story" aria-label="Greeny smart garden story">
+    <div class="garden-stage">
+      <div class="garden-stage-inner wrap">
+        <div class="garden-view" aria-hidden="true"><img class="garden-fallback" src="img/story/garden-fallback.png" width="1600" height="1248" alt=""><canvas class="garden-canvas"></canvas><svg class="garden-effects" aria-hidden="true" focusable="false"></svg></div>
+        <div class="garden-progress"><span class="garden-progress-label"><span class="garden-current">Garden</span><span class="garden-hub-state">Hub connected</span></span><span class="garden-progress-meta"><button class="garden-motion" type="button" aria-pressed="false">Pause animation</button><span class="garden-count">1 / 8</span></span><span class="garden-progress-track"><span></span></span></div>
       </div>
     </div>
-  </section>
+    <div class="garden-steps">
+      <section class="garden-step" id="top" aria-labelledby="top-title" data-garden-step="0">
+        <div class="wrap"><div class="garden-copy">
+          <h1 id="top-title">Manage your garden easier with Greeny</h1>
+          <p>Greeny provides solutions to monitor your garden remotely with many devices</p>
+          <p class="garden-scroll-hint">Scroll to see how devices will be applied in your garden.</p>
 
-  <section class="section" id="brief">
+
+        </div></div>
+      </section>
+      <section class="garden-step garden-step--right" id="garden-sensors" aria-labelledby="garden-sensors-title" data-garden-step="1">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-sensors-title">Sensors</h2>
+          <p>Embedded directly in the garden bed, sensors continuously measure soil moisture, temperature, air humidity, and light intensity.</p>
+          <p class="garden-sensor-app">View Real-time data through an App.</p>
+          <p class="garden-sensor-state" lang="vi" role="status">Đã nhận thông số</p>
+          <article class="garden-readings" lang="vi" aria-labelledby="garden-readings-title">
+            <div class="garden-readings-heading"><svg class="garden-reading-icon" aria-hidden="true"><use href="#i-leaf"/></svg><h3 id="garden-readings-title">Thông số khu vườn</h3></div>
+            <p class="garden-readings-status">Đã cập nhật thông số</p>
+            <dl>
+              <div style="--row:0"><dt><svg class="garden-reading-icon" aria-hidden="true"><use href="#i-drop"/></svg>Độ ẩm đất</dt><dd>32<span>%</span></dd></div>
+              <div style="--row:1"><dt><svg class="garden-reading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14V6a3 3 0 0 1 6 0v8a5 5 0 1 1-6 0Z"/><path d="M12 8v9"/></svg>Nhiệt độ</dt><dd>24<span>°C</span></dd></div>
+              <div style="--row:2"><dt><svg class="garden-reading-icon" aria-hidden="true"><use href="#i-net"/></svg>Độ ẩm không khí</dt><dd>62<span>%</span></dd></div>
+              <div style="--row:3"><dt><svg class="garden-reading-icon" aria-hidden="true"><use href="#i-sun"/></svg>Cường độ sáng</dt><dd>12,400<span>lx</span></dd></div>
+            </dl>
+            <p class="garden-data-note">Số liệu minh họa theo clip gốc.</p>
+          </article>
+
+
+        </div></div>
+      </section>
+      <section class="garden-step" id="garden-watering" aria-labelledby="garden-watering-title" data-garden-step="2">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-watering-title">Sprinkle</h2>
+          <p>Automated irrigation devices triggered by sensor thresholds or user-defined schedules, ensuring plants receive the right amount of water without manual effort.</p>
+
+
+        </div></div>
+      </section>
+      <section class="garden-step garden-step--right" id="garden-fan" aria-labelledby="garden-fan-title" data-garden-step="3">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-fan-title">A little room to breathe.</h2>
+          <p>The connected fan moves air across the plants to regulate airflow in the growing space.</p>
+
+
+        </div></div>
+      </section>
+      <section class="garden-step" id="garden-shade" aria-labelledby="garden-shade-title" data-garden-step="4">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-shade-title">A gentler kind of sunshine.</h2>
+          <p>Extend the motorized shade over the bed when plants need protection from harsh sunlight.</p>
+
+
+        </div></div>
+      </section>
+      <section class="garden-step garden-step--right" id="garden-lights" aria-labelledby="garden-lights-title" data-garden-step="5">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-lights-title">Let growth go on.</h2>
+          <p>Scheduled grow lights illuminate the plants as daylight fades, keeping care connected after dark.</p>
+
+
+        </div></div>
+      </section>
+      <section class="garden-step" id="garden-connect" aria-labelledby="garden-connect-title" data-garden-step="6">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-connect-title">One garden. Working together.</h2>
+          <p>Sensor readings and device commands travel through the Wi-Fi mesh to the hub. The hub links the garden to the router and Internet.</p>
+          <p class="garden-network">Devices <span aria-hidden="true">→</span> Hub <span aria-hidden="true">→</span> Router <span aria-hidden="true">→</span> Internet <span aria-hidden="true">→</span> App</p>
+
+        </div></div>
+      </section>
+      <section class="garden-step garden-step--right" id="garden-remote" aria-labelledby="garden-remote-title" data-garden-step="7">
+        <div class="wrap"><div class="garden-copy">
+          <h2 id="garden-remote-title">Stay connected to your garden.</h2>
+          <p>Monitor garden conditions and manage connected equipment remotely through Greeny.</p>
+
+          <a class="garden-case-link" href="#brief">Continue to the case study</a>
+        </div></div>
+      </section>
+    </div>
+  </section>
+  <div class="garden-project-context wrap">
+    <dl class="garden-facts"><div><dt>Scope</dt><dd>Research, IoT architecture, UI system</dd></div><div><dt>Platform</dt><dd>Mobile app with a Wi-Fi mesh hub</dd></div><div><dt>Team</dt><dd>Four designers, one instructor</dd></div></dl>
+    <p class="garden-concept-note">Concept demonstration. Device states and sensor values illustrate the Greeny experience.</p>
+  </div>
+
+  <div class="greeny-case-study">
+  <section class="section section--line" id="brief" aria-labelledby="brief-title">
     <div class="wrap">
       <div class="section-head">
-        <h2>Two people,<br>one hard job.</h2>
-        <p class="section-lede">A garden owner who is rarely home. A manager who wants plants without the guesswork. Both need the same thing: a garden that keeps working when they are not standing in it.</p>
+        <h2 id="brief-title">Research</h2>
+        <p class="section-lede">The original research groups gardeners by how they use their space: a personal garden, a garden café, or a family gardening business.</p>
       </div>
+      <div class="research-segments">
+        <article><h3>Home gardeners</h3><p>People who want to build and care for a garden at home or on their own property.</p></article>
+        <article><h3>Garden cafés</h3><p>Businesses that use greenery to create an attractive, comfortable space for their customers.</p></article>
+        <article><h3>Family gardening businesses</h3><p>People caring for a large garden or several gardens as part of their business.</p></article>
+      </div>
+      <details class="case-details research-technology">
+        <summary>Connectivity research — Wi-Fi mesh</summary>
+<div class="protocol">
+        <div class="protocol-copy">
+          <h3>Why Wi-Fi mesh</h3>
+          <p>A single hub covers a compact home garden. Extra nodes extend the same network across a larger plot, so a business garden can grow without a second system.</p>
+        </div>
+        <table class="protocol-table" tabindex="0" aria-label="Connectivity protocol comparison">
+          <caption>Protocol comparison from the original research</caption>
+          <thead>
+            <tr><th scope="col">Protocol</th><th scope="col">Range</th><th scope="col">Power</th><th scope="col">Fit</th></tr>
+          </thead>
+          <tbody>
+            <tr class="is-chosen"><th scope="row">Wi-Fi Mesh</th><td>30 to 50 m</td><td>Medium</td><td>Best fit for real-time data at scale</td></tr>
+            <tr><th scope="row">Wi-Fi</th><td>20 to 30 m</td><td>Medium</td><td>Dead zones in large gardens</td></tr>
+            <tr><th scope="row">Bluetooth</th><td>About 10 m</td><td>Low</td><td>Too short a range</td></tr>
+            <tr><th scope="row">LoRa</th><td>Up to 1 km</td><td>Very low</td><td>Too little bandwidth</td></tr>
+            <tr><th scope="row">Zigbee</th><td>10 to 20 m</td><td>Very low</td><td>Limited range, extra hardware</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </details>
+    </div>
+  </section>
 
-      <div class="persona-grid">
+  <section class="section section--line" id="problem" aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="problem-title">Problem</h2>
+        <p class="section-lede">Garden care competes with work, travel and family life. The personas describe different barriers to keeping plants healthy.</p>
+      </div>
+      <ul class="problem-list">
+        <li><h3>Work that needs someone on site</h3><p>Checking soil, watering, adjusting fans and deploying shade require supervision. Travel and difficult working conditions make that harder for a garden business.</p></li>
+        <li><h3>Limited time and plant knowledge</h3><p>Home gardeners may have little time at home and need help identifying plants and understanding how to care for them.</p></li>
+        <li><h3>Staffing costs and limited visibility</h3><p>Business owners need to observe and control their gardens remotely instead of relying only on calls and messages from staff.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--line" id="personas" aria-labelledby="personas-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="personas-title">Personas</h2>
+        <p class="section-lede">Three personas from the original research connect these needs to the way Greeny is organized.</p>
+      </div>
+      <div class="persona-grid persona-grid--three">
         <article class="persona">
-          <header class="persona-head">
-            <span class="avatar" aria-hidden="true">P</span>
-            <div><h3>Phu</h3><p>33, business owner</p></div>
-          </header>
-          <blockquote>“I need to manage my garden remotely, without being there every hour.”</blockquote>
-          <dl class="persona-facts">
-            <div><dt>Pain</dt><dd>Constant on-site supervision and physically demanding work.</dd></div>
-            <div><dt>Need</dt><dd>Remote monitoring and control of every garden device.</dd></div>
-            <div><dt>Motivation</dt><dd>Save time and make care more reliable.</dd></div>
-          </dl>
+          <header class="persona-head"><span class="avatar" aria-hidden="true">P</span><div><h3>Đức Phú</h3><p>33 · Plant grower and seller</p></div></header>
+          <p class="persona-location">Đồng Nai</p>
+          <p class="persona-intro">Phú and his family run a succulent and cactus garden. Business trips leave him with little time to supervise watering, soil checks, ventilation and shade.</p>
+          <dl class="persona-facts"><div><dt>Pain</dt><dd>On-site supervision, manual work and difficult outdoor conditions.</dd></div><div><dt>Need</dt><dd>Remote device monitoring and control through a clear phone or computer interface.</dd></div><div><dt>Motivation</dt><dd>Save time, reduce manual work and support the business reliably.</dd></div></dl>
         </article>
-
         <article class="persona">
-          <header class="persona-head">
-            <span class="avatar" aria-hidden="true">L</span>
-            <div><h3>Lan</h3><p>30, finance manager</p></div>
-          </header>
-          <blockquote>“I want a beautiful garden at home, but I barely have time or the expertise.”</blockquote>
-          <dl class="persona-facts">
-            <div><dt>Pain</dt><dd>Limited plant knowledge and very little time for care.</dd></div>
-            <div><dt>Need</dt><dd>Plant identification and watering that runs itself.</dd></div>
-            <div><dt>Motivation</dt><dd>A cosy garden her family can enjoy.</dd></div>
-          </dl>
+          <header class="persona-head"><span class="avatar" aria-hidden="true">L</span><div><h3>Phương Lan</h3><p>30 · Finance manager</p></div></header>
+          <p class="persona-location">Hố Nai 3, Trảng Bom</p>
+          <p class="persona-intro">Lan enjoys succulents and cacti and wants a small garden of her own. Work and a young child leave little time to learn plant care or tend the garden.</p>
+          <dl class="persona-facts"><div><dt>Pain</dt><dd>Limited plant knowledge and little time at home.</dd></div><div><dt>Need</dt><dd>Automatic watering, plant identification and guidance on appropriate care.</dd></div><div><dt>Motivation</dt><dd>Save time and costs while supporting healthy plant growth.</dd></div></dl>
+        </article>
+        <article class="persona">
+          <header class="persona-head"><span class="avatar" aria-hidden="true">K</span><div><h3>Trung Khang</h3><p>33 · Business owner</p></div></header>
+          <p class="persona-location">Biên Hòa, Đồng Nai</p>
+          <p class="persona-intro">Khang runs a garden café with desert-inspired landscaping, cacti and succulents. He wants to keep the garden attractive while managing the cost of care.</p>
+          <dl class="persona-facts"><div><dt>Pain</dt><dd>Staffing costs, unsuitable planting locations and limited visibility through calls or messages.</dd></div><div><dt>Need</dt><dd>Easy remote observation and control, with technology to support garden staff.</dd></div><div><dt>Motivation</dt><dd>Save time and reduce the cost of garden maintenance.</dd></div></dl>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section section--line" id="system">
+  <section class="section section--line" id="sitemap" aria-labelledby="sitemap-title">
     <div class="wrap">
-      <div class="section-head section-head--wide">
-        <h2>One hub,<br>five kinds of device.</h2>
-        <p class="section-lede">Greeny is not a single gadget. It is a small ecosystem: sensors report, actuators act, and a hub keeps the mesh talking when the internet does not.</p>
+      <div class="section-head">
+        <h2 id="sitemap-title">Sitemap</h2>
+        <p class="section-lede">The app begins with account access and onboarding, then connects the dashboard, gardens, automation and settings.</p>
       </div>
+      <figure class="sitemap-figure">
+        <figcaption>App structure from the original sitemap</figcaption>
+        <ol class="sitemap-entry" aria-label="Entry flow"><li>Log in / Sign up</li><li>Onboarding</li><li>Dashboard</li></ol>
+        <div class="sitemap-branches">
+          <section class="sitemap-branch" aria-labelledby="map-dashboard"><h3 id="map-dashboard">Dashboard</h3><ul><li>Scan<ul><li>Add Device</li><li>AI Detect</li></ul></li><li>Recent gardens view</li><li>Info of a garden<ul><li>General info</li><li>Weather</li><li>Environment Info (overall)</li><li>Devices State</li></ul></li></ul></section>
+          <section class="sitemap-branch" aria-labelledby="map-gardens"><h3 id="map-gardens">Garden list</h3><ul><li>Info of each garden<ul><li>General info</li><li>Environment Info (Detail)</li><li>Control panel</li></ul></li></ul></section>
+          <section class="sitemap-branch" aria-labelledby="map-automation"><h3 id="map-automation">Automation</h3><ul><li>Manual<ul><li>Weekly</li><li>Daily</li></ul></li><li>Smart</li></ul></section>
+          <section class="sitemap-branch" aria-labelledby="map-setting"><h3 id="map-setting">Setting</h3><ul><li>Profile</li><li>General</li><li>Support</li></ul></section>
+        </div>
+      </figure>
+    </div>
+  </section>
 
-      <ul class="device-grid">
+  <section class="section section--line" id="function-ideation" aria-labelledby="function-ideation-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="function-ideation-title">Function ideation</h2>
+        <p class="section-lede">The ideation explored garden management, data history, plant knowledge, accounts and expansion. These were the highlighted priorities.</p>
+      </div>
+      <ul class="ideation-priorities">
+        <li><h3>Remote control</h3><p>Control irrigation, fans, shade and lighting remotely.</p></li>
+        <li><h3>Automatic control</h3><p>Create, choose and customize automatic operating schedules.</p></li>
+        <li><h3>Garden monitoring</h3><p>Read air humidity, soil moisture, temperature and light intensity.</p></li>
+        <li><h3>Data over time</h3><p>Follow readings by day, week, month, three months or year.</p></li>
+        <li><h3>Plant knowledge</h3><p>Explore AI identification of plants and plant diseases.</p></li>
+        <li><h3>Accounts and expansion</h3><p>Register or log in, and add devices.</p></li>
+      </ul>
+      <details class="case-details ideation-additional"><summary>Additional explored ideas</summary><ul class="additional-ideas"><li>Adding gardens alongside the device expansion.</li><li>Device notifications and alerts based on thresholds.</li><li>Report printing, activity and fertilizing history, and filters.</li><li>Device introductions, usage guidance, reviews, specifications and points of sale.</li><li>Customer information and packages for family businesses, landscaping and individuals.</li></ul></details>
+      <div class="case-device-context" id="system"><h3>Connected devices</h3><p class="ui-note">Sensors report, actuators act, and a hub connects the garden equipment.</p>
+<ul class="device-grid">
         <li class="device-card">
           <span class="device-card-ico"><svg class="ico" aria-hidden="true"><use href="#i-sprinkler"/></svg></span>
           <h3>Sprinkler</h3>
@@ -252,25 +296,6 @@
           <p>Motorised cover that protects plants from harsh sun or heavy rain.</p>
         </li>
       </ul>
-
-      <div class="protocol">
-        <div class="protocol-copy">
-          <h3>Why Wi-Fi mesh</h3>
-          <p>A single hub covers a compact home garden. Extra nodes extend the same network across a larger plot, so a business garden can grow without a second system.</p>
-        </div>
-        <table class="protocol-table">
-          <caption>Protocol comparison from the original research</caption>
-          <thead>
-            <tr><th scope="col">Protocol</th><th scope="col">Range</th><th scope="col">Power</th><th scope="col">Fit</th></tr>
-          </thead>
-          <tbody>
-            <tr class="is-chosen"><th scope="row">Wi-Fi Mesh</th><td>30 to 50 m</td><td>Medium</td><td>Best fit for real-time data at scale</td></tr>
-            <tr><th scope="row">Wi-Fi</th><td>20 to 30 m</td><td>Medium</td><td>Dead zones in large gardens</td></tr>
-            <tr><th scope="row">Bluetooth</th><td>About 10 m</td><td>Low</td><td>Too short a range</td></tr>
-            <tr><th scope="row">LoRa</th><td>Up to 1 km</td><td>Very low</td><td>Too little bandwidth</td></tr>
-            <tr><th scope="row">Zigbee</th><td>10 to 20 m</td><td>Very low</td><td>Limited range, extra hardware</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
@@ -278,9 +303,25 @@
   <section class="section section--line" id="ui">
     <div class="wrap">
       <div class="section-head">
-        <h2>A system you<br>can read at a glance.</h2>
+        <h2>Design system</h2>
         <p class="section-lede">The app lives at arm’s length in a garden. Numbers had to carry, colour had to mean something, and every control had to survive one thumb.</p>
       </div>
+
+      <div class="brand-grid" id="brand">
+      <div class="brand-mark-stage">
+        <span class="brand-mark-lg" role="img" aria-label="Greeny logo"></span>
+        <p class="brand-wordmark">GREENY</p>
+      </div>
+      <div class="brand-copy">
+        <h3>Brand identity</h3>
+        <p class="section-lede">A fingerprint drawn as a continuous line, closed into a G. The centre is a leaf, so the mark reads as a living thing rather than a device.</p>
+        <div class="lockups">
+          <div class="lockup lockup--dark"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
+          <div class="lockup lockup--light"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
+        </div>
+        <p class="brand-note">The wordmark sets in Nunito ExtraBold, untracked, with the mark’s stroke weight matched to the stem width.</p>
+      </div>
+    </div>
 
       <div class="ui-grid">
         <article class="ui-block">
@@ -332,11 +373,18 @@
           </div>
         </article>
 
-        <article class="ui-block ui-block--wide">
-          <h3>Components</h3>
-          <p class="ui-note">The four pieces the whole app is built from: device status, a garden card, a sensor readout and a weather panel.</p>
 
-          <div class="component-grid">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--line" id="components" aria-labelledby="components-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="components-title">Components</h2>
+        <p class="section-lede">Device status, a garden card, a sensor readout and a weather panel carry the app’s shared visual language.</p>
+      </div>
+      <div class="component-grid">
             <div class="demo demo--devices">
               <span class="demo-label">Device status</span>
               <ul class="device-strip device-strip--demo">
@@ -395,15 +443,13 @@
               </div>
             </div>
           </div>
-        </article>
-      </div>
     </div>
   </section>
 
   <section class="section section--line" id="interface">
     <div class="wrap">
       <div class="section-head section-head--wide">
-        <h2>Built,<br>not mocked up.</h2>
+        <h2>Design app</h2>
         <p class="section-lede">Every screen below is live markup: same palette, same type, same components as the rest of this page.</p>
       </div>
 
@@ -552,44 +598,22 @@
           <figcaption>Automation, grouped by device</figcaption>
         </figure>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--line" id="brand">
-    <div class="wrap brand-grid">
-      <div class="brand-mark-stage">
-        <span class="brand-mark-lg" role="img" aria-label="Greeny logo"></span>
-        <p class="brand-wordmark">GREENY</p>
-      </div>
-      <div class="brand-copy">
-        <h2>A mark that<br>keeps growing.</h2>
-        <p class="section-lede">A fingerprint drawn as a continuous line, closed into a G. The centre is a leaf, so the mark reads as a living thing rather than a device.</p>
-        <div class="lockups">
-          <div class="lockup lockup--dark"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
-          <div class="lockup lockup--light"><span class="brand-mark" aria-hidden="true"></span><span>GREENY</span></div>
-        </div>
-        <p class="brand-note">The wordmark sets in Nunito ExtraBold, untracked, with the mark’s stroke weight matched to the stem width.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--line" id="notes">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>What the<br>garden taught.</h2>
+      <div class="case-notes" id="notes">
+<div class="case-notes-head">
+        <h3>What the garden taught</h3>
         <p class="section-lede">Three things that changed the work, beyond the screens.</p>
       </div>
       <ol class="notes">
         <li>
-          <h3>Trust is a data problem</h3>
+          <h4>Trust is a data problem</h4>
           <p>A number without a unit, a baseline and a time window is decoration. Every sensor card on this page carries all three.</p>
         </li>
         <li>
-          <h3>One control surface</h3>
+          <h4>One control surface</h4>
           <p>Grouping devices by kind, not by room, kept a five-device garden readable on a 320px screen and made automation understandable.</p>
         </li>
         <li>
-          <h3>Green is a promise</h3>
+          <h4>Green is a promise</h4>
           <p>The accent only appears where the user can act or where a reading is healthy. If everything is green, nothing is.</p>
         </li>
       </ol>
@@ -597,8 +621,10 @@
         <p>Greeny is a student UX case study. The interface on this page was rebuilt in HTML, CSS and SVG from the original design system.</p>
         <a class="btn btn-primary" href="#top">Back to the top<svg class="ico ico--16" aria-hidden="true"><use href="#i-up"/></svg></a>
       </div>
+      </div>
     </div>
   </section>
+  </div>
 </main>
 
 <footer class="site-footer">
@@ -623,6 +649,8 @@
   </div>
 </footer>
 
+<script type="importmap">{"imports":{"three":"../../assets/vendor/three-r180/three.module.min.js","three/addons/":"../../assets/vendor/three-r180/addons/"}}</script>
+<script type="module" src="garden-story.js"></script>
 <script src="../../assets/js/site.js" defer></script>
 </body>
 </html>

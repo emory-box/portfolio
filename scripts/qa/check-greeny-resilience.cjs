@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+const {puppeteer:p,chromePath}=require('./browser-runtime.cjs').browserRuntime();
+const SITE=process.env.SITE_URL||'http://localhost:4317';
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{const b=await p.launch({executablePath:chromePath,headless:true,pipe:true,args:['--no-sandbox','--enable-unsafe-swiftshader']});try{
+ const page=await b.newPage();await page.setViewport({width:1280,height:900});
+ await page.evaluateOnNewDocument(()=>{window.__draws=0;for(const name of ['drawElements','drawArrays']){const original=WebGL2RenderingContext.prototype[name];WebGL2RenderingContext.prototype[name]=function(...args){window.__draws++;return original.apply(this,args);};}});
+ await page.goto(SITE+'/projects/greeny/');await page.waitForFunction(()=>document.querySelector('.garden-webgl'));await page.evaluate(()=>document.documentElement.style.scrollBehavior='auto');
+ await page.$eval('#garden-watering',e=>e.scrollIntoView({block:'center'}));await wait(200);
+ const before=await page.evaluate(()=>__draws);await wait(200);assert(await page.evaluate(()=>__draws)>before,'water animation runs');
+ await page.click('.garden-motion');assert.equal(await page.$eval('.garden-motion',e=>e.getAttribute('aria-pressed')),'true');await wait(100);const paused=await page.evaluate(()=>__draws);await wait(200);assert.equal(await page.evaluate(()=>__draws),paused,'paused stops rendering');
+ await page.focus('.garden-motion');await page.keyboard.press('Enter');await wait(200);assert(await page.evaluate(()=>__draws)>paused,'keyboard resumes');
+ await page.$eval('#brief',e=>e.scrollIntoView({block:'start'}));await wait(100);const outside=await page.evaluate(()=>__draws);await wait(250);assert.equal(await page.evaluate(()=>__draws),outside,'outside story idles');
+ await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);await page.$eval('#garden-shade',e=>e.scrollIntoView({block:'center'}));await wait(100);const reduced=await page.evaluate(()=>__draws);await wait(200);assert.equal(await page.evaluate(()=>__draws),reduced,'reduced motion idles');assert(await page.$eval('.garden-motion',e=>e.disabled));
+ await page.setViewport({width:844,height:390});assert(await page.$eval('.garden-story',e=>getComputedStyle(e,'::before').backgroundImage.includes('garden-fallback')),'short landscape retains garden image');
+ console.log('PASS visible animation, pointer and keyboard pause/resume, offscreen/reduced idling, short landscape fallback.');
+ const fallback=await b.newPage();await fallback.evaluateOnNewDocument(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return String(type).includes('webgl')?null:original.call(this,type,...args);};});await fallback.goto(SITE+'/projects/greeny/');await fallback.waitForFunction(()=>document.querySelector('.garden-motion').textContent==='Static garden');assert(!await fallback.$('.garden-webgl'));assert(await fallback.$eval('.garden-fallback',e=>e.complete&&e.naturalWidth>0&&getComputedStyle(e).visibility==='visible'));
+ console.log('PASS no WebGL image and readable screen fallback.');
+ const race=await b.newPage();await race.setRequestInterception(true);race.on('request',async req=>{if(req.url().endsWith('/garden.glb')){await race.$eval('.garden-canvas',canvas=>canvas.dispatchEvent(new Event('webglcontextlost',{cancelable:true})));await wait(150);}await req.continue();});await race.goto(SITE+'/projects/greeny/');await race.waitForFunction(()=>document.querySelector('.garden-motion').textContent==='Static garden');await wait(400);assert(!await race.$('.garden-webgl'));
+ console.log('PASS context loss during pending model loading retains fallback.');
+}finally{await b.close();}})().catch(e=>{console.error(e);process.exit(1);});

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "materials": {
+    "Ground_Moss": "#809E58",
+    "Grass_Clay": "#86A65C",
+    "Leaf_Green": "#85A362",
+    "Leaf_Young": "#9FB780",
+    "Stem": "#78944D",
+    "Sensor_Satin": "#819E52",
+    "Fan_Blade": "#8EAA66",
+    "Soil_Granular": "#B3A697",
+    "Soil_Edge": "#ADA091",
+    "Fence_Clay": "#B0A18F",
+    "Frame_Anodized": "#C5CDC1",
+    "Device_Polymer": "#ECEEE8",
+    "Hub_Cream": "#E9EDE5",
+    "Shade_Woven": "#78B0D4"
+  },
+  "groups": {}
+}

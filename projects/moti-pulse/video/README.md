@@ -1,8 +1,7 @@
 # Hi-Fi function demo assets
 
 These eight MP4s are deployed media assets for the static case study. They
-are byte-identical copies of the validated delivery files in
-`../../../video-projects/moti-pulse-recording-loops/renders/` at integration.
+are the sole retained delivery copies, validated against the original recordings.
 The authoring project's `manifest.json` and `validation.json` record the source
 recordings, hashes, native dimensions, frame counts and export validation.
 

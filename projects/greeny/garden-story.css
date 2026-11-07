@@ -1,0 +1,166 @@
+/* Hallmark · v2.0.0 · Greeny scroll story · theme: DESIGN.md locked · shape: pinned garden and alternating device chapters · signature: one garden responds to its app */
+/* Critique: the source garden must read as one continuous place; movement earns its space by showing the device in use. */
+/* Film headings and project facts retained; source-supported feature text replaces scroll-scene phone captures. */
+/* waive 80: the garden is the owner's supplied 3D product concept, demonstrating the physical IoT system. */
+/* Owner approved pastel clay, the 2D readings panel, hub indicator and soft light beams; scroll scenes now use explanatory text. */
+
+:root {
+  --garden-water: var(--info); --garden-story-fade: 1;
+  --garden-mint: #B8D6B9; --garden-panel: #F1F5E9; --garden-ink: #2A4034;
+  --garden-ink-muted: #596D5C; --garden-panel-rule: #D6E1D0; --garden-panel-shadow: #060B0638;
+  --garden-light: #FFE8AC; --garden-light-lens: #FFF5D7;
+}
+.garden-story { position: relative; }
+.garden-stage { display: none; }
+.garden-step { padding-block: 48px; border-bottom: 1px solid var(--line-soft); scroll-margin-top: 0; }
+.garden-step > .wrap { display: flex; align-items: center; }
+.garden-copy { width: 100%; min-width: 0; }
+.garden-copy h1, .garden-copy h2 { font-family: var(--font-display); font-size: clamp(32px, 3.8vw, 52px); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; overflow-wrap: break-word; text-wrap: balance; min-width: 0; max-width: 15ch; }
+.garden-copy h1 { font-size: clamp(44px, 5vw, 68px); max-width: 12ch; }
+#top-title { font-size: clamp(30px, 3.5vw, 46px); max-width: 16ch; line-height: 1.1; text-transform: uppercase; }
+#garden-sensors-title, #garden-watering-title { text-transform: uppercase; }
+.garden-copy > .garden-sensor-app { margin-top: 8px; }
+.garden-copy > p { margin-top: 16px; max-width: 37ch; color: var(--text-muted); font-size: 16px; line-height: 1.65; }
+.garden-copy .hero-actions { margin-top: 28px; }
+.garden-copy .garden-scroll-hint { margin-top: 24px; font-size: 13px; }
+.garden-network { font-size: 12px !important; }
+.garden-network span { color: var(--green-200); padding-inline: 4px; }
+.garden-case-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; color: var(--green-200); text-decoration: underline; text-underline-offset: 5px; font-size: 14px; }
+.garden-case-link:hover { color: var(--green-100); }
+.garden-case-link:active { color: var(--green-300); }
+.garden-case-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; }
+.garden-project-context { padding-top: 40px; }
+.garden-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--col-gap); padding-block: 24px; border-block: 1px solid var(--line); }
+.garden-facts dt { color: var(--text-dim); font-size: 12px; margin-bottom: 8px; }
+.garden-facts dd { font-size: 14px; }
+.garden-concept-note { margin-top: 16px; color: var(--text-dim); font-size: 12px; }
+
+/* The default remains a complete document; only the successful controller pins it. */
+.garden-ready .garden-stage { display: block; position: sticky; z-index: 2; top: var(--header-h); height: calc(100svh - var(--header-h)); min-height: 440px; pointer-events: none; }
+/* Overlap the chapters, keeping the sticky box's full height in its boundary
+   calculation so the garden leaves with the final chapter, above the case study. */
+.garden-ready .garden-steps { margin-top: calc(var(--header-h) - 100svh); }
+.garden-stage-inner { height: 100%; position: relative; }
+.garden-view { position: absolute; inset: 0 0 0 36%; width: 64%; transform: translateX(var(--garden-shift, 0%)); }
+.garden-canvas, .garden-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.garden-canvas { opacity: 0; }
+.garden-effects { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.garden-signal-ring { fill: none; stroke: var(--garden-mint); stroke-width: 1.5; }
+.garden-signal-center { fill: var(--green-050); }
+.garden-device-leader { fill: none; stroke: var(--green-200); stroke-width: 1.25; stroke-dasharray: 4 5; stroke-linecap: round; }
+.garden-device-target { fill: var(--bg); stroke: var(--green-200); stroke-width: 1.5; }
+.garden-device-badge { fill: var(--surface); stroke: var(--green-200); stroke-width: 1; }
+.garden-device-badge-text { fill: var(--text); font: 600 14px var(--font-body); }
+.garden-pool-center { stop-color: var(--garden-light); stop-opacity: .72; }
+.garden-pool-mid { stop-color: var(--garden-light); stop-opacity: .32; }
+.garden-pool-edge { stop-color: var(--garden-light); stop-opacity: 0; }
+.garden-cone-start { stop-color: var(--garden-light); stop-opacity: .52; }
+.garden-cone-end { stop-color: var(--garden-light); stop-opacity: .035; }
+.garden-light-lens { fill: none; stroke: var(--garden-light-lens); stroke-width: 3; }
+.garden-webgl .garden-canvas { opacity: 1; }
+.garden-webgl .garden-fallback { visibility: hidden; }
+.garden-fallback { border-radius: var(--radius-lg); }
+.garden-steps { position: relative; }
+.garden-ready .garden-step { min-height: calc(100svh - var(--header-h)); padding-block: 48px; border: 0; display: flex; align-items: center; }
+.garden-ready .garden-step > .wrap { flex-shrink: 0; }
+.garden-ready .garden-copy { width: 36%; opacity: var(--garden-story-fade); }
+.garden-ready .garden-step--right > .wrap { justify-content: flex-end; }
+.garden-ready .garden-copy .hero-actions { flex-wrap: wrap; gap: 12px; }
+.garden-progress { position: absolute; bottom: 20px; left: 0; right: 0; display: grid; grid-template-columns: 1fr auto; column-gap: 20px; row-gap: 8px; color: var(--text-dim); font-size: 12px; }
+.garden-progress-track { grid-column: 1 / -1; height: 1px; background: var(--line); }
+.garden-progress-track > span { display: block; height: 100%; background: var(--green-200); transform: scaleX(var(--garden-progress, .125)); transform-origin: left; }
+.garden-progress-meta { display: flex; gap: 24px; align-items: center; }
+.garden-current { align-self: center; }
+.garden-progress-label { display: grid; gap: 2px; align-content: center; }
+.garden-hub-state { font-size: 11px; color: var(--text-muted); }
+.garden-motion { pointer-events: auto; position: relative; z-index: 2; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.garden-motion:hover { color: var(--green-100); }
+.garden-motion:active { color: var(--green-300); }
+.garden-motion:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.garden-motion:disabled { cursor: default; color: var(--text-dim); text-decoration: none; }
+
+.garden-copy > .garden-sensor-state { margin-top: 12px; min-height: 18px; color: var(--garden-mint); font-size: 12px; }
+.garden-readings { margin-top: 12px; padding: 24px; border-radius: 28px; color: var(--garden-ink); background: var(--garden-panel); box-shadow: 0 8px 16px var(--garden-panel-shadow), 0 24px 44px var(--garden-panel-shadow); }
+.garden-readings-heading { display: flex; align-items: center; gap: 12px; }
+.garden-readings-heading h3 { margin: 0; font: 800 22px/1.15 var(--font-display); letter-spacing: -.02em; color: var(--garden-ink); }
+.garden-reading-icon { width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.garden-readings-status { margin-top: 12px; font-size: 12px; color: var(--garden-ink-muted); }
+.garden-readings dl { margin-top: 16px; }
+.garden-readings dl > div { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 16px; border-top: 1px solid var(--garden-panel-rule); }
+.garden-readings dt { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--garden-ink-muted); }
+.garden-readings dd { font: 800 28px/1 var(--font-display); letter-spacing: -.02em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.garden-readings dd span { margin-left: 4px; font: 600 12px var(--font-body); letter-spacing: 0; }
+.garden-data-note { margin-top: 12px; color: var(--garden-ink-muted); font-size: 11px; }
+.garden-ready[data-sensor-state=pending] .garden-readings, .garden-ready[data-sensor-state=sensing] .garden-readings { visibility: hidden; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .garden-ready[data-sensor-state=ready] .garden-readings { animation: garden-panel-in 300ms cubic-bezier(.2,0,0,1) both; }
+  .garden-ready[data-sensor-state=ready] .garden-readings dl > div { animation: garden-panel-in 300ms cubic-bezier(.2,0,0,1) both; animation-delay: calc(120ms + var(--row)*90ms); }
+}
+@keyframes garden-panel-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.garden-story.is-paused .garden-readings, .garden-story.is-paused .garden-readings dl > div { animation: none; }
+.garden-ready.has-tall-readings #garden-sensors .garden-copy { opacity: 1; }
+
+@media (min-width: 1000px) and (max-height: 780px) {
+  .garden-ready #garden-sensors { padding-block: 32px 64px; }
+  .garden-ready .garden-copy h2 { font-size: 38px; }
+  .garden-ready .garden-copy > p { margin-top: 12px; }
+  .garden-readings { padding: 16px; }
+  .garden-readings-status { display: none; }
+  .garden-readings dl { margin-top: 12px; }
+  .garden-readings dl > div { padding-block: 10px; }
+  .garden-readings dd { font-size: 25px; }
+  .garden-copy > .garden-sensor-state { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip-path: inset(50%); }
+}
+@media (max-width: 999px) {
+  .garden-ready .garden-stage { top: var(--header-h); }
+  .garden-view { inset: 0 0 auto; width: 100%; height: 36%; transform: none; }
+  .garden-ready .garden-step { padding-top: 31svh; padding-bottom: 64px; min-height: calc(100svh - var(--header-h)); align-items: flex-start; }
+  .garden-ready #garden-sensors { padding-bottom: 128px; }
+  .garden-ready .garden-copy { width: 100%; }
+  .garden-copy h1 { font-size: clamp(36px, 6vw, 60px); }
+  .garden-copy h2 { font-size: clamp(27px, 4vw, 40px); }
+  .garden-ready .garden-copy .hero-actions { margin-top: 20px; }
+  .garden-progress { bottom: 12px; }
+  .garden-copy > p { font-size: 14px; max-width: 48ch; }
+  .garden-copy .garden-scroll-hint { font-size: 12px; }
+  .garden-facts { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .garden-readings { max-width: 420px; padding: 20px; }
+  .garden-readings-heading h3 { font-size: 20px; }
+  .garden-readings dl { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 16px; }
+  .garden-readings dl > div { display: block; padding-block: 12px; }
+  .garden-readings dt { min-height: 32px; font-size: 11px; }
+  .garden-readings dt svg { width: 16px; height: 16px; flex-basis: 16px; }
+  .garden-readings dd { margin-top: 8px; font-size: 26px; }
+  .garden-readings-status { display: none; }
+  .garden-readings dl { margin-top: 12px; }
+}
+@media (max-width: 999px) and (max-height: 700px) {
+  .garden-view { height: 35%; }
+  .garden-ready .garden-step { padding-top: 30svh; }
+  .garden-copy h2 { font-size: 25px; }
+  .garden-readings { padding: 12px; }
+  .garden-readings dl > div { padding-block: 4px; }
+  .garden-readings dd { margin-top: 4px; font-size: 22px; }
+  .garden-readings dt { min-height: 20px; }
+  .garden-readings-heading h3 { font-size: 18px; }
+  .garden-readings dl { margin-top: 8px; }
+  .garden-copy > p { font-size: 13px; }
+}
+@media (max-width: 999px) and (max-height: 780px) {
+  .garden-view { height: 30%; }
+  .garden-ready .garden-step { padding-top: 24svh; }
+  .garden-ready #garden-sensors { padding-bottom: 96px; }
+  .garden-copy > .garden-sensor-state { position: absolute; width: 1px; height: 1px; margin: 0; overflow: hidden; clip-path: inset(50%); }
+}
+@media (max-height: 560px) {
+  .garden-story::before { content: ''; display: block; height: 240px; margin-inline: var(--gutter); background: url('img/story/garden-fallback.png') center / contain no-repeat; }
+  .garden-ready .garden-stage { display: none; }
+  .garden-ready .garden-steps { margin-top: 0; }
+  .garden-ready .garden-step { min-height: 0; padding: 40px 0; }
+  .garden-ready .garden-copy { width: 100%; opacity: 1 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .garden-copy, .garden-view { transition: none; }
+  .garden-ready .garden-copy { opacity: 1; }
+}
+.no-js .garden-story::before { content: ''; display: block; height: 320px; margin-inline: var(--gutter); background: url('img/story/garden-fallback.png') center / contain no-repeat; }

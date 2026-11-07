@@ -47,7 +47,12 @@ assets/js/site.js               scroll reveal + section nav
 assets/fonts/                   latin variable woff2
 projects/greeny/                case study, dark green theme
 projects/moti-pulse/            case study, light blue theme
-scripts/                        setup + screenshot helpers
+authoring/greeny/               current Blender source, required base scene, exporter
+authoring/moti-pulse/           original diagram + recording-loop sources
+scripts/                        setup + static server
+scripts/moti/                   diagram and video authoring tools
+scripts/qa/                     static, browser and native-model checks
+docs/                           current project documentation, indexed by docs/README.md
 DESIGN.md                       locked design system (tokens + rationale)
 ```
 
@@ -80,7 +85,7 @@ may supply final logo files later.
 5. Add the project to the list in `index.html` (the project list and the work
    index) and to the footer list.
 6. Check it at 360, 768, 1280 and 1920 px, then capture:
-   `node scripts/screenshots.mjs`
+   `node scripts/qa/screenshots.mjs`
 7. Commit the page, its images and its styles together.
 
 ## Site constraints (GitHub Pages)
@@ -134,6 +139,27 @@ Installed sources:
   responsive at 360 px and up.
 
 ## Engineering workflow
+
+**Greeny color-only requests:** read `docs/greeny/color-review.md` first.
+Use `scripts/greeny/colors.cjs preview`, send the generated before/after PNG
+and wait for explicit approval of that specific draft. Only then run
+`approve <draft-id>`. Do not edit `models/colors.json`, replace the fallback,
+rebuild Blender or alter the GLB for an unapproved color request. Use the
+actual web renderer for the preview, never a generated imitation. Approval
+to install this workflow does not approve a demonstration color.
+
+For navigation, start with `README.md`, `docs/README.md` and the relevant
+project/authoring README. The live Greeny asset is `models/garden.glb`;
+`authoring/greeny/source/garden-base.blend` is a required rebuild input.
+Keep authoring inputs outside `projects/`; keep one current web export.
+Do not create versioned previews, legacy model exports or duplicate MP4
+deliveries unless the owner requests them. History belongs in Git.
+
+Run `node scripts/qa/check-site.cjs` after path changes. For video changes,
+run `node scripts/moti/verify-moti-recording-loops.cjs`; for Greeny behavior,
+run the two `scripts/qa/check-greeny*.cjs` checks against the local server.
+Static serving is `node scripts/serve.cjs` (port 4317 by default).
+Ignore temporary renders, waveform/Python caches and captures.
 
 For anything larger than a one-file change:
 

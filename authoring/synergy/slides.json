@@ -1,0 +1,327 @@
+{
+  "sourceDirectory": "../Web-portfolio/Raw/Synergy",
+  "checked": "2026-11-06",
+  "slides": [
+    {
+      "slide": 1,
+      "source": "1.png",
+      "sha256": "c16f11a5388e692af50a8ff723ed1c33d0eb9c63c4b2fe498dfe3dfd91ea3da7",
+      "presentation": "Original source slide in Overview, first of four full images",
+      "asset": "projects/synergy/img/overview-01.png"
+    },
+    {
+      "slide": 2,
+      "source": "2.jpg",
+      "sha256": "f9d44691266327fa50363ce6db864aceb92b8eeab7d4de6811634079f2c93204",
+      "asset": "projects/synergy/img/calendar-tracker.jpg",
+      "presentation": "Original source slide in Overview, in numbered order"
+    },
+    {
+      "slide": 3,
+      "source": "3.jpg",
+      "sha256": "166cb43816b87e7be95c9788fff46f6a3ee5e0f0813efe9fe3d44bd8474f0eb8",
+      "asset": "projects/synergy/img/campus-navigator.jpg",
+      "presentation": "Original source slide in Overview, in numbered order"
+    },
+    {
+      "slide": 4,
+      "source": "4.jpg",
+      "sha256": "0e08cb8f388a12c0ba8a19917b96e815e1b52fb7fd70a7aab061c9f99089aa74",
+      "asset": "projects/synergy/img/grade-tracker.jpg",
+      "presentation": "Original source slide in Overview, in numbered order"
+    },
+    {
+      "slide": 5,
+      "source": "5.png",
+      "sha256": "2d981579d8c3ef9c45500d0f0c29cd6bc8407ee70c37a5e17f1395c300347cb3",
+      "selector": ".case-index",
+      "presentation": "Six-chapter contents rebuilt as native HTML"
+    },
+    {
+      "slide": 6,
+      "source": "6.png",
+      "sha256": "56e47c6b720ed0d3570e7159692ff901925e1bfeb97b90aaf1082af40a340dab",
+      "selector": "#logo-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-logo.png"
+    },
+    {
+      "slide": 7,
+      "source": "7.png",
+      "sha256": "fd863a86462a0c709ef17ebb66720a1ca648ce91d0b2573c43e42c4d5c5be850",
+      "asset": "projects/synergy/img/logo-meaning.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 8,
+      "source": "8.png",
+      "sha256": "42ade5125ed202072ea03ed9c1ba3b29720d1b6447a3d2eed083139d7ee9c529",
+      "asset": "projects/synergy/img/logo-grid.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 9,
+      "source": "9.png",
+      "sha256": "eaeb68c126ebc7e8b6b3182b104ae4c222f4a58314231d303487511319d42a80",
+      "selector": "#research-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-research.png"
+    },
+    {
+      "slide": 10,
+      "source": "10.png",
+      "sha256": "af7c989bb6f4404fe7d2932a202e190861f57bc6c42395e2bd178dbb3a96f1ff",
+      "asset": "projects/synergy/img/personas.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 11,
+      "source": "11.png",
+      "sha256": "f772e7b8510d184d9c34844846a9c9bd85ced555976a424b1487b21277912b1b",
+      "asset": "projects/synergy/img/ideation-account-news-meetings.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 12,
+      "source": "12.png",
+      "sha256": "7eb2521dd24ff92e8f42764f171d4575f3694ef6789846a7311868ce183d9822",
+      "asset": "projects/synergy/img/ideation-calendar-attendance.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 13,
+      "source": "13.png",
+      "sha256": "ba6320859b93c2c10df7d7b83d4eef41f8e3b356fccb0c63a42694b0b29a7b89",
+      "asset": "projects/synergy/img/ideation-facilities-campus.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 14,
+      "source": "14.png",
+      "sha256": "24d15ae09d656be4e3ccb9e18820cfbdaff50ac3bfa91c0a7c49aa2498617d51",
+      "asset": "projects/synergy/img/ideation-score-fees.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 15,
+      "source": "15.png",
+      "sha256": "9e1cc1d07d7235f305525f3295d4908960b9a5abf99881b4ca52ca508abedc84",
+      "selector": "#experience-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-experience.png"
+    },
+    {
+      "slide": 16,
+      "source": "16.png",
+      "sha256": "86e9046c814758dbccd3438fb26ec91b475133ef6fe50ae5e91939861c06bfb7",
+      "asset": "projects/synergy/img/sitemap.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 17,
+      "source": "17.png",
+      "sha256": "0187dab0d96231332776416eccb210d44d57c1f985a6c8616483d713c8112c97",
+      "asset": "projects/synergy/img/flow-search.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 18,
+      "source": "18.png",
+      "sha256": "4d722d47b9cb3aa09830b0d68051645430199a31f2a7003fbf37a7009201d5de",
+      "asset": "projects/synergy/img/flow-register-create.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 19,
+      "source": "19.png",
+      "sha256": "8a0b005df06ec9ad18505bd97716f2c1785552d8e1b449a8e342646598c43146",
+      "asset": "projects/synergy/img/flow-edit-fee-score.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 20,
+      "source": "20.png",
+      "sha256": "c0bdee9294e1a024e7abe8be258feaf0880d377c69581deea0c7cb488815adc1",
+      "asset": "projects/synergy/img/flow-attendance-calendar.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 21,
+      "source": "21.png",
+      "sha256": "597ff9cf1c579d2a1d6eb9b85ab71f4d38850c5c3a3b54f501fc97c185237a55",
+      "asset": "projects/synergy/img/flow-room-directions.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 22,
+      "source": "22.png",
+      "sha256": "c66a126eb6b6d77ef3fc687e0b11e954e7cffa85f2161b99915434ac602bfd10",
+      "selector": "#wireframe-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-wireframes.png"
+    },
+    {
+      "slide": 23,
+      "source": "23.png",
+      "sha256": "fa90a9d35e1f60ec3a1442d283637426f3c774f5db6a858a227c1b8d877e7b51",
+      "asset": "projects/synergy/img/sketches-1.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 24,
+      "source": "24.png",
+      "sha256": "93abdc3384e30552650c375e5527d264f184c748eb06d0e23f8dd11e24a7f6ea",
+      "asset": "projects/synergy/img/sketches-2.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 25,
+      "source": "25.png",
+      "sha256": "6ff2f10445eb7c4273b8a6ee642fd2a27b78a1d1fa9b75b2d724fe6dc639bc5b",
+      "selector": "#wireframe .content-block:nth-child(2) h3",
+      "presentation": "Wireframes subsection title rebuilt as native HTML"
+    },
+    {
+      "slide": 26,
+      "source": "26.png",
+      "sha256": "9d65572b93628d8e57373c93023f02351a1e9a4c55414aaf5fc8433afdf3a39b",
+      "asset": "projects/synergy/img/wireframes-1.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 27,
+      "source": "27.png",
+      "sha256": "0f50310df1478339384ac90d6443e74bf9ae4f08f6271c439baba24d6f908c81",
+      "asset": "projects/synergy/img/wireframes-2.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 28,
+      "source": "28.png",
+      "sha256": "a3fc9d0fc73e3900c3cc0b7a150d1013209087f17a613eb379acc63d2a6f18c4",
+      "selector": "#design-system-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-design-system.png"
+    },
+    {
+      "slide": 29,
+      "source": "29.png",
+      "sha256": "0812fc7761b19fc675510d8564fcc67bec1417281212bc464f48b02dcbf916bf",
+      "asset": "projects/synergy/img/color-system.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 30,
+      "source": "30.png",
+      "sha256": "517b3c1fded1b1b9791aa96de563578235a79b12cf63ef36faa7a808c347aed9",
+      "asset": "projects/synergy/img/surface-system.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 31,
+      "source": "31.png",
+      "sha256": "b7d855122087ac6e113d83d2de6871e93f7deac8d9b20c7c92c4ebc090b5099a",
+      "asset": "projects/synergy/img/type-1.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 32,
+      "source": "32.png",
+      "sha256": "f59ecd1b663d68b70b6205a5c32a11d7ac4fb4dd657e663736bd706527d46099",
+      "asset": "projects/synergy/img/type-2.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 33,
+      "source": "33.png",
+      "sha256": "6040345c7d1ee9b816c8036bfc4062961275836781726fe7a125a9e40c3de9b7",
+      "asset": "projects/synergy/img/spacing-1.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 34,
+      "source": "34.png",
+      "sha256": "2034a0b5c2681f7976b89cfdc4388c494fe61d073dfe223c23335edc5e7eb6dd",
+      "asset": "projects/synergy/img/spacing-2.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 35,
+      "source": "35.png",
+      "sha256": "63beac9cc54e5cef1e9700a9d3ded6e45b7f01d82e8e6a114c820d84f7c6f790",
+      "asset": "projects/synergy/img/icons-graphics.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 36,
+      "source": "36.png",
+      "sha256": "4b1c7111e964657bc4fff833c307c95f61ddfce89f42c209c1fefdb3492dbe75",
+      "asset": "projects/synergy/img/buttons.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 37,
+      "source": "37.png",
+      "sha256": "d16139465ac591a96d2f258adbffb913ea9123e6488d086356d8e8530e42c99f",
+      "asset": "projects/synergy/img/components-input-navigation.png",
+      "presentation": "Original board in the continuous Components atlas inside Design System"
+    },
+    {
+      "slide": 38,
+      "source": "38.png",
+      "sha256": "e1219c7019974b992e1549e044a52c4c429d1ad7bb21ac6f885c53ad2bf02ba7",
+      "asset": "projects/synergy/img/components-calendar-facility.png",
+      "presentation": "Original board in the continuous Components atlas inside Design System"
+    },
+    {
+      "slide": 39,
+      "source": "39.png",
+      "sha256": "1d7968a54ab939fe734ead6ebeb07a67fae55a0a09c70a7085095ea8968f464b",
+      "asset": "projects/synergy/img/components-content.png",
+      "presentation": "Original board in the continuous Components atlas inside Design System"
+    },
+    {
+      "slide": 40,
+      "source": "40.png",
+      "sha256": "80568bfaa381c1ed6ef298d3469b837081b6037e63b072cf838903af394c2440",
+      "selector": "#interface-title",
+      "presentation": "Native HTML chapter title; decorative viewport preserves original numeral and doodles",
+      "asset": "projects/synergy/img/chapter-interface.png"
+    },
+    {
+      "slide": 41,
+      "source": "41.png",
+      "sha256": "40f6c15179bcbf81d39489e2f737ee4913679dcbb6689c20ed0b2d8d97826e3c",
+      "asset": "projects/synergy/img/campaign-mockup.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 42,
+      "source": "42.png",
+      "sha256": "2f46cf7f461307e221bd0590b11b47ce114b832dc1b234e56febbb583f6a2a71",
+      "asset": "projects/synergy/img/meeting-mockup.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 43,
+      "source": "43.png",
+      "sha256": "0069e243ac735dacf6e5e13034904faab44a0e74f56f3f731fb32d28b6345e16",
+      "asset": "projects/synergy/img/app-mockup.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 44,
+      "source": "44.png",
+      "sha256": "c621d28043530d257fc793512de88543c984c5738c07d3b9059f9ceef8ec0580",
+      "asset": "projects/synergy/img/interface-mockup.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    },
+    {
+      "slide": 45,
+      "source": "45.png",
+      "sha256": "c7b291b39fc92c9fd0201e504af512f87046461f89021c0cbdd27d488e4a0865",
+      "asset": "projects/synergy/img/calendar-mockup.png",
+      "presentation": "Original artwork; source geometry and pixels preserved"
+    }
+  ]
+}

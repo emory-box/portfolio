@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path'),{spawn,execFileSync}=require('node:child_process');
+const base=path.resolve(__dirname,'../../authoring/moti-pulse/videos');
+const {runtime,fileHash,renderFingerprint}=require('./moti-video-runtime.cjs');
+const {finishReturn}=require('./moti-loop-return.cjs');
+const {cli:entry,env}=runtime();
+const only=process.argv.indexOf('--only');
+const rows=JSON.parse(fs.readFileSync(base+'/manifest.json')).filter(row=>only<0||row.slug===process.argv[only+1]);
+if(!rows.length)throw new Error('No matching recording-loop project.');
+const concurrency=process.argv.includes('--parallel')?2:1;
+fs.mkdirSync(base+'/renders',{recursive:true});
+function verify(row){const file=path.join(base,'renders',row.slug+'.mp4');try{const info=JSON.parse(execFileSync(env.HYPERFRAMES_FFPROBE_PATH,['-v','error','-show_streams','-show_format','-of','json',file],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));const v=info.streams.find(s=>s.codec_type==='video'),a=info.streams.find(s=>s.codec_type==='audio');return v.width===row.width&&v.height===row.height&&Number(v.nb_frames)===row.outputFrames&&!!a&&Math.abs(Number(v.duration)-row.duration)<.04;}catch{return false;}}
+async function render(row){const file=path.join(base,'renders',row.slug+'.mp4'),receipt=file+'.source.json',fingerprint=renderFingerprint(path.join(base,row.slug));let previous;try{previous=JSON.parse(fs.readFileSync(receipt));}catch{}if(!process.argv.includes('--force')&&fs.existsSync(file)&&previous?.fingerprint===fingerprint&&previous?.outputSha256===fileHash(file)&&verify(row)){console.log('Verified existing: '+row.slug);return;}console.log('Rendering: '+row.slug);const log=fs.createWriteStream(path.join(base,'renders',row.slug+'.log'));const child=spawn(process.execPath,[entry,'render','--quality','delivery','--fps','30','--workers','2','-o','../renders/'+row.slug+'.mp4'],{cwd:path.join(base,row.slug),env});child.stdout.pipe(log);child.stderr.pipe(log);const code=await new Promise(resolve=>child.on('exit',resolve));log.end();if(code===0)finishReturn(row,file,env.HYPERFRAMES_FFMPEG_PATH,{freshRender:true});if(code!==0||!verify(row))throw new Error('Render or validation failed: '+row.slug+'; see renders/'+row.slug+'.log');fs.writeFileSync(receipt,JSON.stringify({fingerprint,outputSha256:fileHash(file)},null,2));console.log('Completed: '+row.slug);}
+(async()=>{for(let i=0;i<rows.length;i+=concurrency)await Promise.all(rows.slice(i,i+concurrency).map(render));console.log('All eight MP4 loops are rendered and verified.');})().catch(e=>{console.error(e);process.exitCode=1;});

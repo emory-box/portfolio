@@ -1,0 +1,58 @@
+{
+  "style": "Owner-approved smooth clay: blue canopy, deeper seedlings and centered fan",
+  "blender": "5.2.3 LTS",
+  "palette": {
+    "Ground_Moss": "8EBE50",
+    "Soil_Edge": "B69C8B",
+    "Soil_Granular": "BDA491",
+    "Leaf_Green": "8EBE50",
+    "Leaf_Young": "AFD182",
+    "Stem": "6C9537",
+    "Grass_Clay": "8EBE50",
+    "Fence_Clay": "AD9380",
+    "Frame_Anodized": "C8D1BC",
+    "Device_Polymer": "F8FBF4",
+    "Sensor_Satin": "6C9537",
+    "Indicator": "AFD182",
+    "Fan_Blade": "8EBE50",
+    "Lamp_Diffuser": "FFF1CC",
+    "Shade_Woven": "1B6799",
+    "Hub_Cream": "F8FBF4",
+    "Hub_Sage": "8EBE50",
+    "Hub_Recess": "6C9537",
+    "Hub_Indicator": "AFD182",
+    "Petal_Cream": "F8FBF4",
+    "Flower_Center": "EAD49C"
+  },
+  "fan_position_web": [
+    -3,
+    1.78,
+    0
+  ],
+  "extra_tuft_positions_web_xz": [
+    [
+      3.75,
+      -0.55
+    ],
+    [
+      3.85,
+      0.85
+    ]
+  ],
+  "mesh_objects": 48,
+  "triangles": 113448,
+  "counts": {
+    "seedlings": 12,
+    "fan": 1,
+    "fan_blades": 3,
+    "nozzles": 2,
+    "lights": 2,
+    "hub": 1,
+    "added_grass_tufts": 2
+  },
+  "source_sha256": "1a4666f28de280f7b9ecb07323083152add810f89064e65033baa052d702597f",
+  "base_blend_sha256": "1aad33c7adc5d9b87d4db3da5740094168b6acf882104bb889f9ff2d23127026",
+  "geometry_sha256": "d83f964dfdbd9e3e5859689d4cf0b64f42e928cf4e5f1b8a6251d475d3e57603",
+  "approval": "docs/greeny/garden-model.md",
+  "seconds": 22.94
+}

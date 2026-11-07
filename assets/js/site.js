@@ -4,9 +4,15 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   try {
-    const revealTargets = document.querySelectorAll(
+    const individualTargets = document.querySelectorAll(
       ".section-head, .persona, .device-card, .ui-block, .phone-figure, .notes li, .brand-mark-stage, .brand-copy"
     );
+    // Greeny chapters enter as a unit, keeping headings and their content in
+    // the same reading sequence. Other pages retain their existing targets.
+    const revealTargets = [
+      ...document.querySelectorAll('.greeny-case-study > .section'),
+      ...Array.from(individualTargets).filter(el => !el.closest('.greeny-case-study')),
+    ];
 
     if (!reduceMotion.matches && "IntersectionObserver" in window) {
       revealTargets.forEach((el) => el.classList.add("reveal"));

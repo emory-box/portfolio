@@ -26,6 +26,7 @@
   --g-fg: #afd182;
   --m-bg: #eef1ff;
   --m-fg: #4a5ff7;
+  --s-bg: #000000;
   --ink-bg: #191710;
   --ink-fg: #f4efe3;
 }
@@ -50,6 +51,8 @@
 .work-thumb--greeny { background: var(--g-bg); color: var(--g-fg); }
 .work-thumb--moti { background: var(--m-bg); }
 .work-thumb--moti img { width: 44px; height: 44px; }
+.work-thumb--synergy { background: var(--s-bg); }
+.work-thumb--synergy img { width: 30px; height: 42px; }
 .logo-greeny {
   display: block;
   width: 38px;
@@ -129,6 +132,8 @@
 .closing .btn-ghost:hover { background: rgba(244, 239, 227, 0.12); }
 
 .footer-grid { grid-template-columns: 1.4fr 0.8fr 1.2fr; }
+.project-media--synergy { padding: 0; background: var(--s-bg); }
+.synergy-project-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); }

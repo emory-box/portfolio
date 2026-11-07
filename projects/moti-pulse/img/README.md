@@ -3,28 +3,18 @@
 Source: the owner's `D:\Web-portfolio\Raw\Moti-pulse\Desktop - 2.jpg`
 (1910 × 32768 px). The raw board stays outside the repository.
 
-The JPEG files are crops of the original research charts, illustrated persona
-portraits, function and task-flow diagrams, hand-drawn sketches, interface
-screens and phone mockups. They preserve the original design evidence rather
-than substitute invented UI or photography. The page's headings, body copy,
-research cards, comments, personas and navigation are HTML/CSS.
+The remaining persona portraits and SVGs preserve the original design evidence.
+Mockup crops from the removed section have been deleted.
 
-The owner removed the Mockups section and the original-interface-screen
-disclosure. Their source images remain in this folder for reference.
-Hi-Fi presents eight owner-supplied screen-recording loops, documented in `../video/README.md`.
-Still artifacts are displayed inline without links, hover outlines or zoom
-cursors. Research reference links remain available in the case-study text.
-
-The owner requested redesigned Information Architecture and Task Flow imagery.
 The page uses `diagrams/information-architecture.svg` and `diagrams/flow-*.svg`
 with the Moti palette. They preserve the original positions and wiring;
-only paint styling changes. Original flow SVGs remain unchanged here as source
-evidence. Architecture uses the fixed `../diagrams/information-architecture-source.svg`
+only paint styling changes. Original flow SVGs are retained in `../../../authoring/moti-pulse/diagrams/source/`.
+Architecture uses `../../../authoring/moti-pulse/diagrams/information-architecture-source.svg`
 export of the original HTML/CSS graph from commit `f575045`, including its
 side-by-side feature rows and embedded Inter. It also has an HTML text alternative.
-The graph model is `../diagrams/flows.json`; regenerate the exports with
-`node scripts/build-moti-diagrams.cjs` from the repository root. See
-`../../../docs/moti-diagram-redesign.md` for the source and verification record.
+The graph model is `../../../authoring/moti-pulse/diagrams/flows.json`; regenerate the exports with
+`node scripts/moti/build-moti-diagrams.cjs` from the repository root. See
+`../../../docs/moti-pulse/diagram-redesign.md` for the source and verification record.
 Function ideation uses the four supplied
 `Group-Function-1.svg` through `Group-Function-4.svg` in that order.
 All 25 sketches use the supplied SVG files, including `sketch-23.svg`.
@@ -55,5 +45,4 @@ The Location display copy also aligns the inner vertices to one shared center
 at (101.5, 101.5), matching the animation's sweep origin.
 
 The hero still uses `screen-dashboard.svg`, `screen-mission.svg` and
-`Goal.svg`. The removed Hi-Fi still-image disclosure formerly used these
-and `Timer.svg`; the eight function videos now provide the Hi-Fi presentation.
+`Goal.svg`. The eight original-recording videos provide the Hi-Fi presentation.

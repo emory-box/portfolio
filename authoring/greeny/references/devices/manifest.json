@@ -1,0 +1,94 @@
+{
+  "status": "awaiting-owner-review",
+  "referenceOnly": true,
+  "source": "file:///D:/Web-portfolio/greeny-site/dist/garden-film.html",
+  "canvasSize": [
+    1920,
+    1080
+  ],
+  "items": [
+    {
+      "file": "01-cam-bien.png",
+      "title": "Cảm biến",
+      "frame": 7,
+      "crop": [
+        1055,
+        442,
+        150,
+        170
+      ],
+      "sourceFrame": "sources/frame-07s.png"
+    },
+    {
+      "file": "02-voi-tuoi.png",
+      "title": "Vòi tưới phun",
+      "frame": 12,
+      "crop": [
+        932,
+        308,
+        165,
+        215
+      ],
+      "sourceFrame": "sources/frame-12s.png"
+    },
+    {
+      "file": "03-quat.png",
+      "title": "Quạt",
+      "frame": 17,
+      "crop": [
+        778,
+        306,
+        130,
+        195
+      ],
+      "sourceFrame": "sources/frame-17s.png"
+    },
+    {
+      "file": "04-luoi-che.png",
+      "title": "Mái che",
+      "frame": 22,
+      "crop": [
+        730,
+        140,
+        780,
+        400
+      ],
+      "sourceFrame": "sources/frame-22s.png"
+    },
+    {
+      "file": "05-den.png",
+      "title": "Đèn treo",
+      "frame": 27,
+      "crop": [
+        1050,
+        225,
+        120,
+        185
+      ],
+      "sourceFrame": "sources/frame-27s.png"
+    },
+    {
+      "file": "06-hub-concept.png",
+      "title": "Hub",
+      "frame": 3,
+      "crop": [
+        1528,
+        580,
+        144,
+        118
+      ],
+      "sourceFrame": "sources/frame-03s.png"
+    }
+  ],
+  "detail": {
+    "file": "01-cam-bien-chi-tiet.png",
+    "frame": 7,
+    "sourceFrame": "sources/frame-07s.png",
+    "crop": [
+      1020,
+      400,
+      260,
+      260
+    ]
+  }
+}

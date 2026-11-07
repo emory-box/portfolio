@@ -151,9 +151,76 @@ Each page overrides the token set with a body class, so one repository carries
 several identities without duplicating the chrome:
 
 - **Greeny** (`projects/greeny/`, no body class): dark #191919, green ramp,
-  phone-first case study.
+  a continuous 3D garden story followed by the research and interface case study.
+  The owner-approved opening follows the supplied garden film: introduction,
+  sensors, watering, fan, shade, lights, connectivity and remote care. One
+  locally rendered garden alternates sides and gently turns with native scroll.
+  Each scroll scene pairs its physical action with source-supported explanatory
+  text. The owner removed phone screens from these scenes; the separate app
+  interface case study remains. A Vietnamese 2D readings panel follows a brief
+  sensor signal, retaining the film's 32%, 24°C, 62% and 12,400 lx examples
+  and its illustrative-data disclosure. No new sensor data or product claims.
+  Mobile stacks the garden above the text/panel. Reduced motion keeps the
+  garden still; unavailable scripting/WebGL retains a readable image story.
+  Three.js is pinned and self-hosted; there are no visitor CDN requests.
+  The approved current model follows the owner's smooth clay garden image:
+  a rounded lawn tile with sparse clay tufts and white flowers, a low two-sided
+  taupe fence, smooth earth and twelve thick two-leaf seedlings. Greenery uses
+  the brand ramp; the rounded tubular Y sensor uses #6C9537. Physical surfaces
+  are matte and untextured. The owner approved the refined preview: seedling
+  leaves now use #8EBE50 / #AFD182 with #6C9537 stems. Canopy cloth uses the
+  explicitly approved physical-object blue #1B6799; page chrome retains the
+  green ramp. A floating fan is centered between the left bay's posts, with
+  three identical swept clay blades, no stand and no crossing pipe. Two small
+  grass tufts fill the lawn beside the hub, visibly spaced apart. Two pill
+  irrigation heads attach to side roof tracks with rounded L-shaped arms
+  and white couplers, below two separate stem-suspended lamps.
+  Web-only recolors use approved `projects/greeny/models/colors.json`
+  overrides. Drafts are rendered by the actual web renderer and require
+  owner review before promotion; the GLB geometry stays unchanged.
+  The hub has a cream rounded casing and pill lens:
+  mint for the connected demonstration state, amber during data transfer.
+  The readings panel uses paper #F1F5E9, ink #2A4034, muted #596D5C and rule
+  #D6E1D0. Sensor signals use mint #B8D6B9. Approved lighting A adds soft 2D
+  beams and pools in #FFE8AC, projected from the two actual moving lamps.
+  See `docs/greeny/garden-model.md` for the current approved model and
+  `docs/greeny/scroll-story.md` for retained scroll behavior;
+  authoring sources are documented in `authoring/greeny/README.md`.
 - **Portfolio home** (`.theme-home`): paper #F2EEE5, ink #191710, vermilion
   #C9452A. Deliberately independent of every project.
+- **Synergy** (`.theme-synergy`): preserve the owner's slides 1–45 and the
+  explicit chapter order in slide 5: Logo, User Research, User Experience,
+  Wireframe, Design system, User Interface. Black #000000, white #FFFFFF,
+  elevated #1C1C1E / #2C2C2E, Brilliant Azure #4698F9 and Bright Turquoise
+  #0AF5E1. Inter carries display and body as specified in slides 31–32.
+  Thin turquoise chapter headings, rounded dark surfaces, original blue logo
+  and source app artwork define this theme. These source colors and type
+  override the Greeny-specific single-green and Nunito rules below.
+  Native HTML holds text, navigation, personas, palette and type tables;
+  original diagrams retain their exact layout and wiring. SVG viewports crop
+  supplied artwork without retouching it. Clickable artwork opens a local image
+  without scripts and enhances to a keyboard-accessible dialog. Separate enlarge
+  buttons and duplicate artwork captions are omitted. The owner-approved
+  recording defines seven rounded layers: Overview, then the six source chapters.
+  Long layers retain natural reading height, then hold their bottom edge as
+  the next slides over them. The background layer scales down by at most 4%
+  (2% on mobile) and darkens by up to 30%; native scroll reverses the effect.
+  Source colors and artwork stay unchanged. Whole blocks enter once; no script
+  and reduced motion use ordinary readable flow. All slides 1–45 are accounted
+  for, including slide 25's Wireframes heading. See `docs/synergy/case-study.md`.
+  Chapter dividers follow slides 6/9/15/22/28/40: native light titles and topic
+  lists, with the original outlined and solid numerals and decorative strokes.
+  Subsection title bars follow their own source slides: gray #1C1C1E, turquoise
+  #0AF5E1, Inter Light, rounded corners and a small Synergy / chapter context.
+  Source image headings remain single where already included in an atlas.
+  Overview opens with four whole original images 1–4, edge to edge, in order.
+  Its smaller muted title and the owner's exact introduction follow image 4;
+  text stays inside the page margins. User Interface uses only images 41–45.
+  Components is one continuous atlas of slides 37–39 on the shared original
+  background, including the source title and all card layouts. It remains
+  inside Design System. Icon & Graphic and Buttons remain separate subsections.
+  Spacing joins original slides 33–34 at their shared capture seam, preserving
+  the staggered pair of phones and every measurement label as one composition.
 - **Moti-Pulse** (`.theme-moti`): the owner approved **A / Editorial**. The source
   board supplies the content; the website uses a split hero, open research rows,
   alternating reading widths. Colors: white #FFFFFF,
@@ -169,7 +236,7 @@ several identities without duplicating the chrome:
   complete content fades in together over 300ms, without separate delayed
   headings, prose or image entrances. Charts and Hi-Fi autoplay wait until
   that entrance finishes and their media is visible. Reduced motion and no script
-  keep content directly visible. See `docs/moti-pulse-design.md` for the
+  keep content directly visible. See `docs/moti-pulse/design.md` for the
   approved scope and the branch preserving all three design previews.
   The source-style floating contents panel uses the same white/lavender tokens,
   three research/design groups and an active-section highlight. Its toggle
@@ -181,13 +248,13 @@ several identities without duplicating the chrome:
   Hi-Fi's eight function demos now lead directly to the footer.
   Architecture keeps the original three-level graph with sibling features
   beneath each module; its source layout is frozen in
-  `diagrams/information-architecture-source.svg`, exported from the original
+  `authoring/moti-pulse/diagrams/information-architecture-source.svg`, exported from the original
   HTML graph. Only its colors and outlines change. Task-flow SVGs
   preserve every original shape, glyph outline, position and wire path from
-  `img/flow-*.svg`; only paint and outline styling change. Do not reflow or
+  `authoring/moti-pulse/diagrams/source/flow-*.svg`; only paint and outline styling change. Do not reflow or
   reroute them. Diagrams fit compact frames without horizontal scrolling;
   flow imagery can grow to 520px high. HTML text alternatives and original
-  source diagrams remain available. See `docs/moti-diagram-redesign.md`.
+  source diagrams remain available. See `docs/moti-pulse/diagram-redesign.md`.
 
 Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
 deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from

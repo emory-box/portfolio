@@ -1,9 +1,0 @@
-{
-    "name":  "moti-01-life-mission",
-    "private":  true,
-    "scripts":  {
-                    "preview":  "npx --yes hyperframes@0.9.13 preview",
-                    "check":  "npx --yes hyperframes@0.9.13 check --json",
-                    "render":  "node ../../../scripts/render-moti-recording-loops.cjs --only 01-life-mission"
-                }
-}

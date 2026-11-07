@@ -18,6 +18,8 @@
 *.otf binary
 *.pdf binary
 *.zip binary
+*.blend binary
+*.glb binary
 
 # Preserve the HyperFrames-distributed GSAP bundle without rewriting vendor whitespace.
-video-projects/moti-pulse-recording-loops/*/assets/gsap.min.js -whitespace
+authoring/moti-pulse/videos/*/assets/gsap.min.js -whitespace

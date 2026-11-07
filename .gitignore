@@ -18,6 +18,11 @@ build/
 .eslintcache
 .tsbuildinfo
 *.tsbuildinfo
+__pycache__/
+*.py[cod]
+**/.waveform-cache/
+*.blend1
+*.blend2
 
 # tests
 coverage/
