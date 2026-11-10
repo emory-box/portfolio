@@ -3,7 +3,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {applyColors} from './garden-colors.js';
 
 const clamp = THREE.MathUtils.clamp;
-const angles = [0, .10, .20, -.32, .12, -.12, .06, 0];
+const angles = [0, .10, .20, -.32, .12, -.12, .06];
 const smooth = value => { value = clamp(value, 0, 1); return value * value * (3 - 2 * value); };
 const weight = (position, index) => 1 - smooth((Math.abs(position - index) - .15) / .55);
 const anchors = {
@@ -89,26 +89,27 @@ function airflowEffect(garden) {
 
 function networkEffect(garden) {
   const group=new THREE.Group();group.name='Story_Connections';garden.add(group);
-  const material=new THREE.LineDashedMaterial({color:0xafd182,dashSize:.10,gapSize:.10,transparent:true,opacity:.7});
-  const packetMaterial=new THREE.MeshBasicMaterial({color:0xcfe3b5,transparent:true,opacity:.9,depthWrite:false});
-  const packetGeometry=new THREE.SphereGeometry(.045,8,6);
+  const material=new THREE.LineDashedMaterial({color:0x6c9537,dashSize:.12,gapSize:.10,transparent:true,opacity:.95,toneMapped:false});
+  const packetMaterial=new THREE.MeshBasicMaterial({color:0x6c9537,transparent:true,opacity:.95,depthWrite:false,toneMapped:false});
+  const packetGeometry=new THREE.SphereGeometry(.035,8,6);
   const packets=[];
-  const hub=new THREE.Vector3(...anchors.hub);
-  for(const p of [anchors.sensor,...anchors.nozzles,anchors.fan,anchors.shade,...anchors.lamps]) {
-    const start=new THREE.Vector3(...p);
-    const bend=new THREE.Vector3(3.35,start.y,start.z);
-    const points=[start,bend,new THREE.Vector3(3.35,start.y,hub.z),hub];
-    const route=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),material);
+  const ports={lampL:anchors.lamps[0],lampR:anchors.lamps[1],fan:anchors.fan,
+    sprinkleL:anchors.nozzles[0],sprinkleR:anchors.nozzles[1],sensor:anchors.sensor,hub:anchors.hub};
+  const edges=[['lampL','lampR'],['lampR','hub'],['fan','sprinkleL'],
+    ['sprinkleL','sensor'],['sensor','hub'],['sprinkleL','lampL'],
+    ['sensor','sprinkleR'],['sprinkleR','hub']];
+  for(const [from,to] of edges) {
+    const start=new THREE.Vector3(...ports[from]),end=new THREE.Vector3(...ports[to]);
+    const route=new THREE.Line(new THREE.BufferGeometry().setFromPoints([start,end]),material);
+    route.userData={from,to};
     route.computeLineDistances();group.add(route);
     const packet=new THREE.Mesh(packetGeometry,packetMaterial);group.add(packet);
-    const path=new THREE.CurvePath();
-    for(let i=1;i<points.length;i++)path.add(new THREE.LineCurve3(points[i-1],points[i]));
-    packets.push({packet,path});
+    packets.push({packet,path:new THREE.LineCurve3(start,end)});
   }
   return function update(position,time,reduced) {
     group.visible=position>5.45;
     const amount=smooth((position-5.45)/.5);
-    material.opacity=amount*.70;packetMaterial.opacity=amount*.9;
+    material.opacity=amount*.95;packetMaterial.opacity=amount*.95;
     if(group.visible)packets.forEach(({packet,path},i)=>{
       packet.visible=!reduced;
       if(!reduced)path.getPoint((time*.24+i/packets.length)%1,packet.position);
@@ -163,6 +164,10 @@ export async function createGardenScene(canvas,{colorProfile}={}) {
   // including the shade's continuously changing deployment length.
   const localCenter=object=>object.worldToLocal(new THREE.Box3().setFromObject(object).getCenter(new THREE.Vector3()));
   const shadeCenter=localCenter(shade),hubCenter=localCenter(hub);
+  const platform=garden.getObjectByName('Land_Platform');
+  platform?.geometry?.computeBoundingBox();
+  const platformBox=platform?.geometry?.boundingBox;
+  const platformCorners=platformBox?[platformBox.min.x,platformBox.max.x].flatMap(x=>[platformBox.min.z,platformBox.max.z].map(z=>new THREE.Vector3(x,platformBox.min.y,z))):[];
   const lampMaterials=new Set(),indicatorMaterials=new Set(),hubMaterials=new Set();
   garden.traverse(obj=>{
     if(!obj.isMesh)return;
@@ -209,13 +214,15 @@ export async function createGardenScene(canvas,{colorProfile}={}) {
     garden.rotation.y=reduced ? 0 : THREE.MathUtils.lerp(angles[first],angles[next],blend);
     const effectsPosition=reduced ? index : position;
     const watering=weight(effectsPosition,2),ventilation=weight(effectsPosition,3);
-    const shading=weight(effectsPosition,4),lighting=weight(effectsPosition,5),sensing=weight(effectsPosition,1);
+    // Cloth opens during the approach, stays fully extended for Shade's text
+    // and annotation hold, then retracts before Grow lights is fully visible.
+    const shading=smooth((effectsPosition-3.06)/.88)*(1-smooth((effectsPosition-4.06)/.88));
+    const lighting=weight(effectsPosition,5),sensing=weight(effectsPosition,1);
     if(!reduced&&!paused)fanAngle+=delta*11*ventilation;
     fan.rotation.x=reduced ? 0 : fanAngle;
-    // A slow demonstration cycle keeps the shade moving at a stationary scroll
-    // stop, with zero velocity at both ends. Reduced motion keeps it deployed.
-    const shadeCycle=reduced ? 1 : .5+.5*Math.cos(time*Math.PI/4);
-    shade.scale.z=.10+.90*shading*(.18+.82*shadeCycle);
+    // The minimum scale retains the approved rolled strip at the rear frame.
+    // Deployment follows scroll only; elapsed time never closes the canopy.
+    shade.scale.z=.10+.90*shading;
     lampMaterials.forEach(m=>{m.emissiveIntensity=.05+lighting*2.8;});
     indicatorMaterials.forEach(m=>{m.emissiveIntensity=.3+sensing*(sensorReading ? .65+.25*Math.sin(time*3) : .5);});
     presentation.hubReceiving=sensorReading||weight(effectsPosition,6)>.55;
@@ -232,7 +239,7 @@ export async function createGardenScene(canvas,{colorProfile}={}) {
     water(watering,time,reduced,innerWidth<1000);
     airflow(ventilation,time,reduced);network(effectsPosition,time,reduced);
     renderer.render(scene,camera);
-    return !reduced&&!paused&&(watering>.01||ventilation>.01||shading>.01||lighting>.01||sensorReading||effectsPosition>5.45);
+    return !reduced&&!paused&&(watering>.01||ventilation>.01||lighting>.01||sensorReading||effectsPosition>5.45);
   }
 
   const projectedPoint=new THREE.Vector3();
@@ -256,7 +263,7 @@ export async function createGardenScene(canvas,{colorProfile}={}) {
     }):[];
     const [lampX,lampY,lampZ]=anchors.lamps[0];
     return {width,height,sensor:projectPoint([0,1.13,.10]),sprinkle:projectPoint([nozzleX,nozzleY+.08,nozzleZ]),
-      fan:projectPoint(anchors.fan),shade:projectObjectPoint(shade,shadeCenter),lamp:projectPoint([lampX,lampY+.10,lampZ]),hub:projectObjectPoint(hub,hubCenter),lights,...presentation};
+      fan:projectPoint(anchors.fan),shade:projectObjectPoint(shade,shadeCenter),lamp:projectPoint([lampX,lampY+.10,lampZ]),hub:projectObjectPoint(hub,hubCenter),ground:platformCorners.map(p=>projectObjectPoint(platform,p)),lights,...presentation};
   }
 
   function dispose() {

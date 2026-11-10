@@ -1,0 +1,53 @@
+{
+  "source": "experience-layout.svg",
+  "vectors": [
+    {
+      "file": "projects/greeny/img/diagrams/function-ideation.svg",
+      "box": [
+        40,
+        150,
+        1795,
+        880
+      ],
+      "elements": 90,
+      "sha256": "1b79b33e0c9ebd47d1c9c0a261d32ed18e96c87f5f7361694050a36169ced4e3"
+    },
+    {
+      "file": "projects/greeny/img/diagrams/system-icons.svg",
+      "box": [
+        352,
+        11482,
+        1216,
+        843
+      ],
+      "elements": 122,
+      "sha256": "093e18f2bdb76dfd71d12d1f6c402badab90b184f0a456b4b04718b6ae5ce7e7"
+    }
+  ],
+  "photos": [
+    {
+      "file": "projects/greeny/img/case-study/sensor-explanation.jpg",
+      "sourceImageIndex": 0,
+      "width": 1100,
+      "height": 590,
+      "sha256": "b7a043a09624a1adb134dc76ceced7e8f2a89c8b4692f5f8cc1ed11412e079f3",
+      "bytes": 100330
+    },
+    {
+      "file": "projects/greeny/img/case-study/sensor-device.jpg",
+      "sourceImageIndex": 1,
+      "width": 360,
+      "height": 197,
+      "sha256": "133700bd1205a6c0f1943fe004775e4831e1b5729f37c88411f20fb3558095ba",
+      "bytes": 10823
+    },
+    {
+      "file": "projects/greeny/img/case-study/garden-artwork.jpg",
+      "sourceImageIndex": 2,
+      "width": 900,
+      "height": 600,
+      "sha256": "089c57a941fa73cf386c02878f649caf0cf2ee20bf092f03ad351a40e59b869d",
+      "bytes": 210658
+    }
+  ]
+}

@@ -4,7 +4,9 @@ Static university-app case study at `/projects/synergy/`.
 
 - `index.html`: seven scroll layers (Overview + six chapters), original artifact viewports.
 - `synergy.css`: scoped slide-derived palette, type, responsive layout and motion.
-- `synergy.js`: progressive contents, block entrances and artifact viewer.
+- `synergy.js`: block entrances, anchor reveal and artifact viewer.
+- `../../assets/css/project-navigation.css` and `../../assets/js/project-contents.js`:
+  shared non-sticky project header and floating Contents, with Synergy tokens.
 - `stack-scroll.js`: native scroll pinning, scale/dim and dynamic measurements.
 - `img/`: original supplied artwork, named by purpose. `logo.svg` embeds a crop
   of the original slide 7; it does not redraw the mark.
@@ -35,3 +37,6 @@ All 45 original inputs are present in `D:/Web-portfolio/Raw/Synergy`.
 The complete hashed source mapping lives in `authoring/synergy/slides.json`;
 run `node scripts/synergy/check-sources.cjs` from the repository root to check it.
 No build or install is required. Run `node scripts/serve.cjs` from the repo root.
+Header metadata and the seven Contents groups (21 links) are defined in the
+[local navigation specification](../../docs/synergy/case-study.md#project-navigation).
+The stack reserves no header space because the header scrolls away.

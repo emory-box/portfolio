@@ -17,8 +17,10 @@ Synergy: `/projects/synergy/`.
 
 | Cần sửa | Nơi bắt đầu |
 | --- | --- |
-| Trang tổng hợp | `index.html`, `assets/css/home.css` |
+| Trang home, thông tin cá nhân, placeholder | [Home spec](docs/home/spec.md), `authoring/portfolio/content.cjs`, `assets/css/home.css` |
+| Next projects và footer cá nhân | `authoring/portfolio/`, `assets/css/project-endings.css`, [global spec](docs/shared/website-spec.md) |
 | Shell, font, token chung | `assets/`, [DESIGN.md](DESIGN.md) |
+| Header và Contents của project | [Global spec](docs/shared/website-spec.md), `assets/css/project-navigation.css`, `assets/js/project-contents.js` |
 | Website Greeny | [projects/greeny/README.md](projects/greeny/README.md) |
 | Model vườn 3D | [authoring/greeny/README.md](authoring/greeny/README.md) |
 | Website Moti-Pulse | [projects/moti-pulse/README.md](projects/moti-pulse/README.md) |
@@ -32,6 +34,7 @@ index.html                Trang tổng hợp
 assets/                   CSS, JS, font và thư viện web dùng chung
 projects/                 Trang case study và asset web hiện tại
 authoring/                Nguồn chỉnh sửa, xuất asset; website không tải
+  portfolio/              Nội dung home và bộ dựng phần cuối trang dùng chung
   greeny/                 Blender hiện tại, cảnh nền cần thiết, exporter
   moti-pulse/             Nguồn SVG và tám dự án video gốc
 docs/                     Tài liệu hiện hành, chia theo dự án
@@ -81,3 +84,7 @@ Greeny là đồ án UX/UI của Tấn Duy, Phương Thanh, Kim Vi, Minh Hiền;
 giảng viên Trần Cường Tiến. Moti-Pulse được dựng từ board nghiên cứu gốc;
 giữ nguyên nội dung và số liệu. Nguồn raw: `D:\Web-portfolio\Raw`.
 Tên chủ portfolio, contact và credit tác giả Moti chưa được cung cấp.
+Chủ portfolio đã duyệt nội dung mẫu có đánh dấu và ảnh nền xám cho bản nháp.
+Sửa `authoring/portfolio/content.cjs`, sau đó chạy
+`node authoring/portfolio/build.cjs` để cập nhật home và footer các project.
+Đây là công cụ authoring tùy chọn; web đã xuất vẫn chạy không cần build.

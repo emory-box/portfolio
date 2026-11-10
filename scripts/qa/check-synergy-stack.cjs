@@ -68,12 +68,12 @@ const ids = ['overview','logo','research','experience','wireframe','design-syste
       await page.screenshot({path:`${out}/reading-${width}.png`});
       console.log(`PASS ${width}px: seven layers, long reading, overlap, reverse, dynamic height`);
     }
-    await page.focus('.contents > summary');
+    await page.focus('.project-contents-toggle');
     await page.keyboard.press('Enter');
-    await page.focus('.contents-panel a[href="#logo"]');
+    await page.focus('.project-contents-panel a[href="#logo"]');
     await page.keyboard.press('Enter');
-    await page.waitForFunction(()=>document.querySelector('#logo-title').getBoundingClientRect().top>60);
-    assert.equal(await page.$eval('.contents',el=>el.open),true);
+    await page.waitForFunction(()=>{const r=document.querySelector('#logo-title').getBoundingClientRect();return document.activeElement?.id==='logo-title'&&r.top>=0&&r.top<innerHeight/3;});
+    assert.equal(await page.$eval('.project-contents-toggle',el=>el.getAttribute('aria-expanded')==='true'),true);
     await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
     await page.waitForFunction(()=>!document.documentElement.classList.contains('stack-ready'));
     assert.equal(await page.$eval('#logo .stack-panel',el=>getComputedStyle(el).transform),'none');

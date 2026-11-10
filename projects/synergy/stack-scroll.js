@@ -40,7 +40,8 @@
     measureFrame = 0;
     if (reducedMotion) { clear(); return; }
     viewport = innerHeight;
-    header = (document.querySelector('.site-header')?.offsetHeight || 0) + 8;
+    // Only reserve space for a sticky header; shared project headers scroll away.
+    header = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) || 0;
     main.style.setProperty('--stack-overlap',viewport+'px');
     root.classList.add('stack-ready');
     panels.forEach((panel,index) => {

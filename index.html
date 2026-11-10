@@ -1,189 +1,31 @@
 <!doctype html>
-<html lang="en" class="no-js">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio, work and case studies</title>
-<meta name="description" content="Product design case studies with research, design systems, original interface work and browser interactions.">
-<meta name="theme-color" content="#f2eee5">
+<html lang="en" class="home-page"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — selected design work</title>
+<meta name="description" content="Selected UX/UI case studies: Greeny, Moti-Pulse and Synergy.">
+<meta name="theme-color" content="#121314">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/home.css">
-<script>document.documentElement.classList.replace('no-js','js');</script>
-</head>
-<body class="theme-home">
+<link rel="stylesheet" href="assets/css/project-endings.css">
+<script src="assets/js/home.js" defer></script>
+</head><body class="theme-home" id="page-top">
 <a class="skip-link" href="#main">Skip to content</a>
-
-<svg class="icon-sprite" aria-hidden="true" focusable="false">
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-</svg>
-
-<header class="site-header">
-  <div class="header-inner wrap">
-    <!-- Replace "Portfolio" with your name. -->
-    <a class="brand" href="index.html">Portfolio</a>
-    <nav class="site-nav" aria-label="Portfolio">
-      <a href="#work">Work</a>
-      <a href="#approach">Approach</a>
-    </nav>
-    <a class="header-cta" href="projects/greeny/">Open Greeny</a>
-  </div>
-</header>
-
+<header class="site-header home-header"><div class="home-header-inner"><div class="brand home-brand"><span class="sr-only">[Your name]</span><span class="home-brand-full" aria-hidden="true">[Your name]</span><span class="home-brand-short" aria-hidden="true">[Name]</span></div><nav class="home-nav" id="home-navigation" aria-label="Main navigation"><div class="home-nav-main"><a href="#work">Work</a><a href="#about">About</a></div><a href="#contact">Contact</a></nav><button class="home-menu-toggle" type="button" aria-controls="home-navigation" aria-expanded="false" hidden>Menu</button></div></header>
 <main id="main">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1>Built to be used.</h1>
-        <p class="hero-lede">Case studies in product design and front-end, from research to working web experiences.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#work">See the work</a>
-          <a class="btn btn-ghost" href="projects/greeny/">Start with Greeny</a>
-        </div>
-      </div>
-
-      <div class="work-index" aria-label="Projects">
-        <a class="work-row" href="projects/greeny/">
-          <span class="work-thumb work-thumb--greeny"><span class="logo-greeny" aria-hidden="true"></span></span>
-          <span class="work-row-copy"><strong>Greeny</strong><small>Smart garden companion</small></span>
-          <span class="work-row-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="work-row" href="projects/moti-pulse/">
-          <span class="work-thumb work-thumb--moti"><img src="projects/moti-pulse/img/logo-centered.png" alt="" width="44" height="44"></span>
-          <span class="work-row-copy"><strong>Moti-Pulse</strong><small>Goal motivation app</small></span>
-          <span class="work-row-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="work-row" href="projects/synergy/">
-          <span class="work-thumb work-thumb--synergy"><img src="projects/synergy/img/logo.svg" alt="" width="30" height="42"></span>
-          <span class="work-row-copy"><strong>Synergy</strong><small>University campus companion</small></span>
-          <span class="work-row-arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="work" id="work">
-    <div class="wrap">
-      <div class="work-head">
-        <h2>Selected work</h2>
-        <p>Three projects, from research to interface. Explore each project's own visual system and design process.</p>
-      </div>
-
-      <ul class="project-list">
-        <li>
-          <a class="project" href="projects/greeny/">
-            <div class="project-media project-media--greeny">
-              <span class="project-mark" aria-hidden="true"></span>
-              <div class="project-media-copy">
-                <span class="project-wordmark">GREENY</span>
-                <div class="project-chips">
-                  <span class="demo-chip"><span class="demo-dot"></span>Soil moisture 40%</span>
-                  <span class="demo-chip">Humidity 90%</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3>Greeny</h3>
-              <p>An IoT companion that reads soil, waters on schedule and keeps every garden device in one app.</p>
-              <ul class="tags"><li>UX research</li><li>System architecture</li><li>UI system</li></ul>
-              <span class="project-link">View the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a class="project" href="projects/moti-pulse/">
-            <div class="project-media project-media--moti">
-              <img class="project-logo" src="projects/moti-pulse/img/logo-centered.png" alt="" width="44" height="44">
-              <div class="project-media-copy">
-                <span class="project-wordmark">Moti-Pulse</span>
-                <div class="project-chips">
-                  <span class="demo-chip demo-chip--moti">25:00 focus</span>
-                  <span class="demo-chip demo-chip--moti">Goal 60%</span>
-                </div>
-              </div>
-            </div>
-            <div class="project-body">
-              <h3>Moti-Pulse</h3>
-              <p>A goal-motivation app built on purpose, curiosity and the Pomodoro technique, from research to four screens.</p>
-              <ul class="tags"><li>UX research</li><li>UI design</li><li>Prototyping</li></ul>
-              <span class="project-link">View the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="project" href="projects/synergy/">
-            <div class="project-media project-media--synergy">
-              <img class="synergy-project-art" src="projects/synergy/img/app-mockup.png" alt="Synergy Home and Online Meetings app mockups" width="1920" height="1538" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3>Synergy</h3>
-              <p>A university companion for class schedules, campus navigation, meetings, grades and tuition payments.</p>
-              <ul class="tags"><li>UX research</li><li>Brand identity</li><li>UI design</li></ul>
-              <span class="project-link">View the case study<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="approach" id="approach">
-    <div class="wrap">
-      <div class="work-head">
-        <h2>How it is built</h2>
-        <p>Three rules that shape every project on this site.</p>
-      </div>
-      <ol class="approach-list">
-        <li>
-          <h3>The interface is the evidence</h3>
-          <p>Each case study pairs readable HTML with original design artifacts and browser interactions.</p>
-        </li>
-        <li>
-          <h3>One system per project</h3>
-          <p>Every project carries its own palette, type and components, recorded in a DESIGN.md that survives the build.</p>
-        </li>
-        <li>
-          <h3>Static by choice</h3>
-          <p>No framework, no build step, no tracking. The whole site runs on GitHub Pages and works without JavaScript.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="closing">
-    <div class="wrap closing-inner">
-      <div>
-        <h2>More work is on the way.</h2>
-        <p>Explore Greeny, Moti-Pulse and Synergy, from connected gardens to personal goals and university life.</p>
-      </div>
-      <div class="closing-actions">
-        <a class="btn btn-primary" href="projects/greeny/">Open Greeny<svg class="ico ico--16" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="projects/moti-pulse/">Open Moti-Pulse</a>
-      </div>
-    </div>
-  </section>
+  <section class="home-hero" aria-labelledby="home-title"><div class="home-hero-media"><div class="portfolio-cover" role="img" aria-label="Hero image placeholder"><span>Image to add</span></div></div><div class="home-hero-caption"><h1 id="home-title"><span>Thoughtful design.</span><span>Useful experiences.</span></h1><a class="home-action" href="#featured">Scroll <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a></div></section>
+  <section class="home-feature-story" id="featured" aria-labelledby="featured-title"><h2 id="featured-title" class="sr-only">Featured projects</h2><a class="home-feature" href="projects/greeny/"><div class="home-feature-frame"><div class="home-feature-media"><div class="portfolio-cover" role="img" aria-label="Greeny feature image placeholder"><span>Image to add</span></div></div><div class="home-feature-caption"><span>1</span><div><h3>Greeny</h3><p>Design with Hardware consideration</p></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></div></div></a><a class="home-feature" href="projects/moti-pulse/"><div class="home-feature-frame"><div class="home-feature-media"><div class="portfolio-cover" role="img" aria-label="Moti-Pulse feature image placeholder"><span>Image to add</span></div></div><div class="home-feature-caption"><span>2</span><div><h3>Moti-Pulse</h3><p>UX/UI Research Case study</p></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></div></div></a></section>
+  <section class="home-about wrap" id="about" aria-labelledby="about-title"><h2 id="about-title" class="sr-only">About me</h2><p class="home-bio"><span class="home-bio-word">[Your</span> <span class="home-bio-word">name]</span> <span class="home-bio-word">is</span> <span class="home-bio-word">a</span> <span class="home-bio-word">[your</span> <span class="home-bio-word">role]</span> <span class="home-bio-word">based</span> <span class="home-bio-word">in</span> <span class="home-bio-word">[your</span> <span class="home-bio-word">location].</span> <span class="home-bio-word">I</span> <span class="home-bio-word">enjoy</span> <span class="home-bio-word">understanding</span> <span class="home-bio-word">how</span> <span class="home-bio-word">people</span> <span class="home-bio-word">think,</span> <span class="home-bio-word">giving</span> <span class="home-bio-word">complex</span> <span class="home-bio-word">information</span> <span class="home-bio-word">a</span> <span class="home-bio-word">clear</span> <span class="home-bio-word">structure,</span> <span class="home-bio-word">and</span> <span class="home-bio-word">shaping</span> <span class="home-bio-word">interfaces</span> <span class="home-bio-word">with</span> <span class="home-bio-word">care.</span> <span class="home-bio-word">My</span> <span class="home-bio-word">interests</span> <span class="home-bio-word">include</span> <span class="home-bio-word">[your</span> <span class="home-bio-word">focus</span> <span class="home-bio-word">areas].</span> <span class="home-bio-word">I</span> <span class="home-bio-word">am</span> <span class="home-bio-word">currently</span> <span class="home-bio-word">looking</span> <span class="home-bio-word">for</span> <span class="home-bio-word">[your</span> <span class="home-bio-word">next</span> <span class="home-bio-word">opportunity].</span></p><details class="home-profile-details"><summary>More about me</summary><div class="home-profile-content"><div class="home-portrait"><div class="portfolio-cover" role="img" aria-label="Portrait image placeholder"><span>Image to add</span></div></div><div><p>[Your role] focused on useful, considered digital experiences.</p><div class="home-profile-links"><span class="portfolio-placeholder">[CV to add]</span><span class="portfolio-placeholder">[LinkedIn profile]</span></div></div></div></details><p class="home-draft-note">Draft profile: personal copy, bracketed details and grey images are placeholders.</p></section>
+  <section class="home-work wrap" id="work" aria-labelledby="work-title"><div class="home-section-heading"><h2 id="work-title">Work</h2><p aria-label="3 projects">(3)</p></div><div class="home-project-grid">
+    <a class="home-project" href="projects/greeny/" data-home-reveal><div class="portfolio-cover" role="img" aria-label="Greeny cover image placeholder"><span>Image to add</span></div><div class="home-project-caption"><h3>Greeny</h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></div><div class="home-project-meta"><span>Design with Hardware consideration</span><span>2 months</span></div><p class="home-project-description">A smart-garden companion for monitoring conditions and managing connected devices.</p></a>
+    <a class="home-project" href="projects/moti-pulse/" data-home-reveal><div class="portfolio-cover" role="img" aria-label="Moti-Pulse cover image placeholder"><span>Image to add</span></div><div class="home-project-caption"><h3>Moti-Pulse</h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></div><div class="home-project-meta"><span>UX/UI Research Case study</span><span>1 month</span></div><p class="home-project-description">A goal-motivation app that connects personal purpose with everyday action.</p></a>
+    <a class="home-project" href="projects/synergy/" data-home-reveal><div class="portfolio-cover" role="img" aria-label="Synergy cover image placeholder"><span>Image to add</span></div><div class="home-project-caption"><h3>Synergy</h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></div><div class="home-project-meta"><span>UX/UI Education Case Study.</span><span>3 months</span></div><p class="home-project-description">A university companion for academic tools, campus life and communication.</p></a>
+  </div></section>
+  <section class="home-contact wrap" id="contact" aria-labelledby="contact-title"><a class="home-contact-link" href="#contact-details"><h2 id="contact-title">Let’s make something useful.</h2><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a><p>For opportunities, collaborations or a conversation.</p></section>
 </main>
-
-<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div class="footer-brand">
-      <a class="brand" href="index.html">Portfolio</a>
-      <p>Product design and front-end case studies.</p>
-    </div>
-    <div class="footer-col">
-      <h2>Case studies</h2>
-      <ul><li><a href="projects/greeny/">Greeny</a></li><li><a href="projects/moti-pulse/">Moti-Pulse</a></li><li><a href="projects/synergy/">Synergy</a></li></ul>
-    </div>
-    <div class="footer-col footer-col--note">
-      <h2>About this site</h2>
-      <p>Static HTML, CSS and SVG. No framework, no build step, hosted on GitHub Pages.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/js/site.js" defer></script>
-</body>
-</html>
+<footer class="home-footer"><div class="wrap">
+  <div class="home-footer-links"><nav aria-label="Portfolio"><h2>Info</h2><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav><div id="contact-details" tabindex="-1"><h2>Contact &amp; social</h2><span class="portfolio-placeholder">[Your email]</span><span class="portfolio-placeholder">[LinkedIn profile]</span><span class="portfolio-placeholder">[CV to add]</span></div></div>
+  <div class="home-footer-bottom"><p class="home-footer-name">[Your name]</p><div><p>[Your role]</p><small>© 2026 [Your name]</small><a href="#page-top">Back to top <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div></div>
+</div></footer>
+</body></html>

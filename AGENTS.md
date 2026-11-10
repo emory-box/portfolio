@@ -4,6 +4,16 @@ A static portfolio: a collection of project case studies. The root page indexes
 them; each case study lives in its own folder under `projects/`. No framework,
 no build step, deployed to GitHub Pages from the repository root.
 
+## Project specification entry point
+
+Before creating, changing or reviewing a project page, read
+[the shared website specification](docs/shared/website-spec.md), then only that
+project's local specification and the supporting documents relevant to the task.
+The shared file defines scope, approval status and local document entry points.
+For new projects, establish their own local specification before page work;
+ask the owner for missing project metadata. Apply the shared structure with the
+target project's identity. Other projects' local rules stay scoped to them.
+
 ## First run on a new machine
 
 Skills are vendored in `.agents/skills/`, so cloning already restores them.
@@ -64,21 +74,24 @@ Each page sets its palette with a body class (`.theme-home`, `.theme-moti`, or
 none for Greeny). The shell classes come from `base.css`; page CSS only adds the
 theme tokens and page-specific layout.
 
-The header wordmark currently reads **Portfolio**. Replace it with the owner's
-name in the home page and both case-study headers when the name is set.
+The home-page header wordmark currently reads **Portfolio**. Replace it with
+the owner's name when set. Project headers use the app name according to the
+shared website specification.
 
-Logos are the originals: Greeny uses a mask cut from its deck
-(`projects/greeny/img/logo-mask.png`), Moti-Pulse uses a crop from its board
+Logos are the originals: Greeny uses the owner's vector mark
+(`projects/greeny/img/logo-mask.svg`), Moti-Pulse uses a crop from its board
 (`projects/moti-pulse/img/logo-centered.png`). Use the centered crop for the
 home page, case-study header/footer and favicon. Do not redraw them; the owner
-may supply final logo files later.
+may supply final logo files later. Greeny's square `img/favicon.svg` reuses
+the supplied mark with the brand-green fill.
 
 ## Adding a project
 
 1. Create `projects/<slug>/` with `index.html`, `<slug>.css` and `img/`.
 2. Link `../../assets/css/fonts.css`, then `base.css`, then the page stylesheet.
-   Copy the header/footer markup from an existing case study so navigation stays
-   consistent.
+   Follow the shared website specification for the header and Contents. Existing
+   markup may provide a structural reference; use the new project's own theme.
+   Keep the shared footer conventions.
 3. Add a theme class to `<body>` if the project's palette differs from Greeny's,
    and override the tokens on that class in the page stylesheet.
 4. Keep every URL relative (`img/...`, `../../assets/...`); never a leading `/`.

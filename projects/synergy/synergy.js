@@ -31,33 +31,13 @@
     });
   });
 
-  const chapters = [...document.querySelectorAll('main > .stack-slot[id]')];
-  const chapterLinks = [...document.querySelectorAll('.contents-panel a')];
-  let framePending = false;
-  function markChapter() {
-    framePending = false;
-    const readingLine = innerHeight * .35;
-    let current;
-    chapters.forEach(chapter => {
-      if (chapter.getBoundingClientRect().top <= readingLine) current = chapter.id;
-    });
-    chapterLinks.forEach(link => {
-      if (link.hash === '#' + current) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-  }
-  addEventListener('scroll', () => {
-    if (!framePending) { framePending = true; requestAnimationFrame(markChapter); }
-  }, {passive: true});
-  markChapter();
-
   const dialog = document.querySelector('.artifact-dialog');
   if (!dialog || typeof dialog.showModal !== 'function') return;
   dialog.id = 'artifact-dialog';
   const canvas = dialog.querySelector('.dialog-canvas');
   const title = dialog.querySelector('#artifact-title');
   const sizeButton = dialog.querySelector('[data-artifact-size]');
-  let opener;
+  let opener, readingPosition;
   document.querySelectorAll('[data-enlarge]').forEach(link => {
     link.setAttribute('aria-haspopup','dialog');
     link.setAttribute('aria-controls',dialog.id);
@@ -67,6 +47,7 @@
       if (!art) return;
       event.preventDefault();
       opener = link;
+      readingPosition = {left: scrollX, top: scrollY, behavior: 'instant'};
       title.textContent = link.dataset.enlarge;
       canvas.replaceChildren(art.cloneNode(true));
       canvas.classList.remove('is-original');
@@ -82,5 +63,17 @@
     sizeButton.textContent = original ? 'Fit to screen' : 'Original size';
   });
   dialog.querySelector('[data-artifact-close]').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => { canvas.replaceChildren(); opener?.focus({preventScroll: true}); });
+  let outside = false;
+  const isOutside = event => {
+    const rect = dialog.getBoundingClientRect();
+    return event.clientX < rect.left || event.clientX > rect.right
+      || event.clientY < rect.top || event.clientY > rect.bottom;
+  };
+  dialog.addEventListener('pointerdown', event => { outside = isOutside(event); });
+  dialog.addEventListener('click', event => { if (outside && isOutside(event)) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    canvas.replaceChildren();
+    opener?.focus({preventScroll: true});
+    if (readingPosition) scrollTo(readingPosition);
+  });
 })();

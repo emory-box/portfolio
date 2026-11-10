@@ -12,6 +12,7 @@ Các lệnh Blender bên dưới dành cho thay đổi model/native render.
 | `garden.blend` | Model hiện tại hoàn chỉnh, mở trong Blender |
 | `renders/` | Hai render hiện tại: mái thu và mở |
 | `references/devices/` | Ảnh thiết bị cắt từ clip gốc và manifest nguồn |
+| `references/system-architecture.svg` | File `2.svg` chủ dự án cung cấp; nguồn nội dung giới thiệu thiết bị trong scrollytelling |
 
 Chạy từ root, dùng Blender 5.2:
 

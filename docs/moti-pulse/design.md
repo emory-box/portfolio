@@ -1,5 +1,11 @@
 # Moti-Pulse: approved editorial direction
 
+Read the [shared website specification](../shared/website-spec.md) first. Its
+global identity rule applies to this existing header: the logo and app name are
+static, non-clickable content, with no hover, pressed or keyboard interaction.
+Use the separate All projects link to return home. This rule does not migrate
+the rest of Moti-Pulse's header or Contents in this change.
+
 The owner selected **A / Editorial** from the three working previews. The
 previews are preserved on local branch `prototype/moti-design-review`, commit
 `3b7b176`; they are not production routes.
@@ -74,6 +80,11 @@ position at 320–1920px, including 320×240 and 640×240 windows. Keyboard,
 reduced motion, rapid reversals and native no-JavaScript disclosure passed.
 
 ## Approved motion
+
+The owner replaced the former single Greeny footer card with the shared
+Next projects section (Greeny and Synergy) and personal footer. These follow
+Hi-Fi outside the case-study main content. Use the existing Moti palette and
+Inter through the scoped ending tokens; preserve videos and all source content.
 
 - Hero text and phone screens enter once over 600ms, staggered by 120ms.
 - Each reading section enters once with a single 300ms opacity fade on its

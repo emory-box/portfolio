@@ -1,5 +1,45 @@
 # Synergy case study
 
+Read the [shared website specification](../shared/website-spec.md) first. This
+is Synergy's local specification; other projects' visual rules do not apply.
+
+## Project navigation
+
+Synergy uses the shared `.project-header` and `.project-contents` implementation
+from `assets/css/project-navigation.css` and `assets/js/project-contents.js`.
+The header shows the original `img/logo.svg` with **Synergy**, project type
+**UX/UI Education Case Study.**, duration **3 months**, and **All projects**
+linking to `../../index.html` with the shared up-right arrow. It scrolls away
+in normal document flow and never reappears while scrolling upward.
+The logo/name group is static and not clickable; `All projects` is the header's
+home link.
+
+The root opts in with `.project-page` and `--header-h: 0px`; stack-scroll uses
+this reserved space instead of the physical header height. Preserve the seven
+layers and their existing overlap behavior without leaving a sticky-header gap.
+
+Contents starts closed and becomes available with **Overview** (`#overview`),
+then remains available. Its 21 links follow these seven groups in reading order:
+
+| Group | Immediate topics |
+| --- | --- |
+| Overview | None |
+| Logo | Meaning; Grid & Safezone |
+| User Research | Persona; Features ideation |
+| User Experience | Sitemap; Taskflows |
+| Wireframe | Sketches; Wireframes |
+| Design system | Color; Typography; Icon & Graphic; Button; Components; Spacing |
+| User Interface | None; preserve the image-led Mockups presentation |
+
+Use native stable hash targets; do not include persona names or individual
+artifact sheets as extra navigation levels. Source-embedded Sketches and
+Components headings keep their native accessible text alongside original artwork.
+Keep the shared toggle/arrow position, centered content, fit without internal
+scrolling, focus behavior, persistent open state and reduced-motion fallback.
+Only its toggle opens/closes Contents. Current links use Synergy's turquoise
+`--accent` with `#0AF5E10D` tint and no underline; the toggle remains neutral.
+Without scripting, all links remain available inline.
+
 ## Brief and source contract
 
 Build the Synergy university-app case study from the owner's files in
@@ -58,6 +98,11 @@ image” actions and captions repeating artwork titles are removed. Each link ha
 an accessible name, visible keyboard focus and a zoom-in pointer. Escape returns
 focus to the image without moving the current reading position, including tall
 diagrams. Without JavaScript the link opens the original local image.
+The toolbar and its controls wrap within the viewport at 320px and 200% text;
+the canvas uses the remaining dialog height and scrolls independently. Close,
+Escape or a backdrop click dismisses the viewer and restores focus and the
+saved reading position. Do not let a long title or sizing control push Close
+outside the viewport.
 
 No dependency, API, hosted service, build step, fake download or new product
 behavior. Hover belongs to links and controls. Source product UI is an artifact,
@@ -80,7 +125,8 @@ interception, autoplay or forced one-screen paging. Source artwork and theme
 colors stay unchanged.
 
 `stack-scroll.js` owns measuring/pinning and writes scoped CSS properties;
-`synergy.js` keeps contents, block entrances and the artifact dialog. Wrappers
+`synergy.js` keeps block entrances and the artifact dialog; the shared script
+owns Contents. Wrappers
 hold stable document-flow anchor targets; the sticky sheet inside each wrapper
 gets one viewport of overlap. ResizeObserver updates dimensions after images,
 fonts, expanded details and viewport changes. Only transform and overlay
@@ -162,6 +208,11 @@ dependency, content, section order or animation behavior.
    link to Synergy; documentation and screenshot coverage include the new route.
 
 ## Verification seam
+
+After the seven layers, use the shared Next projects section (Greeny and
+Moti-Pulse) and personal footer. These stay outside `main[data-stack]`, so they
+do not create extra layers or change pinning. Grey covers and missing personal
+details follow the approved shared draft-placeholder policy.
 
 Test the served website, as existing portfolio browser checks do: chapter order,
 source coverage, images, relative paths, no external requests, no page overflow

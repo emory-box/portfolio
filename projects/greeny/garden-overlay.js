@@ -43,7 +43,8 @@ export function createGardenOverlay(svg) {
     svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
     signal.setAttribute('opacity',reading?1:0);
     signal.setAttribute('transform',`translate(${sensor.join(' ')})`);
-    annotation.setAttribute('opacity',deviceLabel?1:0);
+    const reveal=deviceLabel?Math.max(0,Math.min(1,deviceLabel.reveal??1)):0;
+    annotation.setAttribute('opacity',reveal*reveal*(3-2*reveal));
     if(deviceLabel){
       const point=deviceLabel.point;
       badgeText.textContent=deviceLabel.name;

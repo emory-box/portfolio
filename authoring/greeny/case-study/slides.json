@@ -1,0 +1,514 @@
+{
+  "sourceDirectory": "D:/Web-portfolio/Raw/Greeny",
+  "openingReference": {
+    "file": "references/opening-layout.svg",
+    "originalFilename": "Group 1171280328.svg",
+    "sha256": "8f35d0277b0cf0946fdfce0fdd6e14980cb69b48bc7d3a48b83f004f64d74245",
+    "width": 2043,
+    "height": 4683,
+    "scope": "English Introduction, Logo/Meaning, Safezone & Grid and User Research/segmentation; persona layout unchanged",
+    "personaContent": "Three complete English personas supplied separately in slides 14?16."
+  },
+  "experienceReference": {
+    "file": "references/experience-layout.svg",
+    "originalFilename": "Group 1171280329.svg",
+    "sha256": "63f4d332abb06fbec134ef7a74500f03191e439135d816677837dd478dff72d5",
+    "width": 1920,
+    "height": 17785,
+    "scope": "User Experience and UI system after User Research; portfolio heading typography follows Greeny local spec"
+  },
+  "experienceAssets": {
+    "source": "experience-layout.svg",
+    "vectors": [
+      {
+        "file": "projects/greeny/img/diagrams/function-ideation.svg",
+        "box": [
+          40,
+          150,
+          1795,
+          880
+        ],
+        "elements": 90,
+        "sha256": "1b79b33e0c9ebd47d1c9c0a261d32ed18e96c87f5f7361694050a36169ced4e3"
+      },
+      {
+        "file": "projects/greeny/img/diagrams/system-icons.svg",
+        "box": [
+          352,
+          11482,
+          1216,
+          843
+        ],
+        "elements": 122,
+        "sha256": "093e18f2bdb76dfd71d12d1f6c402badab90b184f0a456b4b04718b6ae5ce7e7"
+      }
+    ],
+    "photos": [
+      {
+        "file": "projects/greeny/img/case-study/sensor-explanation.jpg",
+        "sourceImageIndex": 0,
+        "width": 1100,
+        "height": 590,
+        "sha256": "b7a043a09624a1adb134dc76ceced7e8f2a89c8b4692f5f8cc1ed11412e079f3",
+        "bytes": 100330
+      },
+      {
+        "file": "projects/greeny/img/case-study/sensor-device.jpg",
+        "sourceImageIndex": 1,
+        "width": 360,
+        "height": 197,
+        "sha256": "133700bd1205a6c0f1943fe004775e4831e1b5729f37c88411f20fb3558095ba",
+        "bytes": 10823
+      },
+      {
+        "file": "projects/greeny/img/case-study/garden-artwork.jpg",
+        "sourceImageIndex": 2,
+        "width": 900,
+        "height": 600,
+        "sha256": "089c57a941fa73cf386c02878f649caf0cf2ee20bf092f03ad351a40e59b869d",
+        "bytes": 210658
+      }
+    ]
+  },
+  "interfaceReference": {
+    "file": "references/interface-layout.png",
+    "originalFilename": "Group 1171280330.png",
+    "sha256": "045f62abbcb9b3664b75b03e4b94a9430b75f0ff8a9fd4d47dec1cbacd193b07",
+    "width": 1920,
+    "height": 6443,
+    "scope": "One User Interface heading and three contiguous original-artwork panels, ending with outdoor advertising. The archived reference contains five panels; the owner subsequently removed the collages from slides 41 and 42. Earlier case-study content, navigation and 3D remain unchanged.",
+    "panels": [
+      {
+        "slide": 45,
+        "ratio": "16 / 9"
+      },
+      {
+        "slide": 39,
+        "ratio": "16 / 9"
+      },
+      {
+        "slide": 52,
+        "ratio": "3 / 2"
+      }
+    ]
+  },
+  "presentationOrder": [
+    5,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    19,
+    17,
+    18,
+    20,
+    29,
+    31,
+    30,
+    33.1,
+    32,
+    33.2,
+    21,
+    22,
+    27,
+    23,
+    25,
+    24,
+    26,
+    28,
+    34,
+    45,
+    39,
+    52
+  ],
+  "slides": [
+    {
+      "file": "Slide 16_9 - 5.jpg",
+      "number": 5,
+      "sha256": "a265a08bb9bc898444eb66f9883f5b9e67a099e17cf03c11ae76a24eed1b8528",
+      "status": "presented",
+      "selector": "#brief",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 6.jpg",
+      "number": 6,
+      "sha256": "638b6d4c3eaf7f4fe3a7b026d34b04d6791107ab3bc780f52a0ea5743775af7b",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner omitted product ecosystem"
+    },
+    {
+      "file": "Slide 16_9 - 7.jpg",
+      "number": 7,
+      "sha256": "614f19a5ecd5b4033875778095a1c0f2fd4c4a887af4408d81ea3e2f3cfba91b",
+      "status": "reference-only",
+      "selector": "#components",
+      "asset": "projects/greeny/img/case-study/source-7.jpg",
+      "presentation": "Introduction overview omitted; sensor illustration remains as UI explanation in Components"
+    },
+    {
+      "file": "Slide 16_9 - 8.jpg",
+      "number": 8,
+      "sha256": "742eebc5240c79d7117a931769d6221d2e97de75c61fb6bfbda3bf1b2a308d27",
+      "status": "presented",
+      "selector": "#branding",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 9.jpg",
+      "number": 9,
+      "sha256": "9cdc8701d7921ba48f8c1f8ec899f4943a7096cb20d8797e1bb006f5728c85a1",
+      "status": "presented",
+      "selector": "#brand",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 10.jpg",
+      "number": 10,
+      "sha256": "bf411703edc875449f914bd2828e96c9f1ecf7b684567624a3b27ff2b3e1ed72",
+      "status": "presented",
+      "selector": "#brand-safezone",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 11.jpg",
+      "number": 11,
+      "sha256": "77ed666cc54fbc61c7d72c1da2e24bd285bd5f02c88c13c02dc52df48ff390f3",
+      "status": "presented",
+      "selector": "#brand-safezone",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 12.jpg",
+      "number": 12,
+      "sha256": "43fea671964dbd9729376d9a4398ef76abe683050ab10f17ac30c595c2666994",
+      "status": "presented",
+      "selector": "#research",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 13.jpg",
+      "number": 13,
+      "sha256": "7e26c89d294f62de5d4ace0964995a1516e1af8520b81eb6cb08ea593eb0e8d6",
+      "status": "presented",
+      "selector": "#segmentation",
+      "asset": "projects/greeny/img/case-study/source-13.jpg",
+      "presentation": "Native content with cropped original photographic/illustration artwork"
+    },
+    {
+      "file": "Slide 16_9 - 14.jpg",
+      "number": 14,
+      "sha256": "ac3a31e6bee705a1e6a64cb69fb60b9ddefb5a3a35fd088ff22c770ea6a51d72",
+      "status": "presented",
+      "selector": "#personas",
+      "asset": "projects/greeny/img/case-study/source-14.jpg",
+      "presentation": "Native content with cropped original photographic/illustration artwork"
+    },
+    {
+      "file": "Slide 16_9 - 15.jpg",
+      "number": 15,
+      "sha256": "fd30ec3d8282e8ef744a37d565e41cbd22eb7c99f3868b33f6bf36f6fa4a3e88",
+      "status": "presented",
+      "selector": "#personas",
+      "asset": "projects/greeny/img/case-study/source-15.jpg",
+      "presentation": "Native content with cropped original photographic/illustration artwork"
+    },
+    {
+      "file": "Slide 16_9 - 16.jpg",
+      "number": 16,
+      "sha256": "78cc359837ce8eb1fb8cb7f1da26631fb57d0e3bcea402a5507ecd965dc3ed0c",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner retained only Duc Phu and Phuong Lan; Trung Khang omitted"
+    },
+    {
+      "file": "Slide 16_9 - 17.jpg",
+      "number": 17,
+      "sha256": "09c6cf494a684663487f53e39a8bf6efa358cf2fabf1daa24913d21e5afc7b96",
+      "status": "presented",
+      "selector": "#function-ideation",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 18.jpg",
+      "number": 18,
+      "sha256": "1fd9a5ec4daa5cd05954889f428cc124a55829e8c683abb4a5252308190e101e",
+      "status": "presented",
+      "selector": "#function-ideation",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 19.jpg",
+      "number": 19,
+      "sha256": "e410790d537ff5ae1e49c5f57bc215785eae34d3eb7ff4d741a3de52a4d238ac",
+      "status": "presented",
+      "selector": "#experience",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 20.jpg",
+      "number": 20,
+      "sha256": "9b5ccfb7cdd55bcc48f35991fccdfd8cf2f15bff317ebff974cfa8e80008cfb2",
+      "status": "presented",
+      "selector": "#sitemap",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 21.jpg",
+      "number": 21,
+      "sha256": "9ef470a3f427586399fed263a0006e2d94240143b5bc5893a7e781059bd3db02",
+      "status": "presented",
+      "selector": "#ui",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 22.jpg",
+      "number": 22,
+      "sha256": "7e812a4c83b0493702daab4e64c57742df8ed44e2930338b478f022ee6f493fe",
+      "status": "presented",
+      "selector": "#typography",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 23.jpg",
+      "number": 23,
+      "sha256": "df914dd45a88c1542f0073a416748d36d45f1dec1d4759e26c72b08d48a8cd15",
+      "status": "presented",
+      "selector": "#components",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 24.jpg",
+      "number": 24,
+      "sha256": "85171ca7a1c587993d4cfa732853a9cb7e274766e0ed10e5b0df18a941c54ec9",
+      "status": "presented",
+      "selector": "#components",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 25.jpg",
+      "number": 25,
+      "sha256": "75c6a2b0b2c63fe5a5ce2cd9718a7aeb94ab20a4eedbf7d1819fc8d042cde66c",
+      "status": "presented",
+      "selector": "#components",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 26.jpg",
+      "number": 26,
+      "sha256": "f021fafe0dab209f06a8912cdbc7e135d8c14ce0fb4f52fe2f1b15b0c4c4cb4c",
+      "status": "presented",
+      "selector": "#components",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 27.jpg",
+      "number": 27,
+      "sha256": "d4715b14dd9c92e69b64e51336260d35aa3fd3caa544384706e7746480e77ca0",
+      "status": "presented",
+      "selector": "#icons",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 28.jpg",
+      "number": 28,
+      "sha256": "a10d4b71976bd06fef83de46fc337b712003a02bbbbfe33e13e321b1ba19af6c",
+      "status": "presented",
+      "selector": "#components",
+      "asset": "projects/greeny/img/case-study/source-28.jpg",
+      "presentation": "Native content with cropped original photographic/illustration artwork"
+    },
+    {
+      "file": "Slide 16_9 - 29.jpg",
+      "number": 29,
+      "sha256": "896a52ba7e3c782c6d8bb13e0ecc31033a5a4cfdb7c91bb44eeeef0bc805e901",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 30.jpg",
+      "number": 30,
+      "sha256": "7c2a0b11aa7af6ef1241f5a20f5de6f5050e96b5126fcf1ab9beb2e000c4d1f5",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 31.jpg",
+      "number": 31,
+      "sha256": "eab581b357cf1db6a0172887de7eb91f8fab8f26f19c0487b90304d43e2e1c45",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 32.jpg",
+      "number": 32,
+      "sha256": "f9306cfe672cb4cc7f59b6381c865bee0f35a4001092d1cfaf65dbbbb1032a4a",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 33.1.jpg",
+      "number": 33.1,
+      "sha256": "c12d7480ada5584b80467d19aad3019dd296a833af3bbfa74c21bfa39eb8e9ba",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 33.2.jpg",
+      "number": 33.2,
+      "sha256": "50e899332b28c4fda55882ecbf2c7647ceedd6c84cee4ba2ab593727598dc4a9",
+      "status": "presented",
+      "selector": "#user-flows",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 34.jpg",
+      "number": 34,
+      "sha256": "b32d09e6677d62d5ea2af56efadfaff859f047fcd7177cdd34ccfa0f747ecdb9",
+      "status": "presented",
+      "selector": "#interface",
+      "presentation": "Rebuilt native HTML or SVG"
+    },
+    {
+      "file": "Slide 16_9 - 35.jpg",
+      "number": 35,
+      "sha256": "b6cfac7c716645e8054b4c09809573a4fc0b0aeab78c7d18b16adec920e77c59",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 36.jpg",
+      "number": 36,
+      "sha256": "b6cfac7c716645e8054b4c09809573a4fc0b0aeab78c7d18b16adec920e77c59",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 37.jpg",
+      "number": 37,
+      "sha256": "b6cfac7c716645e8054b4c09809573a4fc0b0aeab78c7d18b16adec920e77c59",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 38.jpg",
+      "number": 38,
+      "sha256": "b6cfac7c716645e8054b4c09809573a4fc0b0aeab78c7d18b16adec920e77c59",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 39.jpg",
+      "number": 39,
+      "sha256": "9c80f6f87c4a84b2bb67ecc1d31869e3882a636e50a6fe78f727c9471f0ed118",
+      "status": "presented",
+      "selector": "#interface [data-source-slide=\"39\"]",
+      "asset": "projects/greeny/img/case-study/source-39.jpg",
+      "presentation": "Original artwork in the approved three-panel User Interface sequence"
+    },
+    {
+      "file": "Slide 16_9 - 40.jpg",
+      "number": 40,
+      "sha256": "73e5c6446f189f6ba5854e0b38fc9bf4868a1f0d86fb1c8cf639aa20e90884e2",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 41.jpg",
+      "number": 41,
+      "sha256": "e7b72735078db0e1689c5e4481bc72ef96860ba429e51d531001ffaba71ee2f1",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner removed the device-control/schedule and plant-identification/care collages"
+    },
+    {
+      "file": "Slide 16_9 - 42.jpg",
+      "number": 42,
+      "sha256": "32d44276333f84651d0f0c8647fbc6c794b6b2010c66f717f3d02e908bb41886",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner removed the device-control/schedule and plant-identification/care collages"
+    },
+    {
+      "file": "Slide 16_9 - 43.jpg",
+      "number": 43,
+      "sha256": "d25e38d2aa5eff399a2a0d337d72a24317a4f7d20848a3391baeccf28cca7e47",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 44.jpg",
+      "number": 44,
+      "sha256": "91da3f3182dbbbd99b10d2a48faf451469423ff37e01e2e1d52fd8f3e10f3289",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 45.jpg",
+      "number": 45,
+      "sha256": "0672c3dd4f4757d0be8cbfefdf29fe38192ff3613d1ea1052fd96ddae50f8425",
+      "status": "presented",
+      "selector": "#interface [data-source-slide=\"45\"]",
+      "asset": "projects/greeny/img/case-study/source-45.jpg",
+      "presentation": "Original artwork in the approved three-panel User Interface sequence"
+    },
+    {
+      "file": "Slide 16_9 - 46.jpg",
+      "number": 46,
+      "sha256": "8a07068338b06a58373199c84f11ecc920aee065c72924621f29f1f7582b90cd",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 47.jpg",
+      "number": 47,
+      "sha256": "99a7660cab6c4d2475ca2785ab9909ed668c40ada149f9da85e3a068fe0f0095",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 48.jpg",
+      "number": 48,
+      "sha256": "e8f9c42679efe789b15fd9b567846d4f073b60cbf472627aae57cc63256bfe67",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 -49.jpg",
+      "number": 49,
+      "sha256": "11f84b0190ee8bbdd5c27edc067274cbf14ae051d7662c853023ceb0c1c096d8",
+      "status": "omitted",
+      "selector": null,
+      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+    },
+    {
+      "file": "Slide 16_9 - 52.jpg",
+      "number": 52,
+      "sha256": "3f73e54e6714375cd273a9595595b3353fae4a13368a5e65da32f5204f0eae53",
+      "status": "presented",
+      "selector": "#advertising",
+      "asset": "projects/greeny/img/case-study/source-52.jpg",
+      "presentation": "Original artwork in the approved three-panel User Interface sequence"
+    }
+  ]
+}

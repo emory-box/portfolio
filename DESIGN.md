@@ -29,6 +29,8 @@ colors:
   warning: "#FB9C0C"
   info: "#4CC1E2"
   error: "#E0352F"
+  placeholder-surface: "#D4D4D4"
+  placeholder-ink: "#555555"
 typography:
   display-xl:
     fontFamily: Nunito
@@ -82,6 +84,9 @@ spacing:
   xl: 40px
   section: 120px
 components:
+  portfolio-placeholder:
+    backgroundColor: "{colors.placeholder-surface}"
+    textColor: "{colors.placeholder-ink}"
   phone-frame:
     backgroundColor: "#0C0C0C"
     textColor: "{colors.text}"
@@ -153,8 +158,12 @@ several identities without duplicating the chrome:
 - **Greeny** (`projects/greeny/`, no body class): dark #191919, green ramp,
   a continuous 3D garden story followed by the research and interface case study.
   The owner-approved opening follows the supplied garden film: introduction,
-  sensors, watering, fan, shade, lights, connectivity and remote care. One
-  locally rendered garden alternates sides and gently turns with native scroll.
+  sensors, watering, fan, shade, lights and connectivity. One locally rendered
+  garden alternates sides and gently turns with native scroll. The final Hub
+  composition stays fixed while scrolling changes its text to the App's
+  Online mode and Offline mode; there is no extra App scene. The final scene
+  stays visible at its final pose, then leaves with normal document scrolling
+  as the next section enters. There is no terminal fade or extra model movement.
   Each scroll scene pairs its physical action with source-supported explanatory
   text. The owner removed phone screens from these scenes; the separate app
   interface case study remains. A Vietnamese 2D readings panel follows a brief
@@ -186,8 +195,32 @@ several identities without duplicating the chrome:
   See `docs/greeny/garden-model.md` for the current approved model and
   `docs/greeny/scroll-story.md` for retained scroll behavior;
   authoring sources are documented in `authoring/greeny/README.md`.
-- **Portfolio home** (`.theme-home`): paper #F2EEE5, ink #191710, vermilion
-  #C9452A. Deliberately independent of every project.
+  The case study after the garden follows source slides 5–49 plus outdoor
+  advertising artwork 52: Introduction,
+  Logo/Meaning, Safezone & Grid, User Research/Personas, User Experience/Function Ideations, Sitemap,
+  Task Flow, UI system, Typography, Icon, Components, then one User Interface
+  heading and a continuous gallery of source artwork 45, 39, 52. The owner
+  removed the device-control and plant-care collages (41 and 42).
+  The User Experience/UI system continuation follows the owner's
+  `experience-layout.svg`, with all portfolio headings governed by the Greeny
+  local spec. The latest two SVG references supply English opening/UX/UI copy
+  and a 4/4/4 app palette specimen; they do not alter the garden's colors.
+  Remaining Vietnamese source text
+  uses self-hosted Vietnamese Inter/Nunito subsets through case-scoped aliases;
+  navigation and garden typography retain their previous declarations.
+  Native HTML/SVG presents content and diagrams; original photographs,
+  illustration artwork and phone mockups remain source assets. See
+  `docs/greeny/case-study.md` for the protected boundary and complete source map.
+- **Portfolio home** (`.theme-home`): charcoal #121314, white #F5F5F5,
+  muted #B8B8B8 and readable scroll-highlight grey #7D7D7D. Self-hosted Inter
+  carries display and body. This owner-requested Sara-inspired revision replaces
+  the earlier paper/vermilion home direction; project themes remain independent.
+  Full-screen hero, two shrinking/sticky project scenes, scroll-highlight bio,
+  asymmetric Work index, centered contact and an expanded personal footer follow
+  `docs/home/spec.md`. Bracketed identity/copy stays explicitly draft; missing
+  imagery uses grey slots (#C9C9C9, labels #4B4B4B; darkened in hero/features).
+  Case studies retain two other-project suggestions and their compact personal
+  footer in their own palettes. Project credits sit before suggestions.
 - **Synergy** (`.theme-synergy`): preserve the owner's slides 1–45 and the
   explicit chapter order in slide 5: Logo, User Research, User Experience,
   Wireframe, Design system, User Interface. Black #000000, white #FFFFFF,
@@ -256,13 +289,30 @@ several identities without duplicating the chrome:
   flow imagery can grow to 520px high. HTML text alternatives and original
   source diagrams remain available. See `docs/moti-pulse/diagram-redesign.md`.
 
-Logos are the originals, not redrawn: the Greeny mark is a mask cut from the
-deck (`projects/greeny/img/logo-mask.png`), the Moti-Pulse mark is cropped from
+Logos are the originals, not redrawn: Greeny uses the owner's vector mark
+(`projects/greeny/img/logo-mask.svg`), the Moti-Pulse mark is cropped from
 its board (`projects/moti-pulse/img/logo-centered.png`), shared by the home
 page, case-study header/footer and favicon. Do not replace them with an
-invented mark; the owner may supply final logo files later.
+invented mark; the owner may supply final logo files later. Greeny's SVG
+favicon reuses the original path geometry, with a square inset and #6C9537 fill.
+The supplied `projects/greeny/img/brand-guideline.svg` cover appears in Design
+System's brand panel at its original aspect ratio, replacing the large logo
+preview. Preserve its embedded artwork; do not use the wide cover as a favicon.
 
 ## Layout
+
+Greeny's opening case-study sections follow the owner-approved uploaded SVG at
+`authoring/greeny/case-study/references/opening-layout.svg`, with the approved
+heading contract in `docs/greeny/spec.md`: open logo anatomy, a quiet safezone
+band, and compact persona identity rows with complete reading blocks. This
+explicit local direction supersedes the earlier slide panels and preview layouts
+for the covered sections. Its omissions and source rules are documented in
+`docs/greeny/case-study.md`. The continuation through User Experience and UI
+system follows `authoring/greeny/case-study/references/experience-layout.svg`
+and the same local heading contract. Other project themes and Greeny's 3D story
+retain their presentation. The approved `interface-layout.png` defines the
+ending: one User Interface title using the local heading contract, followed
+by two UI mockup panels and the outdoor ad with no gaps or divider chapters.
 
 A 1200px capped container with growing gutters. Sections are separated by a
 hairline (#3A3A3A) rather than a colour change. The phone is the repeating

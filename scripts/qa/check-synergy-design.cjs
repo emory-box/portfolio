@@ -36,7 +36,7 @@ const out='.cache/synergy-design-review';fs.mkdirSync(out,{recursive:true});
    assert.deepEqual(await page.$$eval('#interface img',els=>els.map(el=>el.getAttribute('src'))),[
     'img/campaign-mockup.png','img/meeting-mockup.png','img/app-mockup.png','img/interface-mockup.png','img/calendar-mockup.png'
    ],'User Interface uses only slides 41–45');
-   assert.equal(await page.$eval('.contents-panel a',el=>el.textContent),'Overview');
+   assert.equal(await page.$eval('.project-contents-panel a',el=>el.textContent),'Overview');
    const components=await page.$eval('#components',el=>({
     inside:!!el.closest('#design-system'),
     figures:el.querySelectorAll('figure').length,
@@ -60,7 +60,7 @@ const out='.cache/synergy-design-review';fs.mkdirSync(out,{recursive:true});
     await page.screenshot({path:`${out}/${id}-${width}.png`});
    }
    if(width===1280) {
-    const captureStyle=await page.addStyleTag({content:'.site-header,.contents { visibility: hidden !important; }'});
+    const captureStyle=await page.addStyleTag({content:'.site-header,.project-contents { visibility: hidden !important; }'});
     await (await page.$('#spacing')).screenshot({path:`${out}/spacing-complete.png`});
     await (await page.$('#components')).screenshot({path:`${out}/components-complete.png`});
     await captureStyle.evaluate(el=>el.remove());

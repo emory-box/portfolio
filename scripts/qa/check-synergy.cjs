@@ -61,6 +61,8 @@ const expected = ['Logo','User Research','User Experience','Wireframes','Design 
     await firstImage.click();
     assert.equal(await page.$eval('dialog',el=>el.open),true,'Pointer click on the image opens its viewer');
     await page.keyboard.press('Escape');
+    // Native close restores focus/scroll on the close event, after key dispatch.
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     // Closing a tall artwork must retain the current reading position, even if
     // the center of the full image is outside the viewport.
     await page.$eval('#components .artifact-zoom',el=>scrollTo(0,el.getBoundingClientRect().top+scrollY+el.offsetHeight*.5-innerHeight*.5));
@@ -79,15 +81,15 @@ const expected = ['Logo','User Research','User Experience','Wireframes','Design 
     assert.equal(await page.evaluate(()=>location.hash),'#main');
     await page.focus('#research .sheet > summary');
     assert.ok(await page.$eval('#research .sheet > summary',el=>parseFloat(getComputedStyle(el).outlineOffset)<0),'Visible inset focus on clipped sheet');
-    await page.focus('.contents > summary');
+    await page.focus('.project-contents-toggle');
     await page.keyboard.press('Enter');
-    assert.equal(await page.$eval('.contents',el=>el.open),true);
-    await page.focus('.contents-panel a[href="#research"]');
+    assert.equal(await page.$eval('.project-contents-toggle',el=>el.getAttribute('aria-expanded')==='true'),true);
+    await page.focus('.project-contents-panel a[href="#research"]');
     await page.keyboard.press('Enter');
-    assert.equal(await page.$eval('.contents',el=>el.open),true,'Chapter navigation must keep contents open');
-    await page.focus('.contents > summary');
+    assert.equal(await page.$eval('.project-contents-toggle',el=>el.getAttribute('aria-expanded')==='true'),true,'Chapter navigation must keep contents open');
+    await page.focus('.project-contents-toggle');
     await page.keyboard.press('Enter');
-    assert.equal(await page.$eval('.contents',el=>el.open),false);
+    assert.equal(await page.$eval('.project-contents-toggle',el=>el.getAttribute('aria-expanded')==='true'),false);
     const link = await page.$('#logo [data-enlarge]');
     await link.focus();
     await page.keyboard.press('Enter');
@@ -111,7 +113,7 @@ const expected = ['Logo','User Research','User Experience','Wireframes','Design 
     assert.ok(await noScript.$eval('#experience [data-enlarge]',el=>el.href.endsWith('.png')),'Original image fallback');
     await noScript.close();
     await page.goto(BASE+'/',{waitUntil:'networkidle0'});
-    assert.ok((await page.$$('a[href="projects/synergy/"]')).length>=3,'Home work index, project card and footer');
+    assert.ok((await page.$$('a[href="projects/synergy/"]')).length>=1,'Home includes the real Synergy project link');
     assert.deepEqual(errors,[],'Browser errors');
     assert.deepEqual(external,[],'No external visitor requests');
     console.log('PASS keyboard, dialog focus return, persistent contents, reduced motion, no-script, home integration and local delivery');
