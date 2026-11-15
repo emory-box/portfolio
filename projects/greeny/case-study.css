@@ -132,16 +132,18 @@ html:has(.greeny-artifact-dialog[open]) { overflow: clip; }
 .greeny-case-study #icons .deck-source-vector { max-width: 900px; margin-inline: auto; }
 .greeny-case-study .deck-icon-inventory { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 24px; }
 .greeny-case-study .deck-component-family + .deck-component-family { margin-top: var(--deck-family-space); }
-.greeny-case-study .deck-metric-structure { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.8fr); align-items: start; gap: 48px; }
-.greeny-case-study .deck-sensor-explanation { margin: 0; padding-top: 16px; }
-.greeny-case-study .deck-sensor-explanation > img { display: block; width: 100%; height: auto; border: 2px solid var(--green-300); border-radius: var(--radius-lg); }
-.greeny-case-study .deck-sensor-explanation h5 { text-align: center; margin-top: 24px; }
-.greeny-case-study .deck-sensor-explanation ul { color: var(--text-muted); }
+.greeny-case-study .deck-metric-heading { margin: 0 0 24px; text-align: start; }
+.greeny-case-study .deck-metric-structure { display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.8fr); align-items: start; gap: 32px; }
+.greeny-case-study .deck-sensor-explanation { min-width: 0; }
+.greeny-case-study .deck-sensor-explanation figure { margin: 0; }
+.greeny-case-study .deck-sensor-explanation img { display: block; width: 100%; height: auto; border: 2px solid var(--green-300); border-radius: var(--radius-lg); }
+.greeny-case-study .deck-sensor-explanation h5 { text-align: start; margin: 0 0 16px; }
+.greeny-case-study .deck-sensor-explanation ul { color: var(--text-muted); margin-block-start: 16px; }
 .greeny-case-study .deck-metric-showcase { min-width: 0; }
-.greeny-case-study .deck-metric-showcase > h4 { text-align: center; }
 .greeny-case-study .deck-metric-diagram { display: grid; grid-template-columns: 44px minmax(0,1fr) 44px; gap: 12px; align-items: center; }
-.greeny-case-study .deck-metric-variants { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 24px; align-items: center; }
-.greeny-case-study .deck-metric-variants > div { min-width: 0; position: relative; }
+.greeny-case-study .deck-metric-variants { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 16px 24px; align-items: stretch; }
+.greeny-case-study .deck-metric-variants > div { min-width: 0; position: relative; display: grid; grid-template-rows: subgrid; grid-row: span 3; }
+.greeny-case-study .deck-metric-variants .deck-data-card { margin-top: 0; }
 .greeny-case-study .deck-metric-variants h5 { font-size: .8125rem; text-align: center; margin: 16px 0 0; }
 .greeny-case-study .deck-sensor-count { margin: 0; position: relative; }
 .greeny-case-study .deck-sensor-count img { display: block; width: 44px; height: 44px; object-fit: cover; border: 2px solid var(--green-300); border-radius: 50%; }
@@ -163,16 +165,23 @@ html:has(.greeny-artifact-dialog[open]) { overflow: clip; }
 .greeny-case-study .deck-experience .deck-details-link { font-size: .5625rem; }
 .greeny-case-study .deck-experience .deck-refresh { font-size: 1.125rem; }
 .greeny-case-study .deck-experience .deck-credit { margin-top: 40px; margin-inline: auto; font-size: .75rem; text-align: center; }
-.greeny-case-study .deck-experience .deck-control-showcase { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 80px; }
-.greeny-case-study .deck-dashboard-states { max-width: 360px; margin-top: 64px; }
-.greeny-case-study .deck-control-showcase > div:first-child > h5 { margin: 16px 0 0; text-align: center; font-size: .8125rem; min-height: 0; }
+.greeny-case-study .deck-control-heading { margin: 0 0 24px; }
+.greeny-case-study .deck-experience .deck-control-showcase { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px 24px; align-items: start; }
+.greeny-case-study .deck-dashboard-showcase { display: grid; grid-template-rows: subgrid; grid-row: span 4; min-width: 0; }
+.greeny-case-study .deck-dashboard-heading h5 { margin: 0; font-size: .8125rem; }
+.greeny-case-study .deck-dashboard-heading .deck-sample-caption { text-align: start; }
+.greeny-case-study .deck-dashboard-states { display: grid; gap: 16px; grid-row: 2 / span 3; align-self: start; min-width: 0; }
+.greeny-case-study .deck-dashboard-states .deck-device-status { margin: 0; }
 .greeny-case-study .deck-sample-caption { text-align: center; font-size: .8125rem; margin-top: 8px; }
-.greeny-case-study .deck-device-samples { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 16px 32px; }
-.greeny-case-study .deck-device-samples > div { min-width: 0; }
-.greeny-case-study .deck-device-samples h5 { font-size: .8125rem; font-weight: 400; text-align: center; }
-.greeny-case-study .deck-device-samples footer { grid-column: 1 / -1; }
-.greeny-case-study .deck-device-samples footer h5 { font-weight: 600; min-height: 0; margin: 0; }
-.greeny-case-study .deck-device-samples .deck-device-card { padding: 12px; margin-block: 16px; }
+.greeny-case-study .deck-device-samples { display: contents; }
+.greeny-case-study .deck-device-samples > div { min-width: 0; display: grid; grid-template-rows: subgrid; grid-row: span 4; }
+.greeny-case-study .deck-device-samples h5 { font-size: .8125rem; font-weight: 400; text-align: start; margin: 0; }
+.greeny-case-study .deck-device-samples > footer { grid-column: 2 / -1; margin-block-start: 8px; }
+.greeny-case-study .deck-device-samples footer h5 { font-weight: 600; min-height: 0; margin: 0; text-align: center; }
+.greeny-case-study .deck-device-samples .deck-device-card { padding: 16px; margin: 0; display: flex; flex-direction: column; }
+.greeny-case-study .deck-device-samples .deck-device-card header { min-height: 24px; }
+.greeny-case-study .deck-device-samples .deck-device-schedule { min-height: 32px; }
+.greeny-case-study .deck-device-samples .deck-device-card footer { margin-block-start: auto; }
 .greeny-case-study .deck-device-actions .deck-icon:last-child { color: var(--error); }
 .greeny-case-study .deck-weather-showcase { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 64px; align-items: center; }
 .greeny-case-study .deck-weather-showcase p { max-width: 44ch; }
@@ -191,15 +200,18 @@ html:has(.greeny-artifact-dialog[open]) { overflow: clip; }
 .greeny-case-study .deck-experience .deck-onboarding > article > div { min-height: 240px; padding: 16px; }
 @media (max-width:1100px) {
  .greeny-case-study .deck-metric-structure { grid-template-columns: minmax(0,1fr); gap: 40px; }
- .greeny-case-study .deck-sensor-explanation { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 40px; align-items: center; padding: 0; }
- .greeny-case-study .deck-sensor-explanation > img { max-width: 400px; }
- .greeny-case-study .deck-sensor-explanation h5 { text-align: start; margin-top: 0; }
+ .greeny-case-study .deck-sensor-explanation figure { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 24px; align-items: start; }
+ .greeny-case-study .deck-sensor-explanation img { max-width: 400px; }
+ .greeny-case-study .deck-sensor-explanation ul { margin-block-start: 0; }
  .greeny-case-study .deck-metric-variants { max-width: 780px; width: 100%; margin-inline: auto; }
  .greeny-case-study .deck-experience .deck-weather-grid { transform: none; }
  .greeny-case-study .deck-weather-canvas { padding: 0; }
- .greeny-case-study .deck-experience .deck-control-showcase,
  .greeny-case-study .deck-weather-showcase,
  .greeny-case-study .deck-experience .deck-garden-showcase { gap: 40px; }
+ .greeny-case-study .deck-experience .deck-control-showcase { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .greeny-case-study .deck-dashboard-showcase { grid-column: 1 / -1; }
+ .greeny-case-study .deck-dashboard-states { grid-template-columns: repeat(2,minmax(0,1fr)); }
+ .greeny-case-study .deck-device-samples > footer { grid-column: 1 / -1; }
 }
 @media (max-width:760px) {
  .greeny-case-study .deck-system-colors, .greeny-case-study .deck-font-grid { grid-template-columns: minmax(0,1fr); gap: 40px; }
@@ -209,8 +221,8 @@ html:has(.greeny-artifact-dialog[open]) { overflow: clip; }
  .greeny-case-study .deck-experience .deck-control-showcase,
  .greeny-case-study .deck-weather-showcase,
  .greeny-case-study .deck-experience .deck-garden-showcase { grid-template-columns: minmax(0,1fr); }
- .greeny-case-study .deck-dashboard-states { margin-top: 32px; }
- .greeny-case-study .deck-experience .deck-control-showcase > div:first-child { grid-column: auto; }
+ .greeny-case-study .deck-dashboard-showcase { grid-column: auto; }
+ .greeny-case-study .deck-dashboard-states { grid-template-columns: minmax(0,1fr); }
  .greeny-case-study .deck-experience .deck-garden-cards { max-width: none; }
  .greeny-case-study .deck-metric-diagram { grid-template-columns: minmax(0,1fr); gap: 20px; }
  .greeny-case-study .deck-sensor-count { display: none; }
@@ -221,7 +233,7 @@ html:has(.greeny-artifact-dialog[open]) { overflow: clip; }
  .greeny-case-study .deck-experience .deck-onboarding h5 { font-size: 1.125rem; }
 }
 @media (max-width:480px) {
- .greeny-case-study .deck-sensor-explanation { grid-template-columns: minmax(0,1fr); gap: 24px; }
+ .greeny-case-study .deck-sensor-explanation figure { grid-template-columns: minmax(0,1fr); gap: 16px; }
  .greeny-case-study .deck-metric-variants { grid-template-columns: minmax(0,1fr); }
  .greeny-case-study .deck-metric-variants > div::before, .greeny-case-study .deck-metric-variants > div::after { display: none; }
  .greeny-case-study .deck-experience .deck-data-card { padding: 16px; }

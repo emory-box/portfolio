@@ -2,6 +2,17 @@
 
 ## Scope and reading order
 
+The delivered Greeny website uses English, including scrollytelling readings,
+sensor status announcements, diagrams, app specimens and image descriptions.
+Preserve personal names and Vietnamese place names in their original spelling.
+Keep original reference files unchanged; translate editable authoring strings
+and use `lang="en"` for the English case-study content. This language decision
+supersedes earlier requirements to keep Vietnamese sensor-panel labels.
+
+The Garden readings panel omits the closing illustrative-readings sentence.
+Keep all four original values; render values at 20px/1.1, Nunito 700, with
+11px unit suffixes across desktop and compact layouts.
+
 Read the [shared website specification](../shared/website-spec.md) first, then
 this file before adding, changing or reviewing Greeny content. This is the local
 entry point for Greeny; its visual rules apply only to `projects/greeny/`.
@@ -42,19 +53,34 @@ Contents starts closed at every width and first appears at `#brief`, after the
 3D story and project facts. It remains available after that first appearance.
 List the six chapters and their immediate subtopics from the hierarchy table
 below, in that order; omit the scrollytelling stops, individual personas,
-individual task flows and component specimens. There are eighteen links.
+individual task flows and component specimens. Project video follows User Interface immediately as a peer heading in the
+same Contents group/column, linking to `#project-video`; nineteen links total.
 The toggle sits at the bottom-right, outside the panel background. All open,
 close, focus, current-section and responsive behavior follows the shared spec.
 Use Greeny's surface/text tokens, `--green-200` for the current-link accent and
 a light translucent tint without an underline. The toggle has no selected styling.
-After Contents first appears, keep the story's Pause control in the opposite
-lower corner so the two controls do not overlap on return visits to the model.
+The owner removed the visible Pause animation control and Continue to the case
+study link. Preserve native scrolling, reduced motion, offscreen idling and
+WebGL fallbacks without reserving space for these removed controls.
 
 The shared assets are `assets/css/project-navigation.css` and
 `assets/js/project-contents.js`. Five subtitle anchors are also preserved in
 the native case-study authoring helpers: About us, Meaning, User segmentation,
 Function Ideations and Colors. See the existing chapter/subtopic hierarchy
 below for their exact labels; do not add extra navigation levels.
+
+## Final project video
+
+After the case-study content and credits, before Back to top and Next projects,
+show the supplied YouTube video `NN9Esg6nsKk` in a separate Project video section.
+It stays outside the model story and native case-study chapter wrapper.
+Use the existing Greeny cover as a local poster. Play loads a YouTube iframe
+inline with controls, fullscreen and mobile inline playback; there is no player
+or third-party request before activation. Omit the standalone Watch on YouTube link. Without JavaScript, the poster
+keeps a native Play video link to the supplied video. This explicitly authorized embed is an exception
+to the otherwise local-only media policy. Shared metadata/template/build logic
+is in `authoring/portfolio/`; style and playback helpers are
+`assets/css/project-endings.css` and `assets/js/project-video.js`.
 
 ## Title and subtitle contract
 
@@ -127,6 +153,17 @@ subsets. Font sizes reference the existing scale in
   in RTL and grows with wrapped text; do not truncate subsection labels.
 - Use `--deck-family-space: clamp(32px, 3.75vw, 48px)` between component families
   and task-flow figures, with 16px between a family/flow label and its specimen.
+  In Components, Environmental parameter graphs is the shared `h4` above the
+  complete sensor-and-chart group. Greeny sensor parameters is its child `h5`,
+  placed above the sensor illustration. Keep the line/bar specimen rows aligned;
+  stack the explanation before the charts on narrow screens without changing
+  their reading order or stretching the sensor image.
+  Device Control Panel is likewise a shared `h4` above its complete family.
+  Its dashboard group and two device groups share heading and specimen rows
+  on wide screens; corresponding Fan/Area cards align at both edges. Keep
+  group captions with their specimens, use equal-width columns, and stack in
+  DOM order when narrow. Remove forced line breaks and manual vertical offsets
+  from group headings; let the shared grid accommodate wrapped labels.
   Keep specimen UI styling and the three contiguous User Interface panels intact.
   User Interface contains source artwork 45, 39 and 52, in that order. The owner
   removed the device-control/schedule collage (41) and plant-identification/care
@@ -198,7 +235,8 @@ The seven source-ordered Task Flow diagrams are independent native `details`
 disclosures, initially closed. Each summary retains its source title as an `h4`
 and shows a green chevron; clicking or pressing Enter/Space opens or closes
 only that flow. Multiple flows may stay open. Keep all diagram geometry,
-positions, wiring, text, full-size links and readable transcripts unchanged.
+positions, wiring, text and full-size links unchanged. Diagram text descriptions
+remain available to screen readers without a visible transcript disclosure.
 
 Use Greeny's dark surfaces, a 1px structural border, 12px radius, a minimum
 64px summary row and 12px between flows. The diagram body has its own quiet

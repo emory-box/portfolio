@@ -5,7 +5,7 @@ maps that contract to the current code; prior design revisions remain in Git.
 
 ## Sources and output
 
-- `authoring/portfolio/content.cjs`: supplied Emory Pham identity/email,
+- `authoring/portfolio/content.cjs`: supplied Emory Phạm identity, role, email and LinkedIn,
   project-specific summaries, exact current skill lists and marked placeholders.
 - `authoring/portfolio/home/index.cjs`: semantic template for root `index.html`.
 - `authoring/portfolio/home/assets.cjs`: original SVG dimensions and Figma IDs.

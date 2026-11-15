@@ -45,7 +45,10 @@ the shared description/cover fields. Never invent roles, metrics or findings.
 
 ## Native frame layout
 
-- Header owner Emory Pham is non-clickable. Right order: About, Projects, Contact.
+- Header owner Emory Phạm is non-clickable. Right order: About, Projects, Contact.
+  Shared profile role is UX Designer; genuine contact destinations come from
+  `authoring/portfolio/content.cjs`. Contact may expose LinkedIn beside the email
+  action without adding a footer to the illustrated Home.
   Header belongs to Home and does not follow the opened views.
 - Hello! at(529,276),382×141; avatar(560,334),319.218×349.861.
   Bread(99,230),264.053×233; interactive pan(1056,205),252.721×223.
@@ -65,6 +68,8 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   its source line break and can use the full text column rather than a359px cap.
   The desktop heading reserves16px before the clip's leading edge and wraps
   when the viewport narrows or text grows. Compact layouts use the full column.
+- Moti-Pulse is selected on initial load, with its board state and preview
+  synchronized. Preserve the existing list order and subsequent user selections.
 - Projects board(70,120),600×880. Supplied three state SVGs already contain
   app-logo cards, shelves and hooks. Keep upright; don't draw extra card frames.
   Transparent accessible tabs overlay logo slots. Hover displays a cropped

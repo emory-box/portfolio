@@ -1,6 +1,6 @@
 # Portfolio
 
-Website tĩnh gồm Home tương tác của Emory Pham, Greeny, Moti-Pulse và Synergy. Không framework,
+Website tĩnh gồm Home tương tác của Emory Phạm, Greeny, Moti-Pulse và Synergy. Không framework,
 không frontend build; GitHub Pages phục vụ nhánh `main`, thư mục gốc.
 
 ## Chạy web
@@ -88,7 +88,7 @@ Giữ `.nojekyll`, font tự host và mọi URL tương đối. Không commit se
 Greeny là đồ án UX/UI của Tấn Duy, Phương Thanh, Kim Vi, Minh Hiền;
 giảng viên Trần Cường Tiến. Moti-Pulse được dựng từ board nghiên cứu gốc;
 giữ nguyên nội dung và số liệu. Nguồn raw: `D:\Web-portfolio\Raw`.
-Tên Emory Pham và email đã được cung cấp. Role, LinkedIn, CV và credit tác giả
+Tên Emory Phạm và email đã được cung cấp. CV và credit tác giả
 Moti chưa có thông tin đầy đủ nên giữ placeholder rõ ràng.
 Chủ portfolio đã duyệt nội dung mẫu có đánh dấu và ảnh nền xám cho bản nháp.
 Sửa `authoring/portfolio/content.cjs`, sau đó chạy

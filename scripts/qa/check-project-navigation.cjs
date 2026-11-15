@@ -3,8 +3,8 @@ const {puppeteer,chromePath}=require('./browser-runtime.cjs').browserRuntime();
 const SITE=process.env.SITE_URL||'http://localhost:4317';
 const project=process.argv[2]||'greeny';
 const config={
-  greeny:{meta:'Design with Hardware consideration2 months',start:'#brief',links:18,heading:'typography-title',topics:'UI system',waitForContent:true},
-  synergy:{meta:'UX/UI Education Case Study.3 months',start:'#overview',links:21,heading:'typography',topics:'Design system',waitForContent:false}
+  greeny:{meta:'Design with Hardware consideration2 months',start:'#brief',links:19,heading:'typography-title',topics:'UI system',waitForContent:true},
+  synergy:{meta:'UX/UI Education Case Study.3 months',start:'#overview',links:22,heading:'typography',topics:'Design system',waitForContent:false}
 }[project];
 assert(config,'Supported project: greeny or synergy');
 const route='/projects/'+project+'/';
@@ -73,10 +73,10 @@ fs.mkdirSync('.cache/qa/navigation',{recursive:true});
       assert(await page.$eval(root+' nav',e=>e.inert),'closed links leave the focus order');
       if(project==='greeny'){
       await page.$eval('#garden-sensors',e=>e.scrollIntoView({block:'center',behavior:'instant'}));await wait(80);
-      assert(await page.evaluate(()=>{
-        const a=document.querySelector('.garden-motion').getBoundingClientRect(),b=document.querySelector('.project-contents-toggle').getBoundingClientRect();
-        return a.right<=b.left||a.left>=b.right||a.bottom<=b.top||a.top>=b.bottom;
-      }),'Contents does not cover Pause when returning to the 3D story');
+      assert.equal(await page.$$eval('.garden-motion',els=>els.length),0,'Removed Pause control stays absent');
+      assert(await page.$eval('.project-contents-toggle',e=>{
+        const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.bottom<=innerHeight;
+      }),'Contents remains available when returning to the 3D story');
       }
       await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'no-preference'}]);
       console.log(`PASS project header, Contents fit, native links/focus and persistent open state: ${width}x${height}`);

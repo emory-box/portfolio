@@ -593,3 +593,4 @@ html:not(.home-ready) .home-project-details { position:relative; left:auto; top:
 html:not(.home-ready) .home-project-grid { display:grid; gap:48px; }
 html:not(.home-ready) .home-project { min-height:0; }
 html:not(.home-ready) .home-project-open { margin-top:24px; }
+.home-contact-linkedin { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin-top:8px; text-decoration:underline; text-underline-offset:4px; }

@@ -38,6 +38,8 @@ fs.mkdirSync(out, {recursive: true});
         const expected = projects.filter(p => p.slug !== project.slug).map(p => '../' + p.slug + '/');
         assert.deepEqual(await page.$$eval('.project-next-card', els => els.map(el => el.getAttribute('href'))), expected, 'Recommendations exclude current project');
         assert.equal(await page.$$eval('.portfolio-footer', els => els.length), 1, 'Single personal footer');
+        assert.equal(await page.$$eval('.portfolio-footer a,.portfolio-footer .portfolio-placeholder', els =>
+          els.filter(el => /\bCV\b/i.test(el.textContent)).length), 0, 'CV links and placeholders are omitted');
         assert.equal(await page.$$eval('#page-top', els => els.length), 1, 'Back to top has a genuine page-start target');
         assert(await page.$eval('.project-next', el => !el.closest('main[data-stack],.greeny-case-study')), 'Ending stays outside protected case-study groups');
         if (project.slug === 'greeny') {
@@ -45,17 +47,36 @@ fs.mkdirSync(out, {recursive: true});
           assert(await page.$eval('.project-credits', el => el.textContent.includes('Trần Cường Tiến')), 'Guidance credit retained');
         }
         await page.$eval('.project-next', el => el.scrollIntoView({block: 'start', behavior: 'instant'}));
+        await page.waitForFunction(() => [...document.querySelectorAll('.project-next-card img')]
+          .every(img => img.complete && img.naturalWidth > 0), {timeout: 15000});
+        assert.deepEqual(await page.$$eval('.project-next-card img', els => els.map(el => el.getAttribute('src'))),
+          projects.filter(p => p.slug !== project.slug && p.cover).map(p => '../../' + p.cover),
+          'Recommendations display the selected source covers');
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Project ending fits ' + project.slug + '/' + width);
         assert(await page.$eval('.project-next', el => el.getBoundingClientRect().bottom <= document.querySelector('.portfolio-footer').getBoundingClientRect().top + 1), 'Recommendations precede footer');
         await page.screenshot({path: out + '/' + project.slug + '-' + width + '.png'});
-        await page.$eval('.portfolio-footer', el => el.scrollIntoView({block: 'end', behavior: 'instant'}));
-        assert(await page.$eval('.portfolio-footer-bottom a', el => {
+        await page.$eval('.portfolio-back-to-top', el => el.scrollIntoView({block: 'center', behavior: 'instant'}));
+        assert(await page.$eval('.portfolio-back-to-top', el => {
           const r = el.getBoundingClientRect();
           return el.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2));
-        }), 'Floating Contents does not obstruct footer action');
+        }), 'Floating Contents does not obstruct Back to top');
+        assert(await page.$eval('.portfolio-back-to-top', el => {
+          const link = el.getBoundingClientRect(), area = el.closest('.portfolio-return-top').getBoundingClientRect();
+          const icon = el.querySelector('svg').getBoundingClientRect(), label = el.querySelector('span').getBoundingClientRect();
+          return Math.abs(link.left + link.width / 2 - area.left - area.width / 2) < 2
+            && icon.bottom < label.top && link.height >= 44
+            && area.bottom <= document.querySelector('.project-next').getBoundingClientRect().top;
+        }), 'Back to top is centered, with its arrow above the label');
+        if (width === 1280) {
+          await page.emulateMediaFeatures([{name: 'prefers-reduced-motion', value: 'reduce'}]);
+          await page.focus('.portfolio-back-to-top');
+          await page.keyboard.press('Enter');
+          await page.waitForFunction(() => scrollY < 2);
+          await page.emulateMediaFeatures([]);
+        }
         if (width === 360) {
           await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
-          assert(await page.$$eval('.project-next,.portfolio-footer', els => els.every(el => el.scrollWidth <= el.clientWidth + 1)), 'New ending fits enlarged text');
+          assert(await page.$$eval('.portfolio-return-top,.project-next,.portfolio-footer', els => els.every(el => el.scrollWidth <= el.clientWidth + 1)), 'New ending fits enlarged text');
           await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
         }
       }
@@ -64,12 +85,12 @@ fs.mkdirSync(out, {recursive: true});
     await page.goto(SITE + '/', {waitUntil: 'networkidle0'});
     await page.focus('.home-projects');await page.keyboard.press('Enter');
     await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
-    await page.focus('.home-project');
-    await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.keyboard.press('Enter')]);
-    assert(new URL(page.url()).pathname.endsWith('/projects/greeny/'));
-    await page.focus('.project-next-card');
+    await page.focus('.home-project-preview:not([hidden]) .home-project');
     await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.keyboard.press('Enter')]);
     assert(new URL(page.url()).pathname.endsWith('/projects/moti-pulse/'));
+    await page.focus('.project-next-card');
+    await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.keyboard.press('Enter')]);
+    assert(new URL(page.url()).pathname.endsWith('/projects/greeny/'));
     await page.setJavaScriptEnabled(false);
     await page.emulateMediaFeatures([{name: 'prefers-reduced-motion', value: 'reduce'}]);
     await page.setViewport({width: 360, height: 900});

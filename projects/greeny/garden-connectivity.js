@@ -1,5 +1,5 @@
 // Layout the approved 2D network around the real projected Hub. Rendering and
-// the shared pause-aware clock remain owned by garden-story.js.
+// the shared animation clock remain owned by garden-story.js.
 const NS='http://www.w3.org/2000/svg';
 const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
 export function createGardenConnectivity(story) {
@@ -52,8 +52,8 @@ export function createGardenConnectivity(story) {
       const mobile=innerWidth<1000;
       const right=mobile?innerWidth-4-outer.left:Math.min(innerWidth-12-outer.left,h.x+108);
       const gardenBottom=ground?.length?v.top-outer.top+Math.max(...ground.map(p=>p[1])):h.y+150;
-      const controlsTop=story.querySelector('.garden-controls').getBoundingClientRect().top-outer.top;
-      const rail=Math.min(controlsTop-12,mobile?frame.bottom-outer.top+54:Math.max(frame.bottom-outer.top+54,gardenBottom+50));
+      const viewportBottom=innerHeight-outer.top-24;
+      const rail=Math.min(viewportBottom-12,mobile?frame.bottom-outer.top+54:Math.max(frame.bottom-outer.top+54,gardenBottom+50));
       const localRail=rail-(innerHeight<800?24:32);
       const gateLane=Math.max(4-outer.left,gatewayL.x-22);
       paths[0]=`M${h.x} ${h.y}H${right-14}Q${right} ${h.y} ${right} ${h.y+14}V${rail-14}Q${right} ${rail} ${right-14} ${rail}H${gateLane+14}Q${gateLane} ${rail} ${gateLane} ${rail-14}V${gatewayL.y+14}Q${gateLane} ${gatewayL.y} ${gateLane+14} ${gatewayL.y}H${gatewayL.x-3}`;

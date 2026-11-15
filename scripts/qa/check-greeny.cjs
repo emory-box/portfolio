@@ -63,7 +63,7 @@ async function checkHold(page,index){
   await page.waitForFunction(()=>document.querySelector('.garden-story').dataset.sensorState==='ready');await wait(600);
   const fit=await page.$eval('.garden-readings',e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,values:[...e.querySelectorAll('dd')].map(v=>v.textContent)};});
   assert(fit.left>=0&&fit.right<=width,'panel horizontal '+width);assert(fit.top>=60&&fit.bottom<height-48,'panel vertical '+width+'x'+height+' '+JSON.stringify(fit));
-  assert(fit.bottom<=await page.$eval('.garden-controls',e=>e.getBoundingClientRect().top)-12,'panel clears the animation control '+width+'x'+height);
+  assert.equal(await page.$$eval('.garden-controls,.garden-motion,.garden-case-link',els=>els.length),0,'removed story controls stay absent');
   assert.deepEqual(fit.values,['32%','24°C','62%','12,400lx']);
   if(width===360||width===1280)await page.screenshot({path:`.cache/qa/greeny/${width}-${height}-sensor.png`});
   for(const i of [0,2,3,4,5,6]){

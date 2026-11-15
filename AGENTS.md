@@ -79,7 +79,7 @@ Each page sets its palette with a body class (`.theme-home`, `.theme-moti`, or
 none for Greeny). The shell classes come from `base.css`; page CSS only adds the
 theme tokens and page-specific layout.
 
-The home-page header uses the supplied name **Emory Pham**. Read
+The home-page header uses the supplied name **Emory Phạm**. Read
 `docs/home/spec.md` for Home work. Project headers use the app name according
 to the shared website specification.
 

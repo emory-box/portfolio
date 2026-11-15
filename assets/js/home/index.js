@@ -54,7 +54,7 @@ renderGame();
 const projectTabs=[...document.querySelectorAll('[data-project-index]')];
 const projectPreviews=[...document.querySelectorAll('.home-project-preview')];
 const projectTabList=document.querySelector('.home-project-tabs');
-let selectedProject=0;
+let selectedProject=Math.max(0,projectTabs.findIndex(tab=>tab.getAttribute('href')==='#project-moti-pulse'));
 let projectSelectionVersion=0;
 projectTabList.setAttribute('role','tablist');
 projectTabList.setAttribute('aria-orientation','vertical');
@@ -103,7 +103,7 @@ projectTabs.forEach((tab,i)=>{
     event.preventDefault();selectProject(next,true);
   });
 });
-selectProject(0,false,false);
+selectProject(selectedProject,false,false);
 
 const toys=initHomeToys(reduced);
 root.classList.add('home-ready');

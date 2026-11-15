@@ -47,7 +47,7 @@ const legacy=['brief','system','ui','interface','brand','notes','problem','perso
    assert.deepEqual(await page.$$eval('#ui .deck-palette',els=>els.map(el=>el.querySelectorAll('li').length)),[4,4,4],'Current reference palette groups');
    assert.deepEqual(await page.$$eval('#ui .deck-palette:first-child code',els=>els.map(el=>el.textContent)),['#8EBE50','#6C9537','#FFFFFF','#191919']);
    assert(await page.$eval('#brief',el=>el.lang==='en'&&el.textContent.includes('Introducing "GREENY"')),'Current English introduction');
-   assert.deepEqual(await page.$$eval('.deck-component-family > div > div > h4,.deck-weather-showcase > div > h4,.deck-garden-showcase > div > h4',els=>[...new Set(els.map(el=>el.textContent))]),['Environmental parameter graphs','Device Control Panel','Weather','Garden information table']);
+   assert.deepEqual(await page.$$eval('.deck-metric-heading,.deck-control-heading,.deck-component-family > div > div > h4,.deck-weather-showcase > div > h4,.deck-garden-showcase > div > h4',els=>[...new Set(els.map(el=>el.textContent))]),['Environmental parameter graphs','Device Control Panel','Weather','Garden information table']);
    assert.deepEqual(await page.$$eval('.deck-reference-heading h2',els=>els.map(el=>el.textContent)),['Introduction','Logo','User Research','User Experience','UI system','User Interface'],'Only chapter titles use h2');
    const subsectionParents={'brand-safezone':'Logo',personas:'User Research',sitemap:'User Experience','user-flows':'User Experience',typography:'UI system',icons:'UI system',components:'UI system'};
    for(const [id,parent] of Object.entries(subsectionParents)){
@@ -84,9 +84,8 @@ const legacy=['brief','system','ui','interface','brand','notes','problem','perso
    await page.focus('#function-ideation .deck-transcript summary');await page.keyboard.press('Enter');
    assert(await page.$eval('#function-ideation .deck-transcript',el=>el.open),'Keyboard opens full feature inventory');
    assert.equal(await page.$$eval('#function-ideation .deck-feature-group',els=>els.length),6,'Complete source feature inventory');
-   await page.focus('#sitemap .deck-transcript summary');await page.keyboard.press('Enter');
-   assert(await page.$eval('#sitemap .deck-transcript',el=>el.open),'Keyboard opens diagram transcript');
-   assert(await page.$$eval('#sitemap .deck-transcript li',els=>els.length>20),'Complete readable diagram transcript');
+   assert.equal(await page.$$eval('#sitemap .deck-transcript summary',els=>els.length),0,'No visible diagram-text disclosure');
+   assert(await page.$$eval('#sitemap ol.sr-only li',els=>els.length>20),'Complete diagram description remains available to screen readers');
    assert.equal(await page.$$eval('.deck-flow',els=>els.length),7,'Seven independent flow disclosures');
    assert(await page.$$eval('.deck-flow',els=>els.every(el=>!el.open)),'Flows start collapsed');
    const flowSummaries=await page.$$('.deck-flow > summary');

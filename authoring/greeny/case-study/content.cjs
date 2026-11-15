@@ -6,7 +6,7 @@ module.exports={
   'The app is part of an IoT network along with sensors and control devices that optimize work and save time for gardeners.'
  ],
  attribution:"Images used for the Greeny sensor are sourced from Parrot Flower Pot to illustrate the Greeny app’s sensor product. This app is created for educational purposes.",
- products:[['Cảm biến Greeny','sensor',[116,720,198,198]],['Vòi tưới phun','sprinkler',[516,720,198,198]],['Quạt','fan',[886,720,198,198]],['Lưới lan','net',[1250,720,198,198]],['Đèn chiếu sáng','light',[1616,720,198,198]]],
+ products:[['Greeny sensor','sensor',[116,720,198,198]],['Sprinkler','sprinkler',[516,720,198,198]],['Fan','fan',[886,720,198,198]],['Shade net','net',[1250,720,198,198]],['Grow lights','light',[1616,720,198,198]]],
  segments:[
   ['Those who want to have their own garden','Users who desire to build and care for a private garden at home or on their property.'],
   ['Coffee shops','Businesses that own gardens to create visual appeal and provide an interesting and comfortable space for customers.'],

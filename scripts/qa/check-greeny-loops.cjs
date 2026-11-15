@@ -39,12 +39,6 @@ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     await visit(1);
     assert.equal((await signal()).opacity,1,'reverse scrolling restores the sensor signal');
     assert.equal(await page.$eval('.garden-readings',element=>element.getAttribute('aria-hidden')),'false','return keeps collected readings visible');
-    await page.click('.garden-motion');await wait(100);
-    const frozen=await signal(),pausedDraws=await page.evaluate(()=>__draws);await wait(250);
-    assert.deepEqual(await signal(),frozen,'pause freezes the signal');
-    assert.equal(await page.evaluate(()=>__draws),pausedDraws,'pause idles rendering in sensor scene');
-    await page.click('.garden-motion');await wait(200);
-    assert.notEqual((await signal()).radius,frozen.radius,'resume continues the signal');
     // Read the real GLB object's transform during rendering, not a duplicate
     // deployment formula or a production-only testing interface.
     await page.evaluate(async()=>{
@@ -108,13 +102,13 @@ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     assert(Math.abs(await page.evaluate(()=>__shadeScale)-.10)<.001,'reverse scroll to Ventilation rolls it back');
     await visit(1);
     await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
-    await page.waitForFunction(()=>document.querySelector('.garden-motion').textContent==='Motion reduced');
+    await page.waitForFunction(()=>!document.querySelector('.has-device-hold'));
     // Let the final still frame requested by the preference change finish.
     await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     const reducedDraws=await page.evaluate(()=>__draws);await wait(250);
     assert.equal(await page.evaluate(()=>__draws),reducedDraws,'reduced motion idles the sensor scene');
     assert.equal((await signal()).opacity,0,'reduced motion has no expanding signal rings');
     assert.deepEqual(errors,[]);
-    console.log('PASS device loops, scroll-driven canopy opening/held label/closing, reverse visits, pause/resume and reduced motion.');
+    console.log('PASS device loops, scroll-driven canopy opening/held label/closing, reverse visits, reduced motion.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

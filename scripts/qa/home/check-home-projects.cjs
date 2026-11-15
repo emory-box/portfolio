@@ -8,6 +8,7 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
   const page=await browser.newPage(),errors=[],missing=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
   await page.setViewport({width:1440,height:1024});await page.goto(SITE+'/#work',{waitUntil:'networkidle0'});await page.evaluate(()=>document.fonts.ready);
+  assert.equal(await page.$eval('.home-project-tab[aria-selected="true"]',e=>e.getAttribute('href')),'#project-moti-pulse','Moti-Pulse is selected by default');
   const native=await page.$eval('.home-project-preview:not([hidden])',e=>{
    const type=getComputedStyle(e.querySelector('.home-project-type')),duration=getComputedStyle(e.querySelector('.home-project-duration'));
    return {type:parseFloat(type.lineHeight),duration:parseFloat(duration.lineHeight),cta:e.querySelector('.home-project-open').getBoundingClientRect().y};
@@ -43,8 +44,9 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
   }
   for(const width of [320,360,768,900]){
    await page.setViewport({width,height:800});
-   await page.goto(SITE+'/#work',{waitUntil:'networkidle0'});
+   await page.goto(SITE+'/?project-default='+width+'#work',{waitUntil:'networkidle0'});
    await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
+   assert.equal(await page.$eval('.home-project-preview:not([hidden])',e=>e.id),'project-moti-pulse','Compact view also starts with Moti-Pulse');
    for(let i=0;i<projects.length;i++){
     await page.focus('[data-project-index="'+i+'"]');await page.keyboard.press('Enter');
     await page.waitForFunction(i=>document.querySelector('[data-project-index="'+i+'"]').getAttribute('aria-selected')==='true',{},i);

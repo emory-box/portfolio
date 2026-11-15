@@ -18,7 +18,7 @@ fs.mkdirSync('.cache/qa/greeny',{recursive:true});
         slot:step.querySelector('.garden-network-text').getBoundingClientRect().toJSON(),
         grid:board.querySelector('.garden-connectivity-nodes').getBoundingClientRect().toJSON(),
         view:story.querySelector('.garden-view').getBoundingClientRect().toJSON(),
-        control:story.querySelector('.garden-controls').getBoundingClientRect().top,
+        viewportBottom:innerHeight,
         opacity,wires:+story.querySelector('[data-effect="connectivity"]').getAttribute('opacity'),
         panels:[...step.querySelectorAll('[data-network-copy],[data-app-copy]')].filter(e=>e.getAttribute('aria-hidden')==='false').map(e=>e.dataset.networkCopy||e.dataset.appCopy)};
     });}
@@ -58,7 +58,7 @@ fs.mkdirSync('.cache/qa/greeny',{recursive:true});
         assert(Math.abs(current.grid.top-initial.grid.top)<1,'network illustrations never jump');
         assert.equal(current.opacity,1);assert.equal(current.wires,1,'network survives every copy swap');
         assert(current.slot.bottom<=current.grid.top-8,'text clears the diagram');
-        assert(current.grid.bottom<=current.control-24,'captions clear Pause');
+        assert(current.grid.bottom<=current.viewportBottom-24,'captions fit viewport');
         assert.deepEqual(current.panels,phase==='hub'?['hub']:['app',phase],'only current copy is exposed to assistive technology');
         if(width===320)assert(current.view.bottom<=current.copyTop-6,'short mobile model clears its heading');
         assert(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth));

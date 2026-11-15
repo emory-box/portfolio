@@ -18,10 +18,17 @@ node authoring/portfolio/build.cjs
 ```
 
 Use `--home-only` for Home changes. The full command also updates only the
-marked ending/footer fragments of the three case studies. Project interiors
+marked video/ending/footer fragments of the three case studies. `videoId` in
+`content.cjs` enables the supplied YouTube video for Greeny and Synergy, using
+the local Home cover as its poster. The player loads only after Play; run
+`node scripts/qa/check-project-videos.cjs` for the inline activation checks.
+Project interiors
 and the Greeny model are outside this builder.
 
 Read [Home authoring](home/README.md), [the Home specification](../../docs/home/spec.md)
 or [shared website rules](../../docs/shared/website-spec.md) for the task at hand.
-Unknown role, LinkedIn, CV and other personal facts remain explicit placeholders
-in `content.cjs`; the supplied name/email and genuine project links stay intact.
+The supplied profile is Emory Phạm, UX Designer, with genuine email and LinkedIn
+destinations in `content.cjs`. Unknown CV and other personal facts remain explicit
+placeholders. Recommendation covers reuse approved Home artwork: Greeny's
+dashboard/brand composition, Synergy's blue university cover and Moti-Pulse's
+actual banner export.

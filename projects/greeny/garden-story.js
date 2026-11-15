@@ -8,8 +8,6 @@ if (story) {
   const steps = [...story.querySelectorAll('[data-garden-step]')];
   const copies = steps.map(step => step.querySelector('.garden-copy'));
   const view = story.querySelector('.garden-view');
-  const controls = story.querySelector('.garden-controls');
-  const pause = story.querySelector('.garden-motion');
   const readings = story.querySelector('.garden-readings');
   const sensorStatus = story.querySelector('.garden-sensor-state');
   const overlay = createGardenOverlay(story.querySelector('.garden-effects'));
@@ -25,7 +23,7 @@ if (story) {
   };
   const clamp = (n, a = 0, b = 1) => Math.min(b, Math.max(a, n));
   let centers = [], scene, frame = 0, previous = 0, visible = true, position = 0;
-  let paused = false, animationTime = 0, fallbackOnly = false;
+  let animationTime = 0, fallbackOnly = false;
   let sensorState = '', holds = [];
 
   function setSensorState(next) {
@@ -33,7 +31,7 @@ if (story) {
     sensorState = next;
     story.dataset.sensorState = next;
     readings.setAttribute('aria-hidden', String(next !== 'ready'));
-    sensorStatus.textContent = next === 'ready' ? 'Đã nhận thông số' : 'Cảm biến sẵn sàng';
+    sensorStatus.textContent = next === 'ready' ? 'Readings received' : 'Sensor ready';
   }
 
   function measure() {
@@ -45,8 +43,7 @@ if (story) {
     const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h'));
     story.classList.toggle('has-connectivity-fallback', fallbackOnly || short.matches);
     networkStory.prepare(!motion.matches && !short.matches && !fallbackOnly);
-    const bottomInset = parseFloat(getComputedStyle(controls).bottom) || 0;
-    const available = innerHeight - headerHeight - controls.offsetHeight - bottomInset - 24;
+    const available = innerHeight - headerHeight - 48;
     const screenCenter = (innerHeight + headerHeight) / 2;
     // Collect every natural rectangle before extending any section.
     const naturalRect = (step, i) => {
@@ -123,7 +120,7 @@ if (story) {
     });
     // Prepare readings as soon as Sensors becomes the active stop, including
     // direct jumps and return visits. Only the model annotation waits for scroll.
-    if (motion.matches || paused || fallbackOnly || short.matches || index === 1) setSensorState('ready');
+    if (motion.matches || fallbackOnly || short.matches || index === 1) setSensorState('ready');
     // Content settles first. Further native scrolling reveals the annotation
     // while both the camera and the explanation remain at their device stop.
     const hold = holds[index];
@@ -131,11 +128,11 @@ if (story) {
     networkStory.update(networkHold?.beat ? (scrollY-networkHold.start-networkHold.annotationDistance)/networkHold.beat : 0);
     story.dataset.deviceReveal = deviceReveal.toFixed(3);
     // The active sensor keeps transmitting on every visit after its reveal.
-    // The shared clock also freezes correctly with Pause.
+    // Reduced motion and offscreen visibility stop continuous effects.
     const sensorActive = index === 1 && !motion.matches && deviceReveal > 0;
     if (scene && !short.matches) {
-      if (!paused && !motion.matches) animationTime += delta;
-      const continuous = scene.draw({position, index, time: animationTime, delta, reduced: motion.matches, paused, sensorReading: sensorActive});
+      if (!motion.matches) animationTime += delta;
+      const continuous = scene.draw({position, index, time: animationTime, delta, reduced: motion.matches, paused: false, sensorReading: sensorActive});
       const projection = scene.project();
       const annotation = annotations[index];
       const deviceLabel = annotation ? {name:annotation.name,point:projection[annotation.anchor],reveal:deviceReveal} : null;
@@ -161,15 +158,6 @@ if (story) {
     connectivity.clear();
     setSensorState('ready');
     measure();
-    updatePause();
-    schedule();
-  }
-
-  function updatePause() {
-    pause.disabled = motion.matches || fallbackOnly;
-    story.classList.toggle('is-paused', paused);
-    pause.setAttribute('aria-pressed', String(paused));
-    pause.textContent = fallbackOnly ? 'Static garden' : motion.matches ? 'Motion reduced' : paused ? 'Resume animation' : 'Pause animation';
     schedule();
   }
 
@@ -186,8 +174,7 @@ if (story) {
   addEventListener('hashchange', followNetworkAnchor);
   story.addEventListener('focusin', schedule);
   story.addEventListener('focusout', schedule);
-  motion.addEventListener('change', () => { measure(); updatePause(); });
-  pause.addEventListener('click', () => { paused = !paused; previous = 0; updatePause(); });
+  motion.addEventListener('change', () => { previous = 0; measure(); });
   mobile.addEventListener('change', measure);
   short.addEventListener('change', measure);
   document.addEventListener('visibilitychange', () => { previous = 0; schedule(); });
@@ -204,7 +191,6 @@ if (story) {
     }).observe(story);
   }
   measure();
-  updatePause();
   document.fonts?.ready.then(() => { measure();followNetworkAnchor(); });
   story.querySelectorAll('img').forEach(img => img.addEventListener('load', measure, {once:true}));
   const canvas = story.querySelector('canvas');

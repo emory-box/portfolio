@@ -166,9 +166,9 @@ several identities without duplicating the chrome:
   as the next section enters. There is no terminal fade or extra model movement.
   Each scroll scene pairs its physical action with source-supported explanatory
   text. The owner removed phone screens from these scenes; the separate app
-  interface case study remains. A Vietnamese 2D readings panel follows a brief
+  interface case study remains. An English 2D readings panel follows a brief
   sensor signal, retaining the film's 32%, 24°C, 62% and 12,400 lx examples
-  and its illustrative-data disclosure. No new sensor data or product claims.
+  with the owner-requested closing caption omitted. No new sensor data or product claims.
   Mobile stacks the garden above the text/panel. Reduced motion keeps the
   garden still; unavailable scripting/WebGL retains a readable image story.
   Three.js is pinned and self-hosted; there are no visitor CDN requests.
@@ -205,8 +205,9 @@ several identities without duplicating the chrome:
   `experience-layout.svg`, with all portfolio headings governed by the Greeny
   local spec. The latest two SVG references supply English opening/UX/UI copy
   and a 4/4/4 app palette specimen; they do not alter the garden's colors.
-  Remaining Vietnamese source text
-  uses self-hosted Vietnamese Inter/Nunito subsets through case-scoped aliases;
+  English is used throughout the delivered page. Vietnamese personal and place
+  names keep their original spelling, supported by self-hosted Vietnamese
+  Inter/Nunito subsets through case-scoped aliases;
   navigation and garden typography retain their previous declarations.
   Native HTML/SVG presents content and diagrams; original photographs,
   illustration artwork and phone mockups remain source assets. See

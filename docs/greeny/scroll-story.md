@@ -1,5 +1,13 @@
 # Greeny scroll story
 
+## Current controls — owner-approved update
+
+The owner removed the visible Pause/Resume control and the Continue to the case
+study link. These requirements supersede older pause-control references below.
+Continuous device effects remain active only in their scene; reduced motion,
+offscreen idling and WebGL image fallbacks stay in place. There is no reserved
+stage space for a removed control, and no replacement status/progress strip.
+
 ## Agreed experience
 
 The owner approved one continuous garden scene at the beginning of the Greeny
@@ -23,8 +31,8 @@ brand content follows the story.
   See [garden model](garden-model.md) and the
   [authoring guide](../../authoring/greeny/README.md) for source files and rebuilds.
 - Explanations follow the film's functions. The 2D readings retain its four
-  original values and illustrative-data disclosure. These are concept
-  demonstrations, not live telemetry.
+  original values; the owner removed the panel's closing caption. These are
+  concept demonstrations, not live telemetry.
 - Brand: existing portfolio tokens, self-hosted Nunito/Inter, original logo.
 - Current device-introduction copy: owner-supplied `2.svg`, preserved as
   [system-architecture.svg](../../authoring/greeny/references/system-architecture.svg).

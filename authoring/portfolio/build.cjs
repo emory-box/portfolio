@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {profile, projects} = require('./content.cjs');
-const {footer, recommendations, credits} = require('./chrome.cjs');
+const {footer, recommendations, credits, projectVideo} = require('./chrome.cjs');
 const root = path.resolve(__dirname, '../..');
 
 function marked(html, name, content) {
@@ -32,6 +32,13 @@ for (const project of process.argv.includes('--home-only') ? [] : projects) {
   }
   html = marked(html, 'project-recommendations', recommendations(project.slug))
     || html.replace('<!-- portfolio-footer:start -->', recommendations(project.slug) + '\n<!-- portfolio-footer:start -->');
+  if (project.videoId) {
+    html = marked(html, 'project-video', projectVideo(project))
+      || html.replace('<!-- project-recommendations:start -->', projectVideo(project) + '\n<!-- project-recommendations:start -->');
+    if (!html.includes('src="../../assets/js/project-video.js"')) {
+      html = html.replace('</head>', '<script src="../../assets/js/project-video.js" defer></script>\n</head>');
+    }
+  }
   fs.writeFileSync(file, html);
 }
 console.log(process.argv.includes('--home-only') ? 'Built home only; project pages unchanged.' : 'Built personal home and synchronized two recommendations + footer on all three projects.');

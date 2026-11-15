@@ -170,17 +170,36 @@ content, show **Next projects**, with two cards leading to other real projects.
 Each card has a cover area, project name and project type. Exclude the current
 project, keep links relative, and include an All projects link to the home work
 section. Desktop uses two equal columns; narrow screens stack the cards.
-Recommendation covers are grey placeholders until artwork is supplied/selected.
+Recommendation covers use owner-selected artwork from the shared content source.
+Greeny uses its supplied dashboard/brand cover and Moti-Pulse uses an export of
+its actual banner. Synergy uses the supplied blue university/Online Meetings
+composition. Reuse local assets rather than
+duplicating the same image for each case study.
 
 Follow this section with the same personal footer fields across home and case studies:
-owner name/role, Work/About/Contact, genuine email/LinkedIn/CV when supplied,
+owner name/role, Work/About/Contact, genuine email/LinkedIn,
 copyright and Back to top. Keep each project's palette and type through semantic
 tokens; case studies share the compact structure. Home may present the same
 fields in its Contact view and its own header, omitting footer metadata when
 its approved Figma screen does so,
 as defined in docs/home/spec.md. Project credits belong before recommendations,
-not in the personal footer. Greeny's original team/guidance/build note is retained
+not in the personal footer. Greeny's original team/guidance information is retained
 in a separate credits area at the end of its main content.
+
+Confirmed owner profile: **Emory Phạm**, **UX Designer**;
+email `thanh.pham.work3112@gmail.com`;
+LinkedIn `https://www.linkedin.com/in/thanh-pham-indabox/`.
+`authoring/portfolio/content.cjs` supplies these values to generated pages.
+
+CV links and CV placeholders are omitted, including when a CV destination is
+available in authoring data. Back to top is a centered text action in an airy
+area immediately before the Next projects recommendations: a thin upward arrow above the uppercase label
+`BACK TO TOP`, with generous letter spacing and no enclosing border or fill.
+Keep its native `#page-top` destination, visible keyboard focus and each
+project's own background and muted-text tokens.
+Show it once per case study; the personal footer contains no second Back to top.
+Greeny's credits keep team and instructor information without an About this
+build disclosure or technical implementation copy.
 
 The owner explicitly permits dummy profile copy and grey image slots in this
 draft. Identify unknown facts with brackets and a clear draft notice on home.
@@ -194,6 +213,12 @@ and optional static authoring command live in `authoring/portfolio/`; the
 markers preserve each component on regeneration. Deployment needs no build.
 Future projects establish their own local spec, join the authoring project list
 and use this same ending/footer contract without importing another local theme.
+
+Greeny and Synergy also have owner-requested Project video sections immediately
+before Back to top. These use the actual supplied YouTube IDs from shared project
+metadata, load an inline player only on Play, and retain a native Play link over the poster only as a no-JavaScript
+fallback; no separate Watch on YouTube link is shown. Their local specs define the placement and Contents entries. This
+does not add a video or an external request to other projects or Home.
 
 ## Shared accessibility and acceptance
 

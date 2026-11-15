@@ -47,24 +47,21 @@ fs.mkdirSync('.cache/qa/greeny',{recursive:true});
         }
         return {crosses,overflow:document.documentElement.scrollWidth>innerWidth,
           bottom:Math.max(...outer.map(p=>p[1]))+origin.top,
-          controls:document.querySelector('.garden-controls').getBoundingClientRect().top,
+          viewportBottom:innerHeight,
           labels:[...document.querySelectorAll('.garden-connectivity figcaption')].map(e=>{const r=e.getBoundingClientRect();return [r.left,r.right];}),
           straight:['gateway-internet','internet-app'].map(id=>{const pts=sample(path(id));return Math.max(...pts.map(p=>p[1]))-Math.min(...pts.map(p=>p[1]));})};
       });
       assert(!geometry.crosses,'Local network must not cross Hub to Gateway '+width);
       assert(!geometry.overflow,'no horizontal overflow '+width);
-      assert(geometry.bottom<=geometry.controls-8,'network clears animation control '+width+'x'+height);
+      assert(geometry.bottom<=geometry.viewportBottom-8,'network fits viewport '+width+'x'+height);
       assert(geometry.labels.every(([left,right])=>left>=0&&right<=width),'framed captions fit '+width);
       assert(geometry.straight.every(delta=>delta<.1),'Gateway, Internet and App share straight wires');
       await page.screenshot({path:`.cache/qa/greeny/connectivity-${width}-${height}.png`});
       await visit(5);assert.equal(await reveal(),0,'network exits with its scene');
       await visit(6);assert.equal(await reveal(),1,'reverse visit restores network');
-      console.log(`PASS connectivity layout, staged reveal, separate routes and controls: ${width}x${height}`);
+      console.log(`PASS connectivity layout, staged reveal, separate routes and viewport fit: ${width}x${height}`);
     }
     const moving=await packets();await wait(180);assert.notDeepEqual(await packets(),moving,'data packets loop');
-    await page.click('.garden-motion');await wait(80);const frozen=await packets();await wait(180);
-    assert.deepEqual(await packets(),frozen,'Pause freezes 2D data packets');
-    await page.click('.garden-motion');await wait(180);assert.notDeepEqual(await packets(),frozen,'Resume continues 2D data packets');
     await page.evaluate(async()=>{
       const THREE=await import('three'),original=THREE.Object3D.prototype.updateMatrixWorld;
       THREE.Object3D.prototype.updateMatrixWorld=function(...args){
@@ -79,6 +76,6 @@ fs.mkdirSync('.cache/qa/greeny',{recursive:true});
     await page.setJavaScriptEnabled(false);await page.reload();
     assert(await page.$eval('.garden-network',e=>getComputedStyle(e).clip==='auto'),'readable connection description without JavaScript');
     assert(await page.$eval('.garden-connectivity',e=>getComputedStyle(e).visibility==='visible'),'static illustrations without JavaScript');
-    assert.deepEqual(errors,[]);console.log('PASS connectivity packets, native device graph, pause/resume and static fallbacks.');
+    assert.deepEqual(errors,[]);console.log('PASS connectivity packets, native device graph and static fallbacks.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});
