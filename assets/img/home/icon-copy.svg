@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Trailing icon">
+<g id="Vector">
+<use xlink:href="#stroke0_0_86" fill="#202020"/>
+<mask id="stroke1_0_86" fill="white">
+<use xlink:href="#stroke0_0_86"/>
+</mask>
+<path d="M9 2C8.44772 2 8 2.44772 8 3V7H2C1.44772 7 1 7.44772 1 8V21C1 21.5523 1.44772 22 2 22H15C15.5523 22 16 21.5523 16 21V17H22C22.5523 17 23 16.5523 23 16V3C23 2.44772 22.5523 2 22 2H9ZM15 7H10V4H21V15H16V8C16 7.44772 15.5523 7 15 7ZM3 20V9H14V20H3Z" stroke-width="4" stroke-linejoin="round" stroke="#464544" mask="url(#stroke1_0_86)"/>
+</g>
+</g>
+<defs>
+<path id="stroke0_0_86" d="M8 3C8 2.44772 8.44772 2 9 2H22C22.5523 2 23 2.44772 23 3V16C23 16.5523 22.5523 17 22 17H16V21C16 21.5523 15.5523 22 15 22H2C1.44772 22 1 21.5523 1 21V8C1 7.44772 1.44772 7 2 7H8V3ZM10 7H15C15.5523 7 16 7.44772 16 8V15H21V4H10V7ZM3 9V20H14V9H3Z" fill-rule="evenodd" clip-rule="evenodd"/>
+</defs>
+</svg>

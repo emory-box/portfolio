@@ -1,6 +1,6 @@
 # Portfolio
 
-Website tĩnh gồm trang tổng hợp, Greeny, Moti-Pulse và Synergy. Không framework,
+Website tĩnh gồm Home tương tác của Emory Pham, Greeny, Moti-Pulse và Synergy. Không framework,
 không frontend build; GitHub Pages phục vụ nhánh `main`, thư mục gốc.
 
 ## Chạy web
@@ -17,7 +17,7 @@ Synergy: `/projects/synergy/`.
 
 | Cần sửa | Nơi bắt đầu |
 | --- | --- |
-| Trang home, thông tin cá nhân, placeholder | [Home spec](docs/home/spec.md), `authoring/portfolio/content.cjs`, `assets/css/home.css` |
+| Trang home, thông tin cá nhân, placeholder | [Home spec](docs/home/spec.md), `authoring/portfolio/home/`, `assets/js/home/`, `assets/css/home.css` |
 | Next projects và footer cá nhân | `authoring/portfolio/`, `assets/css/project-endings.css`, [global spec](docs/shared/website-spec.md) |
 | Shell, font, token chung | `assets/`, [DESIGN.md](DESIGN.md) |
 | Header và Contents của project | [Global spec](docs/shared/website-spec.md), `assets/css/project-navigation.css`, `assets/js/project-contents.js` |
@@ -34,11 +34,13 @@ index.html                Trang tổng hợp
 assets/                   CSS, JS, font và thư viện web dùng chung
 projects/                 Trang case study và asset web hiện tại
 authoring/                Nguồn chỉnh sửa, xuất asset; website không tải
-  portfolio/              Nội dung home và bộ dựng phần cuối trang dùng chung
+  portfolio/              Nội dung chung và bộ dựng phần cuối trang
+    home/                 Template, metadata SVG và helper Home
   greeny/                 Blender hiện tại, cảnh nền cần thiết, exporter
   moti-pulse/             Nguồn SVG và tám dự án video gốc
 docs/                     Tài liệu hiện hành, chia theo dự án
 scripts/                  Setup, server, công cụ Moti và QA
+  qa/home/                Bộ kiểm tra Home có runner riêng
 .agents/skills/           Skills vendored; không sửa tay
 .cache/                   Output kiểm tra tạm; không commit
 ```
@@ -58,13 +60,16 @@ Chạy tại thư mục gốc, khi server đang mở:
 
 ```powershell
 node scripts/qa/check-site.cjs
+node scripts/qa/home/run.cjs
+node scripts/qa/check-portfolio-endings.cjs
 node scripts/moti/verify-moti-recording-loops.cjs
 node scripts/qa/check-greeny.cjs
 node scripts/qa/check-greeny-resilience.cjs
 ```
 
-Hai lệnh đầu không cần browser. Các lệnh Greeny dùng Chrome, mặc định cổng
-4317; đặt `SITE_URL` nếu dùng server khác. Chụp portfolio:
+`check-site` và `verify-moti-recording-loops` không cần browser. Các lệnh Home,
+endings và Greeny dùng Chrome, mặc định cổng4317; đặt `SITE_URL` nếu dùng server
+khác. Chụp portfolio:
 
 ```powershell
 $env:SITE_URL = 'http://localhost:4317'
@@ -83,8 +88,10 @@ Giữ `.nojekyll`, font tự host và mọi URL tương đối. Không commit se
 Greeny là đồ án UX/UI của Tấn Duy, Phương Thanh, Kim Vi, Minh Hiền;
 giảng viên Trần Cường Tiến. Moti-Pulse được dựng từ board nghiên cứu gốc;
 giữ nguyên nội dung và số liệu. Nguồn raw: `D:\Web-portfolio\Raw`.
-Tên chủ portfolio, contact và credit tác giả Moti chưa được cung cấp.
+Tên Emory Pham và email đã được cung cấp. Role, LinkedIn, CV và credit tác giả
+Moti chưa có thông tin đầy đủ nên giữ placeholder rõ ràng.
 Chủ portfolio đã duyệt nội dung mẫu có đánh dấu và ảnh nền xám cho bản nháp.
 Sửa `authoring/portfolio/content.cjs`, sau đó chạy
-`node authoring/portfolio/build.cjs` để cập nhật home và footer các project.
+`node authoring/portfolio/build.cjs --home-only` để cập nhật riêng Home; bỏ
+`--home-only` khi cần đồng bộ footer các project.
 Đây là công cụ authoring tùy chọn; web đã xuất vẫn chạy không cần build.

@@ -211,16 +211,30 @@ several identities without duplicating the chrome:
   Native HTML/SVG presents content and diagrams; original photographs,
   illustration artwork and phone mockups remain source assets. See
   `docs/greeny/case-study.md` for the protected boundary and complete source map.
-- **Portfolio home** (`.theme-home`): charcoal #121314, white #F5F5F5,
-  muted #B8B8B8 and readable scroll-highlight grey #7D7D7D. Self-hosted Inter
-  carries display and body. This owner-requested Sara-inspired revision replaces
-  the earlier paper/vermilion home direction; project themes remain independent.
-  Full-screen hero, two shrinking/sticky project scenes, scroll-highlight bio,
-  asymmetric Work index, centered contact and an expanded personal footer follow
-  `docs/home/spec.md`. Bracketed identity/copy stays explicitly draft; missing
-  imagery uses grey slots (#C9C9C9, labels #4B4B4B; darkened in hero/features).
-  Case studies retain two other-project suggestions and their compact personal
-  footer in their own palettes. Project credits sit before suggestions.
+- **Portfolio home** (.theme-home): Figma Screens section2880:17264, current visible
+  Home/About/Skills frames2727:16249,2748:16339,2785:16153, plus selected-project
+  states2876:16313,2876:16454,2876:16595; Note2877:16361 and Play2877:16404.
+  Palette:#F2F0F3 background,#F8F8F8
+  paper,#464544 ink,#D1D1D3 shadow,#F8C73A yellow,#242424 text.
+  Self-hosted Montserrat carries display/project names; Reddit Sans carries
+  About, body and illustration labels; Roboto carries buttons/navigation and
+  Skills lists, including Empathy. UI-kit controls use pills,
+  stable hover/press borders and visible keyboard focus. Original SVG assets
+  retain their source paths and layering. Project previews use the supplied
+  logo-board states and Greeny/Synergy covers. Project preview frames have no
+  border. Moti's preview contains a direct render of its existing live banner.
+  Distinct Home descriptions use homeSummary, separate from case-study copy.
+  All five views preserve the same-object zoom/return interaction. Butter stays
+  one connected opaque surface; stacked native Skills copy appears after melt.
+  About has no yellow disc, retains the owner's single-gap outline and fades
+  complete copy after the avatar and frame settle. Keep the approved vertical
+  ruled Note, centered playable game and borderless top-right Close. The ball
+  bounces with gravity/squash at its painted base; the pan tosses/flips its
+  original egg pieces in place on click. Neither toy navigates or zooms.
+  Small-screen tabs/pages preserve readable
+  type and full artwork.200% text may create vertical reading space.
+  Full layout, source slots, controls and motion: docs/home/spec.md.
+  This theme does not modify project navigation, Contents, interiors or endings.
 - **Synergy** (`.theme-synergy`): preserve the owner's slides 1–45 and the
   explicit chapter order in slide 5: Logo, User Research, User Experience,
   Wireframe, Design system, User Interface. Black #000000, white #FFFFFF,

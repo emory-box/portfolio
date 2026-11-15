@@ -1,0 +1,78 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const {puppeteer,chromePath}=require('../browser-runtime.cjs').browserRuntime();
+const SITE=process.env.SITE_URL||'http://localhost:4317';
+const out='.cache/qa/home-about';fs.mkdirSync(out,{recursive:true});
+(async()=>{
+ const browser=await puppeteer.launch({executablePath:chromePath,headless:true,pipe:true,args:['--no-sandbox','--disable-webgl']});
+ try{
+  const page=await browser.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  const phase=name=>page.waitForFunction(name=>document.documentElement.dataset.homePhase===name,{timeout:12000},name);
+  await page.setViewport({width:1440,height:1024});
+  await page.goto(SITE+'/',{waitUntil:'networkidle0'});
+  await page.evaluate(()=>document.fonts.ready);
+  const original=await page.$eval('.home-about-copy',e=>e.textContent);
+  const open=()=>page.evaluate(()=>document.querySelector('.home-portrait').click());
+  await open();await phase('settling-in');
+  assert(await page.$('.home-zoom-art'),'Avatar still moves into its final slot');
+  assert.equal(await page.$('.home-about-disc'),null,'Latest About removes the yellow disc');
+  assert(await page.$eval('.home-about-border',e=>getComputedStyle(e).opacity==='0'));
+  assert(await page.$eval('.home-about-copy',e=>getComputedStyle(e).opacity==='0'));
+  assert.equal(await page.$$eval('.home-writing-word',es=>es.length),0,'Copy stays as native paragraphs');
+  await phase('revealing-about-frame');
+  assert.equal(await page.$('.home-zoom-art'),null,'Real avatar is settled before frame reveal');
+  await page.waitForFunction(()=>+getComputedStyle(document.querySelector('.home-about-border')).opacity>.15);
+  const simultaneous=await page.evaluate(()=>['.home-about-clip','.home-about-border'].map(s=>+getComputedStyle(document.querySelector(s)).opacity));
+  assert(Math.abs(simultaneous[0]-simultaneous[1])<.04,'Clip and outline appear together');
+  await page.screenshot({path:out+'/frame-reveal.png'});
+  await phase('revealing-about-text');
+  const fade=await page.$eval('.home-about-copy',e=>{const a=e.getAnimations()[0];return {timing:a.effect.getTiming(),frames:a.effect.getKeyframes()};});
+  assert.equal(fade.timing.duration,520);
+  assert(fade.frames.every(f=>f.opacity!==undefined&&!('clipPath'in f)&&!('transform'in f)),'Text only fades; no word wipe or movement');
+  assert(await page.$eval('.home-about-clip',e=>getComputedStyle(e).opacity==='1'));
+  await page.waitForFunction(()=>{const o=+getComputedStyle(document.querySelector('.home-about-copy')).opacity;return o>0&&o<1;});
+  assert.equal(await page.$eval('.home-about-copy',e=>e.textContent),original,'Fade keeps the complete text and spaces');
+  await page.click('.home-return');await phase('fading-detail');
+  assert(await page.$('.home-zoom-art'),'Avatar remains while extras fade');
+  await phase('home');
+  assert.equal(await page.$('.home-zoom-art'),null);
+  assert(await page.$eval('.home-portrait',e=>e===document.activeElement),'Exit restores opener focus');
+  await open();await phase('detail');await page.mouse.move(2,2);
+  const finished=await page.evaluate(()=>{
+   const svg=document.querySelector('.home-about-border'),p=svg.querySelector('path');
+   const card=document.querySelector('.home-about-card'),button=document.querySelector('.home-return');
+   const b=button.getBoundingClientRect(),c=getComputedStyle(button);
+   return {paths:svg.querySelectorAll('path').length,d:p.getAttribute('d'),dash:getComputedStyle(p).strokeDasharray,
+    border:getComputedStyle(card).borderTopColor,button:{text:button.textContent,border:c.borderTopWidth,bg:c.backgroundColor,right:b.right,top:b.top},
+    visible:getComputedStyle(document.querySelector('.home-about-copy')).opacity==='1'};
+  });
+  assert.equal(finished.paths,1);assert.equal((finished.d.match(/M/g)||[]).length,1);
+  assert(!finished.d.includes('Z'),'Open path produces one permanent gap');assert.equal(finished.dash,'none');
+  assert.equal(finished.border,'rgba(0, 0, 0, 0)');assert(finished.visible);
+  assert.equal(finished.button.text,'Close');assert.equal(finished.button.border,'1px');
+  assert.equal(finished.button.bg,'rgb(242, 240, 243)');
+  const contentRight=await page.$eval('body',e=>e.getBoundingClientRect().right);
+  assert.equal(finished.button.right,contentRight-70);assert.equal(finished.button.top,40);
+  await page.screenshot({path:out+'/about-complete.png',fullPage:true});
+  await page.click('.home-return');await phase('home');
+  await open();await phase('revealing-about-text');await page.setViewport({width:768,height:900});await phase('detail');
+  assert(await page.$eval('.home-about-copy',e=>getComputedStyle(e).opacity==='1'),'Resize completes text fade safely');
+  await page.click('.home-return');await phase('home');
+  await page.setViewport({width:360,height:640});
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  await open();await phase('revealing-about-text');
+  assert(await page.evaluate(()=>getComputedStyle(document.documentElement).overflow!=='hidden'),'Text fade keeps native page behavior');
+  assert(await page.$eval('[data-view="about"]',e=>!e.inert),'Visible prose is accessible while it fades in');
+  await page.mouse.wheel({deltaY:400});
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  assert.equal(await page.evaluate(()=>scrollY),0,'The complete mobile card fits without scrolling during its text fade');
+  await page.click('.home-return');await phase('home');
+  assert.equal(await page.evaluate(()=>scrollY),0,'Mid-fade exit restores desk scroll');
+  await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
+  await open();await phase('detail');
+  assert.equal(await page.$('.home-zoom-art'),null);
+  assert(await page.$eval('.home-about-copy',e=>getComputedStyle(e).opacity==='1'),'Reduced motion shows complete text immediately');
+  assert.deepEqual(errors,[]);console.log('PASS About: avatar first, clip/one-gap outline, native-copy fade, top-right Close, interrupted exit, resize and reduced motion.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

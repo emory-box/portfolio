@@ -1,565 +1,188 @@
 {
-  "date": "2026-11-06",
-  "authorization": "Owner requested organization and removal; chose current version and required rebuild sources only.",
-  "files": [
-    {
-      "path": "projects/greeny/3d/clay-garden.py",
-      "bytes": 5596
-    },
-    {
-      "path": "projects/greeny/3d/clay-landscape.py",
-      "bytes": 13742
-    },
-    {
-      "path": "projects/greeny/3d/detailed-garden.py",
-      "bytes": 22843
-    },
-    {
-      "path": "projects/greeny/3d/garden.py",
-      "bytes": 19178
-    },
-    {
-      "path": "projects/greeny/3d/index.html",
-      "bytes": 8070
-    },
-    {
-      "path": "projects/greeny/3d/model/clay-garden.blend",
-      "bytes": 522793
-    },
-    {
-      "path": "projects/greeny/3d/model/detailed-garden.blend",
-      "bytes": 2037108
-    },
-    {
-      "path": "projects/greeny/3d/model/greeny-garden.blend",
-      "bytes": 266451
-    },
-    {
-      "path": "projects/greeny/3d/model/greeny-garden.glb",
-      "bytes": 1516460
-    },
-    {
-      "path": "projects/greeny/3d/model/manifest.json",
-      "bytes": 1042
-    },
-    {
-      "path": "projects/greeny/3d/refined-garden.py",
-      "bytes": 7345
-    },
-    {
-      "path": "projects/greeny/3d/renders/01-garden.png",
-      "bytes": 1085420
-    },
-    {
-      "path": "projects/greeny/3d/renders/02-sense.png",
-      "bytes": 1078338
-    },
-    {
-      "path": "projects/greeny/3d/renders/03-respond.png",
-      "bytes": 1070850
-    },
-    {
-      "path": "projects/greeny/3d/renders/04-control.png",
-      "bytes": 1051677
-    },
-    {
-      "path": "projects/greeny/3d/renders/app-dashboard.png",
-      "bytes": 69065
-    },
-    {
-      "path": "projects/greeny/3d/renders/clay-garden.png",
-      "bytes": 1129648
-    },
-    {
-      "path": "projects/greeny/3d/renders/clay-landscape-shade.png",
-      "bytes": 1297511
-    },
-    {
-      "path": "projects/greeny/3d/renders/clay-landscape.png",
-      "bytes": 1240539
-    },
-    {
-      "path": "projects/greeny/3d/renders/clay-shade.png",
-      "bytes": 1177487
-    },
-    {
-      "path": "projects/greeny/3d/renders/detailed-garden.png",
-      "bytes": 1249434
-    },
-    {
-      "path": "projects/greeny/3d/renders/detailed-shade.png",
-      "bytes": 1457437
-    },
-    {
-      "path": "projects/greeny/3d/renders/storyboard-sheet.png",
-      "bytes": 478614
-    },
-    {
-      "path": "projects/greeny/3d/storyboard.css",
-      "bytes": 7874
-    },
-    {
-      "path": "projects/greeny/3d/storyboard.js",
-      "bytes": 2450
-    },
-    {
-      "path": "projects/greeny/3d/storyboard.json",
-      "bytes": 2564
-    },
-    {
-      "path": "projects/greeny/3d/__pycache__/detailed-garden.cpython-313.pyc",
-      "bytes": 46743
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/fan-detail.png",
-      "bytes": 433078
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/garden-deployed-light-blue.png",
-      "bytes": 1309593
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/garden-deployed.png",
-      "bytes": 1322182
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/garden-retracted.png",
-      "bytes": 1274255
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/grass-detail.png",
-      "bytes": 771251
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/index.html",
-      "bytes": 2969
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/manifest.json",
-      "bytes": 1344
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/README.md",
-      "bytes": 2226
-    },
-    {
-      "path": "projects/greeny/previews/blue-canopy/render-preview.py",
-      "bytes": 8659
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/anchors.json",
-      "bytes": 7016
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/garden-clay.png",
-      "bytes": 1130446
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/hub-connected.png",
-      "bytes": 615402
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/hub-receiving.png",
-      "bytes": 618982
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/lighting-A.png",
-      "bytes": 247508
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/lighting-B.png",
-      "bytes": 236785
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/panel-2d.png",
-      "bytes": 24170
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/img/sensor-board.png",
-      "bytes": 182922
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/index.html",
-      "bytes": 7606
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/preview.css",
-      "bytes": 9820
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/preview.js",
-      "bytes": 5716
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/README.md",
-      "bytes": 1444
-    },
-    {
-      "path": "projects/greeny/previews/clay-prototype/render-preview.py",
-      "bytes": 5316
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-review.png",
-      "bytes": 614444
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v2.png",
-      "bytes": 1128424
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v3-review.png",
-      "bytes": 652309
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v3.png",
-      "bytes": 1376662
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v4-review.png",
-      "bytes": 612651
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v4.png",
-      "bytes": 1094642
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v5-review.png",
-      "bytes": 608569
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v5.png",
-      "bytes": 1073676
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v6-review.png",
-      "bytes": 515006
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/brand-v6.png",
-      "bytes": 959371
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/concept.png",
-      "bytes": 1134103
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/index.html",
-      "bytes": 2814
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT-BRAND.md",
-      "bytes": 2909
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT-FLOATING-DEVICES.md",
-      "bytes": 1901
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT-ROUNDED-SENSOR.md",
-      "bytes": 1646
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT-SENSOR.md",
-      "bytes": 1028
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT-SMOOTH-CLAY.md",
-      "bytes": 4168
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/PROMPT.md",
-      "bytes": 2481
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/review.png",
-      "bytes": 625828
-    },
-    {
-      "path": "projects/greeny/previews/grass-concept/warm-v1.html",
-      "bytes": 1785
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/01-life-mission.mp4",
-      "bytes": 4714348
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/01-life-mission.normalized.mp4",
-      "bytes": 5702219
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/02-goal-motivation.mp4",
-      "bytes": 1734043
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/02-goal-motivation.normalized.mp4",
-      "bytes": 2053310
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/03-create-goal.mp4",
-      "bytes": 1440687
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/03-create-goal.normalized.mp4",
-      "bytes": 1754699
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/04-create-task.mp4",
-      "bytes": 1584749
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/04-create-task.normalized.mp4",
-      "bytes": 1794541
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/05-priority-subtasks.mp4",
-      "bytes": 1412959
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/05-priority-subtasks.normalized.mp4",
-      "bytes": 1603399
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/06-schedule.mp4",
-      "bytes": 1634942
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/06-schedule.normalized.mp4",
-      "bytes": 1928690
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/07-pomodoro.mp4",
-      "bytes": 870064
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/07-pomodoro.normalized.mp4",
-      "bytes": 1025292
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/08-reports.mp4",
-      "bytes": 1242557
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/.hyperframes-original/08-reports.normalized.mp4",
-      "bytes": 1414768
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/01-life-mission.mp4",
-      "bytes": 5702219
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/01-life-mission.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/02-goal-motivation.log",
-      "bytes": 51434
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/02-goal-motivation.mp4",
-      "bytes": 2053310
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/02-goal-motivation.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/03-create-goal.log",
-      "bytes": 49082
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/03-create-goal.mp4",
-      "bytes": 1754699
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/03-create-goal.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/04-create-task.log",
-      "bytes": 51913
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/04-create-task.mp4",
-      "bytes": 1794541
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/04-create-task.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/05-priority-subtasks.log",
-      "bytes": 43166
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/05-priority-subtasks.mp4",
-      "bytes": 1603399
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/05-priority-subtasks.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/06-schedule.log",
-      "bytes": 64792
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/06-schedule.mp4",
-      "bytes": 1928690
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/06-schedule.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/07-pomodoro.log",
-      "bytes": 52494
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/07-pomodoro.mp4",
-      "bytes": 1025292
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/07-pomodoro.mp4.source.json",
-      "bytes": 173
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/08-reports.log",
-      "bytes": 50789
-    },
-    {
-      "path": "authoring/moti-pulse/videos/renders/08-reports.mp4",
-      "bytes": 1414768
-    },
+  "date": "2026-11-15",
+  "authorization": "Keep the current site, remove obsolete Home files and generated captures, organize Home code, commit and push origin/main.",
+  "baseline": "124ef86",
+  "moves": [
     {
-      "path": "authoring/moti-pulse/videos/renders/08-reports.mp4.source.json",
-      "bytes": 173
+      "from": "assets/js/home-about.js",
+      "to": "assets/js/home/home-about.js"
     },
     {
-      "path": "authoring/moti-pulse/videos/renders/moti-pulse-eight-loops.zip",
-      "bytes": 17280493
+      "from": "assets/js/home-butter-morph.js",
+      "to": "assets/js/home/home-butter-morph.js"
     },
     {
-      "path": "authoring/moti-pulse/videos/01-life-mission/.waveform-cache/peaks-v2_assets_original.mp4_8161967-1782036821400.json",
-      "bytes": 1587
+      "from": "assets/js/home-contact.js",
+      "to": "assets/js/home/home-contact.js"
     },
     {
-      "path": "authoring/moti-pulse/videos/01-life-mission/.waveform-cache/v2_assets_original.mp4_8161967-1782036821400.json",
-      "bytes": 8001
+      "from": "assets/js/home-game-art.js",
+      "to": "assets/js/home/home-game-art.js"
     },
     {
-      "path": "HANDOFF.md",
-      "bytes": 7820
+      "from": "assets/js/home-navigation.js",
+      "to": "assets/js/home/home-navigation.js"
     },
     {
-      "path": "scripts/moti-loop-gallery.cjs",
-      "bytes": 5169
+      "from": "assets/js/home-note-art.js",
+      "to": "assets/js/home/home-note-art.js"
     },
     {
-      "path": "authoring/moti-pulse/videos/index.html",
-      "bytes": 5837
+      "from": "assets/js/home-objects.js",
+      "to": "assets/js/home/home-objects.js"
     },
     {
-      "path": "authoring/moti-pulse/videos/REVIEW.md",
-      "bytes": 3073
+      "from": "assets/js/home-skills-art.js",
+      "to": "assets/js/home/home-skills-art.js"
     },
     {
-      "path": "docs/greeny-clay-integration.md",
-      "bytes": 4168
+      "from": "assets/js/home-skills-pages.js",
+      "to": "assets/js/home/home-skills-pages.js"
     },
     {
-      "path": "docs/greeny-clay-landscape.md",
-      "bytes": 6624
+      "from": "assets/js/home-toys.js",
+      "to": "assets/js/home/home-toys.js"
     },
     {
-      "path": "docs/greeny-detailed-model.md",
-      "bytes": 5477
+      "from": "assets/js/home-view-fit.js",
+      "to": "assets/js/home/home-view-fit.js"
     },
     {
-      "path": "docs/greeny-storyboard.md",
-      "bytes": 6576
+      "from": "assets/js/home.js",
+      "to": "assets/js/home/index.js"
     },
     {
-      "path": "projects/greeny/models/clay-garden.glb",
-      "bytes": 1431040
+      "from": "assets/js/tic-tac-toe.js",
+      "to": "assets/js/home/tic-tac-toe.js"
     },
     {
-      "path": "projects/greeny/models/clay-garden.json",
-      "bytes": 1714
+      "from": "authoring/portfolio/home.cjs",
+      "to": "authoring/portfolio/home/index.cjs"
     },
     {
-      "path": "projects/greeny/models/clay-landscape.glb",
-      "bytes": 2314944
+      "from": "authoring/portfolio/home-assets.cjs",
+      "to": "authoring/portfolio/home/assets.cjs"
     },
     {
-      "path": "projects/greeny/models/clay-landscape.json",
-      "bytes": 1736
+      "from": "authoring/portfolio/butter.cjs",
+      "to": "authoring/portfolio/home/butter.cjs"
     },
     {
-      "path": "projects/greeny/models/detailed-garden.glb",
-      "bytes": 2697972
+      "from": "authoring/portfolio/pan.cjs",
+      "to": "authoring/portfolio/home/pan.cjs"
     },
     {
-      "path": "projects/greeny/models/detailed-garden.json",
-      "bytes": 1417
+      "from": "authoring/portfolio/capture-moti-cover.cjs",
+      "to": "authoring/portfolio/home/capture-moti-cover.cjs"
     },
     {
-      "path": "projects/greeny/models/smart-garden.glb",
-      "bytes": 89168
+      "from": "scripts/qa/check-home-about.cjs",
+      "to": "scripts/qa/home/check-home-about.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-connected.png",
-      "bytes": 123196
+      "from": "scripts/qa/check-home-butter-motion.cjs",
+      "to": "scripts/qa/home/check-home-butter-motion.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-fan.png",
-      "bytes": 125465
+      "from": "scripts/qa/check-home-contact.cjs",
+      "to": "scripts/qa/home/check-home-contact.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-lights.png",
-      "bytes": 123935
+      "from": "scripts/qa/check-home-design.cjs",
+      "to": "scripts/qa/home/check-home-design.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-sensors.png",
-      "bytes": 128961
+      "from": "scripts/qa/check-home-endings.cjs",
+      "to": "scripts/qa/check-portfolio-endings.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-shade.png",
-      "bytes": 125643
+      "from": "scripts/qa/check-home-game-art.cjs",
+      "to": "scripts/qa/home/check-home-game-art.cjs"
     },
     {
-      "path": "projects/greeny/img/story/app-watering.png",
-      "bytes": 125377
+      "from": "scripts/qa/check-home-motion.cjs",
+      "to": "scripts/qa/home/check-home-motion.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-goal.jpg",
-      "bytes": 57543
+      "from": "scripts/qa/check-home-object-continuity.cjs",
+      "to": "scripts/qa/home/check-home-object-continuity.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-mission.jpg",
-      "bytes": 53594
+      "from": "scripts/qa/check-home-projects.cjs",
+      "to": "scripts/qa/home/check-home-projects.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-pomodoro.jpg",
-      "bytes": 41604
+      "from": "scripts/qa/check-home-refinements.cjs",
+      "to": "scripts/qa/home/check-home-refinements.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-report.jpg",
-      "bytes": 41601
+      "from": "scripts/qa/check-home-scene-spacing.cjs",
+      "to": "scripts/qa/home/check-home-scene-spacing.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-schedule.jpg",
-      "bytes": 53780
+      "from": "scripts/qa/check-home-skills.cjs",
+      "to": "scripts/qa/home/check-home-skills.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/mockup-task.jpg",
-      "bytes": 60656
+      "from": "scripts/qa/check-home-toys.cjs",
+      "to": "scripts/qa/home/check-home-toys.cjs"
     },
     {
-      "path": "projects/moti-pulse/img/Timer.svg",
-      "bytes": 118092
+      "from": "scripts/qa/check-home-view-fit.cjs",
+      "to": "scripts/qa/home/check-home-view-fit.cjs"
     }
   ],
-  "cacheAndCaptureFiles": 588,
-  "totalFiles": 727,
-  "totalBytes": 187505192
+  "files": [
+    {
+      "path": "assets/fonts/mali-latin.woff2",
+      "bytes": 18220,
+      "sha256": "0a740b9e76eda6bfd02c373e351a09ed0c5cd324e5dbd1db112ccd382e26e612"
+    },
+    {
+      "path": "assets/fonts/mali-medium.ttf",
+      "bytes": 112880,
+      "sha256": "aa3320845e281de05d7076aed9be5a09df4bf11e6c46165027a0b57a0c8f5dc9"
+    },
+    {
+      "path": "assets/fonts/mali-semibold.ttf",
+      "bytes": 112924,
+      "sha256": "0ba6d92b46369ec5040d119f87a17586be96364fac743fbf510b54a3ead1adcc"
+    },
+    {
+      "path": "assets/fonts/Mali-OFL.txt",
+      "bytes": 4380,
+      "sha256": "b4e2db3db31484dda996c3f53d440093d8340a19dd24d1c98fecaef7a2364dbf"
+    },
+    {
+      "path": "authoring/portfolio/project-hook.cjs",
+      "bytes": 632,
+      "sha256": "f100bf772ba7535581de72827733a361176a260aabaed18287afff906608efe0"
+    },
+    {
+      "path": "assets/img/home/arrow-right.svg",
+      "bytes": 332,
+      "sha256": "c465af7aa41c4b36d34e71b7bccd7b85cb5499e18d9440afa7530a557243c722"
+    },
+    {
+      "path": "assets/img/home/avatar-disc.svg",
+      "bytes": 246,
+      "sha256": "9a866f0a2308c3d84b921c055965338cb607bafca8ac533230a57acbbc15cd78"
+    },
+    {
+      "path": "assets/img/home/game-grid.svg",
+      "bytes": 18444,
+      "sha256": "7884c9724ada2d843d491ae4c6138181a5a517b7669be8588f9972e1cdec6580"
+    },
+    {
+      "path": "assets/img/home/game-layer-3.svg",
+      "bytes": 8497,
+      "sha256": "6c12a77d72d85e03ce9046c6021f0f0a9223f6858404d8ce6a5b976e1c179883"
+    }
+  ],
+  "cacheAndCaptureFiles": {
+    "files": 1205,
+    "bytes": 229677650
+  },
+  "totalFiles": 1214,
+  "totalBytes": 229954205
 }

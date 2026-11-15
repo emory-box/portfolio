@@ -1,21 +1,27 @@
-# Portfolio home and shared endings
+# Portfolio authoring
 
-- `content.cjs`: edit profile fields, genuine contact URLs and project summaries.
-  Unknown personal facts stay bracketed; missing contact destinations stay null.
-  Set `profile.heroImage`, `profile.portrait` and each project's `cover` to a repository-relative image
-  path when artwork is ready; null produces the approved grey placeholder.
-- `chrome.cjs`: renders the personal footer, two other-project cards and Greeny
-  credits. Grey image slots deliberately stand in for unselected covers/portrait.
-- `build.cjs`: writes root `index.html` and updates only marked ending/footer
-  fragments on existing case studies. It never rewrites project interiors.
+These optional Node helpers export static HTML. GitHub Pages and visitors do
+not run them.
 
-Run `node authoring/portfolio/build.cjs` after editing the source. No build is
-needed to view or publish the delivered static site. Home direction and shared
-rules live in `docs/home/spec.md` and `docs/shared/website-spec.md`.
+| Location | Responsibility |
+| --- | --- |
+| `content.cjs` | Supplied profile, project metadata, Home summaries and skill lists |
+| `chrome.cjs` | Case-study recommendations, personal footer and Greeny credits |
+| `home/` | Illustrated Home template, asset registry and artwork helpers |
+| `build.cjs` | Export Home and optionally synchronize marked project endings |
 
-Greeny's case-study builder preserves `project-credits` outside the generated
-chapter group, so either authoring command retains the same page ending.
+From the repository root:
 
-Home-only regeneration: `node authoring/portfolio/build.cjs --home-only`.
-`profile.shortName` supplies the compact scrolled home wordmark.
-Home motion and menu use native `assets/js/home.js`; no runtime build is needed.
+```powershell
+node authoring/portfolio/build.cjs --home-only
+node authoring/portfolio/build.cjs
+```
+
+Use `--home-only` for Home changes. The full command also updates only the
+marked ending/footer fragments of the three case studies. Project interiors
+and the Greeny model are outside this builder.
+
+Read [Home authoring](home/README.md), [the Home specification](../../docs/home/spec.md)
+or [shared website rules](../../docs/shared/website-spec.md) for the task at hand.
+Unknown role, LinkedIn, CV and other personal facts remain explicit placeholders
+in `content.cjs`; the supplied name/email and genuine project links stay intact.

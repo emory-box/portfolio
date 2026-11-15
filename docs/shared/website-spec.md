@@ -175,8 +175,9 @@ Recommendation covers are grey placeholders until artwork is supplied/selected.
 Follow this section with the same personal footer fields across home and case studies:
 owner name/role, Work/About/Contact, genuine email/LinkedIn/CV when supplied,
 copyright and Back to top. Keep each project's palette and type through semantic
-tokens; case studies share the compact structure. Home may expand these same
-fields into its own large masthead composition and use its own fixed header,
+tokens; case studies share the compact structure. Home may present the same
+fields in its Contact view and its own header, omitting footer metadata when
+its approved Figma screen does so,
 as defined in docs/home/spec.md. Project credits belong before recommendations,
 not in the personal footer. Greeny's original team/guidance/build note is retained
 in a separate credits area at the end of its main content.

@@ -19,17 +19,18 @@ fs.mkdirSync(out, {recursive: true});
       await page.goto(SITE + '/', {waitUntil: 'networkidle0'});
       assert.deepEqual(await page.$$eval('.home-project', els => els.map(el => el.getAttribute('href'))), projects.map(p => 'projects/' + p.slug + '/'));
       assert.equal(await page.$$eval('.home-work .portfolio-cover', els => els.length), 3);
-      assert.equal(await page.$$eval('.home-portrait .portfolio-cover', els => els.length), 1);
-      assert(await page.$eval('.home-draft-note', el => el.textContent.includes('placeholders')));
+      assert.equal(await page.$$eval('.home-portrait img', els => els.length), 3);
+      assert.equal(await page.$$eval('.home-work .portfolio-cover img',els=>els.length),3,'Every Home project has its supplied or source-rendered cover');
+      assert(await page.$eval('#project-moti-pulse .portfolio-cover img',el=>el.getAttribute('src')==='assets/img/home/moti-pulse-cover.png'));
       assert.equal(await page.$$eval('a[href=""],a[href="#"],a[href*="example.com"],a[href*="undefined"]', els => els.length), 0, 'No fake/dead contact links');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Home fits ' + width);
       for (const anchor of ['work', 'about', 'contact']) assert.equal(await page.$$eval('[id="' + anchor + '"]', els => els.length), 1);
       await page.screenshot({path: out + '/home-' + width + '.png', fullPage: true});
       if (width === 1280) {
         await page.setViewport({width, height: 800});
-        assert(await page.$eval('.home-action', el => el.getBoundingClientRect().bottom <= innerHeight), 'Hero primary action is above fold');
-        await page.focus('.home-action');
-        assert(await page.$eval('.home-action', el => getComputedStyle(el).outlineStyle !== 'none'), 'Visible keyboard focus');
+        assert(await page.$eval('.home-portrait', el => el.getBoundingClientRect().bottom <= innerHeight), 'Illustrated entry point is above fold');
+        await page.focus('.home-portrait');
+        assert(await page.$eval('.home-portrait', el => getComputedStyle(el).outlineStyle !== 'none'), 'Visible keyboard focus');
         await page.setViewport({width, height: 900});
       }
       for (const project of projects) {
@@ -61,10 +62,14 @@ fs.mkdirSync(out, {recursive: true});
       console.log('PASS home and all three project endings at ' + width + 'px');
     }
     await page.goto(SITE + '/', {waitUntil: 'networkidle0'});
-    await page.focus('.home-project');await page.keyboard.press('Enter');
-    await page.waitForFunction(() => location.pathname.endsWith('/projects/greeny/'));
-    await page.focus('.project-next-card');await page.keyboard.press('Enter');
-    await page.waitForFunction(() => location.pathname.endsWith('/projects/moti-pulse/'));
+    await page.focus('.home-projects');await page.keyboard.press('Enter');
+    await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
+    await page.focus('.home-project');
+    await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.keyboard.press('Enter')]);
+    assert(new URL(page.url()).pathname.endsWith('/projects/greeny/'));
+    await page.focus('.project-next-card');
+    await Promise.all([page.waitForNavigation({waitUntil:'networkidle0'}),page.keyboard.press('Enter')]);
+    assert(new URL(page.url()).pathname.endsWith('/projects/moti-pulse/'));
     await page.setJavaScriptEnabled(false);
     await page.emulateMediaFeatures([{name: 'prefers-reduced-motion', value: 'reduce'}]);
     await page.setViewport({width: 360, height: 900});
@@ -73,6 +78,6 @@ fs.mkdirSync(out, {recursive: true});
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Home fits 200% text without JS');
     assert.equal(await page.$$eval('.home-project', els => els.length), 3);
     assert.deepEqual(errors, []);assert.deepEqual(missing, []);assert.deepEqual(external, []);
-    console.log('PASS keyboard project journey, placeholder honesty, no-script, reduced motion, 200% text and local delivery.');
+    console.log('PASS keyboard project journey, source-cover mapping, no-script, reduced motion, 200% text and local delivery.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

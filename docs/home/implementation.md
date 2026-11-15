@@ -1,40 +1,58 @@
-# Home and shared project endings
+# Home implementation
 
-Approved brief: [spec.md](spec.md). No additional owner interview is needed;
-the owner explicitly approved dummy personal content and grey image slots.
+Read [spec.md](spec.md) for the approved visual/behavior contract. This guide
+maps that contract to the current code; prior design revisions remain in Git.
 
-1. [x] Shared endings: render two other-project cards and a personal footer on
-   each case study, preserve Greeny credits, and persist the shared rule.
-   Blocked by: none. Verify native routes, correct suggestions and source coverage.
-2. [x] Home: build the complete hero/work/about/contact path using the current
-   home identity and explicit placeholders. Blocked by: shared data/footer seam.
-   Verify real project links and non-interactive missing contact entries.
-3. [x] Review and delivery: inspect 360/768/1280/1920, keyboard, 200% text,
-   reduced motion, no script, source coverage and the protected project flows.
-   Blocked by: both UI slices. Correct findings before reporting completion.
+## Sources and output
 
-Verified: `check-home-endings.cjs`, `check-site.cjs`, both source-coverage checks,
-Greeny case-study, shared navigation (Synergy), Synergy stack and Synergy browser
-checks. Authoring is idempotent and a Greeny rebuild preserves the ending.
-DESIGN lint has zero errors and the existing 19 warnings. Root has no package
-build/typecheck pipeline. Captures remain in `.cache/qa/home-endings/`.
+- `authoring/portfolio/content.cjs`: supplied Emory Pham identity/email,
+  project-specific summaries, exact current skill lists and marked placeholders.
+- `authoring/portfolio/home/index.cjs`: semantic template for root `index.html`.
+- `authoring/portfolio/home/assets.cjs`: original SVG dimensions and Figma IDs.
+- `authoring/portfolio/home/butter.cjs`, `pan.cjs`: source-based animation helpers.
+- `assets/css/home.css`: Home theme, source layouts and responsive states.
+- `assets/js/home/`: native ES modules for navigation, object continuity,
+  About, Skills, contact, game, toys and responsive fitting.
 
-## Reference layout and motion revision — 2026-11-08
+The local [runtime guide](../../assets/js/home/README.md) explains module
+ownership. [Authoring instructions](../../authoring/portfolio/home/README.md)
+explain regeneration and Moti banner capture. Use `--home-only` to keep
+case-study interiors and endings intact.
 
-- [x] Inspect the actual Sara reference in Chrome; retain our own project content.
-- [x] Home-only dark Inter identity, full-screen hero, two scroll-linked feature
-  scenes, progressive bio highlight, asymmetric work, contact and expanded footer.
-- [x] Native mobile menu, focus restoration, reversible scroll effects, reduced
-  motion, no-script flow, short-screen fallback and 200% text.
-- [x] Validate static paths, four viewport widths and original project endings.
-  Protected SHA256 snapshots confirm all three project HTML files plus shared
-  project navigation/endings CSS are unchanged by this home revision.
+## Current behavior
 
-Checks: check-home-motion.cjs, check-home-endings.cjs, check-site.cjs,
-DESIGN lint (0 errors, 19 existing warnings), git diff --check (no errors).
-There is no root package build/typecheck pipeline. Authoring uses --home-only;
-no dependencies, publishing or commits were added. Screenshots: .cache/qa/home-reference/.
+One illustrated desk opens five full-page views. The original object zooms,
+lands and returns; surrounding objects fade. Close, Escape, browser history,
+focus restoration and interrupted transitions share that lifecycle. The pan
+flips its egg in place and the ball uses gravity/squash motion without opening
+a view. Reduced motion and native no-script content remain available.
 
-Precommit follow-up: Work reveals now persist after upward scrolling and viewport
-resizing; `check-home-motion.cjs` covers that regression. Shared project checks
-also verify the approved non-clickable app identity.
+About uses the single-gap ID-card border, complete-copy fade and supplied
+avatar/paperclip. It retains1084px width where desktop space permits. Skills
+uses one connected butter surface and responsive Hard/Soft groups. Contact
+keeps ruled inputs inside the original note, opens an email draft for review
+and provides a copy-email action. Tic-tac-toe plays against the computer on
+the original illustrated grid. All three project summaries and complete
+banners are supplied by shared content; compact screens use vertical tabs.
+
+The entrance runs in source order and completes within2seconds. Home labels
+Skills, ?, Projects and Send me a note become bold on hover. Full spacing,
+type, timings, breakpoint details and source frame links live in the spec.
+
+## Verification
+
+Serve locally, then run:
+
+```powershell
+node scripts/qa/home/run.cjs
+node scripts/qa/check-portfolio-endings.cjs
+node scripts/qa/check-site.cjs
+```
+
+The [QA guide](../../scripts/qa/home/README.md) lists focused checks. They cover
+original SVG geometry, source lists, responsive320–1920px layouts,200% text,
+keyboard/focus, reduced motion, no script, object continuity, contact, game,
+toys, project states and entrance timing. Output is ignored under `.cache/qa/`.
+There is no root npm build, typecheck or package-based test runner. Source
+syntax, template idempotence, DESIGN lint and Git whitespace are checked
+separately before delivery.

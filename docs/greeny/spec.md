@@ -225,6 +225,18 @@ Keep native original-file links as the no-script and modified-click fallback.
 
 ## Supporting specifications
 
+### Editable Figma website handoff
+
+The website layout is also available inside the original Greeny Figma section:
+[Desktop1440](https://www.figma.com/design/8NMst3c890fJWBihmNnBKu?node-id=2907-18765)
+and [UI Kit](https://www.figma.com/design/8NMst3c890fJWBihmNnBKu?node-id=2898-16457).
+The owner requested an image for scrollytelling and editable layouts for the
+six case-study chapters. This handoff contains39 tokens,10 text styles and43
+components, including14 closed/open task-flow variants. The live HTML/CSS and
+this local specification continue to define website behavior; the Figma image
+does not replace the native garden model or scroll animation.
+
+
 The case study ends with its original project credits, followed by the shared
 two-project recommendations and personal footer. The credits marker sits outside
 the thirteen generated content blocks and is preserved by the Greeny builder.

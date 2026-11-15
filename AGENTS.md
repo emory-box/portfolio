@@ -27,7 +27,7 @@ Only the runtime helpers need installing.
    It checks Node, installs **FFmpeg** (HyperFrames renders), installs
    **Google Chrome** and **`puppeteer-core`** (Hallmark browser checks),
    confirms the vendored skills, and sets the Codex skill budget.
-3. Serve locally: `npx serve .` then open <http://localhost:3000>.
+3. Serve locally: `node scripts/serve.cjs` then open <http://localhost:4317>.
 4. Manual version of the script, if you prefer:
    ```bash
    winget install Gyan.FFmpeg          # or: brew install ffmpeg
@@ -54,14 +54,19 @@ assets/css/base.css             design tokens + shell (header, footer, buttons)
 assets/css/fonts.css            self-hosted Inter + Nunito
 assets/css/home.css             home theme only
 assets/js/site.js               scroll reveal + section nav
+assets/js/home/                 illustrated Home controller and interaction modules
+assets/img/home/                current original Home illustrations and project covers
 assets/fonts/                   latin variable woff2
 projects/greeny/                case study, dark green theme
 projects/moti-pulse/            case study, light blue theme
+projects/synergy/               case study, blue education theme
+authoring/portfolio/home/       Home template, asset registry and artwork helpers
 authoring/greeny/               current Blender source, required base scene, exporter
 authoring/moti-pulse/           original diagram + recording-loop sources
 scripts/                        setup + static server
 scripts/moti/                   diagram and video authoring tools
 scripts/qa/                     static, browser and native-model checks
+scripts/qa/home/                Home browser checks; run.cjs runs the suite
 docs/                           current project documentation, indexed by docs/README.md
 DESIGN.md                       locked design system (tokens + rationale)
 ```
@@ -74,9 +79,9 @@ Each page sets its palette with a body class (`.theme-home`, `.theme-moti`, or
 none for Greeny). The shell classes come from `base.css`; page CSS only adds the
 theme tokens and page-specific layout.
 
-The home-page header wordmark currently reads **Portfolio**. Replace it with
-the owner's name when set. Project headers use the app name according to the
-shared website specification.
+The home-page header uses the supplied name **Emory Pham**. Read
+`docs/home/spec.md` for Home work. Project headers use the app name according
+to the shared website specification.
 
 Logos are the originals: Greeny uses the owner's vector mark
 (`projects/greeny/img/logo-mask.svg`), Moti-Pulse uses a crop from its board
