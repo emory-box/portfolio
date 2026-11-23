@@ -136,7 +136,11 @@ referenced in source paint order; the same egg pieces lift, turn over and land
 as the pan tilts. A white back face replaces the visible yolk mid-turn, and an
 occluded well fill prevents a hole in the pan when the egg leaves. These are
 animation helpers authorized by the owner's flip request; pan.svg stays intact.
-Keep the original composite visible until its external SVG references load.
+Inline its thirteen original paths at authoring time, preserving paint order
+and geometry. The same inline illustration stays visible from initial loading
+through every flip; do not gate the native button on external SVG fragment
+loading or `getBBox()` polling. Older WebKit cannot decode some original IDs
+containing spaces through external `<use>` references.
 
 Ball motion uses parabolic arcs with descending heights, a little stretch in
 the air and progressively softer squash/spread at each contact. Anchor the

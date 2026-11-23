@@ -79,6 +79,20 @@ node scripts/qa/screenshots.mjs .cache/qa/screenshots
 Không có npm build, typecheck hay test runner ở root. Các `package.json`
 trong nguồn video chỉ dành cho HyperFrames.
 
+Kiểm tra thêm WebKit trên Windows/macOS/Linux (công cụ QA tùy chọn đã được duyệt):
+
+```sh
+npm install -g playwright@1.65.1
+npx playwright install webkit
+node scripts/qa/check-webkit-compat.cjs
+```
+
+Playwright và browser được cài ngoài website, không thêm dependency runtime.
+Check này kiểm tra tap/lật trứng, reduced motion và màu/gradient/logo của các
+hình kết nối Greeny. Đây là WebKit desktop với viewport mobile, chưa phải một
+phiên Safari iPhone thật. Hồi quy SVG đã kiểm tra thêm bằng Playwright 1.56.1 /
+WebKit 26.0; `PLAYWRIGHT_MODULE` có thể trỏ đến package QA riêng để chọn phiên bản.
+
 ## Deploy và nội dung
 
 GitHub Pages: Settings → Pages → Deploy from a branch → `main` / `(root)`.

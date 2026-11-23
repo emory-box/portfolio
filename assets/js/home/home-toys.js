@@ -11,20 +11,9 @@ export function initHomeToys(reduced) {
     ballMotion?.cancel();ballMotion=null;
     pan.removeAttribute('aria-busy');ball.removeAttribute('aria-busy');
   }
-  // External <use> references share the original image request. Keep the
-  // original composite visible until every referenced piece is ready.
-  function ready() {
-    if(panReady)return;
-    if([...scene.querySelectorAll('use')].every(part=>part.getBBox().width>0)){
-      panReady=true;fallback.hidden=true;scene.removeAttribute('hidden');pan.disabled=false;
-    }else if(attempts++<120)requestAnimationFrame(ready);
-  }
-  const fallback=pan.querySelector('img');
-  let attempts=0,panReady=false;
-  // A slow first download can outlast the initial frame budget. Its load
-  // event starts a fresh check once the shared original file is available.
-  fallback.addEventListener('load',()=>{attempts=0;requestAnimationFrame(ready);},{once:true});
-  requestAnimationFrame(ready);ball.disabled=false;
+  // The original vector paths are already in this SVG; no external-fragment
+  // readiness gate or image handoff can strand the native button on Safari.
+  pan.disabled=false;ball.disabled=false;
 
   pan.addEventListener('click',()=>{
     if(panMotions.length)return;prepare();pan.setAttribute('aria-busy','true');

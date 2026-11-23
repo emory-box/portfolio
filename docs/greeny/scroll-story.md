@@ -140,6 +140,14 @@ Greeny App use the same framed caption treatment as Hub, without dashed
 caption-to-icon leaders or target dots. Preserve the original Greeny logo
 inside the phone. These are explanatory illustrations, not controls.
 
+For Safari/iPhone compatibility, each rendered icon includes its own SVG paint
+definitions, with unique IDs for gradients, masks, clipping and filters. Do not
+reference these painted symbols with an external `<use>`: affected Safari
+versions can lose the fills and mask while retaining outlines. The original
+sprite stays unchanged as the authoring source. Regenerate the three inline
+illustrations with `node authoring/greeny/connectivity.cjs`; this preserves
+their dimensions and the projected-wire anchors without client-side loading.
+
 - Device wiring: left lamp → right lamp → Hub; fan → left sprinkler → sensor
   → Hub; left sprinkler → left lamp; sensor → right sprinkler → Hub.
   Render the shared left-sprinkler-to-sensor edge once, with no Shade edge.

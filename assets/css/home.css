@@ -29,8 +29,6 @@ html.home-page { --header-h:0px; scroll-padding-top:16px; overflow-y:auto; scrol
 .home-pan-decoration:disabled { cursor:default; }
 .home-pan-art { inset:0; }
 .home-pan-scene { position:absolute; inset:0; display:block; width:100%; height:auto; overflow:visible; pointer-events:none; }
-.home-pan-scene[hidden] { visibility:hidden; }
-.home-pan-art > img[hidden] { display:none; }
 .home-pan-tool { transform-box:view-box; transform-origin:80% 42%; }
 .home-pan-egg { transform-box:view-box; transform-origin:42.5% 58.8%; }
 .home-pan-decoration::after { content:'?'; position:absolute; left:89.032%; top:60.538%; font:300 2.2222cqw/1.21875 var(--font-body); }

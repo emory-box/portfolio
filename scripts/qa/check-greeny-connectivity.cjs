@@ -30,7 +30,7 @@ fs.mkdirSync('.cache/qa/greeny',{recursive:true});
       await page.waitForSelector('.garden-webgl');
       await page.evaluate(async()=>{await document.fonts.ready;document.documentElement.style.scrollBehavior='auto';});
       assert.deepEqual(await page.$$eval('.garden-connectivity figcaption',es=>es.map(e=>e.textContent)),['Gateway','The Internet','Greeny App']);
-      assert.equal(await page.$$eval('.garden-connectivity path,.garden-connectivity circle',es=>es.length),0,'no caption leader lines or target dots');
+      assert.equal(await page.$$eval('.garden-connectivity > svg,.garden-connectivity figcaption :is(path,circle)',es=>es.length),0,'no caption leader lines or target dots outside the original illustration artwork');
       await visit(6,0);assert.equal(await reveal(),0,'network waits for the extra scroll beat');
       await visit(6,.5);assert((await reveal())>0&&(await reveal())<1,'progressive network reveal');
       await visit(6);assert.equal(await reveal(),1);

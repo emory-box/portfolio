@@ -36,7 +36,7 @@ module.exports = () => `<!doctype html>
     <div class="home-stage" data-node-id="2727:16249">
       <h1 id="home-title" data-node-id="2738:16935">Hello!</h1>
       <a href="#about" class="home-object home-portrait" data-node-id="2727:16258" aria-label="About ${esc(profile.name)}">${layers('avatar')}</a>
-      <button type="button" class="home-pan-decoration" aria-label="Flip the egg" disabled data-node-id="2733:16854"><span class="home-vector home-pan-art" aria-hidden="true">${svg('pan.svg')}${pan}</span></button>
+      <button type="button" class="home-pan-decoration" aria-label="Flip the egg" disabled data-node-id="2733:16854"><span class="home-vector home-pan-art" aria-hidden="true">${pan}</span></button>
       <a href="#skills" class="home-object home-skills home-toast" aria-label="Explore my skills" data-node-id="2727:16463">${toastArt()}<span class="home-object-label">Skills</span></a>
       <a href="#play" class="home-object home-play" data-node-id="2733:16838">${gameArt()}<span class="sr-only">Let’s play tic-tac-toe</span></a>
       <a href="#work" class="home-object home-projects" data-node-id="2754:16258"><span class="home-vector home-pegboard-art">${svg('pegboard-entry.svg')}<span class="home-board-preview">${projects.map((p,i)=>svg(p.homeBoard,`data-board-index="${i}" ${i?'hidden':''}`)).join('')}</span></span><span class="home-object-label">Projects</span></a>
