@@ -1,9 +1,10 @@
 // Stable visual grouping without moving sections or changing their anchors.
 const chapters={
+  ecosystem:['context',true],
   brief:['introduction',true],
   branding:['logo',true],'brand-safezone':['logo',false],
   research:['research',true],personas:['research',false],
-  experience:['experience',true],sitemap:['experience',false],'user-flows':['experience',false],
+  experience:['experience',true],sitemap:['experience',false],'user-flows':['experience',false],sketches:['experience',false],
   ui:['ui-system',true],typography:['ui-system',false],icons:['ui-system',false],components:['ui-system',false],
   interface:['user-interface',true],
 };

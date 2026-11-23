@@ -5,14 +5,13 @@ const backToTop = '<a class="portfolio-back-to-top" href="#page-top"><svg viewBo
 const cover = (label, source, prefix = '') => source
   ? `<div class="portfolio-cover"><img src="${esc(prefix + source)}" alt="${esc(label)}" loading="lazy" width="1600" height="1000"></div>`
   : `<div class="portfolio-cover" role="img" aria-label="${esc(label)} image placeholder"><span>Image to add</span></div>`;
-function footer(prefix = '') {
+function footer(prefix = '', projectSlug = '') {
   const email = profile.email ? `<a href="mailto:${esc(profile.email)}">${esc(profile.email)}</a>` : '<span class="portfolio-placeholder">[Your email]</span>';
-  const linkedin = profile.linkedin ? `<a href="${esc(profile.linkedin)}">LinkedIn</a>` : '<span class="portfolio-placeholder">[LinkedIn profile]</span>';
+  const linkedin = profile.linkedin ? `<a href="${esc(profile.linkedin)}">${projectSlug==='greeny'?'linkedin.com/in/thanh-pham-indabox':'LinkedIn'}</a>` : '<span class="portfolio-placeholder">[LinkedIn profile]</span>';
   return `<!-- portfolio-footer:start -->
 <footer class="site-footer portfolio-footer"><div class="wrap">
   <div class="portfolio-footer-grid">
-    <div><p class="portfolio-footer-name">${esc(profile.name)}</p><p class="portfolio-footer-role">${esc(profile.role)}</p></div>
-    <nav aria-label="Portfolio"><a href="${prefix}index.html#work">Work</a><a href="${prefix}index.html#about">About</a><a href="${prefix}index.html#contact">Contact</a></nav>
+    <div><p class="portfolio-footer-name">${esc(profile.name)}</p><p class="portfolio-footer-role">${esc(profile.role)}</p></div>${projectSlug==='greeny'?'':`\n    <nav aria-label="Portfolio"><a href="${prefix}index.html#work">Work</a><a href="${prefix}index.html#about">About</a><a href="${prefix}index.html#contact">Contact</a></nav>`}
     <div class="portfolio-footer-contact">${email}<div>${linkedin}</div></div>
   </div>
   <div class="portfolio-footer-bottom"><small>© ${new Date().getFullYear()} ${esc(profile.name)}</small></div>
@@ -24,7 +23,7 @@ function projectVideo(project) {
 <section class="project-video" id="project-video" aria-labelledby="project-video-title"><div class="wrap">
   <h2 id="project-video-title">Project video</h2>
   <div class="project-video-frame" data-project-video="${esc(project.videoId)}" data-video-title="${esc(project.name)} project video">
-    <img src="../../${esc(project.homeCover)}" alt="" width="1600" height="900" loading="lazy">
+    <img src="../../${esc(project.cover)}" alt="" width="1600" height="900" loading="lazy">
     <button class="project-video-play" type="button" aria-label="Play ${esc(project.name)} project video" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 5 11 7-11 7Z"/></svg><span>Play video</span></button>
     <noscript><a class="project-video-play" href="https://www.youtube.com/watch?v=${esc(project.videoId)}" target="_blank" rel="noopener" aria-label="Play ${esc(project.name)} project video on YouTube">Play video</a></noscript>
   </div>
@@ -45,10 +44,9 @@ function recommendations(slug) {
 function credits() {
   return `<!-- project-credits:start -->
 <aside class="project-credits" aria-labelledby="project-credits-title"><div class="wrap">
-  <h2 id="project-credits-title">Project credits</h2><div class="project-credits-grid">
-    <div><h3>Team</h3><ul><li>Tấn Duy</li><li>Phương Thanh</li><li>Kim Vi</li><li>Minh Hiển</li></ul></div>
-    <div><h3>Guidance</h3><p>Trần Cường Tiến<br>Instructor</p></div>
-    <div><p>A smart garden companion.<br>A student UX case study.</p></div>
+  <h2 id="project-credits-title" class="sr-only">Project credits</h2><div class="project-credits-grid">
+    <div><h3>Team</h3><p>Tấn Duy · Phương Thanh · Kim Vi · Minh Hiển</p></div>
+    <div><h3>Guidance</h3><p>Trần Cường Tiến — Instructor</p></div>
   </div>
 </div></aside>
 <!-- project-credits:end -->`;

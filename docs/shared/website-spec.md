@@ -132,7 +132,7 @@ The owner approved the first rollout on Greeny after reviewing its actual labels
   list or native disclosure in the document flow.
 
 Start closed at every viewport width. Each project defines its first content
-target in its local specification; Greeny's approved target is Introduction,
+target in its local specification; Greeny's approved target is Ecosystem - Greeny,
 after scrollytelling. The control becomes available when that target first
 enters the viewport, and remains available afterward. Scrolling never changes
 the stored open state. Moti-Pulse's existing 1800px default-open threshold is
@@ -219,6 +219,10 @@ before Back to top. These use the actual supplied YouTube IDs from shared projec
 metadata, load an inline player only on Play, and retain a native Play link over the poster only as a no-JavaScript
 fallback; no separate Watch on YouTube link is shown. Their local specs define the placement and Contents entries. This
 does not add a video or an external request to other projects or Home.
+Keep each Project video poster on its original `cover` image. The illustrated
+Home preview uses `homeCover`, exclusively on Home. Next projects and Project
+video retain their original `cover` images on every case study. A Home artwork
+update must not replace either of these images inside a case study.
 
 ## Shared accessibility and acceptance
 

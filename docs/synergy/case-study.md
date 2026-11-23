@@ -13,6 +13,8 @@ linking to `../../index.html` with the shared up-right arrow. It scrolls away
 in normal document flow and never reappears while scrolling upward.
 The logo/name group is static and not clickable; `All projects` is the header's
 home link.
+The browser tab uses the original `img/logo.svg` mark, centered in the square
+`img/favicon.svg`, with a32px PNG fallback. Preserve its original colors.
 
 The root opts in with `.project-page` and `--header-h: 0px`; stack-scroll uses
 this reserved space instead of the physical header height. Preserve the seven

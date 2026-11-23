@@ -29,13 +29,18 @@ a view. Reduced motion and native no-script content remain available.
 
 About uses the single-gap ID-card border, complete-copy fade and supplied
 avatar/paperclip. It retains1084px width where desktop space permits. Skills
-uses one connected butter surface and responsive Hard/Soft groups. Contact
+uses one connected butter surface and the Skills-v2 word cloud. The same
+original crust/paper/shadow remain intact; only butter spreads inside the
+original inner contour. No second bread layer is used. On small screens
+or enlarged text, a paged native list keeps all16 source words readable. Contact
 keeps ruled inputs inside the original note, opens an email draft for review
 and provides a copy-email action. Tic-tac-toe plays against the computer on
 the original illustrated grid. All three project summaries and complete
-banners are supplied by shared content; compact screens use vertical tabs.
+monochrome covers and Home-only metadata are supplied by `homeSkills`,
+`homeCover`, `homeType` and `homeSummary` in the content source; shared project
+endings keep their existing metadata/covers. Compact screens use vertical tabs.
 
-The entrance runs in source order and completes within2seconds. Home labels
+The entrance runs in source order and completes within1.1seconds. Home labels
 Skills, ?, Projects and Send me a note become bold on hover. Full spacing,
 type, timings, breakpoint details and source frame links live in the spec.
 

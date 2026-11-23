@@ -6,7 +6,7 @@ Read ../shared/website-spec.md first. This file governs only Home and its object
 
 Latest source: https://www.figma.com/design/8NMst3c890fJWBihmNnBKu/UX-UI-Portfolio?node-id=2880-17264
 
-Current visible frames: Home2727:16249; About2748:16339; Skills2785:16153;
+Current visible frames: Home2727:16249; About2748:16339; Skills-v2 2935:18631;
 Projects Greeny2876:16313, Moti-Pulse2876:16454, Synergy2876:16595;
 Note2877:16361; Play2877:16404. These Screens frames supersede the older
 project/Note/Play button and layout variants.
@@ -22,13 +22,15 @@ the shared description/cover fields. Never invent roles, metrics or findings.
 
 - Background#F2F0F3, paper#F8F8F8, ink#464544, shadow#D1D1D3,
   text#242424, yellow#F8C73A. Hello! uses black.
-- Montserrat700,128px/1.1 for Hello!; Montserrat600,48px/1.2 uppercase project names.
+- Montserrat700,128px/1.1 for Hello!; Reddit Sans700,32px/38px uppercase project names.
 - Reddit Sans700,64px/1.2 About title; lead700,24px/1.3; body400,24px/1.5.
-  Illustration labels400,32px/1.3. Project type300,24px/1.3, summary400,24px/1.5.
-- Roboto400: navigation/button labels24px/1.3; duration16px/1.3;
-  Skills list20px/24px. Skill headings Reddit Sans700,32px/1.3.
-  Empathy uses Roboto400,20px/24px like the other list items, in#242424.
-  List items have no bold words. Projects, Note and Play use#464544 text.
+  Illustration labels400,32px/1.3. Project type and duration700,24px/32px;
+  project summary400,24px/34px. Projects, Note and Play use#464544 text.
+- Roboto400: navigation/button labels24px/1.3. Skills-v2 uses Montserrat800
+  for the seven prominent words, Reddit Sans500 for nine supporting words.
+  Preserve each source word's position, size, rotation and line breaks.
+  Supporting word ink is#6B551D, a slightly darker source brown, so the small
+  text meets4.5:1 contrast against the yellow butter. Prominent words use#38352E.
 - Fonts are self-hosted, Home-scoped. Origins/licenses: assets/fonts/README.md.
 - UI kit pills use radius1000px, 24px icons and8px gaps; Large56px with24px
   horizontal padding. Accent yellow by default, ink border on hover, ink/white
@@ -37,8 +39,8 @@ the shared description/cover fields. Never invent roles, metrics or findings.
 - Close uses On-Color Large:56px,24px/32px Roboto,24px horizontal padding,
   an8px icon gap and the supplied24px close icon. Its native position is
   (1229,40),141×56; compact layouts keep it visible with48px/44px variants.
-- Projects uses Accent Medium, View more and the supplied up-right icon:
-  48px height,20px horizontal padding,24px/32px Roboto. Send and Play Again
+- Projects uses the source's borderless, left-aligned “read more” and supplied
+  up-right icon:48px height,24px/32px Reddit Sans700. Send and Play Again
   use Accent Small:40px height,16px padding,20px/24px Roboto, with the supplied
   mail/replay icons. Copy uses Accent-Flat XSmall:32px height,12px padding,
   16px/20px Roboto, with the supplied copy icon. Preserve each SVG's24px root.
@@ -70,39 +72,34 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   when the viewport narrows or text grows. Compact layouts use the full column.
 - Moti-Pulse is selected on initial load, with its board state and preview
   synchronized. Preserve the existing list order and subsequent user selections.
-- Projects board(70,120),600×880. Supplied three state SVGs already contain
+- Projects board(65,118),585×858 (source Synergy differs by5px/2px; use one
+  stable slot for all selections). Original current states2950:18736,
+  2956:18871 and2956:18993 are exported intact from Figma. These SVGs contain
   app-logo cards, shelves and hooks. Keep upright; don't draw extra card frames.
   Transparent accessible tabs overlay logo slots. Hover displays a cropped
   portion of that project's original selected-state board asset, including its
-  brand fill and attached border; no offset outline. A click brightens the same
+  darker logo and attached border; no offset outline. A click brightens the same
   card briefly for 220ms, then shows the selected board and corresponding copy.
   A newer click, keyboard choice or exit cancels pending feedback/selection.
   Inactive previews are inert/aria-hidden but reserve a shared grid footprint,
   so changing project never moves or rescales the pegboard. Cover(710,131),660×400,
-  radius36, without a border. Text starts(710,555). Use a40px project title,
-  20px project type,16px duration and18px summary in the native frame, with
-  24px between the banner and title. Right-aligned CTA at y908,48px high
-  in the native frame, with its bottom at y956 matching the board's visible
-  paper edge. Use a shared grid baseline and reserve the SVG's44px bottom
-  canvas margin below the CTA. At ordinary and125% text sizes, both columns
-  share the same visible top and bottom edges: fit the copy using the compact
-  type scale and spacing, rather than pushing the board below the banner.
-  Preserve at least24px after the summary. At200% text size, allow the row
-  to grow for readable content while retaining the shared bottom edge.
-  Contain every supplied banner without cropping. Greeny and Synergy use
-  supplied covers. Moti-Pulse uses a direct export of
-  its existing live hero, including the title and three original app screens.
-  Contain that banner against white so none of its content is cropped. Export
-  with node authoring/portfolio/home/capture-moti-cover.cjs while serving locally.
-- Project metadata: Greeny/Design with Hardware consideration/2 months;
-  Moti-Pulse/UX/UI Research Case study/1 month;
-  Synergy/UX/UI Education Case Study./3 months. Source repetition is replaced
-  with the owner's actual metadata and source-backed, distinct Home summaries.
-- Skills uses current thick bread:1854.1545×1636.1005 canvas at(-207,-185).
-  Butter source575.827×541.642. Hard/Soft groups stack on one butter surface,
-  gap40px. First three UX skills share a slash-separated row; other items each
-  have one row. Keep all six hard and four soft skills in content.cjs.
-  Do not display the food reference photograph.
+  radius36, without a border. Text starts(710,557), title38px high, followed by
+  24px gaps between title, metadata and summary. Left-aligned CTA at(710,903),
+  48px high. Keep26px after the summary. At enlarged text, let content grow.
+  Home now uses the three original monochrome illustration covers from these
+  frames, contained without cropping. Shared Next projects covers stay unchanged.
+- Home-only metadata: Greeny/IoT garden management · UX/UI design/2 months;
+  Moti-Pulse/Motivation & goals · UX research and UI design/1 month;
+  Synergy/University app · UX/UI case study/3 months. Use the distinct summaries
+  supplied by these frames. Shared project-header metadata stays unchanged.
+- Skills-v2 uses the original Home bread, enlarged in its current canvas slot.
+  Keep its paper, crust strokes and shadow continuously visible and unchanged;
+  do not cross-fade to another bread illustration during or after the zoom.
+  The original inner-outline contour is the target of the one-body butter morph;
+  seven prominent skills and nine supporting words sit on that single surface.
+  `homeSkills` owns their exact text and source positions. No reference photo,
+  off-frame artwork or hidden old list is displayed. Native text remains selectable
+  and readable to assistive technology; the illustration is decorative.
 
 ## Motion and preserved behavior
 
@@ -116,6 +113,8 @@ About: avatar settles, outline/clip reveal480ms, all native copy fades520ms.
 Projects: board-state artwork fades only after the original board lands, then
 tabs change its state and corresponding preview. Skills: one opaque connected
 butter body morphs between supplied contours, highlights clipped inside it.
+The bread itself only moves/scales: all four original paper/outline/shadow layers
+retain full opacity and their relative geometry throughout the interaction.
 Closing gathers that same body before the bread returns. Deriving these live
 animation paths is owner-authorized; original SVG source files stay intact.
 
@@ -147,13 +146,26 @@ do not restart it or add another animation. Reset toys when entering a view or
 changing motion preferences; reduced motion uses opacity-only feedback.
 No footer is added to Home.
 
-Initial Home entrance finishes within2000ms: each item fades in over600ms,
-with each content group starting175ms after the previous one so they reveal
+Initial Home entrance finishes within1100ms: each item fades in over300ms,
+with each content group starting100ms after the previous one so they reveal
 in a clear sequence: header, Hello!, avatar, Skills, pan, Projects, Note,
 tic-tac-toe, then ball. Each arrow follows its corresponding object. Pending
 invisible objects do not intercept pointer clicks. Keyboard
 focus reveals a pending control immediately. Early navigation or toy activation
 cancels the entrance; reduced motion skips it.
+Keep the short12px upward settle and4px-to-zero blur, using ease-out; avoid
+adding bounce or scale during initial loading. This timing is a Home-specific
+choice informed by [Carbon choreography](https://www.carbondesignsystem.com/building-blocks/foundations/motion/choreography)
+and its recommendation to sequence related elements rather than reveal all at once.
+
+## Browser tab identity
+
+Home uses a close crop of the owner's original illustrated portrait as its
+favicon, on the Home paper color. Preserve the original vector paths and fills.
+Provide `assets/img/home/favicon.svg` and a32px PNG fallback, with relative
+links in the authoring template. Never use an empty `data:,` icon.
+Regenerate the original-source icons with
+`node authoring/portfolio/home/favicons.cjs --render` while the local server runs.
 
 ## Responsive and delivery
 
@@ -170,12 +182,11 @@ aspect ratio; test painted bounds rather than just transparent SVG canvases.
 The one-word display greeting caps to the available mobile width, and the
 header can wrap when text is enlarged. Do not mask overflowing artwork to hide
 a collision. Desktop source slots remain unchanged.
-About reflows. Skills uses native Hard/Soft tabs and short pages when needed,
-but ordinary laptop/tablet sizes (1280×720 and 768×900) retain the source's
-two stacked groups. Scale full-poster text with the bread while retaining
-minimum 16px list items and 24px headings at ordinary text size. Native 1440×1024
-keeps exact source type sizes. Enlarged text still uses accessible tabs/pages,
-keeping all text on the butter and the whole bread visible. No ordinary scroll
+About reflows. Skills keeps the source word cloud on ordinary laptop/tablet
+sizes (1280×720 and768×900), with supporting words at least16px after fitting.
+Below a.65 artwork scale, or at enlarged text sizes, switch to a single readable
+list with keyboard-accessible pages on the butter. Every one of the16 words
+remains reachable. Native1440×1024 keeps exact source sizes. No ordinary scroll
 is needed for opened art. Very short Note/Play views may gain vertical reading
 space so controls stay usable. At200% text, preserve enlargement and allow
 vertical reading space; fitting must not cancel enlarged text.

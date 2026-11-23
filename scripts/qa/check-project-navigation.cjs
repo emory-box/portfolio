@@ -3,7 +3,7 @@ const {puppeteer,chromePath}=require('./browser-runtime.cjs').browserRuntime();
 const SITE=process.env.SITE_URL||'http://localhost:4317';
 const project=process.argv[2]||'greeny';
 const config={
-  greeny:{meta:'Design with Hardware consideration2 months',start:'#brief',links:19,heading:'typography-title',topics:'UI system',waitForContent:true},
+  greeny:{meta:'Design with Hardware consideration2 months',start:'#ecosystem',links:20,heading:'typography-title',topics:'UI system',waitForContent:true},
   synergy:{meta:'UX/UI Education Case Study.3 months',start:'#overview',links:22,heading:'typography',topics:'Design system',waitForContent:false}
 }[project];
 assert(config,'Supported project: greeny or synergy');

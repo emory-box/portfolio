@@ -4,8 +4,8 @@ const site=process.env.SITE_URL||'http://localhost:4317';
 (async()=>{const browser=await puppeteer.launch({executablePath:chromePath,headless:true,pipe:true,args:['--no-sandbox','--disable-webgl']});
  try{const page=await browser.newPage();await page.setViewport({width:1280,height:900});await page.goto(site+'/',{waitUntil:'networkidle0'});
   await page.click('.home-skills');await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='melting-butter');
-  const ready=await page.evaluate(()=>({surface:!!document.querySelector('.home-butter-live'),bold:[...document.querySelectorAll('.home-skill-list li')].some(e=>+getComputedStyle(e).fontWeight>400)}));
-  assert.deepEqual(ready,{surface:true,bold:false},'One continuous butter surface and regular-weight skill text');
+  const ready=await page.evaluate(()=>({surface:!!document.querySelector('.home-butter-live'),words:document.querySelectorAll('.home-skill-word').length}));
+  assert.deepEqual(ready,{surface:true,words:16},'One continuous butter surface and all sixteen current source words');
   fs.mkdirSync('.cache/qa/butter-motion',{recursive:true});
   const areas=[];
   for(const progress of [0,.2,.4,.6,.8,1]){
@@ -28,7 +28,7 @@ const site=process.env.SITE_URL||'http://localhost:4317';
   }
   await page.evaluate(()=>document.querySelector('.home-toast-art').getAnimations({subtree:true}).forEach(a=>a.play()));
   await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
-  assert(await page.$$eval('.home-skill-list li',es=>es.every(e=>getComputedStyle(e).fontWeight==='400')));
+  assert(await page.$$eval('.home-skill-word',es=>es.every(e=>getComputedStyle(e).fontWeight===(e.classList.contains('home-skill-word--major')?'800':'500'))),'Source word-cloud hierarchy is preserved');
   await page.click('.home-return');await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='home');
   await page.click('.home-skills');await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='melting-butter');
   const jumps=await page.evaluate(async()=>{
@@ -44,6 +44,6 @@ const site=process.env.SITE_URL||'http://localhost:4317';
   });
   assert(jumps.close<.5&&jumps.reopen<.5&&jumps.same,'Interrupted melt/gather resumes the same current contour: '+JSON.stringify(jumps));
   await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
-  console.log('PASS regular skills; one opaque connected butter mass across six actual morph frames; continuous expansion and shape continuity through close/reopen.');
+  console.log('PASS native skills; one opaque connected butter mass across six actual morph frames; continuous expansion and shape continuity through close/reopen.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

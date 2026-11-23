@@ -213,20 +213,22 @@ several identities without duplicating the chrome:
   illustration artwork and phone mockups remain source assets. See
   `docs/greeny/case-study.md` for the protected boundary and complete source map.
 - **Portfolio home** (.theme-home): Figma Screens section2880:17264, current visible
-  Home/About/Skills frames2727:16249,2748:16339,2785:16153, plus selected-project
+  Home/About/Skills frames2727:16249,2748:16339,2935:18631, plus selected-project
   states2876:16313,2876:16454,2876:16595; Note2877:16361 and Play2877:16404.
   Palette:#F2F0F3 background,#F8F8F8
   paper,#464544 ink,#D1D1D3 shadow,#F8C73A yellow,#242424 text.
-  Self-hosted Montserrat carries display/project names; Reddit Sans carries
-  About, body and illustration labels; Roboto carries buttons/navigation and
-  Skills lists, including Empathy. UI-kit controls use pills,
+  Self-hosted Montserrat carries Hello! and prominent Skills words; Reddit Sans
+  carries project names, About, body, supporting skills and illustration labels;
+  Roboto carries navigation and most controls. UI-kit controls use pills,
   stable hover/press borders and visible keyboard focus. Original SVG assets
   retain their source paths and layering. Project previews use the supplied
-  logo-board states and Greeny/Synergy covers. Project preview frames have no
-  border. Moti's preview contains a direct render of its existing live banner.
+  current monochrome logo-board states and all three original monochrome covers.
+  Project preview frames have no border; their left-aligned “read more” is flat.
   Distinct Home descriptions use homeSummary, separate from case-study copy.
   All five views preserve the same-object zoom/return interaction. Butter stays
-  one connected opaque surface; stacked native Skills copy appears after melt.
+  one connected opaque surface; the native Skills-v2 word cloud appears after melt.
+  Skills retains the original Home bread's paper, crust and shadow throughout;
+  only butter changes shape. Never cross-fade to a second bread illustration.
   About has no yellow disc, retains the owner's single-gap outline and fades
   complete copy after the avatar and frame settle. Keep the approved vertical
   ruled Note, centered playable game and borderless top-right Close. The ball
@@ -332,6 +334,12 @@ by two UI mockup panels and the outdoor ad with no gaps or divider chapters.
 A 1200px capped container with growing gutters. Sections are separated by a
 hairline (#3A3A3A) rather than a colour change. The phone is the repeating
 unit of composition: one in the hero, one per interface screen.
+
+Greeny's owner-approved reading-density override applies only after its live
+garden story: 1080px maximum content width, centered major media up to 960px,
+and smaller content-driven specimen cards. Keep the existing body type size,
+mobile gutters, header and Contents. `projects/greeny/reading-layout.css` owns
+this scoped presentation; `docs/greeny/spec.md` records the detailed limits.
 
 ## Elevation & Depth
 

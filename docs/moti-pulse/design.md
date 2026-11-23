@@ -25,7 +25,9 @@ the "View original interface screens" disclosure, including its navigation
 entry and unused styles/reveal hooks. Hi-Fi now ends the case study, followed
 directly by the footer. Keep the removed source files available as assets.
 Use `img/logo-centered.png` consistently for the Moti-Pulse mark on the home
-page, in the case-study header/footer and as its favicon. Use the original logo and
+page and in the case-study header/footer. The favicon uses a rounded, transparent
+crop of that same supplied mark (`img/favicon.svg`, with a32px PNG fallback);
+the original `logo-centered.png` stays untouched. Use the original logo and
 product artwork. Do not invent credits, outcomes, quotes or metrics.
 
 The accepted layout has a split hero, a narrow/wide editorial reading rhythm,

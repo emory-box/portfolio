@@ -1,0 +1,163 @@
+{
+  "fileKey": "P0juURVnXARkV1owcBfbdJ",
+  "page": "8:4",
+  "description": "Original component SVG exports. Dark presentation instances preserve the product theme; weather uses the original upright illustrations.",
+  "assets": [
+    {
+      "name": "environment-line-default",
+      "node": "2498:5980",
+      "file": "projects/greeny/img/components/environment-line-default.svg",
+      "width": 386,
+      "height": 283,
+      "sha256": "023c93b20c7e2f2f521673cc82b2ee887bb96733b536ca5cb63f4789503b9845"
+    },
+    {
+      "name": "environment-line-menu",
+      "node": "2498:6295",
+      "file": "projects/greeny/img/components/environment-line-menu.svg",
+      "width": 386,
+      "height": 282,
+      "sha256": "f31744eac502c605903eecbcea4578dd58b4f7bb9427b774492346e0b907a43f"
+    },
+    {
+      "name": "environment-summary-default",
+      "node": "2498:5979",
+      "file": "projects/greeny/img/components/environment-summary-default.svg",
+      "width": 249,
+      "height": 231,
+      "sha256": "43418711cf491ae18b751a24944923cf6cf7a9803d9cf1830c8c77fcfa77ede2"
+    },
+    {
+      "name": "environment-summary-menu",
+      "node": "2498:6557",
+      "file": "projects/greeny/img/components/environment-summary-menu.svg",
+      "width": 249,
+      "height": 231,
+      "sha256": "508fef6885f87ddb1617cbd087966b4a006a8ca8bfd841fa6fc95b015c27750a"
+    },
+    {
+      "name": "device-status-idle",
+      "node": "2498:33474",
+      "file": "projects/greeny/img/components/device-status-idle.svg",
+      "width": 632,
+      "height": 218,
+      "sha256": "2657a8f6ad6ef2c93eb726674bbb40fcdd63692971a66147d0f8d817817339d4"
+    },
+    {
+      "name": "device-status-active",
+      "node": "2498:32323",
+      "file": "projects/greeny/img/components/device-status-active.svg",
+      "width": 632,
+      "height": 218,
+      "sha256": "31fe6797dea1b26438859751f996ae3d69919c449501a7b58013129d79986c16"
+    },
+    {
+      "name": "device-type-idle",
+      "node": "2498:33192",
+      "file": "projects/greeny/img/components/device-type-idle.svg",
+      "width": 214,
+      "height": 184,
+      "sha256": "65ebc37141635b061da9fed5a2051772c028c7f01518b4bfd5b4983f58b1ce48"
+    },
+    {
+      "name": "device-type-running",
+      "node": "2498:33193",
+      "file": "projects/greeny/img/components/device-type-running.svg",
+      "width": 214,
+      "height": 184,
+      "sha256": "210b8abaff4d6404f9c44b5470f0fb3362a87968078821195f8675c7266545f4"
+    },
+    {
+      "name": "device-type-paused",
+      "node": "2498:33215",
+      "file": "projects/greeny/img/components/device-type-paused.svg",
+      "width": 214,
+      "height": 184,
+      "sha256": "f8623969fda3fa13646cb8de340d4bc805463183c25307050104ff8c408a303b"
+    },
+    {
+      "name": "device-area-idle",
+      "node": "2498:33362",
+      "file": "projects/greeny/img/components/device-area-idle.svg",
+      "width": 416,
+      "height": 200,
+      "sha256": "a2d69975f1316abfcd5b523e4e10a6134f8a4c17159601d8160eaccd4d98c1bc"
+    },
+    {
+      "name": "device-area-running",
+      "node": "2498:33363",
+      "file": "projects/greeny/img/components/device-area-running.svg",
+      "width": 416,
+      "height": 200,
+      "sha256": "8b8362c3fad9c10a90d94da95f035b4680687267f6602cd7149a8c5f763c662c"
+    },
+    {
+      "name": "device-area-paused",
+      "node": "2498:33440",
+      "file": "projects/greeny/img/components/device-area-paused.svg",
+      "width": 416,
+      "height": 200,
+      "sha256": "46812a1d4787661c87b3775febdca9d940715bf9fb6e679989bb6f39afcc4978"
+    },
+    {
+      "name": "garden-dashboard",
+      "node": "2498:33571",
+      "file": "projects/greeny/img/components/garden-dashboard.svg",
+      "width": 368,
+      "height": 304,
+      "sha256": "c4296bc8fa407f180478c1cbe974761715efe92d5fd4377b5ed9107ad09134a0"
+    },
+    {
+      "name": "garden-list",
+      "node": "2498:33569",
+      "file": "projects/greeny/img/components/garden-list.svg",
+      "width": 259,
+      "height": 277,
+      "sha256": "240f0a999c8d63cf86044551abca6045ac478aee641fa53d95b4004299823a3a"
+    },
+    {
+      "name": "garden-overview",
+      "node": "2498:33570",
+      "file": "projects/greeny/img/components/garden-overview.svg",
+      "width": 620,
+      "height": 404,
+      "sha256": "fbc829ecaa2495f19b6e38f79d317ef4df4d82dff7bc40a1cadcf0c6d9c79677"
+    },
+    {
+      "name": "weather-partly-sunny",
+      "node": "1076:4054",
+      "file": "projects/greeny/img/components/weather-partly-sunny.svg",
+      "width": 69.7015,
+      "height": 44.989,
+      "sha256": "e993dde4537a2836fabc349964df89c74b1f398fa6bd98b7978f960375639046",
+      "exportKind": "original-vector-layer"
+    },
+    {
+      "name": "weather-rainy",
+      "node": "1076:4055",
+      "file": "projects/greeny/img/components/weather-rainy.svg",
+      "width": 67.7458,
+      "height": 51.2932,
+      "sha256": "765c9f26ad8c8437e59f7095a1981e31467f2e389a7ac633ff4d4e5a85ca23f1",
+      "exportKind": "original-vector-layer"
+    },
+    {
+      "name": "weather-sunny",
+      "node": "1076:4053",
+      "file": "projects/greeny/img/components/weather-sunny.svg",
+      "width": 52.895,
+      "height": 52.895,
+      "sha256": "d30243e49712a25f19f771b7c8ded66ff0729c491d07c9f6168469186ccc6068",
+      "exportKind": "original-vector-layer"
+    },
+    {
+      "name": "weather-cloudy",
+      "node": "1076:4056",
+      "file": "projects/greeny/img/components/weather-cloudy.svg",
+      "width": 88.5678,
+      "height": 44.5815,
+      "sha256": "0f764b5cd9ae1199a65826bf9e39a05790438600343cc3d3f17a80cba26129f5",
+      "exportKind": "original-vector-layer"
+    }
+  ]
+}

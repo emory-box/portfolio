@@ -7,10 +7,10 @@ const html=fs.readFileSync(path.join(root,'projects/greeny/index.html'),'utf8');
 const presented=[...html.matchAll(/data-source-slide="([^"]+)"/g)].flatMap(m=>m[1].split(/\s+/).map(Number));
 const omitted=manifest.slides.filter(s=>s.status==='omitted').map(s=>s.number);
 const referenceOnly=manifest.slides.filter(s=>s.status==='reference-only').map(s=>s.number);
-assert.deepEqual(omitted,[6,16,35,36,37,38,40,41,42,43,44,46,47,48,49],'Only owner-approved omissions from the current references');
-assert.deepEqual(referenceOnly,[7],'Sensor overview omitted; illustration retained as supporting evidence');
+assert.deepEqual(omitted,[6,16,35,36,37,38,40,41,42,43,44,47,48,49],'Only owner-approved omissions from the current references');
+assert.deepEqual(referenceOnly,[7,17,18],'Sensor overview omitted; illustration retained as supporting evidence');
 const expectedPresented=expected.filter(n=>!omitted.includes(n)&&!referenceOnly.includes(n));
-const presentationOrder=[5,8,9,10,11,12,13,14,15,19,17,18,20,29,31,30,33.1,32,33.2,21,22,27,23,25,24,26,28,34,45,39,52];
+const presentationOrder=[5,8,9,10,11,12,13,14,15,19,20,29,31,30,33.1,32,33.2,46,21,22,27,23,25,24,26,28,34,45,39,52];
 assert.deepEqual([...new Set(presented)],presentationOrder,'Page follows all three approved uploaded layouts');
 assert.deepEqual([...presentationOrder].sort((a,b)=>a-b),expectedPresented,'All retained source content is accounted for');
 assert.deepEqual(manifest.presentationOrder,presentationOrder,'Source manifest matches approved reading order');
@@ -32,6 +32,8 @@ for(const asset of [...manifest.experienceAssets.vectors,...manifest.experienceA
 }
 assert.equal(hash(fs.readFileSync(path.join(root,'authoring/greeny/case-study',manifest.interfaceReference.file))),manifest.interfaceReference.sha256,'Current interface reference preserved');
 assert.deepEqual(manifest.interfaceReference.panels.map(p=>p.slide),[45,39,52],'Approved three-panel interface sequence');
+for(const asset of manifest.figmaReference.assets)assert.equal(hash(fs.readFileSync(path.join(root,asset.file))),asset.sha256,'Original Figma artwork: '+asset.file);
+for(const asset of manifest.componentReference.assets)assert.equal(hash(fs.readFileSync(path.join(root,asset.file))),asset.sha256,'Original GREENY component SVG: '+asset.file);
 assert(!html.includes('deck-sensor-overview'),'Removed introduction overview stays omitted');
 let originals=0;
 for(const slide of manifest.slides){

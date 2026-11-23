@@ -21,7 +21,7 @@ export function initHomeNavigation({onEnter=()=>{},onLeave=()=>{}}={}) {
   const noteHome=note.capture(),duration=880;
   const extras=new Map([
     ['work',[...document.querySelectorAll('.home-project-tabs,.home-project-details,.home-board-preview')]],
-    ['skills',[...document.querySelectorAll('.home-skills-copy,.home-skills-tabs,.home-skills-pages')]],
+    ['skills',[document.querySelector('.home-skills-copy')]],
     ['contact',[document.querySelector('.home-contact-content')]],
     ['play',[...document.querySelector('.home-game').children].filter(e=>!e.classList.contains('home-game-display')).concat(document.querySelector('.home-game-board'))]
   ]);

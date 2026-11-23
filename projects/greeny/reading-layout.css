@@ -1,0 +1,102 @@
+/* Owner-approved reading density, after the source-matched Figma presentation.
+   Scope stays below scrollytelling; header, Contents and garden keep their layout. */
+.greeny-case-study[data-figma-layout],
+body:has(.greeny-case-study[data-figma-layout]) :is(.project-video,.project-credits,.portfolio-return-top,.project-next,.portfolio-footer) {
+  --measure: 1080px;
+}
+
+.greeny-case-study[data-figma-layout] .deck-component-family + .deck-component-family { margin-top: 64px; }
+.greeny-case-study[data-figma-layout] .deck-component-family + .deck-component-family::before { inset-block-start: -32px; }
+.greeny-case-study[data-figma-layout] .deck-reference-heading h2 { margin-bottom: 32px; }
+.greeny-case-study[data-figma-layout] .deck-reference-heading h2:last-child { margin-bottom: 0; }
+.greeny-case-study[data-figma-layout] .deck-function-map { row-gap: 48px; }
+.greeny-case-study[data-figma-layout] .deck-function-note { margin-top: 32px; }
+.greeny-case-study[data-figma-layout] .deck-function-note::before { top: -33px; height: 32px; }
+.greeny-case-study[data-figma-layout] .deck-persona { padding: 20px; gap: 20px; }
+
+/* Share content-driven rows while the two persona cards sit side by side. */
+@media (min-width:960px) {
+  .greeny-case-study[data-figma-layout] .deck-reference-personas .deck-personas { row-gap: 24px; }
+  .greeny-case-study[data-figma-layout] .deck-reference-personas .deck-persona { display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: subgrid; grid-row: span 5; row-gap: inherit; }
+  .greeny-case-study[data-figma-layout] .deck-reference-personas .deck-persona > aside { grid-row: auto; align-content: start; }
+  .greeny-case-study[data-figma-layout] .deck-reference-personas .deck-persona > div { grid-column: 1; margin-top: 0; }
+  .greeny-case-study[data-figma-layout] .deck-reference-personas .deck-persona > div > :last-child { margin-bottom: 0; }
+}
+
+/* Whole artwork fits its frame; originals remain available through the image dialog. */
+.greeny-case-study[data-figma-layout] :is(.deck-diagram-link,.deck-onboarding-atlas) { max-inline-size: 960px; margin-inline: auto; }
+.greeny-case-study[data-figma-layout] .deck-diagram-link > svg { display: block; max-block-size: 68svh; object-fit: contain; }
+.greeny-case-study[data-figma-layout] #icons .deck-source-vector { max-inline-size: 900px; }
+.greeny-case-study[data-figma-layout] #components .deck-metric-variants { max-inline-size: 960px; min-height: 0; margin-inline: auto; gap: 20px 32px; }
+.greeny-case-study[data-figma-layout] #components .deck-metric-variants > div { display: grid; grid-template-rows: subgrid; grid-row: span 3; gap: 20px; }
+.greeny-case-study[data-figma-layout] #components .deck-metric-variants .deck-data-card { min-height: 0; margin-block: 0; }
+.greeny-case-study[data-figma-layout] #components .deck-metric-variants .deck-bar-card { max-inline-size: 360px; }
+.greeny-case-study[data-figma-layout] #components .deck-sensor-explanation { grid-template-columns: minmax(0,300px) minmax(0,1fr); gap: 32px; }
+.greeny-case-study[data-figma-layout] #components .deck-control-showcase { gap: 20px 32px; }
+.greeny-case-study[data-figma-layout] #components .deck-device-samples > div { gap: 20px; }
+.greeny-case-study[data-figma-layout] #components .deck-device-samples > div > .deck-device-card { min-height: 160px; }
+.greeny-case-study[data-figma-layout] #components .deck-device-samples > div > .deck-device-card:nth-of-type(1) { min-height: 176px; }
+.greeny-case-study[data-figma-layout] #components .deck-weather-grid { max-inline-size: 960px; margin-inline: auto; gap: 20px; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-showcase { gap: 32px; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-cards { gap: 20px 24px; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-card:not(.is-large) > img { height: auto; aspect-ratio: 25 / 12; object-fit: cover; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-card:not(.is-large) > div { padding: 16px; min-height: 0; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-card.is-large { inline-size: min(100%,440px); }
+.greeny-case-study[data-figma-layout] .deck-interface-gallery { max-inline-size: none; margin-inline: 0; container-type: inline-size; }
+body:has(.greeny-case-study[data-figma-layout]) .project-video-frame { inline-size: min(100%,960px); margin-inline: auto; }
+
+/* Original SVG specimens: preserve their own paint, shadows and proportions. */
+.greeny-case-study[data-figma-layout] .deck-component-image { margin: 0; min-inline-size: 0; }
+.greeny-case-study[data-figma-layout] .deck-component-image > a { display: flex; justify-content: center; align-items: flex-start; padding: 0; border: 0; border-radius: 0; background: none; }
+.greeny-case-study[data-figma-layout] .deck-component-image img { display: block; inline-size: auto; block-size: auto; max-inline-size: 100%; margin: 0; border-radius: 0; }
+.greeny-case-study[data-figma-layout] #components .deck-metric-variants .deck-component-image > a { block-size: 100%; align-items: center; }
+.greeny-case-study[data-figma-layout] #components .deck-control-showcase { max-inline-size: 960px; margin-inline: auto; grid-template-columns: minmax(0,360fr) minmax(0,214fr) minmax(0,416fr); }
+.greeny-case-study[data-figma-layout] #components :is(.deck-dashboard-heading h5,.deck-device-samples > div > h5) { min-block-size: 3em; }
+.greeny-case-study[data-figma-layout] #components .deck-weather-symbol img { inline-size: auto; block-size: auto; max-inline-size: 110px; max-block-size: 96px; }
+.greeny-case-study[data-figma-layout] #components .deck-garden-cards > .deck-component-image:last-child { grid-column: 1 / -1; max-inline-size: 440px; }
+
+@media (max-width:999px) {
+  .greeny-case-study[data-figma-layout] #components .deck-control-showcase { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:540px) {
+  .greeny-case-study[data-figma-layout] #components .deck-control-showcase { grid-template-columns: minmax(0,1fr); }
+  .greeny-case-study[data-figma-layout] #components :is(.deck-dashboard-heading h5,.deck-device-samples > div > h5) { min-block-size: 0; }
+}
+
+@media (min-width:1000px) {
+  .greeny-case-study[data-figma-layout] .deck-reference-segmentation { grid-template-columns: minmax(0,1fr) 216px; gap: 64px; }
+  .greeny-case-study[data-figma-layout] .deck-reference-segmentation .deck-crop { width: 216px; }
+  .greeny-case-study[data-figma-layout] .deck-logo-rule { grid-template-columns: minmax(0,216px) minmax(0,1fr); }
+  .greeny-case-study[data-figma-layout] .deck-reference-safezone .deck-brand-artwork { inline-size: 216px; }
+  .greeny-case-study[data-figma-layout] .deck-reference-safezone-content { min-height: 0; padding-top: 16px; }
+  .greeny-case-study[data-figma-layout] .deck-sketch > a { height: 320px; }
+  .greeny-case-study[data-figma-layout] .deck-sketch-mini > a { height: 144px; }
+  .greeny-case-study[data-figma-layout] .deck-sketch-short > a { height: 264px; }
+
+  /* Keep the original diagram's proportions as the reading column gets narrower. */
+  .greeny-case-study[data-figma-layout] .deck-reference-meaning { container-type: inline-size; }
+  .greeny-case-study[data-figma-layout] .deck-reference-anatomy { height: max(580px,51.2734cqi); }
+  .greeny-case-study[data-figma-layout] .deck-reference-wires { top: 6cqi; height: 42.9401cqi; }
+  .greeny-case-study[data-figma-layout] .deck-reference-letter { top: 8cqi; width: 16.4023%; }
+  .greeny-case-study[data-figma-layout] .deck-reference-letter > img { width: 6.6667cqi; height: auto; margin-bottom: 2cqi; }
+  .greeny-case-study[data-figma-layout] .deck-reference-mark { top: 6cqi; width: 18.6662%; }
+  .greeny-case-study[data-figma-layout] .deck-reference-mark .deck-original-meaning-mark { height: auto; aspect-ratio: 224 / 259.703; }
+  .greeny-case-study[data-figma-layout] .deck-reference-leaf { top: 8cqi; width: 19.7136%; }
+  .greeny-case-study[data-figma-layout] .deck-reference-leaf > img { width: 5.3333cqi; height: auto; margin-bottom: 2cqi; }
+  .greeny-case-study[data-figma-layout] .deck-reference-fingerprint { top: 30.9414cqi; width: 24.0951%; }
+  .greeny-case-study[data-figma-layout] .deck-reference-fingerprint > img { width: 8cqi; height: auto; margin-bottom: 1.3333cqi; }
+  .greeny-case-study[data-figma-layout] .deck-reference-promise { top: 37.54cqi; }
+  .greeny-case-study[data-figma-layout] .deck-interface-feature-copy h3 { font-size: clamp(1.25rem,3.2cqi,2.4rem); margin-bottom: 24px; }
+  .greeny-case-study[data-figma-layout] .deck-interface-feature-copy p { font-size: clamp(1rem,2.08cqi,1.56rem); }
+}
+@media (min-width:1000px) and (min-height:600px) {
+  body:has(.greeny-case-study[data-figma-layout]) .project-video-frame { inline-size: min(100%,960px,120svh); }
+}
+@media (max-width:759px) {
+  .greeny-case-study[data-figma-layout] #components .deck-metric-variants { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .greeny-case-study[data-figma-layout] #components .deck-metric-variants > div { grid-row: auto; grid-template-rows: auto; }
+  .greeny-case-study[data-figma-layout] #components .deck-sensor-explanation { grid-template-columns: minmax(0,1fr); gap: 20px; }
+  .greeny-case-study[data-figma-layout] #components .deck-sensor-explanation > img { max-inline-size: 300px; }
+  .greeny-case-study[data-figma-layout] .deck-component-family + .deck-component-family { margin-top: 48px; }
+  .greeny-case-study[data-figma-layout] .deck-component-family + .deck-component-family::before { inset-block-start: -24px; }
+}

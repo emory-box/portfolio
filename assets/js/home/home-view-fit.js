@@ -9,7 +9,7 @@ export function createHomeViewFit(views) {
   const originWidth=view=>view.getBoundingClientRect().width;
   function fit(id) {
     const view=views.get(id),panel=view.querySelector('.home-panel');
-    panel.style.transform='';panel.style.left='0px';panel.style.top='0px';view.style.height='';
+    panel.style.transform='';panel.style.left='0px';panel.style.top='0px';view.style.height='';view.style.setProperty('--home-fit-scale','1');
     if(id==='skills')return;
     const nativeFrame=innerWidth>=1440&&innerHeight>=1024&&parseFloat(getComputedStyle(document.documentElement).fontSize)<=20;
     const workFitsFrame=id!=='work'||panel.querySelector('.home-work-layout').getBoundingClientRect().height<=1025;
@@ -38,6 +38,7 @@ export function createHomeViewFit(views) {
     if(enlarged||height*scale>availableHeight+1)view.style.height=(readingHeight+headroom+margin)+'px';
     const x=margin+(availableWidth-width*scale)/2-left*scale,y=headroom+Math.max(0,(availableHeight-height*scale)/2)-top*scale;
     panel.style.transform='translate('+x+'px,'+y+'px) scale('+scale+')';
+    view.style.setProperty('--home-fit-scale',String(scale));
     view.dataset.fitScale=String(scale);
   }
   for(const [id,view]of views) {

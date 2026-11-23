@@ -17,13 +17,24 @@ Read the [shared website specification](../shared/website-spec.md) first, then
 this file before adding, changing or reviewing Greeny content. This is the local
 entry point for Greeny; its visual rules apply only to `projects/greeny/`.
 
-The owner approved the current title/subtitle treatment from Introduction
-through all Personas as the default for future Greeny case-study content.
-Use that treatment when adding a section. Preserve existing sections beyond
-Personas until a task explicitly requests their restyling. The owner subsequently
-requested the User Experience and UI system continuation; those sections now
-also use this heading contract. Source app screens,
-component specimens, diagrams and the 3D story retain their own presentation.
+The approved presentation is Figma frame 2995:20025 in
+8NMst3c890fJWBihmNnBKu. See [implementation scope](figma-sync.md).
+The heading, grouping and specimen rules below reflect that frame and supersede
+the older uploaded-layout presentation. Preserve all seven live garden scenes
+after the opening banner; only that first banner uses the new composition.
+The owner subsequently approved the compact reading layout described below.
+Its narrower columns and smaller media override Figma's desktop dimensions,
+while preserving content, identity and order.
+
+After the unchanged scrollytelling, render ECOSYSTEM - GREENY with Protocol,
+Advantage and Scalability. The owner approved removing APPLICATION - GREENY
+to follow the current Figma frame. Online/Offline copy inside the live garden
+story remains unchanged. Preserve Ecosystem's exact English copy and emphasis.
+
+Introduction contains only “Research and Design process of Greeny application”,
+with Greeny in brand green. Reveal it gently as the reader reaches
+the case study, announcing the change from the garden story to the written
+project. Do not restore About us or insert an empty paragraph/card.
 
 The final 3D story scene combines Hub and App in one fixed composition:
 scrolling changes only the copy through Hub → App / Online → Offline,
@@ -49,12 +60,12 @@ scroll. Greeny's `<html>` opts in through `.project-page`; the story reserves
 zero sticky-header space. Preserve its model, materials and narrative behavior.
 The logo/name group is static and not clickable, as required by the shared rule.
 
-Contents starts closed at every width and first appears at `#brief`, after the
+Contents starts closed at every width and first appears at `#ecosystem`, after the
 3D story and project facts. It remains available after that first appearance.
-List the six chapters and their immediate subtopics from the hierarchy table
+List the product-context section, then the six chapters and their immediate subtopics from the hierarchy table
 below, in that order; omit the scrollytelling stops, individual personas,
 individual task flows and component specimens. Project video follows User Interface immediately as a peer heading in the
-same Contents group/column, linking to `#project-video`; nineteen links total.
+same Contents group/column, linking to `#project-video`; twenty links total.
 The toggle sits at the bottom-right, outside the panel background. All open,
 close, focus, current-section and responsive behavior follows the shared spec.
 Use Greeny's surface/text tokens, `--green-200` for the current-link accent and
@@ -64,14 +75,14 @@ study link. Preserve native scrolling, reduced motion, offscreen idling and
 WebGL fallbacks without reserving space for these removed controls.
 
 The shared assets are `assets/css/project-navigation.css` and
-`assets/js/project-contents.js`. Five subtitle anchors are also preserved in
-the native case-study authoring helpers: About us, Meaning, User segmentation,
-Function Ideations and Colors. See the existing chapter/subtopic hierarchy
+`assets/js/project-contents.js`. Subtitle anchors are preserved in
+the native case-study authoring helpers: Meaning, User segmentation,
+Function Ideation and Colors. The obsolete About us link is removed. See the existing chapter/subtopic hierarchy
 below for their exact labels; do not add extra navigation levels.
 
 ## Final project video
 
-After the case-study content and credits, before Back to top and Next projects,
+After User Interface, before project credits, Back to top and Next projects,
 show the supplied YouTube video `NN9Esg6nsKk` in a separate Project video section.
 It stays outside the model story and native case-study chapter wrapper.
 Use the existing Greeny cover as a local poster. Play loads a YouTube iframe
@@ -85,35 +96,39 @@ is in `authoring/portfolio/`; style and playback helpers are
 ## Title and subtitle contract
 
 The implementation is scoped to `.greeny-case-study` in
-[case-study.css](../../projects/greeny/case-study.css). Reuse
+[figma-layout.css](../../projects/greeny/figma-layout.css), loaded after
+case-study.css. Reuse
 `.deck-reference-heading` for a section's title/subtitle group.
 
 | Role | Approved treatment |
 | --- | --- |
 | Section title | Nunito, weight 500; `var(--step-4)`; line-height `1.15`; letter-spacing `-.025em`; `var(--text)` |
-| Subsection heading (`h3`) | Inter, weight 600; `var(--step-2)`; line-height `1.4`; letter-spacing `-.015em`; `var(--text)`. A 3px `var(--green-200)` leading border with 12px inline padding identifies this heading role |
+| Subsection heading (`h3`) | Inter, weight 600; `var(--step-2)`; line-height `1.4`; letter-spacing `-.015em`; `var(--text)`. No leading border; align with its content. UI-family subtitles use Nunito 500 at up to 32px |
 | Persona name | Inter, weight 500; `var(--step-2)`; line-height `1.2`; letter-spacing `-.02em`; `var(--text)` |
 | Persona reading labels | Inter, weight 600; `var(--step-0)`; line-height `1.5`; letter-spacing `0`; `var(--text)` |
 
-Titles retain the supplied natural case. Keep the chapter title visually primary
-and give its subsection headings a smaller, consistent semibold treatment,
-distinct from muted descriptive copy. The slim green leading marker identifies
-subsections without numbering or adding a card. Omit a subsection heading when
-the source has none. The large green uppercase chapter headings in the uploaded
-layout have been superseded by this contract.
+Titles retain their natural case. Separate chapter headings with a quiet rule
+below the title, with 24px padding before the rule and 40px to the next heading.
+Subtopics have 24px to their content. Do not add numbering or a green marker.
+Introduction is a leading-aligned transition at the same 52px desktop scale,
+with 72px top/80px bottom padding and no supporting paragraph. Its inner frame
+has 2px green side borders and 24px padding, rather than a horizontal rule.
+The Logo chapter follows with no extra chapter-top padding.
+Keep the shared self-hosted font families and responsive type scale.
 
 ### Chapter and subtopic hierarchy
 
 Only these chapter titles use `h2` and the section-title style. All their
-subtopics use `h3` and the marked subsection-heading style, including subtopics
+subtopics use `h3` and the subsection-heading style, including subtopics
 that appear in a separate content block farther down the page:
 
 | Chapter title (`h2`) | Subtitles (`h3`), in reading order |
 | --- | --- |
-| Introduction | About us |
+| Ecosystem - Greeny | Protocol; Advantage; Scalability (cards, no extra Contents level) |
+| Introduction | Research and Design process of Greeny application; transition only |
 | Logo | Meaning; Safezone & Grid |
 | User Research | User segmentation; User Personas |
-| User Experience | Function Ideations; Site map; Task Flow |
+| User Experience | Function Ideation; Site map; Task Flow; Sketches |
 | UI system | Colors; Typography; Icon; Components |
 | User Interface | None |
 
@@ -131,72 +146,118 @@ subsets. Font sizes reference the existing scale in
 
 ## Grouping, spacing and responsive layout
 
-- Keep title and subtitle in one header, aligned to the same starting edge.
-  The subtitle starts 12px below the title. A standalone subtopic header has
-  just its `h3`, with no extra top margin and no repeated chapter title.
-- Group the existing thirteen content blocks into the six approved chapters.
-  Each block carries `data-case-chapter`; only the first block of each chapter
-  has `data-case-start`. Keep their native section IDs and source reading order.
-- Chapter boundaries use `--deck-chapter-space: clamp(80px, 9.375vw, 120px)`.
-  Place one quiet, container-aligned rule halfway through this gap, before
-  the next chapter heading. Introduction has no preceding rule and starts
-  with the smaller topic gap. Do not add cards around entire sections.
-- Continuation topics use `--deck-topic-space: clamp(32px, 3.125vw, 40px)`.
-  The next block owns the gap; set block-end padding to zero so neighboring
-  blocks never double the whitespace. Safezone & Grid shares Logo's page
-  background instead of introducing a separate full-width surface band.
-- Chapter heading-to-content spacing is
-  `--deck-heading-space: clamp(24px, 2.5vw, 32px)` when there is no subsection
-  heading. Every header containing a subsection heading uses 24px to its
-  content, including standalone continuation topics. Preserve the title/subtitle
-  typography and their 12px internal gap. The marker follows the leading edge
-  in RTL and grows with wrapped text; do not truncate subsection labels.
-- Use `--deck-family-space: clamp(32px, 3.75vw, 48px)` between component families
-  and task-flow figures, with 16px between a family/flow label and its specimen.
-  In Components, Environmental parameter graphs is the shared `h4` above the
-  complete sensor-and-chart group. Greeny sensor parameters is its child `h5`,
-  placed above the sensor illustration. Keep the line/bar specimen rows aligned;
-  stack the explanation before the charts on narrow screens without changing
-  their reading order or stretching the sensor image.
-  Device Control Panel is likewise a shared `h4` above its complete family.
-  Its dashboard group and two device groups share heading and specimen rows
-  on wide screens; corresponding Fan/Area cards align at both edges. Keep
-  group captions with their specimens, use equal-width columns, and stack in
-  DOM order when narrow. Remove forced line breaks and manual vertical offsets
-  from group headings; let the shared grid accommodate wrapped labels.
-  Keep specimen UI styling and the three contiguous User Interface panels intact.
-  User Interface contains source artwork 45, 39 and 52, in that order. The owner
-  removed the device-control/schedule collage (41) and plant-identification/care
-  collage (42). Exclude these two panels from generated HTML and web artwork;
-  keep their source records as approved omissions.
-- Present only Duc Phu and Phuong Lan (source slides 14–15), with their complete
-  source copy. Trung Khang (slide 16) is an owner-approved omission. Keep its
-  source record for provenance; exclude it from generated HTML and web artwork.
-- At 960px and above, show both personas side by side in equal-width cards
-  inside the existing container. Below 960px, stack them in source order.
-  Each card uses `var(--surface)`, a 1px `var(--line)` border, 16px radius,
-  24px padding (20px at 700px and below), and a 24px gap between cards.
-  Keep the 80px portrait beside the name, followed by a three-column metadata
-  row. Separate identity from reading content with a quiet rule. Reading blocks
-  are 24px apart with 12px below labels; body copy uses `var(--step-0)` and
-  line-height `1.7`. No truncation, hidden content or internal scrolling.
-- Keep User segmentation compact and top-aligned below its heading. Its grid
-  has a 1040px maximum width, a flexible text column, a 220px photo column and
-  a 32px gap. Separate the three text groups by 20px. At 700px and below, stack
-  text before the photo with a 24px gap and cap the photo at 180px wide. Retain
-  the full original photo ratio and source copy; do not vertically center the
-  text against the portrait or enlarge the photo to fill the available height.
-- Place each font-family heading (Inter/Nunito) before its specimen rows in
-  DOM and visual order, aligned to their leading edge with 24px below the
-  heading. Align the two family columns at the top; retain this grouping when
-  they stack on narrow screens. Keep specimen typography and content intact.
-- Place content inside the existing `.wrap`. The legacy `--deck-space` token
-  remains for older samples; it no longer determines chapter/topic boundaries.
-- Let headings grow vertically and wrap naturally. Keep `text-wrap: balance`
-  on titles and the narrow-screen overflow protection. Use content-driven
-  responsive columns below the heading; preserve source reading order.
-- Keep all added styles inside Greeny's case-study scope. Retain the local
-  section order, source-backed content and existing stable anchors.
+Safezone & Grid follows the current Figma node `2995:20111`, superseding the
+earlier raster crops from `3028:24799`. Preserve the seven supplied SVG layers
+in `img/brand/current/`: original marks/masks, construction grid, boundary and
+four-corner clear-space lines. `brand-vectors.cjs` composes these unmodified
+layers with the source labels and wordmark into two 240×300 SVG diagrams.
+Use the source 10×13 construction grid and four equal corner marks, without a
+filled image background. The compact desktop layout displays each diagram at
+216×270px beside a fluid paragraph, with 16px above the row and 24px gaps.
+Paragraphs use Inter 16px/1.7; stack the groups on narrow screens. Preserve
+full-size image viewing. The old PNGs/crop manifest remain historical evidence.
+
+- Use a 1080px maximum reading container (180px side margins at 1440px).
+  Mobile/tablet retain the existing gutters; do not increase their padding.
+  Desktop chapter gaps are 96px; continuation topics use 40px. Reduce these to
+  72px/40px on tablets and 56px/32px on phones. Avoid doubled adjacent padding.
+- Keep one context section, six case-study chapters and fifteen content blocks. Only the first
+  block in each chapter carries data-case-start. Preserve stable anchors.
+- At 960px and above, retain two equal persona cards with a 24px outer gap,
+  80px portraits, metadata row and full source copy. Use 20px card padding and
+  internal gaps; stack them below 960px. Do not shrink reading text to fit.
+  Only Duc Phu and Phuong Lan are presented.
+- User segmentation places text beside a 216px portrait with a 64px desktop gap.
+  Stack at 759px and below, with a 180px image and 24px gap.
+- Function Ideation is the five-group native diagram from the current Figma.
+  Use connected branches, never a flattened page screenshot. On mobile use a
+  vertical reading order with a visible connecting rail.
+- Preserve Sitemap and seven Task Flow diagrams' nodes, wiring and geometry.
+  Task flows are independently collapsible, all initially closed.
+- Sketches follows Task Flow within User Experience. Present twelve original
+  crops in three columns at desktop, two on tablet and one on phones. Group
+  the additional entry screens. Use the existing closeable image dialog;
+  local originals remain the no-script fallback.
+- UI system: Brand, Neutral and Semantic each have four labeled swatches.
+  Brand order is Primary, Secondary, White, Black. Retain fourteen Inter and
+  Nunito specimens; each family heading precedes its rows.
+- Components: environmental line/bar states share aligned columns, with the
+  explanatory sensor image and source attribution below. Device control places
+  dashboard status beside two aligned control groups. Upright weather cards,
+  garden cards and five original onboarding illustrations follow.
+  The owner now requires original SVG exports from GREENY file
+  `P0juURVnXARkV1owcBfbdJ` rather than native approximations of these specimens.
+  See the source-component contract below.
+- Match Meaning's original six SVG layers and wiring, with native explanatory
+  text positioned around the central mark. Keep the source closing statement.
+  Below 760px, stack the same content and hide decorative diagram connectors.
+- Onboarding uses the original composition in `img/onboarding.png`,
+  containing all five translucent screens in their fixed staggered arrangement.
+  Scale this entire composition proportionally at every width; never wrap or
+  resize the five screens independently. Keep the title outside the image and
+  retain the existing full-size image dialog and all five text alternatives.
+  Preserve its original border, blur and shadow pixels. Do not rebuild the
+  individual screens or overwrite it with an HTML-rendered approximation.
+- Use the local Nunito Greeny alias with the full 200–1000 variable weight
+  range for case-study headings. This allows the source weight 500 to render
+  correctly without changing shared fonts or the live garden story.
+- User Interface uses two native text/phone-artwork showcase panels, then
+  original source 39 and 52. Do not restore collages 41/42, duplicate headings,
+  or Advertising/Poster dividers.
+- Wrap at 360px and 200% text size; do not clip headings or add internal body
+  scrolling. Preserve reduced motion and native no-script disclosures.
+- Scope presentation changes to Greeny. Seven-scene movement, looping effects,
+  annotation holds, canopy timing and Hub/App text beats remain unchanged.
+
+### Compact reading layout — approved
+
+When the two persona cards sit side by side, share content-sized rows for
+their identity blocks, About, Pain Points, Needs and Motivations. The identity
+divider and each matching reading label align across both cards, even when
+occupation or body text wraps. Below 960px, stack independent cards naturally.
+
+`reading-layout.css`, loaded after `figma-layout.css`, owns the approved density
+adjustments. Keep the header, Contents and live garden outside its container
+scope. Apply the 1080px measure to the written case study and its ending/footer.
+
+- Center large diagrams, onboarding and chart groups within a 960px maximum;
+  icon artwork caps at 900px. Preserve image proportions and full-size viewing.
+- The User Interface gallery fills the reading column, matching both ends of
+  the divider beneath its section title. Do not apply a separate width or
+  viewport-height cap to this gallery. Preserve the artwork proportions.
+  Video retains its original poster and caps at 960px, with its existing
+  viewport-height limit. No additional cropping.
+- Source chart/control SVGs keep their intrinsic proportions inside the compact
+  columns. Do not restore the old 947px graph-group reservation, 409px chart
+  minimum or HTML control-card heights around these exported images.
+- Keep 64px between component families (48px on phones), with smaller internal
+  gaps. Use 320px desktop sketch frames, preserving whole sketches with contain.
+- Body copy, heading hierarchy, persona text and navigation typography retain
+  their sizes. Only text inside the scaled UI artwork follows its panel width,
+  with a 16px floor; do not zoom or transform the entire page.
+- Meaning's original diagram layers follow proportional container coordinates
+  as the column narrows. Keep its explanatory labels readable and wires aligned.
+
+### Original component SVGs — approved
+
+Use the supplied [GREENY Components file](https://www.figma.com/design/P0juURVnXARkV1owcBfbdJ/GREENY?node-id=8-4).
+Dark presentation instances in that file preserve the intended theme; library
+defaults may be light. The website uses nineteen unchanged SVG exports in
+`projects/greeny/img/components/`: four charts, two dashboard status panels,
+six device-control states, three garden cards and four weather illustrations.
+
+`references/components.json` records each source node, delivered dimensions and
+SHA-256 hash. `component-assets.cjs` emits the image markup. Preserve all artwork,
+original glyphs, borders, effects and embedded photos; do not redraw paths or
+recreate the UI with HTML. Original wording inside source SVGs is retained;
+page headings, descriptions and image alternatives remain English.
+
+The owner chose upright Weather cards: retain their native layout and readings,
+replacing only the four illustrations with original SVGs. Do not use the tilted
+full-card exports from the source slide. Onboarding keeps its approved PNG.
+Fifteen full component examples open through the existing image viewer; their
+drawn buttons are part of the artwork, not live app controls. Fit images without
+cropping, distorting or scaling beyond their natural size unnecessarily.
 
 For a new top-level section, reuse this markup with real source labels and a
 unique ID. The labels below are template placeholders, not website copy:
@@ -265,8 +326,10 @@ Keep native original-file links as the no-script and modified-click fallback.
 
 ### Editable Figma website handoff
 
-The website layout is also available inside the original Greeny Figma section:
-[Desktop1440](https://www.figma.com/design/8NMst3c890fJWBihmNnBKu?node-id=2907-18765)
+The current website follows the owner's updated
+[Desktop1440](https://www.figma.com/design/8NMst3c890fJWBihmNnBKu?node-id=2995-20025).
+The earlier editable handoff remains inside the original Greeny Figma section,
+alongside its
 and [UI Kit](https://www.figma.com/design/8NMst3c890fJWBihmNnBKu?node-id=2898-16457).
 The owner requested an image for scrollytelling and editable layouts for the
 six case-study chapters. This handoff contains39 tokens,10 text styles and43
@@ -275,9 +338,12 @@ this local specification continue to define website behavior; the Figma image
 does not replace the native garden model or scroll animation.
 
 
-The case study ends with its original project credits, followed by the shared
-two-project recommendations and personal footer. The credits marker sits outside
-the thirteen generated content blocks and is preserved by the Greeny builder.
+User Interface is followed by Project video, the original two-column project
+credits, Back to top, Next projects and the personal footer. The credits marker
+sits outside the fifteen generated content blocks and is preserved by the Greeny
+builder. Greeny's current Figma footer has identity/contact columns without
+Work/About/Contact navigation. Its recommendations retain the original shared
+`cover` artwork; the newer `homeCover` images belong only to Home.
 Follow [the shared ending contract](../shared/website-spec.md#project-endings-and-personal-footer--approved).
 
 Read only the documents relevant to the task:
@@ -299,4 +365,4 @@ Verify that every added section uses the approved title/subtitle roles and
 spacing, retains its source content and introduces no new typeface or font
 delivery mechanism. Compare it with Introduction and Personas on the running
 Greeny page. Check 360, 768, 1280 and 1920px and 200% text, including long
-Vietnamese labels, with no clipped headings or horizontal page overflow.
+English labels, with no clipped headings or horizontal page overflow.

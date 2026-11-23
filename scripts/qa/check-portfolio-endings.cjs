@@ -21,7 +21,7 @@ fs.mkdirSync(out, {recursive: true});
       assert.equal(await page.$$eval('.home-work .portfolio-cover', els => els.length), 3);
       assert.equal(await page.$$eval('.home-portrait img', els => els.length), 3);
       assert.equal(await page.$$eval('.home-work .portfolio-cover img',els=>els.length),3,'Every Home project has its supplied or source-rendered cover');
-      assert(await page.$eval('#project-moti-pulse .portfolio-cover img',el=>el.getAttribute('src')==='assets/img/home/moti-pulse-cover.png'));
+      assert.equal(await page.$eval('#project-moti-pulse .portfolio-cover img',el=>el.getAttribute('src')),projects.find(p=>p.slug==='moti-pulse').homeCover,'Home uses its scoped Figma cover');
       assert.equal(await page.$$eval('a[href=""],a[href="#"],a[href*="example.com"],a[href*="undefined"]', els => els.length), 0, 'No fake/dead contact links');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Home fits ' + width);
       for (const anchor of ['work', 'about', 'contact']) assert.equal(await page.$$eval('[id="' + anchor + '"]', els => els.length), 1);
@@ -43,15 +43,16 @@ fs.mkdirSync(out, {recursive: true});
         assert.equal(await page.$$eval('#page-top', els => els.length), 1, 'Back to top has a genuine page-start target');
         assert(await page.$eval('.project-next', el => !el.closest('main[data-stack],.greeny-case-study')), 'Ending stays outside protected case-study groups');
         if (project.slug === 'greeny') {
-          assert.equal(await page.$$eval('.project-credits li', els => els.length), 4, 'All team credits retained');
+          assert(await page.$eval('.project-credits', el => ['Tấn Duy', 'Phương Thanh', 'Kim Vi', 'Minh Hiển'].every(name => el.textContent.includes(name))), 'All team credits retained');
           assert(await page.$eval('.project-credits', el => el.textContent.includes('Trần Cường Tiến')), 'Guidance credit retained');
+          assert(await page.$eval('.project-credits', el => el.getBoundingClientRect().top >= document.querySelector('.project-video').getBoundingClientRect().bottom), 'Greeny credits follow its video');
         }
         await page.$eval('.project-next', el => el.scrollIntoView({block: 'start', behavior: 'instant'}));
         await page.waitForFunction(() => [...document.querySelectorAll('.project-next-card img')]
           .every(img => img.complete && img.naturalWidth > 0), {timeout: 15000});
         assert.deepEqual(await page.$$eval('.project-next-card img', els => els.map(el => el.getAttribute('src'))),
           projects.filter(p => p.slug !== project.slug && p.cover).map(p => '../../' + p.cover),
-          'Recommendations display the selected source covers');
+          'Recommendations retain original covers; Home artwork stays scoped to Home');
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Project ending fits ' + project.slug + '/' + width);
         assert(await page.$eval('.project-next', el => el.getBoundingClientRect().bottom <= document.querySelector('.portfolio-footer').getBoundingClientRect().top + 1), 'Recommendations precede footer');
         await page.screenshot({path: out + '/' + project.slug + '-' + width + '.png'});

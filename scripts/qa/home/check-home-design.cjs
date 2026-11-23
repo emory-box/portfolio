@@ -32,7 +32,7 @@ async function geometry(page,selector,expected) {
     // Compare the 1440px design canvas, allowing space for a classic scrollbar.
     const gutter=await page.$eval('body',e=>innerWidth-e.getBoundingClientRect().width);
     if(gutter){await page.setViewport({width:1440+gutter,height:1024});await settle(page);}
-    assert.equal(await page.$eval('.home-owner',e=>e.textContent),'Emory Pham');
+    assert.equal(await page.$eval('.home-owner',e=>e.textContent),'Emory Phạm');
     assert.equal(await page.$eval('#home-title',e=>e.textContent),'Hello!');
     const used=await page.$$eval('img[src*="assets/img/home/"],link[as="image"][href*="assets/img/home/"]',es=>[...new Set(es.map(e=>(e.src||e.href).split('/').pop()))].sort());
     assert(used.filter(name=>name.endsWith('.svg')).every(name=>Object.hasOwn(assets,name)),'Every rendered original SVG is mapped to a known source asset');
@@ -74,7 +74,7 @@ async function geometry(page,selector,expected) {
     assert.equal(await page.evaluate(()=>document.documentElement.dataset.homePhase),'detail','Background remains an ordinary page');
     await page.click('.home-return');await settle(page);
     await page.focus('.home-projects');await page.keyboard.press('Enter');await settle(page);
-    await geometry(page,'.home-project-board',[70,120,600,880]);
+    await geometry(page,'.home-project-board',[65,118,585,858]);
     await page.screenshot({path:out+'/figma-projects-1440.png'});
     await page.click('.home-return');await settle(page);
     for(const [width,height]of [[360,640],[360,900],[768,900],[1280,720],[1920,900]]) {

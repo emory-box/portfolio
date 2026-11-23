@@ -13,10 +13,10 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
    const type=getComputedStyle(e.querySelector('.home-project-type')),duration=getComputedStyle(e.querySelector('.home-project-duration'));
    return {type:parseFloat(type.lineHeight),duration:parseFloat(duration.lineHeight),cta:e.querySelector('.home-project-open').getBoundingClientRect().y};
   });
-  assert(Math.abs(native.type-26)<.1);assert(Math.abs(native.duration-20.8)<.1);assert(Math.abs(native.cta-908)<1,'Native action bottom aligns with the pegboard paper edge');
+  assert(Math.abs(native.type-32)<.1);assert(Math.abs(native.duration-32)<.1);assert(Math.abs(native.cta-903)<1,'Native action follows the latest Figma source slot');
   assert.equal(new Set(projects.map(p=>p.homeSummary)).size,3,'Distinct summaries');
   assert(await page.$$eval('.home-project-preview .portfolio-cover',es=>es.every(e=>getComputedStyle(e).borderTopWidth==='0px')),'Project preview frames have no border');
-  assert(await page.$eval('#project-moti-pulse .portfolio-cover img',e=>e.complete&&e.naturalWidth>0&&e.src.endsWith('/moti-pulse-cover.png')&&getComputedStyle(e).objectFit==='contain'),'Moti preview uses the full existing banner without cropping');
+  assert(await page.$eval('#project-moti-pulse .portfolio-cover img',e=>e.complete&&e.naturalWidth>0&&e.src.endsWith('/moti-home-cover.png')&&getComputedStyle(e).objectFit==='contain'),'Moti preview uses the full existing banner without cropping');
   for(let i=0;i<projects.length;i++){
    await page.click('[data-project-index="'+i+'"]');
    await page.waitForFunction(i=>document.querySelector('[data-project-index="'+i+'"]').getAttribute('aria-selected')==='true',{},i);

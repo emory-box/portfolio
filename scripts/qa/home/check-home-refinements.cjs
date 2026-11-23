@@ -8,7 +8,7 @@ const out='.cache/qa/home-refinements';fs.mkdirSync(out,{recursive:true});
  const open=async(id)=>{await page.goto(site+'/?check='+id+'#'+id,{waitUntil:'networkidle0'});await page.waitForFunction(id=>document.documentElement.dataset.homePhase==='detail'&&document.documentElement.dataset.homeView===id,{},id);await page.evaluate(()=>document.fonts.ready);};
  for(const [width,height]of [[1440,1024],[1280,720],[768,900],[360,800]]){
   await page.setViewport({width,height});await open('skills');
-  if(width>=768){assert.equal(await page.$eval('.home-skills-stage',e=>e.dataset.skillsMode),'full','Figma layout stays stacked on ordinary screens');assert.equal(await page.$$eval('.home-skills-group:not([hidden])',es=>es.length),2);}
+  if(width>=768){assert.equal(await page.$eval('.home-skills-stage',e=>e.dataset.skillsMode),'cloud','Figma word cloud stays on ordinary screens');assert.equal(await page.$$eval('.home-skill-word',es=>es.length),16);}
   await page.screenshot({path:out+'/skills-'+width+'.png'});
   await open('work');const frames=[];
   for(const i of [0,1,2,0,2,1]){
@@ -38,18 +38,18 @@ const out='.cache/qa/home-refinements';fs.mkdirSync(out,{recursive:true});
  await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'no-preference'}]);
  await page.setViewport({width:1280,height:720});await page.goto(site+'/?entrance=1',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.classList.contains('home-ready'));
  const intro=await page.evaluate(()=>['.home-header','#home-title','.home-portrait','.home-skills','.home-pan-decoration','.home-projects','.home-note','.home-play','.home-ball'].map(selector=>{const s=getComputedStyle(document.querySelector(selector));return{selector,duration:s.animationDuration,name:s.animationName,delay:parseFloat(s.animationDelay)*1000};}));
- for(const [i,entry]of intro.entries()){assert.equal(entry.name,'home-enter');assert.equal(entry.duration,'0.6s','Entrance uses a600ms fade');assert.equal(entry.delay,i*175,'Content groups retain their sequential entrance');assert(entry.delay+parseFloat(entry.duration)*1000<=2000,'Every group finishes within2seconds');}
- await page.evaluate(()=>{for(const e of document.querySelectorAll('.home-header,.home-stage > *'))for(const a of e.getAnimations()){a.pause();a.currentTime=400;}});
+ for(const [i,entry]of intro.entries()){assert.equal(entry.name,'home-enter');assert.equal(entry.duration,'0.3s','Entrance uses a300ms fade');assert.equal(entry.delay,i*100,'Content groups retain their sequential entrance');assert(entry.delay+parseFloat(entry.duration)*1000<=1100,'Every group finishes within1.1seconds');}
+ await page.evaluate(()=>{for(const e of document.querySelectorAll('.home-header,.home-stage > *'))for(const a of e.getAnimations()){a.pause();a.currentTime=250;}});
  assert(await page.$eval('#home-title',e=>+getComputedStyle(e).opacity>0),'Greeting is revealing before later objects');
  assert(await page.$$eval('.home-skills,.home-pan-decoration,.home-projects,.home-note,.home-play,.home-ball',es=>es.every(e=>+getComputedStyle(e).opacity===0)),'Later objects remain hidden until their turn');
  assert.equal(await page.$eval('.home-note',e=>getComputedStyle(e).pointerEvents),'none','Pending invisible objects do not catch pointer clicks');
  await page.focus('.home-pan-decoration');
  assert.equal(await page.$eval('.home-pan-decoration',e=>getComputedStyle(e).opacity),'1','Keyboard focus reveals a pending object immediately');
- await page.evaluate(()=>{for(const e of document.querySelectorAll('.home-header,.home-stage > *'))for(const a of e.getAnimations())a.currentTime=2000;});
- assert(await page.$$eval('.home-header,#home-title,.home-portrait,.home-skills,.home-pan-decoration,.home-projects,.home-note,.home-play,.home-ball',es=>es.every(e=>+getComputedStyle(e).opacity===1)),'All entrance groups are fully visible at2seconds');
+ await page.evaluate(()=>{for(const e of document.querySelectorAll('.home-header,.home-stage > *'))for(const a of e.getAnimations())a.currentTime=1100;});
+ assert(await page.$$eval('.home-header,#home-title,.home-portrait,.home-skills,.home-pan-decoration,.home-projects,.home-note,.home-play,.home-ball',es=>es.every(e=>+getComputedStyle(e).opacity===1)),'All entrance groups are fully visible at1.1seconds');
  await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
  await page.goto(site+'/?entrance=reduced',{waitUntil:'networkidle0'});
  assert(await page.$$eval('.home-stage > *',es=>es.every(e=>getComputedStyle(e).animationName==='none')),'Reduced motion skips the longer entrance');
  assert.deepEqual(errors,[]);
- console.log('PASS Figma Skills on laptop/tablet, stable pegboard, matching hover/selected cards, press flash, CTA spacing and sequential entrance completed within2seconds including pan; reduced motion preserved.');
+ console.log('PASS Figma Skills on laptop/tablet, stable pegboard, matching hover/selected cards, press flash, CTA spacing and sequential entrance completed within1.1seconds including pan; reduced motion preserved.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

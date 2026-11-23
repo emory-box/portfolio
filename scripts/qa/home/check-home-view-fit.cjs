@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const {puppeteer,chromePath}=require('../browser-runtime.cjs').browserRuntime();
 const site=process.env.SITE_URL||'http://localhost:4317';
 const selectors={
- skills:'.home-toast-focus > img',about:'.home-about-card,.home-about-clip',
+ skills:'.home-toast-art',about:'.home-about-card,.home-about-clip',
  work:'.home-project-board-surface,.home-project-preview:not([hidden])',
  contact:'.home-contact-paper,.home-note-tab,.home-note-shadow',
  play:'#play-title,.home-game-instructions,.home-game-status,.home-game-reset,.home-game-paper img,.home-game-outline img,.home-game-shadow img'

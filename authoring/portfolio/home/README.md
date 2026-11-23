@@ -15,6 +15,7 @@ authoring; visitors and GitHub Pages use the exported page directly.
 | `assets.cjs` | Exact intrinsic dimensions and Figma node IDs for retained SVGs |
 | `butter.cjs` | Contours extracted from current original butter artwork |
 | `pan.cjs` | References to the original pan/egg paths for animation |
+| `favicons.cjs` | Original portrait/project tab icons; `--render` also exports32px PNG fallbacks through local Chrome |
 | `capture-moti-cover.cjs` | Browser export of the actual Moti-Pulse banner |
 
 Shared profile/project/skill content is in `../content.cjs`; shared project

@@ -1,5 +1,32 @@
 # Repository cleanup — current delivery
 
+## Publication pass — 2026-11-23
+
+- Keep the approved Home and case-study refinements. Home-specific cover images
+  stay on Home; recommendations and video posters use the original shared covers.
+- Losslessly recompress nine PNGs in `assets/img/home/` and the three Synergy
+  mockups, saving 4,485,190 bytes. Retain dimensions and every non-image PNG
+  chunk, including color profiles. The decompressed scanline streams match
+  exactly before and after compression.
+- Remove fifteen superseded files (1,026,115 bytes): ten individual onboarding
+  SVG layers, two raster logo-grid/safezone exports, their two original raster
+  crops and the obsolete crop manifest. Remove the associated export helper and
+  manifest/checker entries so rebuilding cannot restore these unused files.
+- Keep the single original onboarding composition, current seven-layer brand
+  artwork, all nineteen original component SVGs and their hashes. Retain the
+  Blender scene, current GLB, authoring references, original recordings,
+  licenses and vendored skills needed to maintain the site.
+- Cache, browser captures and temporary optimization scripts remain ignored and
+  are excluded from Git. No runtime dependency or frontend build is introduced.
+- Verify source hashes, deterministic Greeny regeneration, local paths, Home
+  interactions, shared navigation/endings and Greeny behavior before publishing.
+- Final validation: all fourteen Home checks, Greeny content/story/resilience,
+  navigation, endings, favicon and video checks pass. Static delivery resolves
+  277 local files. Design lint has zero errors and nineteen existing warnings;
+  JavaScript syntax and Git whitespace checks pass. No root build/typecheck exists.
+
+The earlier organization pass below records the existing directory decisions.
+
 The owner requested removal of unnecessary files, clearer organization, and a
 commit/push of the current website. This pass includes the pending illustrated
 Home implementation and its approved refinements. Prior cleanup reports and

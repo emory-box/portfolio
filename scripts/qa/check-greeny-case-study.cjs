@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {puppeteer,chromePath}=require('./browser-runtime.cjs').browserRuntime();
 const SITE=process.env.SITE_URL||'http://localhost:4317';
-const ids=['brief','branding','brand-safezone','research','personas','experience','sitemap','user-flows','ui','typography','icons','components','interface'];
+const ids=['ecosystem','brief','branding','brand-safezone','research','personas','experience','sitemap','user-flows','sketches','ui','typography','icons','components','interface'];
 const {personas:sourcePersonas,segments:sourceSegments,attribution:sourceAttribution}=require('../../authoring/greeny/case-study/content.cjs');
 const legacy=['brief','system','ui','interface','brand','notes','problem','personas','sitemap','function-ideation','components','app-design','advertising','wireframe'];
 
@@ -45,32 +45,37 @@ const legacy=['brief','system','ui','interface','brand','notes','problem','perso
    assert.equal(await page.$$eval('.deck-logo-construction',els=>els.length),1,'Construction grid restored beside safezone');
    assert.deepEqual(await page.$$eval('#branding .deck-reference-heading > *',els=>els.map(el=>el.textContent)),['Logo','Meaning']);
    assert.deepEqual(await page.$$eval('#ui .deck-palette',els=>els.map(el=>el.querySelectorAll('li').length)),[4,4,4],'Current reference palette groups');
-   assert.deepEqual(await page.$$eval('#ui .deck-palette:first-child code',els=>els.map(el=>el.textContent)),['#8EBE50','#6C9537','#FFFFFF','#191919']);
-   assert(await page.$eval('#brief',el=>el.lang==='en'&&el.textContent.includes('Introducing "GREENY"')),'Current English introduction');
+   assert.deepEqual(await page.$$eval('#ui .deck-palette:first-child code',els=>els.map(el=>el.textContent)),['#6C9537','#8EBE50','#FFFFFF','#191919']);
+   assert(await page.$eval('#brief',el=>el.lang==='en'&&el.querySelector('h2').textContent==='Research and Design process of Greeny application'&&!el.querySelector('p')),'Introduction is a heading-only transition, with no About us');
    assert.deepEqual(await page.$$eval('.deck-metric-heading,.deck-control-heading,.deck-component-family > div > div > h4,.deck-weather-showcase > div > h4,.deck-garden-showcase > div > h4',els=>[...new Set(els.map(el=>el.textContent))]),['Environmental parameter graphs','Device Control Panel','Weather','Garden information table']);
-   assert.deepEqual(await page.$$eval('.deck-reference-heading h2',els=>els.map(el=>el.textContent)),['Introduction','Logo','User Research','User Experience','UI system','User Interface'],'Only chapter titles use h2');
-   const subsectionParents={'brand-safezone':'Logo',personas:'User Research',sitemap:'User Experience','user-flows':'User Experience',typography:'UI system',icons:'UI system',components:'UI system'};
+   assert.deepEqual(await page.$$eval('.deck-reference-heading h2',els=>els.map(el=>el.textContent)),['Research and Design process of Greeny application','Logo','User Research','User Experience','UI system','User Interface'],'Only chapter titles use h2');
+   const subsectionParents={'brand-safezone':'Logo',personas:'User Research',sitemap:'User Experience','user-flows':'User Experience',sketches:'User Experience',typography:'UI system',icons:'UI system',components:'UI system'};
    for(const [id,parent] of Object.entries(subsectionParents)){
     const role=await page.$eval('#'+id+' .deck-reference-heading',el=>{const heading=el.firstElementChild,all=[...document.querySelectorAll('.deck-reference-heading h2,.deck-reference-heading h3')];const parent=all.slice(0,all.indexOf(heading)).filter(h=>h.tagName==='H2').at(-1);return {tag:heading.tagName,parent:parent?.textContent,size:parseFloat(getComputedStyle(heading).fontSize),parentSize:parseFloat(getComputedStyle(parent).fontSize)};});
     assert.equal(role.tag,'H3','Subtitle role: '+id);assert.equal(role.parent,parent,'Nearest parent chapter: '+id);assert(role.size<role.parentSize,'Subtitle is quieter than chapter: '+id);
    }
    assert(await page.$eval('.deck-reference-mark .deck-logo',el=>el.getBoundingClientRect().width>40),'Original central brand mark remains visible at this width');
    assert.equal(await page.$$eval('#components .deck-sensor-explanation img',els=>els.length),1,'Supporting sensor illustration retained');
+   assert.equal(await page.$$eval('#components img[data-component-asset]',els=>els.length),19,'Nineteen original GREENY component SVGs');
+   assert.equal(await page.$$eval('#components .deck-component-image a',els=>els.length),15,'Source component examples can be enlarged');
+   assert.equal(await page.$$eval('#components .deck-weather-symbol img[data-component-asset]',els=>els.length),4,'Upright weather cards retain four original SVG illustrations');
    assert.equal(await page.$$eval('.deck-metric-variants .deck-sensor-explanation',els=>els.length),0,'Explanatory figure is separate from UI specimens');
    assert.deepEqual(await page.$$eval('#user-flows [data-diagram]',els=>els.map(el=>el.dataset.diagram)),['sign-in','remote-control','environment','ai-detect','apply-schedule','create-schedule','add-device'],'Uploaded task-flow order');
    assert.equal(await page.$$eval('.deck-font-row',els=>els.length),14,'All supplied Inter and Nunito type specimens');
-   assert.equal(await page.$$eval('.deck-source-vector img',els=>els.length),2,'Original vector feature graph and icon board');
+   assert.equal(await page.$$eval('.deck-source-vector img',els=>els.length),1,'Original vector icon board');
    assert(await page.$$eval('.deck-source-vector img',els=>els.every(el=>Number(el.getAttribute('width'))>0&&Number(el.getAttribute('height'))>0)),'Vector layouts reserve their full aspect ratio before loading');
-   assert.equal(await page.$$eval('.deck-feature-group',els=>els.length),6,'Complete feature families');
-   assert.equal(await page.$$eval('.deck-tree-node.is-priority',els=>els.length),7,'All source priorities');
+   assert.deepEqual(await page.$$eval('.deck-function-tree > h4',els=>els.map(el=>el.textContent)),['Garden Management','Store garden data','Garden Wiki','Notifications','Customer management'],'Five source function groups');
+   assert.equal(await page.$$eval('#sketches .deck-sketch img',els=>els.length),12,'Complete original sketch set');
    assert.equal(await page.$$eval('.deck-diagram',els=>els.length),8,'Sitemap and seven source flows');
    assert.equal(await page.$$eval('.native-diagram image',els=>els.length),0,'Diagrams are native vectors');
-   assert.deepEqual(await page.$$eval('.deck-interface-panel',els=>els.map(el=>Number(el.dataset.sourceSlide))),[45,39,52],'Current interface reference order excludes the two owner-removed collages');
+   assert.deepEqual(await page.$$eval('.deck-interface-panel',els=>els.map(el=>Number(el.dataset.sourceSlide))),[39,52],'Original interface artwork follows the two native Figma showcase panels');
    assert.equal(await page.$$eval('#interface h2',els=>els.length),1,'One User Interface heading');
    assert.equal(await page.$eval('#interface h2',el=>el.textContent),'User Interface');
-   assert.equal(await page.$$eval('#interface h3,#interface .deck-chapter-panel,#interface .deck-poster',els=>els.length),0,'No duplicate UI/Wireframe/Advertising headings or poster copy');
-   assert(await page.$$eval('.deck-interface-panel',els=>els.every((el,i)=>{const r=el.getBoundingClientRect(),prev=els[i-1]?.getBoundingClientRect();return !prev||Math.abs(r.top-prev.bottom)<1;})),'Three artwork panels join without gutters');
-   assert.equal(await page.$$eval('.deck-onboarding > article',els=>els.length),5,'Five original illustration panels');
+   assert.equal(await page.$$eval('#interface .deck-chapter-panel,#interface .deck-poster',els=>els.length),0,'No duplicate UI/Wireframe/Advertising headings or poster copy');
+   assert(await page.$$eval('.deck-interface-panel',els=>els.every((el,i)=>{const r=el.getBoundingClientRect(),prev=els[i-1]?.getBoundingClientRect();return !prev||Math.abs(r.top-prev.bottom)<1;})),'Original artwork panels join without gutters');
+   assert.equal(await page.$$eval('.deck-onboarding > article',els=>els.length),0,'Onboarding screens do not reflow independently');
+   assert.equal(await page.$$eval('.deck-onboarding-description > li',els=>els.length),5,'All five onboarding descriptions remain accessible');
+   assert(await page.$eval('.deck-onboarding-atlas img',img=>img.getAttribute('src')==='img/onboarding.png'&&img.naturalWidth>0&&Math.abs(img.getBoundingClientRect().width/img.getBoundingClientRect().height-img.naturalWidth/img.naturalHeight)<.01),'Original onboarding artwork scales as one proportional image');
    assert.equal(await page.$$eval('.native-diagram',els=>els.every(el=>el.getAttribute('lang')==='en')),true,'Correct language for English diagrams');
    assert.deepEqual(await page.$$eval('[id]',els=>{const ids=els.map(el=>el.id);return ids.filter((id,i)=>ids.indexOf(id)!==i)}),[],'Unique accessible IDs');
    for(const id of ids){
@@ -81,9 +86,6 @@ const legacy=['brief','system','ui','interface','brand','notes','problem','perso
      await page.screenshot({path:'.cache/qa/greeny/case-study/'+width+'-'+id+'.png'});
     }
    }
-   await page.focus('#function-ideation .deck-transcript summary');await page.keyboard.press('Enter');
-   assert(await page.$eval('#function-ideation .deck-transcript',el=>el.open),'Keyboard opens full feature inventory');
-   assert.equal(await page.$$eval('#function-ideation .deck-feature-group',els=>els.length),6,'Complete source feature inventory');
    assert.equal(await page.$$eval('#sitemap .deck-transcript summary',els=>els.length),0,'No visible diagram-text disclosure');
    assert(await page.$$eval('#sitemap ol.sr-only li',els=>els.length>20),'Complete diagram description remains available to screen readers');
    assert.equal(await page.$$eval('.deck-flow',els=>els.length),7,'Seven independent flow disclosures');
@@ -121,6 +123,12 @@ const legacy=['brief','system','ui','interface','brand','notes','problem','perso
   assert(await page.$('dialog[open] [data-artifact-close]'),'Diagram opens with a clear in-page exit');
   await page.keyboard.press('Escape');
   await page.waitForFunction(()=>!document.querySelector('dialog[open]'));
+  await page.focus('#sketches .deck-sketch a');
+  await page.keyboard.press('Enter');
+  assert(await page.$('dialog[open] [data-artifact-close]'),'Original sketch opens in the closeable viewer');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>!document.querySelector('dialog[open]'));
+  assert(await page.$eval('#sketches .deck-sketch a',el=>el===document.activeElement),'Sketch viewer restores keyboard focus');
   // Without enhancement, Enter must still open the original local artwork.
   const fallback=await browser.newPage();await fallback.setJavaScriptEnabled(false);
   await fallback.goto(SITE+'/projects/greeny/',{waitUntil:'networkidle0'});

@@ -28,12 +28,14 @@ function diagram(g){
  const svg=render.svg(g);fs.writeFileSync(path.join(web,'img/diagrams',g.id+'.svg'),svg+'\n');
  return `<figure class="deck-diagram" data-diagram="${g.id}"><a class="deck-diagram-link" lang="en" href="img/diagrams/${g.id}.svg" target="_blank" rel="noopener" aria-label="Open ${esc(g.title)} full diagram (new tab)">${svg.replace(/<style>[\s\S]*?<\/style>/,'')}</a><figcaption lang="en">${esc(g.title)}</figcaption>${render.transcript(g)}</figure>`;
 }
-const {introduction,branding,research,personas}=require('./opening.cjs')({data,esc,logo,crop,icon,sourceAttr});
+const {ecosystem,introduction,branding,research,personas}=require('./opening.cjs')({data,esc,logo,crop,icon,sourceAttr});
 const {experience,sitemap,flows,system,typography,icons,components}=require('./experience.cjs')({diagram,crop,icon});
 const interfaceReference=require('./references/interface-layout.json');
 const interfacePanel=([n,label])=>{const panel=interfaceReference.panels.find(p=>p.slide===n);if(!panel)throw new Error('Missing interface reference panel '+n);return `<figure class="deck-interface-panel" ${n===52?'id="advertising" ':''}${sourceAttr(n)} style="--panel-ratio:${panel.ratio}">${n===52?'<span id="notes" class="deck-anchor" aria-hidden="true"></span>':''}<a href="img/case-study/source-${n}.jpg" target="_blank" rel="noopener" aria-label="Open ${esc(label)} full image in a new tab"><img src="img/case-study/source-${n}.jpg" alt="${esc(label)}" width="1920" height="1080" loading="lazy" decoding="async"></a></figure>`;};
-const interfaces=`<section class="section deck-reference-section deck-interface" id="interface" lang="en" ${sourceAttr(34)} aria-labelledby="interface-title"><div class="wrap"><header class="deck-reference-heading"><h2 id="interface-title">User Interface</h2></header></div><span id="wireframe" class="deck-anchor" aria-hidden="true"></span><div class="deck-interface-gallery" id="app-design">${[...data.mockups,data.advertising].map(interfacePanel).join('')}</div></section>`;
-const body=`<div class="greeny-case-study" lang="en">\n${[introduction,branding,research,personas,experience,sitemap,flows,system,typography,icons,components,interfaces].join('\n')}\n</div>\n`;
+const figma=require('./figma-presentation.cjs');
+require('./brand-vectors.cjs')(web);
+const interfaces=`<section class="section deck-reference-section deck-interface" id="interface" lang="en" ${sourceAttr(34)} aria-labelledby="interface-title"><div class="wrap"><header class="deck-reference-heading"><h2 id="interface-title">User Interface</h2></header><span id="wireframe" class="deck-anchor" aria-hidden="true"></span><div class="deck-interface-gallery" id="app-design">${figma.interfaces()}${[data.mockups.find(p=>p[0]===39),data.advertising].map(interfacePanel).join('')}</div></div></section>`;
+const body=`<div class="greeny-case-study" data-figma-layout lang="en">\n${[ecosystem,introduction,branding,research,personas,experience,sitemap,flows,figma.sketches(web),system,typography,icons,components,interfaces].join('\n')}\n</div>\n`;
 const accessibleBody=body.replace(/<h([34])([^>]*)>([^<]+)<\/h\1>/g,(tag,level,attrs,text)=>{
  if(!/lang=/.test(attrs)&&(/^(Introduction - |Branding - |User Experience - |User research - |Interface - )/.test(text)||['UI','Colors','Control','Environment','Others'].includes(text)))return '<h'+level+attrs+' lang="en">'+text+'</h'+level+'>';
  return tag;
@@ -43,26 +45,33 @@ if(start<0||end<0)throw new Error('Case-study boundary not found');
 const credits=page.slice(start,end).match(/<!-- project-credits:start -->[\s\S]*?<!-- project-credits:end -->/)?.[0]||'';
 let updated=page.slice(0,start)+require('./chapter-layout.cjs')(accessibleBody)+(credits?credits+'\n':'')+page.slice(end);
 if(!updated.includes('href="case-study.css"'))updated=updated.replace('<link rel="stylesheet" href="garden-story.css">','<link rel="stylesheet" href="garden-story.css">\n<link rel="stylesheet" href="case-study.css">');
+if(!updated.includes('href="figma-layout.css"'))updated=updated.replace('<link rel="stylesheet" href="case-study.css">','<link rel="stylesheet" href="case-study.css">\n<link rel="stylesheet" href="figma-layout.css">');
+if(!updated.includes('href="reading-layout.css"'))updated=updated.replace('<link rel="stylesheet" href="figma-layout.css">','<link rel="stylesheet" href="figma-layout.css">\n<link rel="stylesheet" href="reading-layout.css">');
 if(!updated.includes('src="case-study.js"'))updated=updated.replace('<script src="../../assets/js/site.js" defer>', '<script src="case-study.js" defer></script>\n<script src="../../assets/js/site.js" defer>');
+updated=figma.syncContents(updated);
 fs.writeFileSync(pageFile,updated);
 const nativeSelectors={5:'#brief',7:'#components',8:'#branding',9:'#brand',11:'#brand-safezone',12:'#research',13:'#segmentation',14:'#personas',15:'#personas',16:'#personas',17:'#function-ideation',18:'#function-ideation',19:'#experience',20:'#sitemap',21:'#ui',22:'#typography',23:'#components',24:'#components',25:'#components',26:'#components',27:'#icons',28:'#components',29:'#user-flows',30:'#user-flows',31:'#user-flows',32:'#user-flows',33.1:'#user-flows',33.2:'#user-flows',34:'#interface',35:'#wireframe',36:'#wireframe',37:'#wireframe',38:'#wireframe',48:'#advertising',49:'#notes'};
 nativeSelectors[10]='#brand-safezone';
 nativeSelectors[52]='#advertising';
+nativeSelectors[45]='#dashboard-feature-title';
+nativeSelectors[46]='#sketches';
 const manifest={
  sourceDirectory:raw,
+ figmaReference:require("./references/figma-assets.json"),
+ componentReference:require("./references/components.json"),
  openingReference:{file:'references/opening-layout.svg',...require('./references/opening-layout.json')},
  experienceReference:{file:'references/experience-layout.svg',...require('./references/experience-layout.json')},
  experienceAssets:require('./references/experience-assets.json'),
  interfaceReference:{file:'references/interface-layout.png',...interfaceReference},
- presentationOrder:[5,8,9,10,11,12,13,14,15,19,17,18,20,29,31,30,33.1,32,33.2,21,22,27,23,25,24,26,28,34,45,39,52],
+ presentationOrder:[5,8,9,10,11,12,13,14,15,19,20,29,31,30,33.1,32,33.2,46,21,22,27,23,25,24,26,28,34,45,39,52],
  slides:sources.map(s=>{
-  const omitted=[6,16,35,36,37,38,40,41,42,43,44,46,47,48,49].includes(s.number),referenceOnly=s.number===7;
+  const omitted=[6,16,35,36,37,38,40,41,42,43,44,47,48,49].includes(s.number),referenceOnly=[7,17,18].includes(s.number);
   return {
    ...s,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(raw,s.file))).digest('hex'),
    status:omitted?'omitted':referenceOnly?'reference-only':'presented',
    selector:omitted?null:nativeSelectors[s.number]||`#interface [data-source-slide="${s.number}"]`,
    ...(assetSlides.includes(s.number)?{asset:`projects/greeny/img/case-study/source-${s.number}.jpg`}:{}),
-   presentation:omitted?(s.number===6?'Owner omitted product ecosystem':s.number===16?'Owner retained only Duc Phu and Phuong Lan; Trung Khang omitted':[41,42].includes(s.number)?'Owner removed the device-control/schedule and plant-identification/care collages':'Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers'):referenceOnly?'Introduction overview omitted; sensor illustration remains as UI explanation in Components':s.number>=39?'Original artwork in the approved three-panel User Interface sequence':assetSlides.includes(s.number)?'Native content with cropped original photographic/illustration artwork':'Rebuilt native HTML or SVG'
+   presentation:s.number===5?'Scroll-revealed Introduction transition; About us removed by owner':s.number===46?'Original sketches from source frame 46, after Task Flow':s.number===45?'Figma Dashboard and AI showcase with native text and original phone layers':omitted?(s.number===6?'Owner omitted product ecosystem':s.number===16?'Owner retained only Duc Phu and Phuong Lan; Trung Khang omitted':[41,42].includes(s.number)?'Owner removed the device-control/schedule and plant-identification/care collages':'Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers'):referenceOnly?(s.number===7?'Introduction overview omitted; sensor illustration remains as UI explanation in Components':'Original feature inventory superseded by the five-group diagram in the approved Figma frame 46'):s.number>=39?'Original artwork in the approved three-panel User Interface sequence':assetSlides.includes(s.number)?'Native content with cropped original photographic/illustration artwork':'Rebuilt native HTML or SVG'
   };
  })
 };

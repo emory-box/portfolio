@@ -10,10 +10,10 @@ function marked(html, name, content) {
   return pattern.test(html) ? html.replace(pattern, content) : null;
 }
 
-const homepage = require('./home/index.cjs')();
-fs.writeFileSync(path.join(root, 'index.html'), homepage);
+const selectedProject=process.argv.find(arg=>arg.startsWith('--project='))?.slice('--project='.length);
+if(!selectedProject){const homepage = require('./home/index.cjs')();fs.writeFileSync(path.join(root, 'index.html'), homepage);}
 
-for (const project of process.argv.includes('--home-only') ? [] : projects) {
+for (const project of process.argv.includes('--home-only') ? [] : projects.filter(p=>!selectedProject||p.slug===selectedProject)) {
   const file = path.join(root, 'projects', project.slug, 'index.html');
   let html = fs.readFileSync(file, 'utf8');
   if (!/\bid="page-top"/.test(html)) html = html.replace(/<body\b([^>]*)>/, (_, attrs) => '<body' + attrs.replace(/\s+id="top"/, '') + ' id="page-top">');
@@ -23,12 +23,12 @@ for (const project of process.argv.includes('--home-only') ? [] : projects) {
   if (project.slug === 'greeny') {
     html = marked(html, 'project-credits', credits()) || html.replace('</main>', credits() + '\n</main>');
   }
-  const updatedFooter = marked(html, 'portfolio-footer', footer('../../'));
+  const updatedFooter = marked(html, 'portfolio-footer', footer('../../',project.slug));
   if (updatedFooter) html = updatedFooter;
   else {
     const oldFooter = /<footer class="(?:site-footer|synergy-footer|footer wrap)"[^>]*>[\s\S]*?<\/footer>/;
     if (!oldFooter.test(html)) throw new Error('Project footer not found: ' + project.slug);
-    html = html.replace(oldFooter, footer('../../'));
+    html = html.replace(oldFooter, footer('../../',project.slug));
   }
   html = marked(html, 'project-recommendations', recommendations(project.slug))
     || html.replace('<!-- portfolio-footer:start -->', recommendations(project.slug) + '\n<!-- portfolio-footer:start -->');
@@ -39,6 +39,10 @@ for (const project of process.argv.includes('--home-only') ? [] : projects) {
       html = html.replace('</head>', '<script src="../../assets/js/project-video.js" defer></script>\n</head>');
     }
   }
+  if(project.slug==='greeny'){
+    html=html.replace(/<!-- project-credits:start -->[\s\S]*?<!-- project-credits:end -->\s*/,'');
+    html=html.replace('<!-- project-video:end -->',match=>match+'\n'+credits());
+  }
   fs.writeFileSync(file, html);
 }
-console.log(process.argv.includes('--home-only') ? 'Built home only; project pages unchanged.' : 'Built personal home and synchronized two recommendations + footer on all three projects.');
+console.log(selectedProject ? 'Synchronized '+selectedProject+' ending only; Home and other projects unchanged.' : process.argv.includes('--home-only') ? 'Built home only; project pages unchanged.' : 'Built personal home and synchronized two recommendations + footer on all three projects.');

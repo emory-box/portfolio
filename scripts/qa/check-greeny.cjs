@@ -43,7 +43,7 @@ async function checkHold(page,index){
   await page.waitForFunction(()=>document.querySelector('.garden-webgl'),{timeout:20000});
   assert.equal(await page.$$eval('.site-header a',es=>es.length),1,'Only All projects is clickable in the header');
   assert(await page.$eval('.site-header .brand',e=>!e.closest('a')&&!e.querySelector('a')),'App identity is not a navigation link');
-  assert.equal(await page.$eval('#top-title',e=>e.textContent),'Manage your garden easier with Greeny');
+  assert.equal(await page.$eval('#top-title',e=>e.textContent),'Manage your garden with Greeny');
   assert.equal(await page.$eval('#garden-sensors-title',e=>e.textContent),'Integrated sensors');
   assert.equal(await page.$eval('#garden-watering-title',e=>e.textContent),'Sprinkler');
   assert.equal(await page.$$eval('.garden-story .garden-app,.garden-story img[src*="app-"]',es=>es.length),0,'no phones in scroll scenes');

@@ -1,5 +1,457 @@
 {
   "sourceDirectory": "D:/Web-portfolio/Raw/Greeny",
+  "figmaReference": {
+    "fileKey": "8NMst3c890fJWBihmNnBKu",
+    "frame": "2995:20025",
+    "sourceSketchFrame": "3009:24382",
+    "assets": [
+      {
+        "name": "imgFrame46BanSaoCuaProject202603170105274",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/f6bdc.png",
+        "sha256": "0a3ab74b1d84557b1413e9c7bf17d2eab11edc4ad371c0b739b15c01188655f3"
+      },
+      {
+        "name": "imgFrame46Project202603170105202",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/41785.png",
+        "sha256": "42cdaf020ce081309be820df0955c48a1742a8cce1a3e3ac229d8fda587c3f68"
+      },
+      {
+        "name": "imgFrame46Project202603170104352",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/3a501.png",
+        "sha256": "28f17037c5ed6fd143aade89713d532bbde8af3cd95167677be1e63d4cb8f43a"
+      },
+      {
+        "name": "imgFrame46Project202603170105143",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/6afb1.png",
+        "sha256": "274b9c9d429e3d18b049c76abb9b05ca1c45e881b481fd8bcc068c5dba022684"
+      },
+      {
+        "name": "imgFrame46Project202603170104151",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/af5c6.png",
+        "sha256": "506dba25d46dc6c45485fe9a507ef55f2fd8ed9d7395c1dd3fb94ffffead7640"
+      },
+      {
+        "name": "imgFrame46Project202603170104012",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/ff0ff.png",
+        "sha256": "12bce2ee38439f5b7fbbbc968c7cb9b1ec259a773505e5775e59eacec121cfb8"
+      },
+      {
+        "name": "imgFrame46Project202603170103542",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/f0744.png",
+        "sha256": "7b8194c0f65dd70ca02f013b59be5de90b443748884ec1cfe64834709d3b2588"
+      },
+      {
+        "name": "imgFrame46Project202603170105072",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/d4b57.png",
+        "sha256": "37e6dbaecd8c44f9824ab5c63b65f2e8cde643e7a27bd614c1736dd0c106cc56"
+      },
+      {
+        "name": "imgProject202603170103393",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/257cc.png",
+        "sha256": "57e5b584ea69100ee5529a046abe77be16665f43ea3b352c6d2dfdad914226bc"
+      },
+      {
+        "name": "imgProject202603170103452",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/c7b39.png",
+        "sha256": "8f804c81523400742f6c0392756b131f2c03bf248084182684e20e4df98c57ce"
+      },
+      {
+        "name": "imgVector112",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/bde5c.svg",
+        "sha256": "a943782bec05ceaa16fc34cc7d636445eacf889bed7ee67df57cf93e2ca41bf2"
+      },
+      {
+        "name": "imgVector113",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/6d86c.svg",
+        "sha256": "25b0c1ecfd7520bf7a7cf0d49e85a1dff07d5c7038164c0c77c0ff9722d8d318"
+      },
+      {
+        "name": "imgVector114",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/143bf.svg",
+        "sha256": "f65e17f384cd243af625c5efee3cdb6049778072785f929310e7061f2aac3e2a"
+      },
+      {
+        "name": "imgVector115",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/da50f.svg",
+        "sha256": "44b73822205d4bef9930bc1cedd5475c2b3afd2e6dd58de4da9adc4a52197fe1"
+      },
+      {
+        "name": "imgVector117",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/09949.svg",
+        "sha256": "5d5b42cf071a93def570e37a96e6ebebeb79e21a86f3d21f299a657fb29858a4"
+      },
+      {
+        "name": "imgVector123",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/292a3.svg",
+        "sha256": "16a0f377c55a2afadde2a310afc312c84a0cc4c30aecf0aa7fed214885a9c0a9"
+      },
+      {
+        "name": "imgVector124",
+        "node": "3018:18859",
+        "file": "authoring/greeny/case-study/references/sketches/810a9.svg",
+        "sha256": "b24d012ebe64d18f55158774fcde476754ea7e99b8491b3042b9b95ac96fba09"
+      },
+      {
+        "name": "imgDashboardVuonRau12",
+        "node": "2995:20561",
+        "file": "projects/greeny/img/interface/37099.png",
+        "sha256": "8e08237b0e323cf77174db11ecfaf02b5e5b5d50a512d001bca9507ae624c0ae"
+      },
+      {
+        "name": "imgIPhone14Pro",
+        "node": "2995:20561",
+        "file": "projects/greeny/img/interface/0761c.png",
+        "sha256": "c0a543f955ac7b9e1168b5f1c8bd87b878876f437d351fd5dda39e0e4ef6d389"
+      },
+      {
+        "name": "imgGardenManagement",
+        "node": "2995:20561",
+        "file": "projects/greeny/img/interface/ae13b.png",
+        "sha256": "d8c9375a6a1626a79a0f8e5a95e8a13e446cd0765735725882b4494dc33bf242"
+      },
+      {
+        "name": "imgShadow",
+        "node": "2995:20561",
+        "file": "projects/greeny/img/interface/5d6d4.svg",
+        "sha256": "b944fccabe80b6d1ab1feb1d3a364b4d2e7cf1c272267b2801203f98998d0c9e"
+      },
+      {
+        "name": "imgDashboardVuonRau11",
+        "node": "2995:20561",
+        "file": "projects/greeny/img/interface/5bd89.svg",
+        "sha256": "c0c96dfe2a52ddadf130837ffb38fde66fa7dc86af64cd302cc2b3f68d54d4d7"
+      },
+      {
+        "name": "imgAiDetection2",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/bd097.png",
+        "sha256": "34eda2bf529b84844f615d423cf1ce993314bef2854578ae96655c7e00db8a72"
+      },
+      {
+        "name": "imgIPhone14Pro",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/307d5.png",
+        "sha256": "6ccccc9291c0555883d44fdc7aee92d2ff811b52fbfbc526681c978ff1e73404"
+      },
+      {
+        "name": "imgIPhone1415ProMax53",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/daa61.png",
+        "sha256": "f33c99e139211750a44eec9a4007bf3aa610ef4175121e878f2c80a994c7f376"
+      },
+      {
+        "name": "imgGreeny",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/048d6.png",
+        "sha256": "6dc0afb37a3ef16e1e25b83b4b0346645fdcc5f25aca35c16878d1ba9370b364"
+      },
+      {
+        "name": "imgShadow",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/f936f.svg",
+        "sha256": "d934e397f2da5832f5cf3ad437ac85d24be65918add8d3d4ac903c3b5a382366"
+      },
+      {
+        "name": "imgAiDetection1",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/28dbe.svg",
+        "sha256": "9b9d123b1ab85b23c6316f4425fc3d11615e1e3c500e887ba70bbf1cde8603e8"
+      },
+      {
+        "name": "imgShadow1",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/2f796.svg",
+        "sha256": "878665be9d7915ab4baf763a7d699280455e8d28e77727da0267564d04956f29"
+      },
+      {
+        "name": "imgIPhone1415ProMax52",
+        "node": "3007:24167",
+        "file": "projects/greeny/img/interface/939f9.svg",
+        "sha256": "3a606b83efc1e6d83d721ba79d6a7370f8e7b3a94f2390e1581698b3856d96ea"
+      },
+      {
+        "name": "meaning-1b8aa",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/1b8aa.svg",
+        "sha256": "d48fc321e7d8d8e78c3158dd48c230f7829a61429919715a191ee58e856da266"
+      },
+      {
+        "name": "meaning-68731",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/68731.svg",
+        "sha256": "ee2eb94853dfb69e3817547de34e9c2d978496393e17ef7f71815d4a167d62d2"
+      },
+      {
+        "name": "meaning-99a3c",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/99a3c.svg",
+        "sha256": "fe32db9fc00588178fcdd301aed9ecad3005455da5b793ed6db7f0e475264934"
+      },
+      {
+        "name": "meaning-a0a25",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/a0a25.svg",
+        "sha256": "a504a70f58f53e02d140a2e64f2c7695555b4c568af48b44d5aa6fecaa2ff143"
+      },
+      {
+        "name": "meaning-c175e",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/c175e.svg",
+        "sha256": "e4dc409d5dba2f0e0bce6ba1f067c8883b5c887a5184cf859190b5e357297ff1"
+      },
+      {
+        "name": "meaning-c204a",
+        "node": "2995:20090",
+        "file": "projects/greeny/img/meaning/c204a.svg",
+        "sha256": "c0a1f936bd1dda004f7607bed0b112a9a4d84437469b4f55c847319af466f0b7"
+      },
+      {
+        "name": "brand-vector-0b763",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/0b763.svg",
+        "sha256": "fe045898a59f95f0fa53190ec22f79276428a46414172bc9aa13f1ac6225a05b"
+      },
+      {
+        "name": "brand-vector-12cc1",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/12cc1.svg",
+        "sha256": "80d8bdee236e78c79a9722f901ed87918ed7a02291186d04967e44650d4b8232"
+      },
+      {
+        "name": "brand-vector-1435b",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/1435b.svg",
+        "sha256": "a31f1be8b8225cafdcb8af2736f13095c027c69c1e5864e966f2560afe28f0dd"
+      },
+      {
+        "name": "brand-vector-5a198",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/5a198.svg",
+        "sha256": "f931d7235eb32c8befc6ed391f5bd9fd0fe402121366f115e0fea14b3615a76f"
+      },
+      {
+        "name": "brand-vector-660c0",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/660c0.svg",
+        "sha256": "8ab18058958a35a89aa441118e00df5d5ab76aad2b5cba4eb6490cdda71fdf7e"
+      },
+      {
+        "name": "brand-vector-ab769",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/ab769.svg",
+        "sha256": "c0fb4501fef32e857b0eb509367d74f9f0502d51cf447909e8b87e09ac2f3dd6"
+      },
+      {
+        "name": "brand-vector-fe04e",
+        "node": "2995:20111",
+        "file": "projects/greeny/img/brand/current/fe04e.svg",
+        "sha256": "b3ac95334cd8212ae16804e2240cb358522cec52214aea152ee1a7dc2c9e52be"
+      },
+      {
+        "name": "original-onboarding-composition",
+        "node": "3007:23968",
+        "file": "projects/greeny/img/onboarding.png",
+        "sha256": "4eb4806f0687cba605591d1c72421907814a39128a12a3f0c36ae6763493d569"
+      }
+    ],
+    "contextSections": [
+      {
+        "node": "2995:20035",
+        "selector": "#ecosystem",
+        "heading": "ECOSYSTEM - GREENY",
+        "cards": [
+          "Protocol",
+          "Advantage",
+          "Scalability"
+        ]
+      },
+      {
+        "node": "2995:20070",
+        "selector": "#brief",
+        "heading": "Research and Design process of Greeny application",
+        "role": "Scroll-revealed introduction to the research/design case study"
+      }
+    ]
+  },
+  "componentReference": {
+    "fileKey": "P0juURVnXARkV1owcBfbdJ",
+    "page": "8:4",
+    "description": "Original component SVG exports. Dark presentation instances preserve the product theme; weather uses the original upright illustrations.",
+    "assets": [
+      {
+        "name": "environment-line-default",
+        "node": "2498:5980",
+        "file": "projects/greeny/img/components/environment-line-default.svg",
+        "width": 386,
+        "height": 283,
+        "sha256": "023c93b20c7e2f2f521673cc82b2ee887bb96733b536ca5cb63f4789503b9845"
+      },
+      {
+        "name": "environment-line-menu",
+        "node": "2498:6295",
+        "file": "projects/greeny/img/components/environment-line-menu.svg",
+        "width": 386,
+        "height": 282,
+        "sha256": "f31744eac502c605903eecbcea4578dd58b4f7bb9427b774492346e0b907a43f"
+      },
+      {
+        "name": "environment-summary-default",
+        "node": "2498:5979",
+        "file": "projects/greeny/img/components/environment-summary-default.svg",
+        "width": 249,
+        "height": 231,
+        "sha256": "43418711cf491ae18b751a24944923cf6cf7a9803d9cf1830c8c77fcfa77ede2"
+      },
+      {
+        "name": "environment-summary-menu",
+        "node": "2498:6557",
+        "file": "projects/greeny/img/components/environment-summary-menu.svg",
+        "width": 249,
+        "height": 231,
+        "sha256": "508fef6885f87ddb1617cbd087966b4a006a8ca8bfd841fa6fc95b015c27750a"
+      },
+      {
+        "name": "device-status-idle",
+        "node": "2498:33474",
+        "file": "projects/greeny/img/components/device-status-idle.svg",
+        "width": 632,
+        "height": 218,
+        "sha256": "2657a8f6ad6ef2c93eb726674bbb40fcdd63692971a66147d0f8d817817339d4"
+      },
+      {
+        "name": "device-status-active",
+        "node": "2498:32323",
+        "file": "projects/greeny/img/components/device-status-active.svg",
+        "width": 632,
+        "height": 218,
+        "sha256": "31fe6797dea1b26438859751f996ae3d69919c449501a7b58013129d79986c16"
+      },
+      {
+        "name": "device-type-idle",
+        "node": "2498:33192",
+        "file": "projects/greeny/img/components/device-type-idle.svg",
+        "width": 214,
+        "height": 184,
+        "sha256": "65ebc37141635b061da9fed5a2051772c028c7f01518b4bfd5b4983f58b1ce48"
+      },
+      {
+        "name": "device-type-running",
+        "node": "2498:33193",
+        "file": "projects/greeny/img/components/device-type-running.svg",
+        "width": 214,
+        "height": 184,
+        "sha256": "210b8abaff4d6404f9c44b5470f0fb3362a87968078821195f8675c7266545f4"
+      },
+      {
+        "name": "device-type-paused",
+        "node": "2498:33215",
+        "file": "projects/greeny/img/components/device-type-paused.svg",
+        "width": 214,
+        "height": 184,
+        "sha256": "f8623969fda3fa13646cb8de340d4bc805463183c25307050104ff8c408a303b"
+      },
+      {
+        "name": "device-area-idle",
+        "node": "2498:33362",
+        "file": "projects/greeny/img/components/device-area-idle.svg",
+        "width": 416,
+        "height": 200,
+        "sha256": "a2d69975f1316abfcd5b523e4e10a6134f8a4c17159601d8160eaccd4d98c1bc"
+      },
+      {
+        "name": "device-area-running",
+        "node": "2498:33363",
+        "file": "projects/greeny/img/components/device-area-running.svg",
+        "width": 416,
+        "height": 200,
+        "sha256": "8b8362c3fad9c10a90d94da95f035b4680687267f6602cd7149a8c5f763c662c"
+      },
+      {
+        "name": "device-area-paused",
+        "node": "2498:33440",
+        "file": "projects/greeny/img/components/device-area-paused.svg",
+        "width": 416,
+        "height": 200,
+        "sha256": "46812a1d4787661c87b3775febdca9d940715bf9fb6e679989bb6f39afcc4978"
+      },
+      {
+        "name": "garden-dashboard",
+        "node": "2498:33571",
+        "file": "projects/greeny/img/components/garden-dashboard.svg",
+        "width": 368,
+        "height": 304,
+        "sha256": "c4296bc8fa407f180478c1cbe974761715efe92d5fd4377b5ed9107ad09134a0"
+      },
+      {
+        "name": "garden-list",
+        "node": "2498:33569",
+        "file": "projects/greeny/img/components/garden-list.svg",
+        "width": 259,
+        "height": 277,
+        "sha256": "240f0a999c8d63cf86044551abca6045ac478aee641fa53d95b4004299823a3a"
+      },
+      {
+        "name": "garden-overview",
+        "node": "2498:33570",
+        "file": "projects/greeny/img/components/garden-overview.svg",
+        "width": 620,
+        "height": 404,
+        "sha256": "fbc829ecaa2495f19b6e38f79d317ef4df4d82dff7bc40a1cadcf0c6d9c79677"
+      },
+      {
+        "name": "weather-partly-sunny",
+        "node": "1076:4054",
+        "file": "projects/greeny/img/components/weather-partly-sunny.svg",
+        "width": 69.7015,
+        "height": 44.989,
+        "sha256": "e993dde4537a2836fabc349964df89c74b1f398fa6bd98b7978f960375639046",
+        "exportKind": "original-vector-layer"
+      },
+      {
+        "name": "weather-rainy",
+        "node": "1076:4055",
+        "file": "projects/greeny/img/components/weather-rainy.svg",
+        "width": 67.7458,
+        "height": 51.2932,
+        "sha256": "765c9f26ad8c8437e59f7095a1981e31467f2e389a7ac633ff4d4e5a85ca23f1",
+        "exportKind": "original-vector-layer"
+      },
+      {
+        "name": "weather-sunny",
+        "node": "1076:4053",
+        "file": "projects/greeny/img/components/weather-sunny.svg",
+        "width": 52.895,
+        "height": 52.895,
+        "sha256": "d30243e49712a25f19f771b7c8ded66ff0729c491d07c9f6168469186ccc6068",
+        "exportKind": "original-vector-layer"
+      },
+      {
+        "name": "weather-cloudy",
+        "node": "1076:4056",
+        "file": "projects/greeny/img/components/weather-cloudy.svg",
+        "width": 88.5678,
+        "height": 44.5815,
+        "sha256": "0f764b5cd9ae1199a65826bf9e39a05790438600343cc3d3f17a80cba26129f5",
+        "exportKind": "original-vector-layer"
+      }
+    ]
+  },
   "openingReference": {
     "file": "references/opening-layout.svg",
     "originalFilename": "Group 1171280328.svg",
@@ -103,8 +555,6 @@
     14,
     15,
     19,
-    17,
-    18,
     20,
     29,
     31,
@@ -112,6 +562,7 @@
     33.1,
     32,
     33.2,
+    46,
     21,
     22,
     27,
@@ -132,7 +583,7 @@
       "sha256": "a265a08bb9bc898444eb66f9883f5b9e67a099e17cf03c11ae76a24eed1b8528",
       "status": "presented",
       "selector": "#brief",
-      "presentation": "Rebuilt native HTML or SVG"
+      "presentation": "Scroll-revealed Introduction transition; About us removed by owner"
     },
     {
       "file": "Slide 16_9 - 6.jpg",
@@ -230,17 +681,17 @@
       "file": "Slide 16_9 - 17.jpg",
       "number": 17,
       "sha256": "09c6cf494a684663487f53e39a8bf6efa358cf2fabf1daa24913d21e5afc7b96",
-      "status": "presented",
+      "status": "reference-only",
       "selector": "#function-ideation",
-      "presentation": "Rebuilt native HTML or SVG"
+      "presentation": "Original feature inventory superseded by the five-group diagram in the approved Figma frame 46"
     },
     {
       "file": "Slide 16_9 - 18.jpg",
       "number": 18,
       "sha256": "1fd9a5ec4daa5cd05954889f428cc124a55829e8c683abb4a5252308190e101e",
-      "status": "presented",
+      "status": "reference-only",
       "selector": "#function-ideation",
-      "presentation": "Rebuilt native HTML or SVG"
+      "presentation": "Original feature inventory superseded by the five-group diagram in the approved Figma frame 46"
     },
     {
       "file": "Slide 16_9 - 19.jpg",
@@ -465,17 +916,17 @@
       "number": 45,
       "sha256": "0672c3dd4f4757d0be8cbfefdf29fe38192ff3613d1ea1052fd96ddae50f8425",
       "status": "presented",
-      "selector": "#interface [data-source-slide=\"45\"]",
+      "selector": "#dashboard-feature-title",
       "asset": "projects/greeny/img/case-study/source-45.jpg",
-      "presentation": "Original artwork in the approved three-panel User Interface sequence"
+      "presentation": "Figma Dashboard and AI showcase with native text and original phone layers"
     },
     {
       "file": "Slide 16_9 - 46.jpg",
       "number": 46,
       "sha256": "8a07068338b06a58373199c84f11ecc920aee065c72924621f29f1f7582b90cd",
-      "status": "omitted",
-      "selector": null,
-      "presentation": "Owner-approved interface reference replaces duplicate/mockup material and Advertising/Poster dividers"
+      "status": "presented",
+      "selector": "#sketches",
+      "presentation": "Original sketches from source frame 46, after Task Flow"
     },
     {
       "file": "Slide 16_9 - 47.jpg",

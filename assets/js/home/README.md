@@ -9,7 +9,7 @@ imports; GitHub Pages serves them directly.
 | `home-navigation.js` | Object zoom/return, history, focus and interruption |
 | `home-objects.js` | Original artwork ownership and travelling slots |
 | `home-about.js` | Single-gap ID-card outline and complete-copy fade |
-| `home-skills-art.js`, `home-butter-morph.js`, `home-skills-pages.js` | Bread/butter motion and responsive skill groups |
+| `home-skills-art.js`, `home-butter-morph.js`, `home-skills-pages.js` | Continuous butter morph, word cloud and readable paged list |
 | `home-note-art.js`, `home-contact.js` | Note morph, email draft and clipboard |
 | `home-game-art.js`, `tic-tac-toe.js` | Original game artwork and computer moves |
 | `home-toys.js` | Pan/egg flip and basketball bounce |
