@@ -3,6 +3,9 @@ const {esc, arrow, cover} = require('../chrome.cjs');
 const assets = require('./assets.cjs');
 const butter = require('./butter.cjs');
 const pan = require('./pan.cjs');
+const homeStyleVersion = require('node:crypto').createHash('sha256')
+  .update(require('node:fs').readFileSync(require('node:path').join(__dirname,'../../../assets/css/home.css')))
+  .digest('hex').slice(0,12);
 
 const svg = (name, extra = '', nodeOverride) => {
   const [width,height,node] = assets[name];
@@ -25,7 +28,7 @@ module.exports = () => `<!doctype html>
 <title>Emory Pham Portfolio</title>
 <meta name="description" content="${esc(profile.name)}, ${esc(profile.role)}. Selected case studies: Greeny, Moti-Pulse and Synergy.">
 <meta name="theme-color" content="#f2f0f3"><link rel="icon" href="assets/img/home/favicon.png" type="image/png" sizes="32x32"><link rel="icon" href="assets/img/home/favicon.svg" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="assets/css/fonts.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/fonts.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/home.css?v=${homeStyleVersion}">
 <link rel="preload" as="image" href="assets/img/home/board-greeny.svg"><link rel="preload" as="image" href="assets/img/home/board-moti.svg"><link rel="preload" as="image" href="assets/img/home/board-synergy.svg"><link rel="preload" as="image" href="assets/img/home/game-x.svg"><link rel="preload" as="image" href="assets/img/home/game-o.svg">
 <script src="assets/js/home/index.js" type="module"></script>
 </head><body class="theme-home" id="page-top">

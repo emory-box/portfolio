@@ -228,4 +228,6 @@ no-JS content/links. Check320/360/768/1280/1920px, short landscape and200% text.
 Keep original Figma SVGs local; asset dimensions/nodes are in
 `authoring/portfolio/home/assets.cjs`.
 Regenerate only Home: node authoring/portfolio/build.cjs --home-only.
+The generated Home stylesheet URL includes a content hash. Regenerate Home
+after CSS edits so browsers request the new stylesheet despite cached releases.
 No framework, hosted service, runtime build, commit or deployment is implied.

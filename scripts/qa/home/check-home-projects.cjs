@@ -2,12 +2,15 @@ const assert=require('node:assert/strict');
 const {projects}=require('../../../authoring/portfolio/content.cjs');
 const {puppeteer,chromePath}=require('../browser-runtime.cjs').browserRuntime();
 const SITE=process.env.SITE_URL||'http://localhost:4317';
+const homeCss=require('node:fs').readFileSync(require('node:path').join(__dirname,'../../../assets/css/home.css'));
+const styleVersion=require('node:crypto').createHash('sha256').update(homeCss).digest('hex').slice(0,12);
 (async()=>{
  const browser=await puppeteer.launch({executablePath:chromePath,headless:true,pipe:true,args:['--no-sandbox','--disable-webgl']});
  try{
   const page=await browser.newPage(),errors=[],missing=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
   await page.setViewport({width:1440,height:1024});await page.goto(SITE+'/#work',{waitUntil:'networkidle0'});await page.evaluate(()=>document.fonts.ready);
+  assert.equal(await page.$eval('link[href*="assets/css/home.css"]',e=>e.getAttribute('href')),'assets/css/home.css?v='+styleVersion,'Home requests the current stylesheet instead of a cached earlier version');
   assert.equal(await page.$$eval('.home-project-tab[aria-selected="true"],.home-project-preview:not([hidden])',es=>es.length),0,'Projects starts without a selection or preview');
   assert(await page.$eval('.home-project-prompt',e=>!e.hidden&&e.textContent.includes('Choose an object on the pegboard')),'Desktop has a selection prompt');
   await page.click('[data-project-index="1"]');
