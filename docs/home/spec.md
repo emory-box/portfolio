@@ -41,7 +41,7 @@ the shared description/cover fields. Never invent roles, metrics or findings.
 - Close uses On-Color Large:56px,24px/32px Roboto,24px horizontal padding,
   an8px icon gap and the supplied24px close icon. Its native position is
   (1229,40),141×56; compact layouts keep it visible with48px/44px variants.
-- Projects uses the source's borderless, left-aligned “read more” and supplied
+- Projects uses the source's borderless, left-aligned “Read more” and supplied
   up-right icon:48px height,24px/32px Reddit Sans700. Send and Play Again
   use Accent Small:40px height,16px padding,20px/24px Roboto, with the supplied
   mail/replay icons. Copy uses Accent-Flat XSmall:32px height,12px padding,
@@ -83,7 +83,7 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   preview column; compact layouts say “Choose a project above to see its preview.”
   Selecting a tab hides the prompt and reveals that project's preview. Preserve
   list order, stable board geometry and keyboard selection from the empty state.
-  Inside the preview, only the “read more” link has hover/click navigation;
+  Inside the preview, only the “Read more” link has hover/click navigation;
   cover, title, metadata and summary remain non-interactive.
 - Projects board(65,118),585×858 (source Synergy differs by5px/2px; use one
   stable slot for all selections). Original current states2950:18736,
@@ -129,9 +129,17 @@ About: avatar settles, outline/clip reveal480ms, all native copy fades520ms.
 Projects: board-state artwork fades only after the original board lands, then
 tabs change its state and corresponding preview. Skills: one opaque connected
 butter body morphs between supplied contours, highlights clipped inside it.
+The original highlight follows the butter's changing contour on the same
+timeline. Start at full source strength and fade it to zero as the butter
+spreads, leaving no pale reflection in the expanded state on any engine.
+Gather restores its shape and strength continuously; no separate
+fade-out/fade-in, replacement glint or flash at the end.
 Interpolate the original SVG path attributes on the shared eased timeline in all
 engines, so referenced fill and mask geometry repaint continuously. Never jump
 directly to the final contour or animate only CSS `d` on a referenced path.
+Use vector clips of the same contours for the opaque inside-stroke masks on
+the butter and bread. Keep the source SVG intact; avoid repainting alpha masks at
+Retina resolution. Check both melt and gather on WebKit at device scale2.
 The bread itself only moves/scales: all four original paper/outline/shadow layers
 retain full opacity and their relative geometry throughout the interaction.
 Closing gathers that same body before the bread returns. Deriving these live
