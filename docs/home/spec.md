@@ -60,7 +60,7 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   Note(913,661),283.868×250.485, label(1170,815).
   Ball(918,453),135×119.124; tic-tac-toe(575.5,744.27),225×198.539.
   On hover-capable pointers, Skills, Projects, Send me a note and the pan's
-  question mark switch to font-weight700 without underlines. Keep the existing
+  question mark keep their resting font weight without underlines. Keep the existing
   gentle object lift and positions; reduced motion skips the lift.
 - About card(178,279),1084×493,6px ink line,radius60; avatar canvas450×493.197
   at(178,278.9), no yellow disc. Copy starts x628, heading y350, lead after8px,
@@ -97,8 +97,9 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   Inactive previews are inert/aria-hidden but reserve a shared grid footprint,
   so changing project never moves or rescales the pegboard. Cover(710,131),660×400,
   radius36, without a border. Text starts(710,557), title38px high, followed by
-  24px gaps between title, metadata and summary. Left-aligned CTA at(710,903),
-  48px high. Keep26px after the summary. At enlarged text, let content grow.
+  24px gaps between title, metadata and summary. Left-aligned CTA,48px high,
+  with14px after the summary on desktop (at least12px after fitting), inset
+  above the pegboard's lower edge. At enlarged text, let content grow.
   Home now uses the three original monochrome illustration covers from these
   frames, contained without cropping. Shared Next projects covers stay unchanged.
 - Home-only metadata: Greeny/IoT garden management · UX/UI design/2 months;

@@ -16,7 +16,7 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
    const type=getComputedStyle(e.querySelector('.home-project-type')),duration=getComputedStyle(e.querySelector('.home-project-duration'));
    return {type:parseFloat(type.lineHeight),duration:parseFloat(duration.lineHeight),cta:e.querySelector('.home-project-open').getBoundingClientRect().y};
   });
-  assert(Math.abs(native.type-32)<.1);assert(Math.abs(native.duration-32)<.1);assert(Math.abs(native.cta-903)<1,'Native action follows the latest Figma source slot');
+  assert(Math.abs(native.type-32)<.1);assert(Math.abs(native.duration-32)<.1);assert(Math.abs(native.cta-891)<1,'Native action is inset12px above its previous slot');
   assert.equal(new Set(projects.map(p=>p.homeSummary)).size,3,'Distinct summaries');
   assert(await page.$$eval('.home-project-preview .portfolio-cover',es=>es.every(e=>getComputedStyle(e).borderTopWidth==='0px')),'Project preview frames have no border');
   assert(await page.$eval('#project-moti-pulse .portfolio-cover img',e=>e.complete&&e.naturalWidth>0&&e.src.endsWith('/moti-home-cover.png')&&getComputedStyle(e).objectFit==='contain'),'Moti preview uses the full existing banner without cropping');

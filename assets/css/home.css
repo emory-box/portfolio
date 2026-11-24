@@ -214,8 +214,7 @@ html.home-page { --header-h:0px; scroll-padding-top:16px; overflow-y:auto; scrol
 
 @media (hover:hover) {
  .home-object:hover { transform:translateY(-2px); }
- .home-object:hover .home-object-label { font-weight:700; text-decoration:none; }
- .home-pan-decoration:hover::after { font-weight:700; }
+ .home-object:hover .home-object-label { text-decoration:none; }
 .home-header a:hover { text-decoration:underline; text-underline-offset:5px; }
  .home-ball:not(:disabled):hover { filter:drop-shadow(0 5px 0 #19191918); }
  .home-return:hover { text-decoration:underline; text-underline-offset:5px; }
@@ -567,7 +566,7 @@ html:not(.home-ready) .home-project-open { margin-top:24px; }
  .home-project .home-project-type { margin-top:24px; font-size:1.5rem; line-height:1.333333; }
  .home-project .home-project-duration { margin:0 0 24px; font-size:1.5rem; line-height:1.333333; }
  .home-project .home-project-summary { font-size:1.5rem; line-height:1.416667; }
- .home-project-open { margin-top:max(26px,calc(24px / var(--home-fit-scale,1))); padding:7px 0; font-size:1.5rem; line-height:2rem; }
+ .home-project-open { margin-top:max(14px,calc(12px / var(--home-fit-scale,1))); padding:7px 0; font-size:1.5rem; line-height:2rem; }
 }
 @media (max-width:900px) {
  .home-project-open { align-self:flex-start; padding-inline:0; }
