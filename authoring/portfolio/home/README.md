@@ -13,7 +13,8 @@ authoring; visitors and GitHub Pages use the exported page directly.
 | --- | --- |
 | `index.cjs` | Semantic homepage template and original illustration slots |
 | `assets.cjs` | Exact intrinsic dimensions and Figma node IDs for retained SVGs |
-| `butter.cjs` | Contours extracted from current original butter artwork |
+| `butter.cjs` | Uses the intact Figma bread component and binds its existing butter contour/fill/stroke to motion; the source asset stays unchanged |
+| `neutral-board.cjs` | Derives the unselected pegboard from the original Moti board, changing only its three selected logo strokes to the supplied inactive paint; runs with the Home export |
 | `pan.cjs` | Inlines the thirteen original pan/egg paths in paint order, avoiding Safari's external-fragment decoding issue |
 | `favicons.cjs` | Original portrait/project tab icons; `--render` also exports32px PNG fallbacks through local Chrome |
 | `capture-moti-cover.cjs` | Browser export of the actual Moti-Pulse banner |

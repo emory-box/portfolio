@@ -363,8 +363,6 @@ body:has(.greeny-case-study[data-figma-layout]) .project-next { padding-block: 6
 body:has(.greeny-case-study[data-figma-layout]) .project-next-heading { margin-bottom: 40px; }
 body:has(.greeny-case-study[data-figma-layout]) .project-next h2 { font: 500 var(--step-4)/1.15 var(--font-display); }
 body:has(.greeny-case-study[data-figma-layout]) .project-next-grid { gap: 24px; }
-body:has(.greeny-case-study[data-figma-layout]) .project-next .portfolio-cover { background: transparent; }
-body:has(.greeny-case-study[data-figma-layout]) .project-next-card:nth-child(2) .portfolio-cover img { border-radius: 16px; }
 body:has(.greeny-case-study[data-figma-layout]) .project-next-caption { justify-content: start; gap: 6px; }
 body:has(.greeny-case-study[data-figma-layout]) .project-next-caption h3 { font: 600 1.375rem/1.4 var(--font-body); }
 body:has(.greeny-case-study[data-figma-layout]) .project-next-caption svg { width: 18px; height: 18px; }

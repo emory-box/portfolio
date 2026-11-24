@@ -76,18 +76,24 @@ $env:SITE_URL = 'http://localhost:4317'
 node scripts/qa/screenshots.mjs .cache/qa/screenshots
 ```
 
-Không có npm build, typecheck hay test runner ở root. Các `package.json`
-trong nguồn video chỉ dành cho HyperFrames.
+Root `package.json` chỉ chứa Playwright cho QA và hai lệnh mở WebKit;
+không có npm build, typecheck hay test runner. Các `package.json` trong
+nguồn video chỉ dành cho HyperFrames.
 
 Kiểm tra thêm WebKit trên Windows/macOS/Linux (công cụ QA tùy chọn đã được duyệt):
 
 ```sh
-npm install -g playwright@1.65.1
+npm ci
 npx playwright install webkit
 node scripts/qa/check-webkit-compat.cjs
 ```
 
-Playwright và browser được cài ngoài website, không thêm dependency runtime.
+Chạy hai lệnh cài đặt trước lần đầu dùng bộ kiểm tra Home, vì bộ này có kiểm
+tra WebKit. Trên PowerShell bị chặn script, dùng `npm.cmd` và `npx.cmd`.
+Khi server đang chạy ở terminal thứ nhất, mở terminal thứ hai và chạy
+`npm run safari` hoặc `npm run safari:iphone` để tự kiểm tra.
+Playwright là devDependency; browser và `node_modules` không được đưa lên web,
+không thêm dependency runtime.
 Check này kiểm tra tap/lật trứng, reduced motion và màu/gradient/logo của các
 hình kết nối Greeny. Đây là WebKit desktop với viewport mobile, chưa phải một
 phiên Safari iPhone thật. Hồi quy SVG đã kiểm tra thêm bằng Playwright 1.56.1 /

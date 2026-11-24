@@ -11,7 +11,7 @@ function marked(html, name, content) {
 }
 
 const selectedProject=process.argv.find(arg=>arg.startsWith('--project='))?.slice('--project='.length);
-if(!selectedProject){const homepage = require('./home/index.cjs')();fs.writeFileSync(path.join(root, 'index.html'), homepage);}
+if(!selectedProject){require('./home/neutral-board.cjs')();const homepage = require('./home/index.cjs')();fs.writeFileSync(path.join(root, 'index.html'), homepage);}
 
 for (const project of process.argv.includes('--home-only') ? [] : projects.filter(p=>!selectedProject||p.slug===selectedProject)) {
   const file = path.join(root, 'projects', project.slug, 'index.html');

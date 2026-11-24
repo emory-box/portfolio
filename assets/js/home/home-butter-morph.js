@@ -3,7 +3,7 @@ export function createButterMorph(art) {
   const svg=art.querySelector('.home-butter-live');
   const edge=svg.querySelector('.home-butter-boundary'),body=svg.querySelector('.home-butter-body');
   const restGloss=svg.querySelector('.home-butter-gloss-rest'),openGloss=svg.querySelector('.home-butter-gloss-open');
-  const count=96,targetWidth=Number(svg.dataset.targetWidth),targetHeight=Number(svg.dataset.targetHeight),halfStroke=Number(svg.dataset.targetStroke)/2;
+  const count=96;
   function sample(path,sx=1,sy=1) {
     const length=path.getTotalLength();
     const points=Array.from({length:count},(_,i)=>{const p=path.getPointAtLength(length*i/count);return{x:p.x*sx,y:p.y*sy};});
@@ -18,9 +18,6 @@ export function createButterMorph(art) {
     }
     return points.map((_,i)=>points[(i+best)%count]);
   }
-  function offset(points,amount) {
-    return points.map((p,i)=>{const a=points[(i+count-1)%count],b=points[(i+1)%count],dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy)||1;return{x:(p.x+dy/length*amount)*327.893/targetWidth,y:(p.y-dx/length*amount)*274.83/targetHeight};});
-  }
   function curve(points) {
     const number=n=>Number(n.toFixed(4)),point=p=>number(p.x)+' '+number(p.y);
     let d='M'+point(points[0]);
@@ -30,24 +27,49 @@ export function createButterMorph(art) {
     }
     return 'path("'+d+'Z")';
   }
-  const homeEdge=sample(edge),homeBody=align(sample(body),homeEdge);
-  const target=sample(svg.querySelector('.home-butter-guide'));
-  const targetEdge=align(offset(target,halfStroke),homeEdge),targetBody=align(offset(target,-halfStroke),targetEdge);
-  const home={edge:curve(homeEdge),body:curve(homeBody),rest:'1',open:'0'};
-  const expanded={edge:curve(targetEdge),body:curve(targetBody),rest:'0',open:'1'};
+  const homeEdge=sample(edge);
+  const homeContour=curve(homeEdge),expandedContour=curve(align(sample(svg.querySelector('.home-butter-guide')),homeEdge));
+  // The source's fill and masked inside stroke share the same original contour.
+  const home={edge:homeContour,body:homeContour,rest:'1',open:'0'};
+  const expanded={edge:expandedContour,body:expandedContour,rest:'0',open:'1'};
   const cssPath=path=>getComputedStyle(path).d||'path("'+path.getAttribute('d')+'")';
   function capture(){return{edge:cssPath(edge),body:cssPath(body),rest:getComputedStyle(restGloss).opacity,open:getComputedStyle(openGloss).opacity};}
   function apply(pose) {
     for(const [path,d]of [[edge,pose.edge],[body,pose.body]]){path.style.d='';path.setAttribute('d',d.slice(d.indexOf('"')+1,d.lastIndexOf('"')));}
     restGloss.style.opacity=pose.rest;openGloss.style.opacity=pose.open;
   }
+  function morphAttributes(from,to,animate,timing) {
+    // Attribute updates refresh the component's referenced fill and mask too.
+    // CSS d is unsupported in WebKit and leaves Chrome's <use> paint stale.
+    const number=/-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
+    const contours=[[edge,from.edge,to.edge],[body,from.body,to.body]].map(([path,start,end])=>{
+      const raw=value=>value.slice(value.indexOf('"')+1,value.lastIndexOf('"'));
+      const a=raw(start).match(number).map(Number),b=raw(end).match(number).map(Number);
+      return{path,a,b,parts:raw(end).split(number),end:raw(end)};
+    });
+    const motion=animate(svg,[{},{}],timing);
+    let frame=0;
+    function tick() {
+      if(motion.playState==='idle')return;
+      const progress=motion.effect.getComputedTiming().progress;
+      if(progress!==null)for(const {path,a,b,parts}of contours){
+        path.setAttribute('d',parts.map((part,i)=>part+(i<a.length?Number((a[i]+(b[i]-a[i])*progress).toFixed(4)):'')).join(''));
+      }
+      if(motion.playState!=='finished')frame=requestAnimationFrame(tick);
+    }
+    frame=requestAnimationFrame(tick);
+    motion.finished.then(()=>{
+      cancelAnimationFrame(frame);
+      for(const {path,end}of contours)path.setAttribute('d',end);
+    },()=>cancelAnimationFrame(frame));
+    return motion;
+  }
   function morph(open,animate,duration) {
     const from=capture(),to=open?expanded:home;
-    if(!CSS.supports('d',to.body)){apply(to);return[];}
     const timing={duration,easing:'cubic-bezier(.3,0,.7,1)'};
-    return [animate(edge,[{d:from.edge},{d:to.edge}],timing),animate(body,[{d:from.body},{d:to.body}],timing),
+    return [morphAttributes(from,to,animate,timing),
       animate(restGloss,[{opacity:from.rest},{opacity:to.rest}],timing),animate(openGloss,[{opacity:from.open},{opacity:to.open}],timing)];
   }
-  apply(home);art.classList.add('has-continuous-butter');
+  apply(home);
   return{finish:open=>apply(open?expanded:home),freeze:()=>apply(capture()),morph};
 }

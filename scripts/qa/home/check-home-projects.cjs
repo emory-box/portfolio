@@ -8,7 +8,10 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
   const page=await browser.newPage(),errors=[],missing=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url());});
   await page.setViewport({width:1440,height:1024});await page.goto(SITE+'/#work',{waitUntil:'networkidle0'});await page.evaluate(()=>document.fonts.ready);
-  assert.equal(await page.$eval('.home-project-tab[aria-selected="true"]',e=>e.getAttribute('href')),'#project-moti-pulse','Moti-Pulse is selected by default');
+  assert.equal(await page.$$eval('.home-project-tab[aria-selected="true"],.home-project-preview:not([hidden])',es=>es.length),0,'Projects starts without a selection or preview');
+  assert(await page.$eval('.home-project-prompt',e=>!e.hidden&&e.textContent.includes('Choose an object on the pegboard')),'Desktop has a selection prompt');
+  await page.click('[data-project-index="1"]');
+  await page.waitForFunction(()=>document.querySelector('[data-project-index="1"]').getAttribute('aria-selected')==='true');
   const native=await page.$eval('.home-project-preview:not([hidden])',e=>{
    const type=getComputedStyle(e.querySelector('.home-project-type')),duration=getComputedStyle(e.querySelector('.home-project-duration'));
    return {type:parseFloat(type.lineHeight),duration:parseFloat(duration.lineHeight),cta:e.querySelector('.home-project-open').getBoundingClientRect().y};
@@ -23,6 +26,12 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
    assert.equal(await page.$eval('.home-project-preview:not([hidden]) .home-project-summary',e=>e.textContent),projects[i].homeSummary);
    assert.equal(await page.$eval('.home-board-preview img:not([hidden])',e=>e.getAttribute('src')),'assets/img/home/'+projects[i].homeBoard);
    assert.equal(await page.$eval('.home-project-preview:not([hidden]) a',e=>e.getAttribute('href')),'projects/'+projects[i].slug+'/');
+   assert(await page.$eval('.home-project-prompt',e=>e.hidden),'Prompt hides after selection');
+   assert.equal(await page.$$eval('.home-project-preview:not([hidden]) a, .home-project-preview:not([hidden]) button',es=>es.length),1,'Read more is the only interactive element in the preview');
+   await page.hover('.home-project-preview:not([hidden]) .portfolio-cover');
+   assert.equal(await page.$eval('.home-project-preview:not([hidden]) .home-project-open',e=>getComputedStyle(e).textDecorationLine),'none','Hovering the cover does not style read more');
+   await page.click('.home-project-preview:not([hidden]) .portfolio-cover');
+   assert(new URL(page.url()).pathname.endsWith('/'),'Clicking the cover does not navigate');
   }
   await page.focus('[data-project-index="2"]');await page.keyboard.press('Home');
   assert.equal(await page.$eval('[data-project-index="0"]',e=>e.getAttribute('aria-selected')),'true');
@@ -46,7 +55,8 @@ const SITE=process.env.SITE_URL||'http://localhost:4317';
    await page.setViewport({width,height:800});
    await page.goto(SITE+'/?project-default='+width+'#work',{waitUntil:'networkidle0'});
    await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
-   assert.equal(await page.$eval('.home-project-preview:not([hidden])',e=>e.id),'project-moti-pulse','Compact view also starts with Moti-Pulse');
+   assert.equal(await page.$$eval('.home-project-preview:not([hidden])',es=>es.length),0,'Compact view also starts without a selection');
+   assert(await page.$eval('.home-project-prompt-tabs',e=>getComputedStyle(e).display!=='none'&&e.textContent.includes('above')),'Compact prompt refers to the tabs');
    for(let i=0;i<projects.length;i++){
     await page.focus('[data-project-index="'+i+'"]');await page.keyboard.press('Enter');
     await page.waitForFunction(i=>document.querySelector('[data-project-index="'+i+'"]').getAttribute('aria-selected')==='true',{},i);

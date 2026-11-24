@@ -1,5 +1,7 @@
 # Portfolio home specification
 
+Browser title: `Emory Pham Portfolio` (owner-approved).
+
 Read ../shared/website-spec.md first. This file governs only Home and its object views.
 
 ## Approved source and scope
@@ -58,7 +60,8 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   Note(913,661),283.868×250.485, label(1170,815).
   Ball(918,453),135×119.124; tic-tac-toe(575.5,744.27),225×198.539.
   On hover-capable pointers, Skills, Projects, Send me a note and the pan's
-  question mark switch to font-weight700. Keep their existing positions.
+  question mark switch to font-weight700 without underlines. Keep the existing
+  gentle object lift and positions; reduced motion skips the lift.
 - About card(178,279),1084×493,6px ink line,radius60; avatar canvas450×493.197
   at(178,278.9), no yellow disc. Copy starts x628, heading y350, lead after8px,
   prose after24px. Clip(1132,203),180.467×199.669. Retain the owner's one small
@@ -70,8 +73,18 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   its source line break and can use the full text column rather than a359px cap.
   The desktop heading reserves16px before the clip's leading edge and wraps
   when the viewport narrows or text grows. Compact layouts use the full column.
-- Moti-Pulse is selected on initial load, with its board state and preview
-  synchronized. Preserve the existing list order and subsequent user selections.
+  Below the prose, show the owner's build note: “I vibe-coded this website and
+  tested it on Windows and macOS.” Use14px/21px supporting text in the existing
+  dim ink, with16px above it, inside the same copy group and fade sequence.
+  The complete copy group stays vertically centered as this note adds height;
+  its heading may move upward from the earlier source position to keep it inside.
+- Every fresh entry into Projects starts with no selected project and its neutral
+  pegboard. Show “Choose an object on the pegboard to explore a project.” in the
+  preview column; compact layouts say “Choose a project above to see its preview.”
+  Selecting a tab hides the prompt and reveals that project's preview. Preserve
+  list order, stable board geometry and keyboard selection from the empty state.
+  Inside the preview, only the “read more” link has hover/click navigation;
+  cover, title, metadata and summary remain non-interactive.
 - Projects board(65,118),585×858 (source Synergy differs by5px/2px; use one
   stable slot for all selections). Original current states2950:18736,
   2956:18871 and2956:18993 are exported intact from Figma. These SVGs contain
@@ -93,6 +106,9 @@ the shared description/cover fields. Never invent roles, metrics or findings.
   Synergy/University app · UX/UI case study/3 months. Use the distinct summaries
   supplied by these frames. Shared project-header metadata stays unchanged.
 - Skills-v2 uses the original Home bread, enlarged in its current canvas slot.
+  Import the intact SVG component2727:16463 as `toast-component.svg`; preserve
+  its original paper, shadow, stroke order and masks. Bind the existing butter
+  paths for animation inside that component instead of assembling a second bread.
   Keep its paper, crust strokes and shadow continuously visible and unchanged;
   do not cross-fade to another bread illustration during or after the zoom.
   The original inner-outline contour is the target of the one-body butter morph;
@@ -113,6 +129,9 @@ About: avatar settles, outline/clip reveal480ms, all native copy fades520ms.
 Projects: board-state artwork fades only after the original board lands, then
 tabs change its state and corresponding preview. Skills: one opaque connected
 butter body morphs between supplied contours, highlights clipped inside it.
+Interpolate the original SVG path attributes on the shared eased timeline in all
+engines, so referenced fill and mask geometry repaint continuously. Never jump
+directly to the final contour or animate only CSS `d` on a referenced path.
 The bread itself only moves/scales: all four original paper/outline/shadow layers
 retain full opacity and their relative geometry throughout the interaction.
 Closing gathers that same body before the bread returns. Deriving these live

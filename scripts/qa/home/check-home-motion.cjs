@@ -60,7 +60,7 @@ const pause=ms=>new Promise(r=>setTimeout(r,ms));
     assert(await page.$eval(selector,e=>getComputedStyle(e).boxShadow==='none'&&getComputedStyle(e).borderTopWidth==='0px'),'Ordinary full-page scene');
     assert(await page.evaluate(()=>document.querySelector('.home-scene').hidden&&document.querySelector('.home-header').hidden));
     if(id==='work'){
-     await page.focus('[role="tab"][aria-selected="true"]');await page.keyboard.press('End');
+     await page.focus('[role="tab"][tabindex="0"]');await page.keyboard.press('End');
      assert.equal(await page.$eval('.home-project-preview:not([hidden]) h3',e=>e.textContent),'Synergy');
      await page.keyboard.press('ArrowUp');assert.equal(await page.$eval('[aria-selected="true"]',e=>e.textContent),'Moti-Pulse');
      await page.keyboard.press('Home');assert.equal(await page.$eval('.home-project-preview:not([hidden]) h3',e=>e.textContent),'Greeny');

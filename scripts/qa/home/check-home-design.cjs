@@ -57,7 +57,8 @@ async function geometry(page,selector,expected) {
     assert.equal(await page.$('.home-about-disc'),null,'Current About has no yellow disc');
     await geometry(page,'.home-about-avatar img',[178,279,450,493.197]);
     await geometry(page,'.home-about-clip img',[1132,203,180.467,199.669]);
-    await geometry(page,'.home-about-copy h2',[628,349.91,483.66,76.8]);
+    const headingTop=await page.$eval('.home-about-copy',e=>{const card=e.closest('.home-about-card'),style=getComputedStyle(e);return(card.offsetHeight-e.offsetHeight)/2+card.offsetTop+parseFloat(style.paddingTop);});
+    await geometry(page,'.home-about-copy h2',[628,headingTop,483.66,76.8]);
     assert.equal(await page.$eval('.home-about-copy p',e=>getComputedStyle(e).fontWeight),'700');
     await page.screenshot({path:out+'/figma-about-1440.png'});
     await page.evaluate(()=>document.documentElement.style.fontSize='200%');

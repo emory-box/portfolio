@@ -55,7 +55,7 @@ document that owns the changed rule.
 | --- | --- |
 | Start | Original app logo, followed by the app name; static, non-clickable identity |
 | Middle | Owner-provided project type, a thin decorative vertical divider, then completion duration |
-| End | `All projects` home link, followed by a thin up-right arrow matching the owner's reference |
+| End | `Home` home link, followed by a thin up-right arrow matching the owner's reference |
 
 Use the owner's actual project-type wording. Ask when the type or duration is
 missing; supply neither from assumptions. Preserve original logo geometry and
@@ -69,10 +69,11 @@ element such as `<div class="brand">`, never an anchor, button or simulated
 control. Do not add `href`, click handlers, interactive roles, `tabindex`,
 pointer cursors or hover/pressed affordances to this group. Keep the app name
 as readable text, with decorative logo imagery hidden from assistive technology
-when that name already identifies it. Only `All projects` provides the header's
+when that name already identifies it. Only `Home` provides the header's
 home navigation. This applies to every current and future project page,
 including existing pages awaiting the rest of their shared-header migration;
-the portfolio home page and project footers remain outside this rule.
+the portfolio home page and project footers remain outside this rule. The
+`All projects` link in Next projects keeps its existing label and destination.
 
 ### Position and presentation
 

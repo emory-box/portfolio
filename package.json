@@ -1,0 +1,11 @@
+{
+  "name": "emory-portfolio",
+  "private": true,
+  "scripts": {
+    "safari": "playwright open --browser=webkit http://localhost:4317",
+    "safari:iphone": "playwright open --browser=webkit --device=\"iPhone 15 Pro\" http://localhost:4317"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.1"
+  }
+}

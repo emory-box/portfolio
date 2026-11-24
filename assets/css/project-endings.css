@@ -19,9 +19,11 @@
 .project-next svg, .portfolio-footer svg, .portfolio-return-top svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; flex-shrink: 0; }
 .project-next-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px; }
 .project-next-card { display: block; min-width: 0; color: var(--text); }
-.project-next .portfolio-cover { aspect-ratio: 16 / 9; }
+.project-next .portfolio-cover { aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; }
 .project-next .portfolio-cover:has(img) { background: var(--bg); }
-.project-next .portfolio-cover img { object-fit: contain; }
+/* This wider original has a white canvas; continue it into the frame's padding. */
+.project-next .portfolio-cover:has(img[src$="/moti-pulse-cover.png"]) { background: #fff; }
+.project-next .portfolio-cover img { object-fit: contain; border-radius: 0; }
 .project-next-caption { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-block-start: 16px; }
 .project-next-caption h3 { margin: 0; font: 500 clamp(1.25rem, 2vw, 1.75rem)/1.3 var(--font-body); letter-spacing: -.015em; }
 .project-next-card > p { margin-block-start: 8px; color: var(--text-muted); font: 400 .875rem/1.5 var(--font-body); }

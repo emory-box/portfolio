@@ -3,7 +3,7 @@ const {puppeteer,chromePath}=require('../browser-runtime.cjs').browserRuntime();
 const site=process.env.SITE_URL||'http://localhost:4317';
 const selectors={
  skills:'.home-toast-art',about:'.home-about-card,.home-about-clip',
- work:'.home-project-board-surface,.home-project-preview:not([hidden])',
+ work:'.home-project-board-surface,.home-project-preview:not([hidden]),.home-project-prompt:not([hidden])',
  contact:'.home-contact-paper,.home-note-tab,.home-note-shadow',
  play:'#play-title,.home-game-instructions,.home-game-status,.home-game-reset,.home-game-paper img,.home-game-outline img,.home-game-shadow img'
 };
@@ -28,7 +28,7 @@ const selectors={
       const r=boxes[0],scale=r.width/1854.1545;
       Object.assign(bounds,{left:r.left+445.386*scale,top:r.top+249.157*scale,right:r.left+1378.044*scale,bottom:r.top+1141.826*scale});
      }
-     const small=[...view.querySelectorAll('button,input,textarea,a.home-project-open,a.home-project-tab')].filter(e=>e.getClientRects().length).map(e=>({name:e.getAttribute('aria-label')||e.textContent.trim()||e.id,min:id==='contact'||id==='play'?24:44,rect:e.getBoundingClientRect()})).filter(x=>x.rect.width<24-.5||x.rect.height<x.min-.5).map(x=>({name:x.name,width:x.rect.width,height:x.rect.height}));
+     const small=[...view.querySelectorAll('button,input,textarea,a.home-project-open,a.home-project-tab')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>({name:e.getAttribute('aria-label')||e.textContent.trim()||e.id,min:id==='contact'||id==='play'?24:44,rect:e.getBoundingClientRect()})).filter(x=>x.rect.width<24-.5||x.rect.height<x.min-.5).map(x=>({name:x.name,width:x.rect.width,height:x.rect.height}));
      const r=document.querySelector('.home-return').getBoundingClientRect();
      const readingView=((id==='contact'||id==='play')&&(innerHeight<=480||parseFloat(view.style.height)>innerHeight+1))||(id==='work'&&innerWidth<=900);
      return{bounds,small,noScroll:root.scrollWidth<=innerWidth&&(readingView||root.scrollHeight<=innerHeight+1),frameHeight:readingView?root.scrollHeight:innerHeight,close:r.top>=0&&r.bottom<=96,scale:view.dataset.fitScale};

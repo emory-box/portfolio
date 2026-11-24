@@ -7,11 +7,12 @@ const site=process.env.SITE_URL||'http://localhost:4317';
   const ready=await page.evaluate(()=>({surface:!!document.querySelector('.home-butter-live'),words:document.querySelectorAll('.home-skill-word').length}));
   assert.deepEqual(ready,{surface:true,words:16},'One continuous butter surface and all sixteen current source words');
   fs.mkdirSync('.cache/qa/butter-motion',{recursive:true});
-  const areas=[];
+  const areas=[],paintedAreas=[];
   for(const progress of [0,.2,.4,.6,.8,1]){
    const result=await page.evaluate(async progress=>{
     const art=document.querySelector('.home-toast-art');
     for(const animation of art.getAnimations({subtree:true})){animation.pause();const t=animation.effect.getTiming();animation.currentTime=(t.delay||0)+t.duration*progress;}
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
     const svg=art.querySelector('.home-butter-live'),copy=svg.cloneNode(true),original=[...svg.querySelectorAll('path,g')];
     [...copy.querySelectorAll('path,g')].forEach((path,i)=>{const style=getComputedStyle(original[i]);if(path.tagName==='path')path.style.d=style.d;path.style.opacity=style.opacity;});
     const source='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(copy));
@@ -24,8 +25,16 @@ const site=process.env.SITE_URL||'http://localhost:4317';
    },progress);
    assert.equal(result.components,1,'One connected butter mass at '+progress);assert(result.opaque,'The mass never cross-fades '+progress);
    if(areas.length)assert(result.area>=areas.at(-1)*.98,'The same butter expands continuously');areas.push(result.area);
-   await page.screenshot({path:'.cache/qa/butter-motion/melt-'+progress+'.png'});
+   const screenshot=await page.screenshot({path:'.cache/qa/butter-motion/melt-'+progress+'.png'});
+   paintedAreas.push(await page.evaluate(async data=>{
+    const image=new Image();image.src='data:image/png;base64,'+data;await image.decode();
+    const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+    const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let area=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>230&&pixels[i+1]>150&&pixels[i+2]<140&&pixels[i+3]>250)area++;
+    return area;
+   },screenshot.toString('base64')));
   }
+  assert(paintedAreas.at(-1)>paintedAreas[0]*3,'The actual browser paint spreads across the bread during the morph, not only in a serialized SVG');
   await page.evaluate(()=>document.querySelector('.home-toast-art').getAnimations({subtree:true}).forEach(a=>a.play()));
   await page.waitForFunction(()=>document.documentElement.dataset.homePhase==='detail');
   assert(await page.$$eval('.home-skill-word',es=>es.every(e=>getComputedStyle(e).fontWeight===(e.classList.contains('home-skill-word--major')?'800':'500'))),'Source word-cloud hierarchy is preserved');

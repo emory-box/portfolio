@@ -34,7 +34,7 @@ const out='.cache/qa/home-refinements';fs.mkdirSync(out,{recursive:true});
  await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
  await page.evaluate(()=>{document.querySelector('[data-project-index="0"]').click();document.querySelector('.home-return').click();document.querySelector('.home-projects').click();});
  assert(await page.$$eval('.home-project-hover-art',es=>es.every(e=>e.getAnimations().length===0)),'Leaving cancels pending press feedback before reopening');
- assert.equal(await page.$eval('[data-project-index="2"]',e=>e.getAttribute('aria-selected')),'true','Reopening keeps the last completed selection');
+ assert.equal(await page.$$eval('.home-project-tab[aria-selected="true"]',es=>es.length),0,'Reopening waits for a new project choice');
  await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'no-preference'}]);
  await page.setViewport({width:1280,height:720});await page.goto(site+'/?entrance=1',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.classList.contains('home-ready'));
  const intro=await page.evaluate(()=>['.home-header','#home-title','.home-portrait','.home-skills','.home-pan-decoration','.home-projects','.home-note','.home-play','.home-ball'].map(selector=>{const s=getComputedStyle(document.querySelector(selector));return{selector,duration:s.animationDuration,name:s.animationName,delay:parseFloat(s.animationDelay)*1000};}));

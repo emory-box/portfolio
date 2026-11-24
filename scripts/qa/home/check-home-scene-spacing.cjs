@@ -9,12 +9,13 @@ const site=process.env.SITE_URL||'http://localhost:4317',out='.cache/qa/home-sce
   const result=await page.evaluate(async()=>{
    const cache=new Map(),rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height};};
    async function ink(img,box=rect(img)){
+    if(img instanceof SVGElement){const bitmap=new Image();bitmap.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(img));await bitmap.decode();return ink(bitmap,box);}
     if(!img.complete)await img.decode();let a=cache.get(img.src);
     if(!a){const c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);const d=ctx.getImageData(0,0,c.width,c.height).data;let x=c.width,y=c.height,r=0,b=0;for(let j=0;j<c.height;j++)for(let i=0;i<c.width;i++)if(d[(j*c.width+i)*4+3]>25){x=Math.min(x,i);y=Math.min(y,j);r=Math.max(r,i+1);b=Math.max(b,j+1);}a={x:x/c.width,y:y/c.height,w:(r-x)/c.width,h:(b-y)/c.height};cache.set(img.src,a);}
     return{x:box.x+a.x*box.w,y:box.y+a.y*box.h,w:a.w*box.w,h:a.h*box.h};
    }
    const pieces=[];async function image(group,selector,override){for(const img of document.querySelectorAll(selector))pieces.push({group,box:await ink(img,override?rect(document.querySelector(override)):undefined)});}
-   await image('avatar','.home-portrait img');await image('projects','.home-projects .home-pegboard-art > img');await image('skills','.home-toast-paper-back img');await image('pan','.home-pan-art > img','.home-pan-scene');await image('ball','.home-ball img');await image('play','.home-play .home-game-outline img');
+   await image('avatar','.home-portrait img');await image('projects','.home-projects .home-pegboard-art > img');await image('skills','.home-toast-component');await image('pan','.home-pan-art > img','.home-pan-scene');await image('ball','.home-ball img');await image('play','.home-play .home-game-outline img');
    for(const e of document.querySelectorAll('.home-note :is(.home-note-face,.home-note-shadow,.home-note-tab)'))pieces.push({group:'note',box:rect(e)});
    for(const [group,selector]of [['projects','.home-projects .home-object-label'],['skills','.home-skills .home-object-label'],['note','.home-note .home-object-label']])pieces.push({group,box:rect(document.querySelector(selector))});
    const collisions=[];for(let i=0;i<pieces.length;i++)for(let j=i+1;j<pieces.length;j++){const a=pieces[i],b=pieces[j];if(a.group===b.group)continue;const w=Math.min(a.box.x+a.box.w,b.box.x+b.box.w)-Math.max(a.box.x,b.box.x),h=Math.min(a.box.y+a.box.h,b.box.y+b.box.h)-Math.max(a.box.y,b.box.y);if(w>1&&h>1)collisions.push({groups:[a.group,b.group],overlap:[w,h]});}

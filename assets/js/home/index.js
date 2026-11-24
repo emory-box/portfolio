@@ -54,7 +54,8 @@ renderGame();
 const projectTabs=[...document.querySelectorAll('[data-project-index]')];
 const projectPreviews=[...document.querySelectorAll('.home-project-preview')];
 const projectTabList=document.querySelector('.home-project-tabs');
-let selectedProject=Math.max(0,projectTabs.findIndex(tab=>tab.getAttribute('href')==='#project-moti-pulse'));
+const projectPrompt=document.querySelector('.home-project-prompt');
+let selectedProject=-1;
 let projectSelectionVersion=0;
 projectTabList.setAttribute('role','tablist');
 projectTabList.setAttribute('aria-orientation','vertical');
@@ -65,16 +66,18 @@ function cancelProjectFeedback() {
 function selectProject(index, focus=false, animate=true) {
   cancelProjectFeedback();
   selectedProject=index;
+  projectPrompt.hidden=index>=0;
+  document.querySelector('[data-board-empty]').hidden=index>=0;
   projectTabs.forEach((tab,i)=>{
     tab.setAttribute('aria-selected',String(i===index));
-    tab.tabIndex=i===index?0:-1;
+    tab.tabIndex=i===(index<0?0:index)?0:-1;
     projectPreviews[i].hidden=i!==index;
     projectPreviews[i].inert=i!==index;
     projectPreviews[i].setAttribute('aria-hidden',String(i!==index));
     document.querySelector(`[data-board-index="${i}"]`).hidden=i!==index;
   });
   if(focus)projectTabs[index].focus({preventScroll:true});
-  if(animate&&!reduced.matches) {
+  if(index>=0&&animate&&!reduced.matches) {
     for(const animation of projectPreviews[index].getAnimations())animation.cancel();
     projectPreviews[index].animate([{opacity:.25},{opacity:1}],{duration:150,easing:'ease-out'});
   }
@@ -84,7 +87,6 @@ projectTabs.forEach((tab,i)=>{
   tab.setAttribute('aria-controls',projectPreviews[i].id);
   projectPreviews[i].setAttribute('role','tabpanel');
   projectPreviews[i].setAttribute('aria-labelledby',tab.id);
-  projectPreviews[i].tabIndex=0;
   tab.addEventListener('click',event=>{
     if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button)return;
     cancelProjectFeedback();
@@ -98,7 +100,7 @@ projectTabs.forEach((tab,i)=>{
     },()=>{});
   });
   tab.addEventListener('keydown',event=>{
-    const next=event.key==='ArrowDown'?(selectedProject+1)%projectTabs.length:event.key==='ArrowUp'?(selectedProject+projectTabs.length-1)%projectTabs.length:event.key==='Home'?0:event.key==='End'?projectTabs.length-1:null;
+    const next=event.key==='ArrowDown'?(selectedProject+1)%projectTabs.length:event.key==='ArrowUp'?(selectedProject<0?projectTabs.length-1:(selectedProject+projectTabs.length-1)%projectTabs.length):event.key==='Home'?0:event.key==='End'?projectTabs.length-1:null;
     if(next===null||event.ctrlKey||event.metaKey||event.altKey)return;
     event.preventDefault();selectProject(next,true);
   });
@@ -108,4 +110,4 @@ selectProject(selectedProject,false,false);
 const toys=initHomeToys(reduced);
 root.classList.add('home-ready');
 initHomeContact();
-initHomeNavigation({onEnter:id=>{toys.reset();if(id==='play'){renderGame();computerTurn();}},onLeave:()=>{clearTimeout(gameTimer);cancelProjectFeedback();}});
+initHomeNavigation({onPrepare:id=>{if(id==='work')selectProject(-1,false,false);},onEnter:id=>{toys.reset();if(id==='play'){renderGame();computerTurn();}},onLeave:()=>{clearTimeout(gameTimer);cancelProjectFeedback();}});

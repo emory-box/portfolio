@@ -1,5 +1,16 @@
 # Home checks
 
+First install the approved local QA dependency and WebKit browser once:
+
+```sh
+npm ci
+npx playwright install webkit
+```
+
+The default suite includes WebKit checks. On PowerShell with script execution
+blocked, use `npm.cmd` / `npx.cmd`. These are development tools, not runtime
+dependencies of the published website.
+
 Start the repository server, then run from the repository root:
 
 ```powershell
@@ -21,6 +32,8 @@ node scripts/qa/home/run.cjs check-home-about check-home-projects
   identity, history, focus, interruptions and game behavior.
 - `check-home-about`, `check-home-skills`, `check-home-butter-motion`: focused
   reveals, complete content and motion continuity.
+- `check-home-butter-webkit`: WebKit contour interpolation, interruption and
+  reduced motion; pass `--chrome` when running this check directly to compare.
 - `check-home-contact`, `check-home-game-art`, `check-home-toys`: feature behavior.
 - `check-home-projects`, `check-home-refinements`: project states, banners and
   sequential entrance timing.

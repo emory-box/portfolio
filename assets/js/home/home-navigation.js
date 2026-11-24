@@ -6,7 +6,7 @@ import {createNoteArtwork} from './home-note-art.js';
 import {createSkillsArtwork} from './home-skills-art.js';
 import {createHomeViewFit} from './home-view-fit.js';
 
-export function initHomeNavigation({onEnter=()=>{},onLeave=()=>{}}={}) {
+export function initHomeNavigation({onPrepare=()=>{},onEnter=()=>{},onLeave=()=>{}}={}) {
   const root=document.documentElement,scene=document.querySelector('.home-scene');
   const stage=scene.querySelector('.home-stage'),header=document.querySelector('.home-header');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)'),views=new Map(),motions=new Set();
@@ -128,6 +128,7 @@ export function initHomeNavigation({onEnter=()=>{},onLeave=()=>{}}={}) {
     }else{
       if(activeId){onLeave(activeId);settleHome();}
       activeId=desiredId=id;homeScroll=scrollY;opener=trigger||objects.anchor(id);origin=objects.homeRect(id);
+      onPrepare(id);
     }
     finishIntro();close.hidden=false;close.focus({preventScroll:true});
     scene.inert=true;header.inert=true;root.classList.add('home-navigating');

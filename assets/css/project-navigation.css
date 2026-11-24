@@ -33,7 +33,7 @@ html.project-page { --header-h: 0px; scroll-padding-top: 16px; }
 .project-contents-group h3 a { color: var(--text); font: inherit; }
 .project-contents-group a:hover { color: var(--text); background: var(--surface-high); }
 .project-contents-group a[aria-current] { color: var(--contents-accent,var(--text)); background: var(--contents-current-bg,var(--surface-high)); text-decoration: none; }
-.project-contents-toggle { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 12px; border: 1px solid var(--text-dim); border-radius: 999px; background: var(--surface); color: var(--text); font: 500 .8125rem/1 var(--font-body); cursor: pointer; white-space: nowrap; }
+.project-contents-toggle { display: flex; inline-size: max-content; align-items: center; justify-content: center; min-height: 44px; padding: 10px 12px; border: 1px solid var(--text-dim); border-radius: 999px; background: var(--surface); color: var(--text); font: 500 .8125rem/1 var(--font-body); cursor: pointer; white-space: nowrap; }
 .project-contents-toggle[hidden], .project-contents-back[hidden], .project-contents-expand[hidden], .project-contents-group[hidden], .project-contents-group ul[hidden] { display: none; }
 .project-contents-toggle-label { max-inline-size: 12ch; margin-inline-end: 8px; overflow: hidden; opacity: 1; }
 .project-contents-toggle svg { flex: 0 0 18px; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }

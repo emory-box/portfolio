@@ -449,7 +449,7 @@ summary { cursor: pointer; min-height: 32px; color: var(--blue-deep); }
 .contents { margin-block: 24px; }
 .contents[hidden] { display: none !important; }
 .contents > details { position: relative; }
-.contents summary { display: inline-flex; align-items: center; justify-content: flex-end; min-width: 44px; height: 44px; padding: 10px 13px; border: 1px solid var(--border); border-radius: 100px; color: var(--blue-deep); background: var(--paper); box-shadow: 0 4px 16px var(--shadow); font-size: 12px; list-style: none; }
+.contents summary { display: inline-flex; inline-size: max-content; align-items: center; justify-content: flex-end; min-width: 44px; height: 44px; padding: 10px 13px; border: 1px solid var(--border); border-radius: 100px; color: var(--blue-deep); background: var(--paper); box-shadow: 0 4px 16px var(--shadow); font-size: 12px; list-style: none; }
 .contents-label { display: block; max-inline-size: 80px; margin-inline-end: 8px; overflow: hidden; white-space: nowrap; opacity: 1; }
 .js .contents summary[aria-expanded="true"] .contents-label,
 .no-js .contents details[open] .contents-label { max-inline-size: 0; margin-inline-end: 0; opacity: 0; }
